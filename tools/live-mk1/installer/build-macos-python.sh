@@ -6,7 +6,6 @@ export MACOSX_DEPLOYMENT_TARGET=12.0
 mkdir -p mac-python-work mac-python-runtime/python/bin mac-python-runtime/python/lib/python3.13/lib-dynload mac-python-runtime/source mac-python-runtime/licenses
 # SDKs no longer consistently ship lzma.h. Use pinned upstream public API
 # headers; the linked liblzma remains the macOS system library.
-xmp_lzma_headers="$(pwd)/mac-python-work/xz-5.8.4/src/liblzma/api"
 curl -fLsS --max-time 180 https://github.com/tukaani-project/xz/releases/download/v5.8.4/xz-5.8.4.tar.xz -o mac-python-work/xz-5.8.4.tar.xz
 printf '%s\n' '4ce24038fd4221e0d13bc1a2de7a4db56e90b92b3bf75321f6c14be73f65de4b  mac-python-work/xz-5.8.4.tar.xz' | shasum -a 256 -c -
 cp mac-python-work/xz-5.8.4.tar.xz mac-python-runtime/source/
@@ -35,7 +34,7 @@ _uuid
 DISABLED
 SDK=$(/usr/bin/xcrun --show-sdk-path)
 export ac_cv_header_libintl_h=no ac_cv_lib_intl_textdomain=no
-export LIBLZMA_CFLAGS="-I$xmp_lzma_headers" LIBLZMA_LIBS="$SDK/usr/lib/liblzma.tbd"
+export LIBLZMA_CFLAGS="-I../xz-5.8.4/src/liblzma/api" LIBLZMA_LIBS="$SDK/usr/lib/liblzma.tbd"
 export ZLIB_CFLAGS="-isystem $SDK/usr/include" ZLIB_LIBS="$SDK/usr/lib/libz.tbd"
 ./configure --prefix=/opt/xmp-python --without-ensurepip --without-readline --without-static-libpython --disable-test-modules --with-pkg-config=no > ../../mac-python-runtime/source/configure.log 2>&1
 make -j4 > ../../mac-python-runtime/source/make.log 2>&1

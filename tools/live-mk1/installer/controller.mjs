@@ -22,6 +22,7 @@ export function createController({
     usbVolume: initialSelection?.usbVolume ?? null,
     usbReady: null,
     ownerImage: initialSelection?.ownerImage ?? null,
+    preparationError: null,
     stockVerification: null,
     updater: selectedPath(initialSelection?.updater),
     loader: selectedPath(initialSelection?.loader),
@@ -83,11 +84,13 @@ export function createController({
           state.updater = path;
           state.loader = null;
           state.ownerImage = null;
+          state.preparationError = null;
           state.usbReady = null;
           state.message = "Updater selected. Prepare installation files locally.";
         }
       } else if (input.action === "prepare") {
         invalidate();
+        state.preparationError = null;
         if (!state.updater) throw new Error("Choose the official 3.10.1 updater first");
         state.message = "Preparing and auditing local loader and recovery image…";
         const result = await execute({ task: "prepare", source: state.updater }, record);
@@ -234,6 +237,7 @@ export function createController({
         });
       return view();
     } catch (error) {
+      if (input.action === "prepare") state.preparationError = error.message;
       state.message = error.message;
       record(`Stopped: ${error.message}`);
       throw error;

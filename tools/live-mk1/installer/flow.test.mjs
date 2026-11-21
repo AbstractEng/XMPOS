@@ -276,3 +276,29 @@ test("install requires a USB prepared in this run; acknowledgements and refreshe
   assert.equal(c.view().progress, null);
   assert.equal(calls.filter((r) => r.task === "write").length, 0);
 });
+
+test("a preparation failure stays visible after other setup steps and clears after a successful retry", async () => {
+  let fail = true;
+  const c = createController({
+    pick: async () => "/test/Updater.app",
+    execute: async (request) => {
+      if (request.task === "prepare") {
+        if (fail) throw Error("Need 128 MiB; 124 MiB available");
+        return {
+          directory: "/prepared/loader",
+          ownerImage: { image: "/prepared/system.img", sha256: "a".repeat(64) },
+        };
+      }
+      return {};
+    },
+  });
+  await c.action({ action: "updater" });
+  await assert.rejects(c.action({ action: "prepare" }), /128 MiB/);
+  await c.action({ action: "tools", acceptTerms: true });
+  assert.match(c.view().preparationError, /128 MiB/);
+  assert.equal(c.view().ownerImage, null);
+  fail = false;
+  await c.action({ action: "prepare" });
+  assert.equal(c.view().preparationError, null);
+  assert(c.view().ownerImage);
+});

@@ -9,7 +9,7 @@ export async function requirePreparationSpace(directory, requiredBytes, measure 
   const available = Number(fs.bavail) * Number(fs.bsize);
   if (!Number.isSafeInteger(available) || available < requiredBytes)
     throw new Error(
-      `Not enough free space to prepare a new loader. Free at least ${(requiredBytes / 1024 ** 3).toFixed(1)} GiB here; ${(available / 1024 ** 3).toFixed(2)} GiB is available. Your existing loader and recovery image are preserved.`,
+      `Not enough free space to prepare installation files. Free at least ${Math.ceil(requiredBytes / 1024 ** 2)} MiB here; ${Math.floor(available / 1024 ** 2)} MiB is available. Your existing loader and recovery image are preserved.`,
     );
   return available;
 }
