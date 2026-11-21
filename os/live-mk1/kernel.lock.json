@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "target": {
+    "product": "Akai Professional MPC Live (Mk1)",
+    "productCode": "ACV8",
+    "compatible": "inmusic,acv8",
+    "evidence": "Official G1 ACV8 device tree and owner probe: plain RK3288, 7-inch panel, battery and MPC Live USB hub. Owner-unit observations are in docs/live-mk1-device-plan.md; the RK3288-C revision remains untested.",
+    "boards": [
+      {
+        "dtb": "rk3288-az01-mpc-acv8.dtb",
+        "soc": "rockchip,rk3288",
+        "note": "RK3288 revision"
+      },
+      {
+        "dtb": "rk3288-az01-mpc-acv8-c.dtb",
+        "soc": "rockchip,rk3288-c",
+        "note": "RK3288-C revision exists in source; not the owner\u2019s observed plain RK3288 and not physically qualified"
+      }
+    ]
+  },
+  "protected": [
+    {
+      "compatible": "inmusic,ada2",
+      "product": "Akai Professional Force",
+      "reason": "Owner's daily-use instrument; read-only, never a build or boot target"
+    }
+  ],
+  "notTarget": [
+    {
+      "compatible": "inmusic,acv5",
+      "product": "MPC X"
+    },
+    {
+      "compatible": "inmusic,acv5s",
+      "product": "MPC X SE"
+    },
+    {
+      "compatible": "inmusic,acvb",
+      "product": "MPC Live Mk 2"
+    },
+    {
+      "compatible": "inmusic,acva",
+      "product": "MPC One"
+    }
+  ],
+  "source": {
+    "repository": "https://github.com/inmusic-software/az0x-open-source",
+    "branch": "mpc-g1/3.10",
+    "commit": "ea21ffce863f48cfa138f053bfd5788daa752a6b",
+    "archive": "references/archives/akai-mpc-g1-3.10/linux-az01-6.18.44+git-r0-patched.tar.xz",
+    "sha256": "be712eccd9fc33251d2c0682ee0e9ca7ba64752550a1387155f788c2ac45d7bd",
+    "bytes": 161029504,
+    "root": "kernel-source",
+    "kernelVersion": "6.18.44",
+    "localVersion": "-az01-2026-08-10",
+    "license": "GPL-2.0 (kernel); device trees GPL-2.0+ OR MIT",
+    "redistribution": "Binary redistribution requires the corresponding source offer; public release review pending"
+  },
+  "config": {
+    "defconfig": "az01_defconfig",
+    "fragment": "os/live-mk1/xmp-virt.config",
+    "fragmentPolicy": "add-only: may set new options but must not disable or change any option the official defconfig sets",
+    "required": {
+      "CONFIG_ARCH_ROCKCHIP": "y",
+      "CONFIG_PREEMPT_RT": "y",
+      "CONFIG_HZ_1000": "y",
+      "CONFIG_BATTERY_SBS": "y",
+      "CONFIG_AZ01_POWER": "y",
+      "CONFIG_SENSORS_AZ01_FAN": "y",
+      "CONFIG_DRM_ROCKCHIP": "y",
+      "CONFIG_SND_USB_AUDIO": "y",
+      "CONFIG_USB_DWC2": "y",
+      "CONFIG_USB_EHCI_HCD": "y",
+      "CONFIG_MMC_DW_ROCKCHIP": "y",
+      "CONFIG_EXT4_FS": "y",
+      "CONFIG_SQUASHFS": "y",
+      "CONFIG_ARCH_VIRT": "y",
+      "CONFIG_SERIAL_AMBA_PL011_CONSOLE": "y",
+      "CONFIG_USB_XHCI_HCD": "y"
+    }
+  },
+  "builder": {
+    "image": "debian:bookworm-slim@sha256:734a72b3d6142a71993b4bc580ca01d8ca687f77a2c422d96a961d3376b179bc",
+    "dockerfile": "os/live-mk1/builder.Dockerfile",
+    "tag": "xmp-live-mk1-builder:1",
+    "crossCompile": "arm-linux-gnueabihf-",
+    "jobs": 6
+  },
+  "vm": {
+    "machine": "virt",
+    "cpu": "cortex-a15",
+    "smp": 2,
+    "memoryMiB": 1024,
+    "devices": ["qemu-xhci", "usb-audio"],
+    "bootLimitSeconds": 300,
+    "scope": "Generic QEMU ARM board running the same zImage; it does not emulate RK3288, the MPC panel, pads, battery or hub"
+  },
+  "outputs": {
+    "deployable": false,
+    "excluded": [
+      "bootloader",
+      "u-boot environment",
+      "flash or update images",
+      "recovery images",
+      "signing keys"
+    ]
+  }
+}

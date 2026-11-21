@@ -1,0 +1,18 @@
+{
+  "format": "xmp-dsp-graph",
+  "version": 1,
+  "source": "sine",
+  "gain": {
+    "parameter": "level"
+  },
+  "cutoff": {
+    "parameter": "cutoff"
+  },
+  "requires": [
+    {
+      "id": "xmp-math",
+      "version": "1.0.0"
+    }
+  ],
+  "migrations": []
+}

@@ -1,0 +1,11 @@
+*.pdf binary
+*.icns binary
+*.ico binary
+
+# Preserve the upstream font licence text verbatim.
+brand/abstract-engineering/assets/fonts/OFL.txt -whitespace
+
+# Keep build scripts portable on Windows.
+*.sh text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf

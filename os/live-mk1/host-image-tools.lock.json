@@ -1,0 +1,18 @@
+{
+  "format": "xmp-host-image-tools",
+  "version": 1,
+  "package": "e2fsprogs",
+  "release": "1.47.2",
+  "url": "https://cdn.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v1.47.2/e2fsprogs-1.47.2.tar.xz",
+  "sha256": "08242e64ca0e8194d9c1caad49762b19209a06318199b63ce74ae4ef2d74e63c",
+  "bytes": 7299932,
+  "configure": [
+    "--disable-nls",
+    "--disable-uuidd",
+    "--disable-fsck",
+    "--disable-e2initrd-helper",
+    "--disable-fuse2fs"
+  ],
+  "license": "GPL-2.0-or-later (utilities); upstream per-file terms apply",
+  "scope": "Host-only local filesystem image tools; no hardware or mounts; not shipped inside the public session"
+}

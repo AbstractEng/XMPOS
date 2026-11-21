@@ -1,0 +1,10 @@
+{
+  "source": "https://github.com/google/fonts/tree/b31870aff700ab7a1d74fa0c6887d95beb9e0037/ofl/manrope",
+  "commit": "b31870aff700ab7a1d74fa0c6887d95beb9e0037",
+  "license": "SIL Open Font License 1.1",
+  "instances": {
+    "Regular": 400,
+    "Medium": 500,
+    "SemiBold": 600
+  }
+}

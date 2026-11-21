@@ -1,0 +1,17 @@
+# XMP probe v3 report service, installed only in the XMP probe image.
+# When Akai's system boots from this image (the boot script's fallback path), it
+# writes a read-only hardware report, including /proc/cmdline, to a FAT drive
+# labelled XMPPROBE and exits. It writes nowhere else and never touches the
+# internal eMMC. Restoring Akai's stock image removes it.
+[Unit]
+Description=XMP probe report to an XMPPROBE USB drive
+After=local-fs.target
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/xmp/xmp-probe-report
+Nice=10
+TimeoutStartSec=300
+
+[Install]
+WantedBy=multi-user.target

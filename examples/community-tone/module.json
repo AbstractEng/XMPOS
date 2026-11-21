@@ -1,0 +1,47 @@
+{
+  "format": "xmp-module",
+  "apiVersion": 2,
+  "dspAbi": 1,
+  "id": "original-community-tone",
+  "name": "Original community tone",
+  "version": "1.0.0",
+  "stateVersion": 1,
+  "kind": "instrument",
+  "architecture": "portable",
+  "adapter": "declarative-v1",
+  "license": "MIT",
+  "capabilities": [
+    "notes",
+    "velocity",
+    "audio-output",
+    "simulated-controls",
+    "pressure",
+    "pitch",
+    "timbre"
+  ],
+  "parameters": [
+    {
+      "id": "level",
+      "name": "Level",
+      "unit": "linear",
+      "min": 0,
+      "max": 1,
+      "default": 0.25
+    },
+    {
+      "id": "cutoff",
+      "name": "Cutoff",
+      "unit": "Hz",
+      "min": 20,
+      "max": 20000,
+      "default": 8000
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "xmp-math",
+      "version": "1.0.0",
+      "sha256": "e3ba320329f4f0bc6334f6228a20f21681d3dea939e2ef5ba86bf0b5b0fbb89c"
+    }
+  ]
+}

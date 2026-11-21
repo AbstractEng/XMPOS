@@ -1,0 +1,38 @@
+#!/bin/sh
+# This is PID 1 inside the generic Linux guest, never a Mac deployment script.
+[ "$$" = 1 ] && [ -r /etc/xmp-build.json ] || exit 96
+export PATH=/usr/sbin:/usr/bin:/sbin:/bin
+mount -t proc proc /proc
+mount -t sysfs sys /sys
+mount -t devtmpfs dev /dev
+mkdir -p /run /tmp /data
+chmod 1777 /tmp
+# Canonical terminal mode truncates RPC lines at 4096 bytes. Read bounded
+# complete JSON packets in Node instead; this is only the emulated serial port.
+stty -F /dev/ttyS0 -echo -icanon min 1 time 0 || exit 94
+/sbin/depmod -a
+for module in virtio_pci virtio_blk ext4 snd_hda_intel; do /sbin/modprobe "$module"; done
+# Only the newly created file-backed virtio disk is attached by the VM launcher.
+if ! blkid /dev/vda | grep -q 'TYPE="ext4"'; then
+  grep -q 'xmp.initialize-data=1' /proc/cmdline || { echo 'XMPBOOT {"event":"storage-recovery-required"}'; poweroff -f; exit 97; }
+  /sbin/mkfs.ext4 -q -F -L XMPDATA /dev/vda || exit 97
+fi
+mount -t ext4 -o noatime /dev/vda /data || exit 98
+printf 'XMPBOOT {"event":"storage-ready"}\n'
+# The emulated HDA codec starts muted; initialize this guest-only output.
+# HDA probing is asynchronous, so cold reboots may expose the mixer later.
+attempt=0
+until /usr/bin/amixer -q -c 0 sset Master 100% unmute >/dev/null 2>&1; do
+  attempt=$((attempt + 1))
+  [ "$attempt" -lt 30 ] || { echo 'XMPBOOT {"event":"audio-recovery-required"}'; exit 95; }
+  sleep 0.1
+done
+/usr/bin/node /opt/xmp/guest.mjs
+status=$?
+[ "$status" = 0 ] || printf 'XMPBOOT {"event":"engine-failed"}\n'
+sync
+printf 'XMPBOOT {"event":"saves-flushed"}\n'
+umount /data || { echo 'XMPBOOT {"event":"storage-close-failed"}'; exit 99; }
+printf 'XMPBOOT {"event":"storage-closed"}\n'
+poweroff -f
+exit "$status"

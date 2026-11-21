@@ -1,0 +1,30 @@
+{
+  "id": "01-navigation",
+  "duration": 33.625,
+  "stepDurations": [
+    5.958333333333333,
+    5.708333333333333,
+    5.041666666666667,
+    5.791666666666667,
+    5,
+    6.125
+  ],
+  "voiceSpeed": 1.02,
+  "layout": "one full device, 1152\u00d7720 screen, aligned physical controls",
+  "chassis": "charcoal black",
+  "hardwareUsed": false,
+  "nativeSimulation": false,
+  "sourceRevision": "fc63e4f82f6fbf49f138f6fecd998374c5e0e356",
+  "identity": {
+    "name": "Abstract Engineering",
+    "version": "1.0",
+    "paper": "#F2EFE9",
+    "forest": "#35473E",
+    "rose": "#C88E91",
+    "butter": "#E6C779",
+    "iris": "#5862BF",
+    "font": "Manrope"
+  },
+  "sha256": "c95f304736364c204cd11b974eceddcab129a96eeaf5ad968bd25097d22e836a",
+  "pageErrors": []
+}

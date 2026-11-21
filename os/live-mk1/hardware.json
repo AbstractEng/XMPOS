@@ -1,0 +1,177 @@
+{
+  "format": "xmp-live-mk1-hardware",
+  "version": 1,
+  "about": "Facts observed on the owner's MPC Live Mk1 (probe v6 report and XMP sessions, 2026-11-11; Akai's MPC OS 3.10.1 over developer-mode SSH, 2026-11-12). No serial numbers, hostnames or addresses. The session emulator is built from this file and tests check the session's constants against it.",
+  "board": {
+    "compatible": ["inmusic,acv8", "inmusic,az01", "rockchip,rk3288"],
+    "model": "InMusic MPC ACV8",
+    "soc": "Rockchip RK3288, 4 x Cortex-A17",
+    "cpus": 4,
+    "isolatedCpus": "2-3",
+    "memoryMiB": 2048,
+    "kernel": "6.18.44-az01-2026-08-10-rt6 (PREEMPT_RT)",
+    "cpuMaxMHz": 1600,
+    "cpuReport": "ARMv7 Processor rev 1 (v7l) x 4, armv7l, 32-bit (MPC OS 3.10.1, 2026-11-12)",
+    "memoryVisibleKiB": 2065136
+  },
+  "display": {
+    "panel": "urt-umo-p076md-t on DSI (ff960000)",
+    "framebuffer": {
+      "xres": 800,
+      "yres": 1280,
+      "bitsPerPixel": 32
+    },
+    "rotation": 270,
+    "rotationConfirmed": "session 2026-11-11: pad grid upright with rotation 270",
+    "touch": {
+      "device": "ILI2116 Touchscreen",
+      "x": [0, 1280],
+      "y": [0, 720],
+      "mapping": "scale x to the framebuffer's 800 columns and y to its 1280 rows, then undo the screen rotation (270); every touch landed on its control (session 2026-11-11)"
+    }
+  },
+  "audio": {
+    "card": "MPC Live Audio",
+    "usbId": "09e8:203b",
+    "usbPath": "usb-ff500000.usb-1.5, high speed",
+    "akaiFormat": "44.1 kHz, 2 in / 6 out (Akai's MPC app)",
+    "xmpFormat": "48 kHz stereo S16 through alsa-lib plug onto outputs 1-2; heard by the owner 2026-11-11",
+    "measured": "session 3 (93 s): 17401 blocks, 0 xruns, peak -12.4 dBFS, audio thread SCHED_FIFO pinned to isolated CPU 3"
+  },
+  "controller": {
+    "card": "MPC Live Controller",
+    "usbId": "09e8:003b",
+    "usbPath": "usb-ff500000.usb-1.6, full speed",
+    "ports": ["Public (hw:N,0,0)", "Private (hw:N,0,1)"],
+    "pads": "notes on MIDI channel 10; pad 1 = note 0x25",
+    "buttons": "notes on MIDI channel 1, on the Private port after start-up (map below, from the owner's session 4, 2026-11-11)",
+    "startup": "identity request and Akai's start-up sequence sent to the Private port; pads light their squares (2026-11-11)",
+    "afterStartup": "pads, buttons and knobs arrive on the Private port; the controller replies to the identity request on both ports (the reply carries the unit's serial number, which XMP does not log)",
+    "map": {
+      "padBank": {
+        "1": "23",
+        "2": "24",
+        "3": "25",
+        "4": "26",
+        "note": "the four pad bank buttons, in the order pressed"
+      },
+      "belowPadBank": {
+        "1": "0B",
+        "2": "27",
+        "3": "28",
+        "4": "09"
+      },
+      "pads": "pad 13 top left; the 4x4 grid reads 13-16, 9-12, 5-8, 1-4 from the top row down (confirmed)",
+      "screenRow1": ["31", "7B", "34", "43", "7A", "36"],
+      "screenRow2": ["35", "49", "50", "51", "52", "53", "37"],
+      "qlinkButton": "00",
+      "knobs": [
+        {
+          "knob": 1,
+          "touchNote": "54",
+          "control": "B0 10"
+        },
+        {
+          "knob": 2,
+          "touchNote": "55",
+          "control": "B0 11"
+        },
+        {
+          "knob": 3,
+          "touchNote": "56",
+          "control": "B0 12"
+        },
+        {
+          "knob": 4,
+          "touchNote": "57",
+          "control": "B0 13"
+        },
+        {
+          "knob": 5,
+          "touchNote": null,
+          "control": "B0 64",
+          "note": "data wheel: 01 one step clockwise, 7F one step anticlockwise"
+        }
+      ],
+      "knobsOrder": "top to bottom",
+      "rowsOrder": "the owner pressed each row in order; left to right is assumed",
+      "labels": {
+        "source": "the owner's session-4 codes (2026-11-11) matched, code for code, against the open MPC mapper's published MPC button numbers (references/repos/mpc-livexplore-libs/src/tkgl_midimapper.h, MPC_BT_*, decimal); every code the owner pressed has the label the mapper gives it",
+        "23": "Pad Bank A",
+        "24": "Pad Bank B",
+        "25": "Pad Bank C",
+        "26": "Pad Bank D",
+        "0B": "Note Repeat (Shift: Latch)",
+        "27": "Full Level (Shift: Half Level)",
+        "28": "16 Level",
+        "09": "Erase",
+        "31": "Shift",
+        "7B": "Menu (Shift: Browse)",
+        "34": "Main (Shift: Track)",
+        "43": "Undo (Shift: Redo)",
+        "7A": "Copy (Shift: Delete)",
+        "36": "+",
+        "35": "Tap Tempo",
+        "49": "Rec",
+        "50": "Overdub",
+        "51": "Stop",
+        "52": "Play",
+        "53": "Play Start",
+        "37": "-",
+        "00": "Q-Link",
+        "6F": "data wheel press (from the mapper; not yet pressed in a session)"
+      }
+    }
+  },
+  "hub": {
+    "usbId": "09e8:503b"
+  },
+  "storage": {
+    "emmc": "ff0f0000 (rootfs; protected)",
+    "internalSd": "ff0c0000 (protected)",
+    "ownerStick": "USB mass storage, sda1, FAT32",
+    "emmcPartitions": "rootfs (ext4, 402.6 MB, mounted / read-only by MPC OS) and mmcblk0p7 (/data, 6.6 GB)",
+    "internalSdFs": "mmcblk1p1, ext4, 14.4 GB"
+  },
+  "power": {
+    "button": "gpio-keys KEY_POWER on gpio0 line 5",
+    "pmic": "ACT8846 (system power controller); no hold-to-switch-off",
+    "battery": "SBS Li-ion, not easily removable"
+  },
+  "endurance": "session 4: 17.7 min, 21317 sequenced notes, 0 late, 0 xruns, peak -12.0 dBFS, audio thread on isolated CPU 3",
+  "phase2": "session 8 (owner, 2026-11-12): 296 s with eight tracks and the synth; 1505 sequenced notes, 0 late, 25 recorded, 83 touches, 106 buttons, 1783 knob and wheel moves, 0 xruns, audio thread on isolated CPU 3; peak reached the -12.0 dBFS ceiling (the hard limit clipped when voices stacked)",
+  "mpcOs": {
+    "version": "3.10.1.12 (firmware build 9a27d579), updated by the owner 2026-11-12",
+    "distribution": "az0x (inMusic Brands AZ0x base distribution) 5.0.18, Yocto scarthgap, systemd",
+    "updaterImage": "SNAPSHOT-20261107130239 (MPC (Gen 1) 3.10.1 Updater.app, signed by inMusic team XV2563R65Q)",
+    "bootUnchanged": "/boot is byte-identical to 3.10.0 (same kernel, device trees and stock boot script); 51 other files differ, all rebuilt Akai programs",
+    "app": "/usr/bin/MPC, run by acvs.service; about 800 MiB resident when idle, ~5% CPU, the unit 88% idle overall",
+    "appAudio": "44.1 kHz, 2 in / 6 out, 128-frame buffer (Akai's app log)",
+    "freeMemoryIdleKiB": 1060548,
+    "services": [
+      "acvs (MPC app)",
+      "DeviceControlServer",
+      "az0x-webserver",
+      "connmand",
+      "wpa_supplicant",
+      "bluetoothd",
+      "systemd-networkd",
+      "systemd-resolved",
+      "systemd-timesyncd",
+      "systemd-journald",
+      "crashpad_handler (crash reports to Sentry)",
+      "sshd (developer mode only)"
+    ],
+    "developerMode": "OpenSSH 9.6 on port 22, ed25519 host key, root login with no password (anyone on the same network gets root while it is on); the Remote Screen app uses a separate password",
+    "plugins": "External Plugin Support loads '<drive>/VST2 Plugins/<manufacturer> - VST - <name>/' folders; 32-bit ARM builds (plugin.json file32)",
+    "mounts": {
+      "/": "/dev/root, Akai's rootfs on the eMMC, ext4 read-only, 402.6 MB, 96% full",
+      "/data": "/dev/mmcblk0p7 on the eMMC, ext4, 6.6 GB (also /media/az01-internal; overlays for /etc and /var)",
+      "/sdcard": "/dev/mmcblk1p1, the internal SD card, ext4, 14.4 GB (also /media/az01-internal-sd)",
+      "/media/acvs-content": "the rootfs again, read-only",
+      "/media": "tmpfs; USB sticks appear as /media/<label> on /dev/sd*",
+      "/tmp": "tmpfs"
+    },
+    "network": "Wi-Fi through wpa_supplicant and connman; the USB-B port does not show up on the Mac in standalone mode (no network or USB device, 2026-11-12)"
+  }
+}

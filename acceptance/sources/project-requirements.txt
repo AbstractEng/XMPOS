@@ -1,0 +1,14 @@
+XMP OS community requirements
+
+These statements describe the versioned product requirements. They contain no
+conversation excerpts or private source records. Stable S identifiers support
+acceptance traceability.
+
+S1 Extensibility: support original effects, instruments, interfaces and workflows.
+S2 Platform: build an original music workstation and OS framework; Live Mk1 is the first qualified hardware target.
+S3 Distribution: publish only distributable original and properly licensed components; keep owner-supplied vendor files local.
+S4 Community: make the framework understandable, customizable and redistributable under its component licences.
+S5 Music workflow: support sampling, sequencing, scenes, arrangement, performance, persistence and export.
+S6 Device boundaries: develop without instruments by default; exclude Force and unqualified models from device operations.
+S7 Identity: the project is XMP OS, an extensible music platform.
+S8 Specification: maintain versioned documentation, compatibility records and executable acceptance tests.

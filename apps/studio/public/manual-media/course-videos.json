@@ -1,0 +1,448 @@
+{
+  "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+  "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+  "date": "2026-11-20",
+  "identity": {
+    "name": "Abstract Engineering",
+    "design": "Soft Resonance v1.0"
+  },
+  "screenImplementation": "native/include/xmp/live_ui.hpp via WebAssembly",
+  "hardwareUsed": false,
+  "captureRevisions": [
+    "f39b258324f693cd74e3659dd2c22138ced97c35"
+  ],
+  "lessons": [
+    {
+      "id": "01-navigation",
+      "title": "Meet your new workflow",
+      "duration": 41.665,
+      "stepDurations": [
+        7.204,
+        5.95,
+        9.501,
+        6.344999999999999,
+        7.6810000000000045,
+        4.903999999999996
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.05,
+        "truePeakDb": -3.13
+      },
+      "highlightedActions": 10,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "ba0ec50981a409bb85174c9e51177450b25b00d88c6c296bb59c9d1bd3b03c77",
+      "webmSha256": "e5d2d48344560ccb1b841cc0b77d90082079a265dde402973f3c684122065ab7"
+    },
+    {
+      "id": "02-first-beat",
+      "title": "A beat without poking the screen",
+      "duration": 39.623,
+      "stepDurations": [
+        7.762,
+        8.396,
+        6.8919999999999995,
+        6.369,
+        4.218999999999998,
+        5.920999999999999
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.1,
+        "truePeakDb": -3.01
+      },
+      "highlightedActions": 13,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "323d12d4cf59b32450e49ca9e9a9e3c28720e88e77f85c3d62c56e4ec7ab3a63",
+      "webmSha256": "48642d3d68b48c92817fb52a516591577639589aec05abcc1fe1e50be97a1cf6"
+    },
+    {
+      "id": "03-hats-groove",
+      "title": "Make the hats breathe",
+      "duration": 34.132,
+      "stepDurations": [
+        5.671,
+        5.311,
+        5.7170000000000005,
+        7.073999999999998,
+        4.779,
+        5.5070000000000014
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16,
+        "truePeakDb": -3.03
+      },
+      "highlightedActions": 16,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "f03adf8091c174f809b58fcb0acba05361db7d021c86c8fc924b6982617f221b",
+      "webmSha256": "415543ee949dc5b1efe83d139e32bdf54ff54d73823e8412167387769c02918a"
+    },
+    {
+      "id": "04-synth",
+      "title": "Give the drums a bass line",
+      "duration": 35.361,
+      "stepDurations": [
+        7.493,
+        4.614999999999999,
+        5.529999999999999,
+        5.462,
+        6.588000000000001,
+        5.6229999999999976
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.01,
+        "truePeakDb": -3.53
+      },
+      "highlightedActions": 14,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "a2387f605aeefe9b736cc2ed477c81a47e0b4cf471660fe48371a6f3661c232c",
+      "webmSha256": "9543ff4e750bbb85e9f1dff779af1e6447522a851ba7e450e1f3badd0ccbd0fa"
+    },
+    {
+      "id": "05-variation",
+      "title": "Make a variation, keep the original",
+      "duration": 33.591,
+      "stepDurations": [
+        5.648,
+        5.811,
+        4.764999999999999,
+        5.949000000000002,
+        5.59,
+        5.748000000000001
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.05,
+        "truePeakDb": -3.58
+      },
+      "highlightedActions": 10,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "285db9f5edb226f09a1e5b7e3c8ff4b44cfe582259747dc5693b742a7fd2884e",
+      "webmSha256": "61f17386c02192302b532dfe388229d27c7cc2c3032eba7997e2c04386467f6d"
+    },
+    {
+      "id": "06-scenes",
+      "title": "Play the clip grid",
+      "duration": 37.165,
+      "stepDurations": [
+        6.656,
+        5.937,
+        6.472999999999999,
+        4.949000000000002,
+        7.817999999999998,
+        5.253
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.1,
+        "truePeakDb": -3.02
+      },
+      "highlightedActions": 10,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "d24e35a3e967e1ef608ad446edd86c50dac4f172e795812bc2fb456a6faf1c4b",
+      "webmSha256": "2510359995ea79509f6a28ba453a99b2f109b3da34628bd98db826f2f220875a"
+    },
+    {
+      "id": "07-song",
+      "title": "Turn the parts into a song",
+      "duration": 35.434,
+      "stepDurations": [
+        4.591,
+        5.74,
+        6.891,
+        6.82,
+        5.449999999999999,
+        5.875999999999998
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.16,
+        "truePeakDb": -2.98
+      },
+      "highlightedActions": 7,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "559bdc792cb3dceea39324109cd13afaa7b60a05a19f92c8e424b3893d0dd119",
+      "webmSha256": "024b0c952ff7968b4a2358907a39a9f41339cf836aabd2fd583d4acc0136ad5f"
+    },
+    {
+      "id": "08-mix",
+      "title": "Make room for each part",
+      "duration": 33.57,
+      "stepDurations": [
+        8.584,
+        4.68,
+        4.229999999999999,
+        5.9830000000000005,
+        4.591000000000001,
+        5.436
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.06,
+        "truePeakDb": -3
+      },
+      "highlightedActions": 9,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "dd7dbfecf9aac0ebc134918952df6eb0773bc59d1101d0db50f4a40471489e93",
+      "webmSha256": "b1e4846dc35e4a5102b393698843d1d44e39726462f5d65ad236d4da4d28f5de"
+    },
+    {
+      "id": "09-record",
+      "title": "Play a part into the track",
+      "duration": 35.311,
+      "stepDurations": [
+        7.877,
+        6.135000000000001,
+        4.2429999999999986,
+        6.737000000000002,
+        4.881999999999998,
+        5.360000000000003
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.09,
+        "truePeakDb": -2.96
+      },
+      "highlightedActions": 17,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "7aa55c36ac16db67ad61dbcc432a5463d9a446f6eeda7bb7883560235b8424a5",
+      "webmSha256": "8670c385fdd08078229105e0f0b58d78a9b95665e4109ab664d75cdd43e85209"
+    },
+    {
+      "id": "10-library",
+      "title": "Change the kit, keep the beat",
+      "duration": 37.094,
+      "stepDurations": [
+        6.994,
+        5.9719999999999995,
+        5.995000000000001,
+        6.274000000000001,
+        5.995999999999999,
+        5.803000000000001
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.06,
+        "truePeakDb": -2.98
+      },
+      "highlightedActions": 11,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "b733de7e6f3f7ba3e02c090824d57dc9c08fada36daefedc27b5f601931b44de",
+      "webmSha256": "8eb80a06d81d6840c2863027eede9c38bd569c18eb0417a5632d863aba4ba307"
+    },
+    {
+      "id": "11-sampling",
+      "title": "Shape one drum sound",
+      "duration": 33.527,
+      "stepDurations": [
+        6.194,
+        4.928999999999999,
+        6.264000000000001,
+        4.7429999999999986,
+        5.022000000000002,
+        6.311
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -15.95,
+        "truePeakDb": -3.42
+      },
+      "highlightedActions": 11,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "493474a88cffa462cefff0add05e8c55a6c13d361318003261608d5d43bf6fbf",
+      "webmSha256": "dce7abdc5b583da85348dffb45342ae7c4a0c60af3ee08041c3d97c0b4c7b6f2"
+    },
+    {
+      "id": "12-save-export",
+      "title": "Save it, then prove it opens",
+      "duration": 34.975,
+      "stepDurations": [
+        5.847,
+        5.031999999999999,
+        5.565999999999999,
+        3.964000000000002,
+        6.555,
+        7.934000000000001
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.05,
+        "truePeakDb": -3.79
+      },
+      "highlightedActions": 15,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "0ca4f7031d4f0521a6c7a6e2076c719b1d245a7e633efb9bf8f997d0508d392f",
+      "webmSha256": "78e0786a1c90d84e3e2bb6a339b7d5c835d68ff58bdb0dd042c2e86194b85787"
+    },
+    {
+      "id": "13-drum-sounds",
+      "title": "Swap the snare for a clap",
+      "duration": 39.923,
+      "stepDurations": [
+        6.461,
+        9.767,
+        5.600000000000001,
+        4.454999999999998,
+        6.192999999999998,
+        7.385000000000005
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.03,
+        "truePeakDb": -3.04
+      },
+      "highlightedActions": 17,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "0220619674087b17f581a0cbbe3473ce8b14dd3797642b3c4edee33536cdea61",
+      "webmSha256": "6f7d17904e369a9cd5b59362c8ceaacfb8dd81017b942452a40db88b3cc1371a"
+    },
+    {
+      "id": "14-synth-sounds",
+      "title": "Find a synth sound that fits",
+      "duration": 39.677,
+      "stepDurations": [
+        6.613,
+        6.228000000000001,
+        6.959,
+        6.574999999999999,
+        6.238999999999997,
+        7.011000000000003
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -15.98,
+        "truePeakDb": -3.11
+      },
+      "highlightedActions": 13,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "bbf9fe22260d3c13d4733333383d52dc0d1c02b748238eb572891905564faa2d",
+      "webmSha256": "93b8acfe66c79547f60533f18f0b67be79f3ccf8f0d7042b3912103a485e2190"
+    },
+    {
+      "id": "15-track-machines",
+      "title": "Choose what a track becomes",
+      "duration": 44.926,
+      "stepDurations": [
+        6.646,
+        6.576,
+        8.641000000000002,
+        6.7159999999999975,
+        9.003000000000004,
+        7.289999999999999
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.04,
+        "truePeakDb": -3.17
+      },
+      "highlightedActions": 12,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "b5c55481e37fed521136db11997bca4743e9e9eb0e076d8044839f5ed0bace61",
+      "webmSha256": "56b2b955e667f25b19674da67d0f60d625525108886d5605c177f4e747ac1df7"
+    },
+    {
+      "id": "16-slice-kit",
+      "title": "Turn a loop into a pad kit",
+      "duration": 43.588,
+      "stepDurations": [
+        10.347,
+        6.388999999999999,
+        5.300000000000001,
+        7.632999999999999,
+        6.089000000000002,
+        7.756
+      ],
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "screenSourceSha256": "fe08bb3c8cf2d5531ebe47238b1e5f8d2513d9b03021f95b7deeb3ad9b08b9f1",
+      "narrationReady": true,
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -15.99,
+        "truePeakDb": -3.12
+      },
+      "highlightedActions": 28,
+      "movingCapture": true,
+      "nativeSimulation": false,
+      "sha256": "26fe9b9b1b6d90543e0135e23b6d56cc60483d217ad26a51b063b7729fa481f5",
+      "webmSha256": "15b476d0645c0ca6b8e97e9569ea54589f40bf772439cfaf158cca31df586477"
+    }
+  ]
+}

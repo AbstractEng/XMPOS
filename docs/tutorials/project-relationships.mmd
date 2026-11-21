@@ -1,0 +1,23 @@
+flowchart TB
+  subgraph project["PROJECT — the whole piece"]
+    direction TB
+    tracks["Tracks — instrument lanes"]
+    instrument["Instrument — kit/sampler, synth or MIDI"]
+    clips["Clips — notes, rhythm and automation"]
+    scenes["Scenes — a clip choice for each track"]
+    song["Song chain — scene order and repeats"]
+    pads["Kit pads — sound and slice assignments"]
+    samples["Project sample pool — recorded/imported audio"]
+
+    tracks -->|uses one| instrument
+    tracks -->|owns| clips
+    song -.->|orders and repeats| scenes
+    scenes -.->|selects clips| clips
+    instrument -.->|kit/sampler uses| pads
+    pads -.->|references| samples
+  end
+
+  classDef performance fill:#E6C779,stroke:#35473E,color:#35473E
+  classDef arrangement fill:#5862BF,stroke:#5862BF,color:#F2EFE9
+  class clips performance
+  class scenes arrangement

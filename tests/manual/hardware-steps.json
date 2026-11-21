@@ -1,0 +1,197 @@
+[
+  {
+    "list": "hardware-setup › Prepare the files and verify your Live",
+    "title": "Step 1",
+    "text": "Check the starting version. On the MPC, open Preferences → Info and confirm 3.10.1. If the model or version differs, stop here and use the compatibility guidance for that build. Picking a nearby updater version will not make it compatible."
+  },
+  {
+    "list": "hardware-setup › Prepare the files and verify your Live",
+    "title": "Step 2",
+    "text": "Open XMP OS Installer. On a Mac, open XMP OS Installer.app. On Windows, keep XMP OS Installer.exe beside its supplied resources folder. The owner installer includes its runtime; you do not need to install Node, Python or Docker."
+  },
+  {
+    "list": "hardware-setup › Prepare the files and verify your Live",
+    "title": "Step 3",
+    "text": "Select the official updater. Click Choose updater… and choose the official Gen 1 3.10.1 updater for your computer. It is obtained separately from Akai, rather than bundled as firmware in XMP."
+  },
+  {
+    "list": "hardware-setup › Prepare the files and verify your Live",
+    "title": "Step 4",
+    "text": "Click Prepare installation files. Let the activity indicator finish. The installer checks the signature and exact payload, prepares the loader and stock recovery locally, and assembles the system that will go on your key. It reuses verified files on later runs."
+  },
+  {
+    "list": "hardware-setup › Prepare the files and verify your Live",
+    "title": "Step 5",
+    "text": "Verify the stock Live before its first installation. Leave the MPC running stock 3.10.1. Put it and the computer on the same local network. Enable Developer Mode using the steps below, then enter the MPC’s own local IPv4 address in Live’s local IPv4 address. Tick the read-only verification acknowledgement and click Verify stock Live."
+  },
+  {
+    "list": "hardware-setup › Prepare the files and verify your Live",
+    "title": "Step 6",
+    "text": "Use only the native password prompt. If prompted, type the Live’s SSH password into the installer’s native secure prompt. Do not send it in a chat, type it into the address box or put it in a script. The verifier reads identity and rootfs metadata; it does not change storage or settings."
+  },
+  {
+    "list": "hardware-setup › Let the installer create the XMP key",
+    "title": "Step 1",
+    "text": "Connect the key to your computer. Click Refresh USB keys. Choose your removable FAT32 key from Choose your USB key; check its label, model and capacity."
+  },
+  {
+    "list": "hardware-setup › Let the installer create the XMP key",
+    "title": "Step 2",
+    "text": "Confirm the destination. Tick I selected the correct USB key and backed up my work. This confirmation is for the key, not the MPC."
+  },
+  {
+    "list": "hardware-setup › Let the installer create the XMP key",
+    "title": "Step 3",
+    "text": "Click Prepare USB key. Wait while it copies the XMP system and verifies it. The installer preserves existing projects, samples, the per-key token and prior images. It checks free space, so there is no need to guess whether the copy fits."
+  },
+  {
+    "list": "hardware-setup › Let the installer create the XMP key",
+    "title": "Step 4",
+    "text": "Wait for the verified result. Look for Copied and SHA-256 verified. An activity indicator or a partial progress bar means work is still in progress."
+  },
+  {
+    "list": "hardware-setup › Let the installer create the XMP key",
+    "title": "Step 5",
+    "text": "Click Safely eject USB key. If the platform asks you to eject in its file manager, follow that instruction. Keep the prepared key ready, but leave it out of the MPC during loader installation."
+  },
+  {
+    "list": "hardware-setup › Prepare your XMP USB key",
+    "title": "Choose the official updater",
+    "text": "Choose updater… → the Gen 1 MPC OS 3.10.1 updater for your computer."
+  },
+  {
+    "list": "hardware-setup › Prepare your XMP USB key",
+    "title": "Prepare files on your computer",
+    "text": "Prepare installation files checks the updater and prepares recovery locally."
+  },
+  {
+    "list": "hardware-setup › Prepare your XMP USB key",
+    "title": "Verify your stock Live",
+    "text": "In stock 3.10.1, enable Developer Mode. Enter its local IP; choose Verify stock Live."
+  },
+  {
+    "list": "hardware-setup › Prepare your XMP USB key",
+    "title": "Choose the USB key",
+    "text": "Refresh USB keys → select your removable FAT32 key → confirm your backup."
+  },
+  {
+    "list": "hardware-setup › Prepare your XMP USB key",
+    "title": "Copy and verify",
+    "text": "Prepare USB key → wait for copied and SHA-256 verified."
+  },
+  {
+    "list": "hardware-setup › Prepare your XMP USB key",
+    "title": "Eject and keep it ready",
+    "text": "Safely eject USB key. Leave it out of the Live until loader installation finishes."
+  },
+  {
+    "list": "hardware-setup › Check first. Confirm once.",
+    "title": "Step 1",
+    "text": "Set up the computer connection. In the installer, review Google’s linked Platform-Tools terms, tick the acceptance box and click Install connection tools. This one-time download sets up the computer; it does not write the key or the MPC."
+  },
+  {
+    "list": "hardware-setup › Check first. Confirm once.",
+    "title": "Step 2",
+    "text": "Save, power off and remove the XMP key. Keep the Live on its power adapter. Hold FULL LEVEL + ERASE + PAD BANK C/G while powering on with the rear power button to enter update mode."
+  },
+  {
+    "list": "hardware-setup › Check first. Confirm once.",
+    "title": "Step 3",
+    "text": "Connect the data cable. Connect the Live’s USB-B computer port to the computer running the installer. Leave the prepared USB key out of the MPC."
+  },
+  {
+    "list": "hardware-setup › Check first. Confirm once.",
+    "title": "Step 4",
+    "text": "Keep Install XMP USB loader selected. Click Check Live and image. This is a read-only preview: it checks the connected Live and verified image before any MPC write. On units whose fastboot cannot report all metadata, the earlier stock verification supplies that same unit’s measured identity/capacity evidence."
+  },
+  {
+    "list": "hardware-setup › Check first. Confirm once.",
+    "title": "Step 5",
+    "text": "Read Confirm installation. Check the operation, acknowledge saved work/power and the stock 3.10.1 starting point, then type XMPOS exactly. Click Install loader yourself. This is the step that writes the MPC’s rootfs, not the USB key."
+  },
+  {
+    "list": "hardware-setup › Check first. Confirm once.",
+    "title": "Step 6",
+    "text": "Let the installer finish. Keep power and the data cable connected until it reports Finished and the Live reboots. A changed unit/image, missing measurement or failed check stops the process; recheck the stated issue instead of bypassing it."
+  },
+  {
+    "list": "hardware-setup › Insert the key and make a small loop",
+    "title": "Step 1",
+    "text": "Power the Live off. Insert the prepared key into a USB-A host port, then power on. The loader starts XMP from the key."
+  },
+  {
+    "list": "hardware-setup › Insert the key and make a small loop",
+    "title": "Step 2",
+    "text": "Check that XMP opens. Look for the expected build and bridge indicator. Use the Quick start with a disposable practice song; make one small edit and note its tempo or a mixer setting."
+  },
+  {
+    "list": "hardware-setup › Insert the key and make a small loop",
+    "title": "Step 3",
+    "text": "Stop and let it save. Press STOP and wait for Saved on stick. Native autosave waits for playback to stop. Saving to stick, Unsaved changes and Save failed are not completed saves."
+  },
+  {
+    "list": "hardware-setup › Insert the key and make a small loop",
+    "title": "Step 4",
+    "text": "Check the saved copy. Shut down normally, boot the same key again and reopen the song. Confirm the edit, tempo/mixer setting and playback. Now continue with the music lessons."
+  },
+  {
+    "list": "hardware-setup › Install the loader and boot XMP",
+    "title": "Connect power and enter update mode",
+    "text": "USB key out. Hold FULL LEVEL + ERASE + PAD BANK C/G; press rear POWER."
+  },
+  {
+    "list": "hardware-setup › Install the loader and boot XMP",
+    "title": "Connect the computer",
+    "text": "Live USB-B → computer. In the installer, accept the terms and install connection tools."
+  },
+  {
+    "list": "hardware-setup › Install the loader and boot XMP",
+    "title": "Check before writing",
+    "text": "Install XMP USB loader → Check Live and image. This check writes nothing."
+  },
+  {
+    "list": "hardware-setup › Install the loader and boot XMP",
+    "title": "Confirm the one-time install",
+    "text": "Review the operation, tick both acknowledgements, type XMPOS and click Install loader."
+  },
+  {
+    "list": "hardware-setup › Install the loader and boot XMP",
+    "title": "Keep power and USB connected",
+    "text": "Wait for Finished. The loader step rewrites rootfs; bootloader and partition table stay unchanged."
+  },
+  {
+    "list": "hardware-setup › Install the loader and boot XMP",
+    "title": "Boot XMP from the key",
+    "text": "Power off → insert prepared key into USB-A → power on. STOP and wait for Saved on stick."
+  },
+  {
+    "list": "hardware-setup › Return to MPC OS",
+    "title": "Save before switching",
+    "text": "STOP → wait for Saved on stick → shut down normally."
+  },
+  {
+    "list": "hardware-setup › Return to MPC OS",
+    "title": "Use MPC OS without the key",
+    "text": "Power on with the XMP USB key removed. The installed loader hands over to stock."
+  },
+  {
+    "list": "hardware-setup › Return to MPC OS",
+    "title": "Choose full stock restoration",
+    "text": "To remove the loader, keep the official 3.10.1 updater and reconnect in update mode."
+  },
+  {
+    "list": "hardware-setup › Return to MPC OS",
+    "title": "Check the stock image",
+    "text": "Operation → Restore stock 3.10.1 → Check Live and image."
+  },
+  {
+    "list": "hardware-setup › Return to MPC OS",
+    "title": "Confirm Restore stock yourself",
+    "text": "Review the stock operation, tick the acknowledgements, type XMPOS → Restore stock."
+  },
+  {
+    "list": "hardware-setup › Return to MPC OS",
+    "title": "Confirm a normal stock boot",
+    "text": "After completion, cold-boot without the key. Check MPC OS 3.10.1 and your usual projects."
+  }
+]

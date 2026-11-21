@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-11-08",
+  "purpose": "Primary first-person inputs to docs/instrument-design.md; XMP decisions are interpretations, not endorsements",
+  "method": "Read published written interviews, transcript and author FAQ; no claim to have watched or listened to embedded media",
+  "sources": [
+    {
+      "id": "S01",
+      "title": "Roger Linn Design: Roger FAQ",
+      "url": "https://www.rogerlinndesign.com/about/roger-faq",
+      "kind": "author account and essays",
+      "published": null,
+      "locators": [
+        "June 1, 2026 MPC/Force essay",
+        "LinnDrum II question",
+        "Linn 9000 and company closure questions",
+        "MPC60 collaboration and MPC3000 questions"
+      ],
+      "caveat": "Living page; selected design/history sections reviewed, not an engineering specification"
+    },
+    {
+      "id": "S02",
+      "title": "KVR: Interview with Roger Linn",
+      "url": "https://www.kvraudio.com/interviews/interview-with-roger-linn-31893",
+      "kind": "interview",
+      "published": "2016-03-16",
+      "locators": ["Design process and simplification", "LinnStrument development tradeoffs"]
+    },
+    {
+      "id": "S03",
+      "title": "Attack: Roger Linn on Swing, Groove and the Magic of the MPC's Timing",
+      "url": "https://www.attackmagazine.com/features/interview/roger-linn-swing-groove-magic-mpc-timing/",
+      "kind": "Greg Scarth email interview",
+      "published": "2013-07-02",
+      "locators": [
+        "First-page answers about swing ratios, timing accuracy, dynamics, pressure and note repeat"
+      ],
+      "caveat": "Historical interview; triplet percentages are rounded in prose"
+    },
+    {
+      "id": "S04",
+      "title": "Richard Hallebeek: Roger Linn",
+      "url": "https://www.richardhallebeek.com/interviews/roger-linn/",
+      "kind": "interview",
+      "published": null,
+      "locators": [
+        "Early grid and Stevie Wonder",
+        "AdrenaLinn creative processing, presets and depth"
+      ],
+      "caveat": "Page cites September 2002 print version but footer copyright 2001; exact interview date unresolved"
+    },
+    {
+      "id": "S05",
+      "title": "Synthtopia / Darwin Grosse: Roger Linn On MPE and the Future Of Instruments",
+      "url": "https://www.synthtopia.com/content/2016/11/27/roger-linn-mpe-interview/",
+      "kind": "published interview transcript",
+      "published": "2016-11-27",
+      "locators": [
+        "Opening LinnStrument and per-note expression discussion",
+        "Top-down design, defaults and out-of-box playing discussion"
+      ],
+      "caveat": "2016 MPE discussion is historical, not today's conformance standard"
+    },
+    {
+      "id": "S06",
+      "title": "AudioTechnology: The Linnterview: A Conversation with Roger Linn",
+      "url": "https://www.audiotechnology.com/features/the-linnterview-a-conversation-with-roger-linn",
+      "kind": "Ross Bencina interview",
+      "published": "2013-08-17",
+      "locators": [
+        "Human feel and rigid electronic rhythms",
+        "Tempest performance intent",
+        "LinnStrument gesture dimensions"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "sourceHash": "07badfadec1678e9c7f32bef352c4631e88f02db19280e485b96ac6ca1d3ef2e",
+  "template": {
+    "system.img": "a31c023bb9fa435986d79819338f09ce80b4a7885c08834b710e6787681a26bf",
+    "manifest.json": "d590fe1844e4cda86840f1c3c6222e28bdbf44d0975323a9d72ee075e1cb7964"
+  },
+  "sourceArchiveSha256": "832d87a58aafcf65aa527021a3cb197c20dec4f18368d5cfacfe29ce4d8343a8"
+}

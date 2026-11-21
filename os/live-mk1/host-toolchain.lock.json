@@ -1,0 +1,40 @@
+{
+  "format": "xmp-armhf-development-inputs",
+  "version": 1,
+  "index": "https://deb.debian.org/debian/dists/bookworm/main/binary-amd64/Packages.xz",
+  "purpose": "Headers and startup objects only; never supply runtime DSOs or static libraries",
+  "packages": [
+    {
+      "package": "libc6-dev-armhf-cross",
+      "version": "2.36-8cross1",
+      "source": "cross-toolchain-base (66)",
+      "url": "https://deb.debian.org/debian/pool/main/c/cross-toolchain-base/libc6-dev-armhf-cross_2.36-8cross1_all.deb",
+      "bytes": 1262252,
+      "sha256": "e15fbc0c42bc12ef4fc809aac3780cf5fb455c40691a0ad1fbb591d49898d8dc"
+    },
+    {
+      "package": "linux-libc-dev-armhf-cross",
+      "version": "6.1.4-1cross1",
+      "source": "cross-toolchain-base (66)",
+      "url": "https://deb.debian.org/debian/pool/main/c/cross-toolchain-base/linux-libc-dev-armhf-cross_6.1.4-1cross1_all.deb",
+      "bytes": 1800356,
+      "sha256": "f3c313d843558fea7e3ebe3768607c14c17d769f8954580a9d829c8de18827a1"
+    },
+    {
+      "package": "libgcc-12-dev-armhf-cross",
+      "version": "12.2.0-14cross1",
+      "source": "gcc-12-cross (15)",
+      "url": "https://deb.debian.org/debian/pool/main/g/gcc-12-cross/libgcc-12-dev-armhf-cross_12.2.0-14cross1_all.deb",
+      "bytes": 741568,
+      "sha256": "55d2d48dc29a7a08c8a9287b0b0214db886dda5ae33a88138cfc782612f3b1a1"
+    },
+    {
+      "package": "libstdc++-12-dev-armhf-cross",
+      "version": "12.2.0-14cross1",
+      "source": "gcc-12-cross (15)",
+      "url": "https://deb.debian.org/debian/pool/main/g/gcc-12-cross/libstdc++-12-dev-armhf-cross_12.2.0-14cross1_all.deb",
+      "bytes": 2035708,
+      "sha256": "2729fedec7d328876c0fb6ec4d68dbef4daf883f7c248e86bd0ec91277b2c683"
+    }
+  ]
+}

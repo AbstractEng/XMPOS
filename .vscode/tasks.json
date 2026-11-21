@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "XMP: simulator",
+      "type": "shell",
+      "command": "npm run dev",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "XMP: check",
+      "type": "shell",
+      "command": "npm run check",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "XMP: native tests",
+      "type": "shell",
+      "command": "npm run native:test",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "XMP: toolchain doctor",
+      "type": "shell",
+      "command": "npm run doctor",
+      "problemMatcher": []
+    }
+  ]
+}

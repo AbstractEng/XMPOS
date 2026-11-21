@@ -1,0 +1,18 @@
+{
+  "format": "xmp-supported-sdk",
+  "version": "0.1.0",
+  "moduleApi": 2,
+  "dspAbi": 1,
+  "projectVersion": 8,
+  "nodeMajor": 24,
+  "hostPlatforms": ["darwin", "linux"],
+  "nativeProfile": "declarative-v1-offline-48000-v1",
+  "nativeSources": ["sine", "triangle", "virtual-input"],
+  "sampleRate": 48000,
+  "maximumRenderFrames": 48000,
+  "maximumEvents": 256,
+  "voiceLimit": 32,
+  "hardwareAccess": false,
+  "nativeMusicalSequencerQualified": false,
+  "publicRegistryPublished": false
+}

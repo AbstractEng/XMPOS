@@ -1,0 +1,55 @@
+# Hosted Studio preview
+
+The browser preview is live at [abstracteng.com/xmpos](https://abstracteng.com/xmpos/), with its [user manual](https://abstracteng.com/xmpos/manual/). The original preview was first published on 2026-11-09. This deployment contains the graphical browser application, original demo sounds and three explicitly approved CC0 test kit selections. It contains no Linux image, native executable, personal project, secret or hardware adapter.
+
+Open the page on a phone or computer, tap **Enable audio**, then Play or a pad. Audio follows that browser's output. Keep the Studio tab visible; hiding it stops playback. Projects autosave on that browser and origin. Portable Save/Open project downloads are the way to move work between the Mac and phone; there is no account sync or project-upload backend. Loading or refreshing the site requires connectivity; a service worker/offline-installable PWA has not been added.
+
+Device → Sample → REC can record from the browser microphone after permission is granted. Monitor defaults on; while playing, Record queues a four-bar loop for the next bar. Enable microphone permits monitoring between takes, and Choose WAV input supplies a file instead. The separate built-in Mac microphone helper in Studio remains local to the development server. The static host refuses write methods and returns a clear error for native recording endpoints. Physical MIDI, USB, Force/MPC deployment and hardware qualification remain unavailable.
+
+## Build and deploy
+
+The main Vite configuration supports two builds:
+
+- `npm run build`: local/default origin, including the manual.
+- `npm run web:build`: `/xmpos/` asset and navigation prefix, written to its own `dist-hosted/` folder. Local builds and `npm run check` rebuild `dist/` for `/` and never touch it. Preview it locally with `npx vite preview --mode hosted --host 127.0.0.1 --port 5174`, then open <http://127.0.0.1:5174/xmpos/>.
+
+Use the Cloudflare CLI deployment project in `tools/web-host`, with its own pinned package lock. Its generated `.cloudflare` artifacts are ignored. Use a Node version supported by the pinned cf package (24.22 or later in Node 24 for new installs). Existing local build checks were also exercised with the workspace's Node 24.14 runtime.
+
+```sh
+npm run web:build
+npm run web:prepare
+npm ci --prefix tools/web-host
+cd tools/web-host
+npx cf deploy --dry-run
+npx cf deploy --prebuilt
+```
+
+Authenticate using the existing account's normal Cloudflare CLI login or a suitable `CLOUDFLARE_API_TOKEN` in the environment. Never put credentials in this repository or command arguments. A deployment needs Worker/static asset and route access in the configured account and zone. Local deployment authentication is independent of the browser application's visitors.
+
+The deployment CLI has its own login, separate from Wrangler. The previous Wrangler credential could read the account but failed deployment reads. A fresh `cf auth login --force --no-browser` device authorization, approved by the owner, resolved that failure. This deployment requested `user:read account:read workers:write workers_scripts:write workers_routes:write workers_deployments:read workers_observability:write zone:read` (plus OAuth refresh access). The CLI stores credentials outside the repository. Reuse that profile for subsequent deploys; a new browser approval is only needed if reauthentication becomes necessary. Device codes expire after five minutes and must not be reused after expiration.
+
+Deployed again on 2026-11-12 (Worker version `9ae5d59c-8db3-4d05-8d0e-2fa3f61326cf`): the emerald and gold theme across Studio and the manual, the XMP 808 and 909-style kits and five more synth presets. Checked live: Studio themed, the 909 kit loaded with its pad names, app, manual, root redirect and homepage responding.
+
+Published the music guide on 2026-11-14 (Worker version `c9ec4052-ebcc-47e0-aef3-b8e7663b3226`): quick-start first, a project relationship diagram, and twelve Fenrir-narrated lessons lasting 26–37 seconds. Each video shows one charcoal MPC Live Mk1 drawing with highlighted controls and on-screen instructions. MP4/WebM videos, text captions, posters and the original practice project are included. The guide identifies the remaining differences between browser and native Live controls; the sampling lesson is explicitly simulated.
+
+Post-deploy checks matched all 55 course media files to local SHA-256 hashes, played and sought every video, checked 72 written steps and layouts at 320/844/1440 pixels, downloaded the practice project, and loaded Studio and its assets without page errors. The root redirect passed and the homepage HTML hash was unchanged. Local evidence is in `artifacts/tutorials/publish/public-verification.json`.
+
+Published the sound-changing lessons and tested browser fixes on 2026-11-15 (Worker version `ce79ecb5-315a-4253-a4a3-a601863e67c1`). The guide now contains fourteen videos: lesson 13 replaces one drum pad's sound (46 seconds), and lesson 14 chooses synth presets in Advanced Studio (47 seconds). Both include Fenrir narration and before/after audio rendered from the captured projects; the first twelve videos remain unchanged. The original Handclap WAV is downloadable. Public verification checked the new media hashes, playback and seeking, all 84 written steps, mobile layouts, the WAV download and the fixed 16 LEVEL shortcut; the homepage hash stayed unchanged. Evidence is in `artifacts/tutorials/sound-swap/public-verification.json`.
+
+Docker was unresponsive during this deployment. Its optional image-cleanup query was stopped after the static Vite build completed; the CLI dry run passed and `cf deploy --prebuilt` succeeded with `WRANGLER_DOCKER_BIN=/usr/bin/false`. This static Worker has no container bindings; this setting does not apply to the native session-image builder.
+
+Rebuilt and published all fourteen lessons for the current UI on 2026-11-15 (Worker version `d4d9555b-e599-45d8-af70-4a2d3a15f3d9`, application source `fc63e4f`). The guide and video framing use Abstract Engineering’s approved Soft Resonance identity: original logo masters, self-hosted Manrope, Paper/Forest and restrained Rose/Butter/Iris artwork. Every video retains one charcoal MPC Live Mk1 drawing, highlighted controls and Fenrir narration; durations are 26–40 seconds. Lessons now show Select/Draw, velocity editing, the piano roll, shared primary controls, immediate copying, scene launch controls, direct values, current Browse, sample trim/fades and Device synth presets. The sample lesson edits original audio; it does not simulate an input take.
+
+Post-deploy verification matched 71 delivered files to local hashes, played and sought all fourteen videos, checked 84 written steps and five widths (320/390/768/844/1440), validated the logo aspect ratio and font loading, downloaded the Handclap WAV, and exercised the current app’s Sound and Steps pages with right-hand Q-Links. No page errors occurred. The homepage hash stayed unchanged. Evidence: `artifacts/tutorials/ae-refresh/public-verification.json`; see `docs/tutorials/verification.md` for the validation record. No hardware was operated or deployed.
+
+Published the colour and illustration expansion on 2026-11-15 (Worker version `9e92c901-a314-4a02-8af5-b8b412fbe9a1`). Added eight original textured SVG studies in sixteen placements, Rose/Butter/Iris quick-start fields, coloured lesson and chapter markers, and tinted callouts. The illustrations extend the supplied vector artwork vocabulary and sit apart from readable text and controls. The current public app and its eleven asset dependencies were retained byte-for-byte; the refreshed fourteen-video course was restored after public checks found the older course serving again. Post-deploy checks matched all eighty course/identity/sketch files, exercised playback and downloads, checked five responsive widths and all eighty-four written steps, and reported no page errors. Evidence: `artifacts/tutorials/colour-sketches/public-verification.json` and the latest `artifacts/tutorials/ae-refresh/public-verification.json`. The eight manual scenarios / forty-nine steps passed. Artwork source and rebuild notes are in `docs/tutorials/artwork.md`.
+
+Published the shared-touchscreen guide on 2026-11-19 (Worker version `5377c4fa-967a-469a-926c-882575612437`, source `6f270be`). Sixteen fresh music lessons and three freshly captured installer walkthroughs use the optional separately supplied narration, on-screen instructions and highlighted hardware controls. All nineteen run under one minute. The guide prioritizes pads and hardware buttons, includes even sample slicing and the current machine chooser, and retains the Abstract Engineering artwork and quick-start layout. Fresh-project Song insertion and browser filename search were fixed with regression coverage. No physical hardware was operated. The host now streams byte ranges for seeking even when the Cloudflare asset binding omits length headers. Public verification matched 101 files, checked 38 partial media responses, played and sought all nineteen videos, exercised the current Device view and checked five responsive widths without page errors. The homepage hash remained unchanged. Detailed evidence is in `docs/tutorials/verification-2026-11-19.md`.
+
+The first successful deployment used application commit `fe5ee5a` and Worker version `f4504fe4-c063-4e3e-bf56-2569bea6b4e2`. Post-deploy checks verified the canonical redirect, app/manual, exact catalog and SHA-256/length of all 32 served kit WAVs. A pre/post comparison confirmed the homepage HTML was unchanged. Live browser checks loaded all three kits and exercised acoustic pad and pattern playback through the Mac's built-in output. These are browser checks, not formal loopback or embedded audio qualification.
+
+The separate `xmp-studio-web` Worker owns `abstracteng.com/xmpos` and `abstracteng.com/xmpos/*`, with the existing `irregularsizes.com/xmpos` and `irregularsizes.com/xmpos/*` preview aliases retained. The homepage Worker and its source checkout are preserved. The Worker serves only GET/HEAD, canonicalizes the exact application root to a trailing slash, and applies browser hardware restrictions. Hashed assets may be cached; HTML revalidates. Prepared static assets are copied from the browser build into an ignored deployment directory; the independent Linux OS artifacts are never packaged.
+
+Validate both URLs, their CSS/JS/AudioWorklet responses, no-prefix-escape navigation, mobile layout, project download, and the original homepage after publishing. The Worker route boundaries and response policies have unit tests. Cloudflare's deployment dry run checks generated packaging; remote UI checks establish that the browser app actually loads.
+
+Primary deployment references: [Cloudflare CLI project configuration](https://developers.cloudflare.com/cf/projects/cloudflare-config/), [Worker routes](https://developers.cloudflare.com/workers/configuration/routing/routes/), [static HTML handling](https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/).

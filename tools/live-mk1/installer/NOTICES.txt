@@ -1,0 +1,69 @@
+XMP OS Installer — component notices
+
+XMP code and original installer artwork: Apache-2.0, XMP.txt. Complete
+installer source, locks and build recipes are in Corresponding Source.
+The separate XMP session template and its exact source/notices are also
+included. Owner-derived Akai loader/rootfs/runtime images are not included
+and must not be redistributed. Preparing them happens locally from the
+owner's signed, hash-pinned official 3.10.1 updater.
+
+Node.js 24.14.0: MIT and the complete included component terms in Node.js.txt.
+Zod: MIT, Zod.txt. esbuild's generated bundle helpers/build tool: MIT,
+esbuild.txt. Build dependency versions are in package-lock.json.
+
+ARM loader: original XMP code with musl (MIT, musl.txt) and the Zig 0.13.0
+compiler runtime (MIT, Zig-compiler-rt.txt). The retained ELF identifies the
+compiler_rt object and ARM EABI helpers. Its exact compiler-runtime source
+subset and file inventory accompany the C loader source and compiler lock.
+
+Host e2fsprogs 1.47.2: GPL-2.0-or-later and upstream per-file library terms.
+The full unchanged source archive accompanies the utilities. The Windows
+portability patch, configuration log and rebuild instructions are included.
+The Windows patch adds <io.h> before windows.h; no filesystem algorithm is
+changed. Both tool and runtime DLL replacements are supported by rebuilding
+and regenerating the local integrity receipts. No publisher signing key is
+required for a modified build. See REBUILD.md.
+
+macOS runtime:
+A source-built CPython 3.13.18 with unused optional native modules disabled.
+The full original source archive, Modules/Setup.local, build/configuration
+logs and binary/source receipt are in Corresponding Source/mac-python.
+PSF/CWI/BeOpen/CNRI terms, CPython third-party notices, Expat's MIT notice and
+HACL's MIT notices accompany it under python/share/xmp-licenses. Its linked
+zlib/liblzma and Apple frameworks are supplied by macOS and are not bundled.
+The old python-build-standalone/pip runtime is not part of this reviewed build.
+
+Windows runtime:
+Only the tested Python imports and recursive PE dependency closure are kept.
+WINDOWS-THIRD-PARTY-NOTICES.txt and cygwin-sources.lock.json identify exact
+files, versions and source packages. The complete Cygwin source packages,
+including original upstream archives, distribution patches and .cygport
+build recipes, accompany the DLLs and Python in Corresponding Source/
+windows-host-tools. This is accompanying source, not just a download offer.
+
+Retained components: Cygwin 3.6.12 (LGPL-3.0-or-later and included newlib/
+per-file terms); CPython 3.12.12 (PSF and included per-file terms); GCC 14.4
+runtime (GPL-3.0-or-later with GCC Runtime Library Exception 3.1); gettext
+0.26 libintl and libiconv 1.19 (LGPL-2.1-or-later); util-linux 2.40.2 libblkid
+(LGPL-2.1-or-later) and libuuid (BSD-3-Clause); zlib 1.4 (zlib licence);
+xz/liblzma 5.8.4 (0BSD and upstream per-file terms); Expat 2.10.0 (MIT);
+and bzip2 1.0.8 (bzip2 licence). Exact Cygwin package revisions and Windows
+API header source versions are in the source lock. Complete upstream source
+archives retain notices for additional unbuilt components; the native file
+inventory, not those extra source notices, defines the shipped runtime.
+Unused DLLs, setuptools/site packages and test modules are removed.
+
+7-Zip Reduced 26.06 (7zr.exe): LGPL and applicable upstream BSD/per-file
+terms. The complete exact source, including DOC/License.txt, is supplied as
+Corresponding Source/7zip-src.tar.xz. The Alone7z executable does not link
+the unRAR decoder; it extracts only the owner's official 7z-format updater.
+No extracted vendor executable is executed or packaged.
+
+Android Platform-Tools are not bundled. Each owner accepts Google's terms
+and downloads the pinned official archive directly from Google; its NOTICE
+stays in the owner's local cache. OpenSSH, AppKit/Swift system libraries,
+Windows/.NET Framework and Windows system DLLs are OS-provided, not bundled.
+
+Review receipts apply only to the named exact files. Publication remains
+owner-controlled. macOS Developer ID/notarization, Apple Silicon and physical
+Windows driver/flash qualification are separate from this source/licence review.

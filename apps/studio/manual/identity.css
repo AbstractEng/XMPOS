@@ -1,0 +1,359 @@
+/* Abstract Engineering · Soft Resonance, approved identity v1.0 */
+:root {
+  --ink: #35473e;
+  --muted: #35473e;
+  --line: #ccc9c2;
+  --green: #e6c779;
+  background: #f2efe9;
+  color: #35473e;
+}
+body {
+  font-size: 18px;
+  line-height: 1.55;
+}
+button {
+  background: #f2efe9;
+  color: #35473e;
+  border-color: #35473e;
+  font-size: 14px;
+}
+summary {
+  min-height: 44px;
+}
+thead a {
+  color: var(--ae-forest);
+}
+button:hover {
+  background: #e6c779;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #35473e;
+  outline-offset: 4px;
+}
+.sidebar {
+  background: #f2efe9;
+  color: #35473e;
+  border-right: 1px solid var(--line);
+}
+.publisher-logo {
+  display: block;
+  width: 220px;
+  height: auto;
+  margin: 0 0 24px;
+}
+.edition,
+.sidebar-note {
+  font-size: 14px;
+}
+.sidebar-note,
+.sidebar-open {
+  color: #35473e;
+}
+.sidebar-open {
+  border-color: #35473e;
+  min-height: 44px;
+}
+.hero {
+  padding: 32px 0;
+  position: relative;
+}
+.hero-links {
+  font-size: 14px;
+}
+.eyebrow,
+.chapter-label,
+.nav-label {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+.primary,
+.quick-launch .primary {
+  background: #35473e;
+  color: #f2efe9;
+}
+.note,
+.lesson-next {
+  font-size: 16px;
+}
+.music-lesson {
+  border-top: 1px solid var(--line);
+  padding-top: 32px;
+}
+.course-reference,
+.lesson-transcript {
+  background: transparent;
+  box-shadow: none;
+}
+.brand-footer {
+  border-top: 1px solid var(--line);
+  margin-top: 48px;
+  padding: 32px 0;
+}
+.mobile-publisher {
+  height: auto;
+  display: none;
+}
+.hero-meta,
+.search-status,
+.manual-footer,
+.copy-code {
+  font-size: 14px;
+}
+pre code,
+thead th {
+  font-size: 14px;
+}
+.hero h1 {
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  margin: 16px 0 24px;
+}
+.toolbar-actions a,
+.toolbar-actions button {
+  font-size: 14px;
+}
+.recipe p,
+.lesson-transcript p,
+.quick-next p {
+  font-size: 16px;
+}
+.music-lesson video {
+  background: #f2efe9;
+  border: 1px solid #35473e;
+}
+.music-lesson h3 {
+  font-weight: 600;
+}
+.brand-footer img {
+  width: 240px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 0 16px;
+}
+.brand-footer p {
+  font-size: 16px;
+}
+.quick-recipe a,
+.note a,
+.callout a,
+.course-reference a,
+.lesson-transcript a {
+  color: var(--ae-forest);
+}
+
+.sidebar nav a {
+  color: #35473e;
+  font-size: 14px;
+  min-height: 44px;
+  padding: 8px;
+}
+.sidebar .brand {
+  color: #35473e;
+  font-size: 30px;
+  letter-spacing: -1px;
+}
+.sidebar nav a > span {
+  font-size: 14px;
+}
+.sidebar .brand span {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+.sidebar nav a:hover {
+  background: #e6c779;
+  color: #35473e;
+}
+@media (max-width: 900px) {
+  .mobile-publisher {
+    display: block;
+    width: 240px;
+    max-width: 100%;
+    margin: 0 0 20px;
+  }
+  .hero {
+    padding: 24px 0;
+  }
+  body {
+    font-size: 16px;
+  }
+  .mobile-brand {
+    color: #35473e;
+    font-size: 22px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+  * {
+    animation: none;
+    transition: none;
+  }
+}
+
+.hero-art {
+  display: none;
+}
+@media (min-width: 1200px) {
+  .hero-art {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 24px;
+    width: 200px;
+    height: 140px;
+    object-fit: contain;
+    pointer-events: none;
+  }
+}
+
+/* Expressive colour sits beside readable Forest text and a quiet Paper surface. */
+:root {
+  --ae-paper: #f2efe9;
+  --ae-forest: #35473e;
+  --ae-rose: #c88e91;
+  --ae-butter: #e6c779;
+  --ae-iris: #5862bf;
+  --ae-rose-wash: #ebdfdc;
+  --ae-butter-wash: #f0e8d4;
+  --ae-iris-wash: #e5e4e8;
+}
+.hero-emphasis {
+  box-shadow: inset 0 -0.19em 0 var(--ae-butter);
+}
+.hero-links > a:not(.primary) {
+  text-decoration-color: var(--ae-iris);
+}
+.hero .eyebrow {
+  color: var(--ae-iris);
+}
+.quick-recipe > li:nth-child(3n + 1) {
+  background: var(--ae-butter-wash);
+  border-top: 4px solid var(--ae-butter);
+}
+.quick-recipe > li:nth-child(3n + 2) {
+  background: var(--ae-rose-wash);
+  border-top: 4px solid var(--ae-rose);
+}
+.quick-recipe > li:nth-child(3n) {
+  background: var(--ae-iris-wash);
+  border-top: 4px solid var(--ae-iris);
+}
+section[data-chapter] > .chapter-label {
+  border-left: 5px solid var(--ae-rose);
+  padding-left: 12px;
+}
+section[data-chapter]:nth-of-type(3n) > .chapter-label {
+  border-left-color: var(--ae-iris);
+}
+section[data-chapter]:nth-of-type(3n + 1) > .chapter-label {
+  border-left-color: var(--ae-butter);
+}
+.manual-sketch {
+  pointer-events: none;
+  overflow: hidden;
+  margin: 8px 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  clear: both;
+}
+.manual-sketch img {
+  display: block;
+  width: 340px;
+  height: auto;
+  max-width: 70%;
+}
+.manual-sketch--chapter {
+  height: 112px;
+}
+.manual-sketch--interlude {
+  height: 170px;
+  margin: 32px 0;
+  border-bottom: 1px solid var(--ae-rose);
+}
+.manual-sketch--interlude img {
+  width: 460px;
+}
+.manual-sketch--interlude:nth-of-type(even) {
+  justify-content: flex-start;
+}
+.music-lesson {
+  --lesson-colour: var(--ae-rose);
+  border-top-color: var(--lesson-colour);
+}
+.music-lesson:nth-of-type(3n + 2) {
+  --lesson-colour: var(--ae-butter);
+}
+.music-lesson:nth-of-type(3n) {
+  --lesson-colour: var(--ae-iris);
+}
+.music-lesson > .eyebrow {
+  border-left: 5px solid var(--lesson-colour);
+  padding-left: 12px;
+  color: var(--ae-forest);
+}
+.music-lesson .note {
+  background: var(--ae-iris-wash);
+  border-left: 3px solid var(--ae-iris);
+  border-radius: 0;
+  padding: 16px 20px;
+}
+#learn .lesson-transcript {
+  background: var(--ae-butter-wash);
+  border-color: var(--ae-forest);
+}
+.course-reference {
+  background: var(--ae-rose-wash);
+  border-color: var(--ae-rose);
+}
+.callout {
+  background: var(--ae-butter-wash);
+  border-left: 4px solid var(--ae-butter);
+}
+.table-scroll thead {
+  background: var(--ae-butter-wash);
+}
+#learn .lesson-index span {
+  color: var(--ae-iris);
+}
+.sidebar .nav-label {
+  color: var(--ae-iris);
+}
+@media (min-width: 1200px) {
+  .hero-art {
+    width: 290px;
+    height: 160px;
+    top: 24px;
+  }
+}
+@media (max-width: 640px) {
+  .manual-sketch--chapter {
+    height: 78px;
+    margin: 0 0 16px;
+  }
+  .manual-sketch--interlude {
+    height: 110px;
+    margin: 24px 0;
+  }
+  .manual-sketch img {
+    max-width: 85%;
+  }
+  .music-lesson .note {
+    padding: 14px;
+  }
+}
+@media print {
+  .manual-sketch--interlude {
+    height: 80px;
+    margin: 12px 0;
+  }
+  .manual-sketch--chapter {
+    height: 60px;
+  }
+}

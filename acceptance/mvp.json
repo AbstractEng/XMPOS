@@ -1,0 +1,335 @@
+{
+  "version": 1,
+  "id": "XMP-MVP-1",
+  "title": "Usable, validated XMP MVP without hardware",
+  "promise": "A musician can start, make, finish, save, move and export a song in the XMP Device workflow on a Mac browser and inside the booted Linux device build; a contributor can build, test and package an original instrument; the owner's Akai Force is never touched.",
+  "sources": {
+    "requirements": "acceptance/sources/project-requirements.txt",
+    "scope": "acceptance/sources/development-scope.txt",
+    "externalSpecification": "pending"
+  },
+  "requirements": [
+    {
+      "id": "MVP-01",
+      "title": "Start making music with no hardware or setup",
+      "sources": ["S2", "S5", "S6"],
+      "need": "The default Device view opens in a browser, mirrors the Live Mk1 panel (pad 1 bottom left) and can be navigated before audio starts.",
+      "scenarios": [
+        {
+          "feature": "features/18-device-workflow.feature",
+          "name": "Navigate with the Live Mk1 controls without starting audio"
+        },
+        {
+          "feature": "features/18-device-workflow.feature",
+          "name": "Verify the visible default panel and bottom-left pad numbering"
+        }
+      ],
+      "gates": ["device"]
+    },
+    {
+      "id": "MVP-02",
+      "title": "Make a beat from samples",
+      "sources": ["S5"],
+      "need": "Load a kit or the sample library, program steps on pads and hear and export the loop.",
+      "scenarios": [
+        {
+          "feature": "features/18-device-workflow.feature",
+          "name": "Get a drum track going using the whole indexed sample library"
+        },
+        {
+          "feature": "features/20-production-e2e.feature",
+          "name": "Make a drum loop from my sample library and export audio"
+        },
+        {
+          "feature": "features/17-drum-kits.feature",
+          "name": "Compare a drum kit using an existing pattern and undo the replacement"
+        }
+      ],
+      "gates": ["device", "browser", "kits"]
+    },
+    {
+      "id": "MVP-03",
+      "title": "Layer sounds and record takes",
+      "sources": ["S1", "S5"],
+      "need": "Add a synth or second machine track, create variations and record an undoable pitched or finger-drummed take.",
+      "scenarios": [
+        {
+          "feature": "features/18-device-workflow.feature",
+          "name": "Layer a second machine and copy a variation without replacing its machine"
+        },
+        {
+          "feature": "features/18-device-workflow.feature",
+          "name": "Keep machine controls extensible and record an undoable pitched take"
+        },
+        {
+          "feature": "features/20-production-e2e.feature",
+          "name": "Layer a synth bass and create a chorus variation"
+        },
+        {
+          "feature": "features/20-production-e2e.feature",
+          "name": "Finger-drum a take and undo the whole take"
+        }
+      ],
+      "gates": ["device", "browser"]
+    },
+    {
+      "id": "MVP-04",
+      "title": "Arrange and perform a song",
+      "sources": ["S5"],
+      "need": "Launch clips at the next bar, chain scenes into a song and render it offline.",
+      "scenarios": [
+        {
+          "feature": "features/18-device-workflow.feature",
+          "name": "Launch clips independently at the next bar and stop an empty track slot"
+        },
+        {
+          "feature": "features/18-device-workflow.feature",
+          "name": "Turn scenes into a portable song and render it offline"
+        },
+        {
+          "feature": "features/20-production-e2e.feature",
+          "name": "Arrange verse and chorus clips into a complete song"
+        }
+      ],
+      "gates": ["device", "browser"]
+    },
+    {
+      "id": "MVP-05",
+      "title": "Mix and export",
+      "sources": ["S5"],
+      "need": "Balance tracks and export finished or alternative mixes as audio.",
+      "scenarios": [
+        {
+          "feature": "features/20-production-e2e.feature",
+          "name": "Balance a track and export a muted alternative"
+        }
+      ],
+      "gates": ["browser"]
+    },
+    {
+      "id": "MVP-06",
+      "title": "Never lose work",
+      "sources": ["S5", "S6"],
+      "need": "Autosave and resume, undo whole operations, and reject damaged input or stale loads without replacing the current song.",
+      "scenarios": [
+        {
+          "feature": "features/20-production-e2e.feature",
+          "name": "Resume an autosaved idea and transfer it to a fresh browser"
+        },
+        {
+          "feature": "features/20-production-e2e.feature",
+          "name": "Undo a destructive edit and reject a damaged project without losing work"
+        },
+        {
+          "feature": "features/18-device-workflow.feature",
+          "name": "Reject stale loads and delayed audio starts after cancellation"
+        },
+        {
+          "feature": "features/17-drum-kits.feature",
+          "name": "Reject a broken CC0 download and retain edits made during loading"
+        }
+      ],
+      "gates": ["browser", "device", "kits"]
+    },
+    {
+      "id": "MVP-07",
+      "title": "Portable songs",
+      "sources": ["S4", "S5"],
+      "need": "Save .xmpsong files with or without samples, relink missing audio and keep the active song when a transfer is corrupt.",
+      "scenarios": [
+        {
+          "feature": "features/24-portable-songs.feature",
+          "name": "FP01 - Transfer a packaged song between Device view and Advanced Studio"
+        },
+        {
+          "feature": "features/24-portable-songs.feature",
+          "name": "FP02 - Relocate the audio for a song saved without samples"
+        },
+        {
+          "feature": "features/24-portable-songs.feature",
+          "name": "FP03 - Reuse an installation's local sample library"
+        },
+        {
+          "feature": "features/24-portable-songs.feature",
+          "name": "FP04 - Keep the active song when a transfer is corrupt"
+        }
+      ],
+      "gates": ["songs"]
+    },
+    {
+      "id": "MVP-08",
+      "title": "Runs as its own OS",
+      "sources": ["S2", "S7"],
+      "need": "The Device interface boots inside an offline Linux image, keeps a song across a cold reboot, exchanges songs with the browser and builds ARMv7 artifacts, all on the Mac.",
+      "scenarios": [
+        {
+          "feature": "features/23-device-vm-arm.feature",
+          "name": "D01 - Boot and see the real Device interface inside Linux"
+        },
+        {
+          "feature": "features/23-device-vm-arm.feature",
+          "name": "D02 - Build a clip song and keep it across a cold VM reboot"
+        },
+        {
+          "feature": "features/23-device-vm-arm.feature",
+          "name": "D03 - Invalid commands cannot escape the virtual control boundary"
+        },
+        {
+          "feature": "features/23-device-vm-arm.feature",
+          "name": "D04 - Build and execute ARMv7 artifacts without an instrument"
+        },
+        {
+          "feature": "features/24-portable-songs.feature",
+          "name": "FP05 - Transfer a browser song into Linux and bring a VM edit back"
+        }
+      ],
+      "gates": ["device-vm", "songs-vm"]
+    },
+    {
+      "id": "MVP-09",
+      "title": "Contributors can extend it",
+      "sources": ["S1", "S4"],
+      "need": "Install the SDK offline, scaffold, build, test and package an original instrument or effect, with honest parity reporting.",
+      "scenarios": [
+        {
+          "feature": "features/19-supported-sdk.feature",
+          "name": "Install the SDK offline outside the XMP repository and inspect compatibility"
+        },
+        {
+          "feature": "features/19-supported-sdk.feature",
+          "name": "Complete a supported instrument or effect development loop"
+        },
+        {
+          "feature": "features/19-supported-sdk.feature",
+          "name": "Refuse false parity despite similar audio"
+        },
+        {
+          "feature": "features/19-supported-sdk.feature",
+          "name": "Preserve work when unsupported packages or device targets are requested"
+        }
+      ],
+      "gates": ["sdk", "native"]
+    },
+    {
+      "id": "MVP-10",
+      "title": "Only distributable content ships",
+      "sources": ["S3", "S4"],
+      "need": "Bundled sounds are original or verified CC0 with recorded provenance; no vendor firmware, graphics, samples or plugins are included.",
+      "scenarios": [
+        {
+          "feature": "features/17-drum-kits.feature",
+          "name": "Play a verified CC0 test kit using the existing song"
+        },
+        {
+          "feature": "features/17-drum-kits.feature",
+          "name": "Reject an invalid kit without a partial replacement"
+        }
+      ],
+      "gates": ["kits"]
+    },
+    {
+      "id": "MVP-11",
+      "title": "The Force stays untouched",
+      "sources": ["S6"],
+      "need": "Inventory is passive host metadata only; no target selector, allow flag or cable can authorize a Force write.",
+      "scenarios": [
+        {
+          "feature": "features/01-foundation.feature",
+          "name": "Inspect cached host metadata without contacting the Force"
+        },
+        {
+          "feature": "features/01-foundation.feature",
+          "name": "A USB cable does not authorize a Force modification"
+        },
+        {
+          "feature": "features/00-current-contracts.feature",
+          "name": "A generic allow flag cannot authorize the protected Force"
+        },
+        {
+          "feature": "features/00-current-contracts.feature",
+          "name": "Standalone mode rejects a physical target selector"
+        }
+      ],
+      "gates": ["safety", "foundation", "inventory"]
+    },
+    {
+      "id": "MVP-12",
+      "title": "A new user can learn it",
+      "sources": ["S5"],
+      "need": "The manual and first-loop quick start are readable on a phone, with enlarged text and without JavaScript.",
+      "scenarios": [
+        {
+          "feature": "features/22-manual-mobile.feature",
+          "name": "Read the quick start at <width> pixels wide"
+        },
+        {
+          "feature": "features/22-manual-mobile.feature",
+          "name": "Read and navigate the manual when JavaScript is unavailable"
+        }
+      ],
+      "gates": ["manual"]
+    }
+  ],
+  "excluded": [
+    "Installing, booting or testing anything on the Live Mk1 or the Force",
+    "Real-time timing qualification on hardware and the eight-hour run (60-second Mac sampler runs and the ARM guest engine pass; the Live Mk1's own timing is unmeasured)",
+    "Physical audio latency, loopback, external MIDI, CV and VST hosting",
+    "Touch display and physical control qualification",
+    "Eight-hour soak, signed hardware updates and public OS image redistribution",
+    "Requirements from the unretrieved external specification"
+  ],
+  "gates": {
+    "check": {
+      "command": ["npm", "run", "check"],
+      "tier": "core"
+    },
+    "inventory": {
+      "command": ["npm", "run", "inventory:test"],
+      "tier": "core"
+    },
+    "native": {
+      "command": ["npm", "run", "native:test"],
+      "tier": "core"
+    },
+    "safety": {
+      "command": ["npm", "run", "bdd:test"],
+      "tier": "core"
+    },
+    "foundation": {
+      "command": ["npm", "run", "bdd:foundation"],
+      "tier": "core"
+    },
+    "kits": {
+      "command": ["npm", "run", "bdd:kits"],
+      "tier": "core"
+    },
+    "device": {
+      "command": ["npm", "run", "bdd:device"],
+      "tier": "core"
+    },
+    "sdk": {
+      "command": ["npm", "run", "bdd:sdk-supported"],
+      "tier": "core"
+    },
+    "browser": {
+      "command": ["npm", "run", "bdd:e2e"],
+      "tier": "browser"
+    },
+    "songs": {
+      "command": ["npm", "run", "bdd:songs"],
+      "tier": "browser"
+    },
+    "manual": {
+      "command": ["npm", "run", "bdd:manual"],
+      "tier": "browser"
+    },
+    "device-vm": {
+      "command": ["npm", "run", "bdd:device-vm"],
+      "tier": "vm"
+    },
+    "songs-vm": {
+      "command": ["npm", "run", "bdd:songs:vm"],
+      "tier": "vm"
+    }
+  }
+}

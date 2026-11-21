@@ -1,0 +1,13 @@
+{
+  "format": "xmp-community-source-release",
+  "version": 3,
+  "sourceHome": "https://github.com/AbstractEng/XMPOS",
+  "history": "New repository initialized from audited files; no earlier repository objects or history copied",
+  "snapshotFromCommit": "221df8146723a26b42da93075217ef25dc9e2533",
+  "upstreamCommit": "effcdad8eb45139b096b8d66f2859f6ce2511aec",
+  "runtimeCodeChangedByExport": false,
+  "privateInputsIncluded": false,
+  "narratedVideosIncluded": false,
+  "creator": "sandeshm",
+  "publication": "prepared for community source launch"
+}

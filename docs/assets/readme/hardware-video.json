@@ -1,0 +1,14 @@
+{
+  "title": "Making a loop on the MPC Live Mk1",
+  "assetName": "XMP-OS-Beat-Final-Share.mp4",
+  "downloadUrl": "https://github.com/AbstractEng/XMPOS/releases/download/showcase/XMP-OS-Beat-Final-Share.mp4",
+  "assetBytes": 145929827,
+  "sha256": "6ba8406f4535d24324a6bd86907dc29441ad0e182cc140dec5594ebca54dd05b",
+  "durationSeconds": 127.12705,
+  "frames": 7600,
+  "fullOpeningPreserved": true,
+  "finishedGrade": "green/gold, selective screen sharpening",
+  "audio": "AAC 256 kbps, stereo 48 kHz, normalized to -16 LUFS with light peak limiting",
+  "scope": "owner-approved recorded hardware demonstration; not exact-candidate qualification",
+  "host": "showcase media release; publish with community source"
+}

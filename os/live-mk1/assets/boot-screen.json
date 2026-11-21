@@ -1,0 +1,11 @@
+{
+  "name": "Emerald Current",
+  "approvedOn": "2026-11-18",
+  "width": 1280,
+  "height": 800,
+  "format": "XMPBOOT1: 8-byte magic, little-endian uint32 width/height, packed RGB888",
+  "bytes": 3072016,
+  "sha256": "02011d57eb195be30cadb343fb83838d5a20a1a56573f5f52a93a1ccd817ec33",
+  "artwork": "brand/xmp/boot/emerald-current-2026-11-18/mpc-live-mk1-emerald-current.png",
+  "artworkSha256": "def5bf197a5443e7cdac53d3b2bf016cc1a5e865a09b907629460981eac8f41d"
+}

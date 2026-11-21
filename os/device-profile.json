@@ -1,0 +1,22 @@
+{
+  "id": "device-qemu-x86_64-v1",
+  "architecture": "x86_64",
+  "machine": "pc-i440fx-8.2",
+  "accelerator": "tcg",
+  "cpu": "max",
+  "vcpus": 2,
+  "memoryMiB": 3072,
+  "dataMiB": 512,
+  "sampleRate": 48000,
+  "audio": "QEMU Intel HDA output to owned WAV file",
+  "controls": "bounded serial Device viewer; guest-only Chromium",
+  "bootReadyLimitSeconds": 180,
+  "commandLimitSeconds": 90,
+  "uiRestartBudget": 3,
+  "network": false,
+  "hostShares": false,
+  "usbPassthrough": false,
+  "labAgentEnabled": false,
+  "physicalAudioQualified": false,
+  "mpcDriversQualified": false
+}

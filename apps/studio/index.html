@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' ws://127.0.0.1:5173; img-src 'self' data:; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'" />
+    <meta http-equiv="Permissions-Policy" content="midi=(), usb=(), hid=(), serial=(), microphone=(self), camera=()" />
+    <title>XMP Studio · Developer Preview</title>
+    <style>
+      #boot-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: grid;
+        place-items: center;
+        background: #02100d;
+        color: #eefaf3;
+        font: 1rem system-ui, sans-serif;
+      }
+      #boot-screen img { width: 100%; height: 100%; object-fit: contain; }
+      #boot-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+      #boot-recovery {
+        position: absolute;
+        bottom: 5%;
+        padding: 1rem 1.5rem;
+        border: 1px solid #477565;
+        border-radius: .5rem;
+        background: #02100d;
+        text-align: center;
+      }
+      #boot-recovery button {
+        padding: .5rem 1rem;
+        border: 1px solid #6b9f8a;
+        border-radius: .25rem;
+        background: #183b31;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="boot-screen">
+      <img src="/src/assets/emerald-current.png" width="1280" height="800" alt="" fetchpriority="high" />
+      <span id="boot-status" role="status">Starting XMP</span>
+      <div id="boot-recovery" hidden>
+        <p role="alert">XMP couldn’t start.</p>
+        <button type="button">Reload XMP</button>
+      </div>
+    </div>
+    <div id="app" inert></div>
+    <script type="module" src="/src/entry.ts"></script>
+  </body>
+</html>

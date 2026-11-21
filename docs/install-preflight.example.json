@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "model": "live-mk1",
+  "devices": [{ "board": "inmusic,acv8", "soc": "rockchip,rk3288" }],
+  "identityMatchesPinnedLive": false,
+  "firstUseOwnerConfirmationPlanned": false,
+  "mpcOsVersion": "3.10.1",
+  "bootloader": "0.4",
+  "rootfs": { "filesystem": "ext4", "capacityBytes": null, "loaderBytes": 453051392 },
+  "updater": {
+    "signatureVerified": false,
+    "imageSha256": "1df320c8b4f8a5ce4f212a6b89d6009bed3e794278a0ecb0ed609a5f0bf55364",
+    "rootfsSha256": "f5f216bbea471678afa58f5502a9f9a4c07a8552c93173f59dc6af5103b03c2f"
+  },
+  "loaderHashIndependentlyVerified": false,
+  "stick": {
+    "filesystem": "vfat",
+    "label": "XMP",
+    "capacityBytes": 8019509248,
+    "freeBytes": 0,
+    "partitionTableReviewed": false
+  },
+  "powerAndDataCableReviewed": false,
+  "recoveryImageVerified": false,
+  "setupDoctorPassed": false,
+  "workspaceFreeBytes": 0
+}

@@ -1,0 +1,127 @@
+{
+  "title": "Hardware setup",
+  "hardwareUsed": false,
+  "installerSimulation": true,
+  "installerHtmlSha256": "57fa599bdd8d51ccf62ed10492f00047478edef84988d0c9f5a1026f1ce6858c",
+  "lessons": [
+    {
+      "id": "15-hardware-usb",
+      "duration": 37.458333,
+      "stepDurations": [
+        5.333333333333333,
+        6.375,
+        7.041666666666667,
+        6.958333333333333,
+        7.208333333333333,
+        4.541666666666667
+      ],
+      "voiceSpeed": 1.05,
+      "layout": "computer installer screenshots or one full MPC teaching drawing; no duplicated device screen",
+      "chassis": "charcoal black",
+      "hardwareUsed": false,
+      "nativeSimulation": false,
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "identity": {
+        "name": "Abstract Engineering",
+        "version": "1.0",
+        "paper": "#F2EFE9",
+        "forest": "#35473E",
+        "rose": "#C88E91",
+        "butter": "#E6C779",
+        "iris": "#5862BF",
+        "font": "Manrope"
+      },
+      "sha256": "9fc5f1be04a40ed948b984335dd4973fadc093daa1d17b158e2740abe2df9d50",
+      "installerSimulation": true,
+      "rearPowerHighlightedSteps": [],
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.82,
+        "truePeakDb": -2.89
+      }
+    },
+    {
+      "id": "16-hardware-boot",
+      "duration": 44.5,
+      "stepDurations": [
+        6.625,
+        6.791666666666667,
+        7.166666666666667,
+        7.5,
+        7.916666666666667,
+        8.5
+      ],
+      "voiceSpeed": 1.05,
+      "layout": "computer installer screenshots or one full MPC teaching drawing; no duplicated device screen",
+      "chassis": "charcoal black",
+      "hardwareUsed": false,
+      "nativeSimulation": false,
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "identity": {
+        "name": "Abstract Engineering",
+        "version": "1.0",
+        "paper": "#F2EFE9",
+        "forest": "#35473E",
+        "rose": "#C88E91",
+        "butter": "#E6C779",
+        "iris": "#5862BF",
+        "font": "Manrope"
+      },
+      "sha256": "e5f1ed3df38b57610341291a24ce88919070af79533ce029bd21d3da1a82f7d3",
+      "installerSimulation": true,
+      "rearPowerHighlightedSteps": [
+        1,
+        6
+      ],
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.87,
+        "truePeakDb": -2.95
+      }
+    },
+    {
+      "id": "17-hardware-return",
+      "duration": 36.708333,
+      "stepDurations": [
+        4.875,
+        6.5,
+        5.333333333333333,
+        5.75,
+        7.041666666666667,
+        7.208333333333333
+      ],
+      "voiceSpeed": 1.05,
+      "layout": "computer installer screenshots or one full MPC teaching drawing; no duplicated device screen",
+      "chassis": "charcoal black",
+      "hardwareUsed": false,
+      "nativeSimulation": false,
+      "sourceRevision": "f39b258324f693cd74e3659dd2c22138ced97c35",
+      "identity": {
+        "name": "Abstract Engineering",
+        "version": "1.0",
+        "paper": "#F2EFE9",
+        "forest": "#35473E",
+        "rose": "#C88E91",
+        "butter": "#E6C779",
+        "iris": "#5862BF",
+        "font": "Manrope"
+      },
+      "sha256": "a9d0c5959b55b1cf0e4a51f55d7a6a4979a93a032c48d5200fb37f5c42920546",
+      "installerSimulation": true,
+      "rearPowerHighlightedSteps": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "audioVerification": {
+        "targetLufs": -16,
+        "maximumTruePeakDb": -1,
+        "lufs": -16.65,
+        "truePeakDb": -2.88
+      }
+    }
+  ]
+}

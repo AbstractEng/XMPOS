@@ -1,0 +1,68 @@
+{
+  "format": "xmp-live-mk1-installation-evidence",
+  "version": 3,
+  "status": "pending",
+  "method": "owner-observed-physical",
+  "synthetic": false,
+  "target": "inmusic,acv8",
+  "sourceHash": null,
+  "sessionImageSha256": null,
+  "loaderImageSha256": null,
+  "updaterImageSha256": null,
+  "stockRootfsSha256": null,
+  "privateDeviceIdentitySha256": null,
+  "startingMpcOsVersion": null,
+  "restoredMpcOsVersion": null,
+  "steps": [
+    {
+      "id": "install-loader-rootfs",
+      "outcome": "pending",
+      "observedAt": null,
+      "evidence": {
+        "file": "step-1.txt",
+        "sha256": null
+      }
+    },
+    {
+      "id": "boot-xmp-from-usb",
+      "outcome": "pending",
+      "observedAt": null,
+      "evidence": {
+        "file": "step-2.txt",
+        "sha256": null
+      }
+    },
+    {
+      "id": "boot-stock-without-usb",
+      "outcome": "pending",
+      "observedAt": null,
+      "evidence": {
+        "file": "step-3.txt",
+        "sha256": null
+      }
+    },
+    {
+      "id": "restore-stock-rootfs",
+      "outcome": "pending",
+      "observedAt": null,
+      "evidence": {
+        "file": "step-4.txt",
+        "sha256": null
+      }
+    },
+    {
+      "id": "boot-restored-stock",
+      "outcome": "pending",
+      "observedAt": null,
+      "evidence": {
+        "file": "step-5.txt",
+        "sha256": null
+      }
+    }
+  ],
+  "publicTemplateSha256": null,
+  "ownerAssemblyManifestSha256": null,
+  "runtimeLockSha256": null,
+  "loaderSourceHash": null,
+  "loaderManifestSha256": null
+}

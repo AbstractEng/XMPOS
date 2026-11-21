@@ -1,0 +1,298 @@
+{
+  "version": 1,
+  "sources": {
+    "octal": {
+      "repo": "octalmusic/octal-samples",
+      "commit": "22d222ce36e290ba3792c776811aa9c69dcc8776",
+      "credit": "Octal contributors",
+      "license": "CC0-1.0",
+      "notices": [
+        {
+          "path": "LICENSE",
+          "gitBlob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+          "bytes": 7048
+        },
+        {
+          "path": "LICENSES.md",
+          "gitBlob": "bd00a03963da9c7f47fe3e26a93a0a0c25cdc3bc",
+          "bytes": 19624
+        },
+        {
+          "path": "sources/uzu-drumkit/LICENSE",
+          "gitBlob": "fdddb29aa445bf3d6a5d843d6dd77e10a9f99657",
+          "bytes": 1211
+        },
+        {
+          "path": "sources/uzu-drumkit/PROVENANCE.md",
+          "gitBlob": "fda06caf0242b5af61ac8e3ed2acf396f37cbb01",
+          "bytes": 1049
+        }
+      ]
+    },
+    "virtuosity": {
+      "repo": "sfzinstruments/virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "credit": "Versilian Studios and Karoryfer Samples; drums performed by Austin McMahon",
+      "license": "CC0-1.0",
+      "notices": [
+        {
+          "path": "LICENSE",
+          "gitBlob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+          "bytes": 7048
+        },
+        {
+          "path": "README.md",
+          "gitBlob": "6ac5d4502d499e1480f4f2f512b1594011076919",
+          "bytes": 2312
+        }
+      ]
+    }
+  },
+  "kits": [
+    {
+      "id": "cc0-octal-deep",
+      "name": "Octal Deep \u00b7 CC0",
+      "description": "Deep electronic house selection; 12 one-shots.",
+      "samples": [
+        {
+          "name": "Kick Deep",
+          "source": "octal",
+          "path": "samples/kicks/deep-01.wav",
+          "gitBlob": "11eb3365cf104bca9acc399a0984c7ed6e6ec33f",
+          "bytes": 44144
+        },
+        {
+          "name": "Snare Body",
+          "source": "octal",
+          "path": "samples/snares/body-01.wav",
+          "gitBlob": "5ae887f67b963f93f342f36796852b2c75502f1e",
+          "bytes": 30032
+        },
+        {
+          "name": "Closed Hat Soft",
+          "source": "octal",
+          "path": "samples/hats/closed-01.wav",
+          "gitBlob": "c669b01363c5b21d5868bf158b2951757cd0b49e",
+          "bytes": 8864
+        },
+        {
+          "name": "Open Hat Short",
+          "source": "octal",
+          "path": "samples/hats/open-01.wav",
+          "gitBlob": "46d4b69c71b1eac272cde9fb526c7fa3601384f1",
+          "bytes": 33560
+        },
+        {
+          "name": "Clap Classic",
+          "source": "octal",
+          "path": "samples/claps/classic-01.wav",
+          "gitBlob": "3b6f1a44006fa2c96394e3c7030be702b0b34843",
+          "bytes": 22976
+        },
+        {
+          "name": "Low Tom",
+          "source": "octal",
+          "path": "samples/percs/tom-01.wav",
+          "gitBlob": "c852e763dd70ea890a16d1239a29cbfb25dc173c",
+          "bytes": 30912
+        },
+        {
+          "name": "Mid Tom",
+          "source": "octal",
+          "path": "samples/percs/tom-02.wav",
+          "gitBlob": "a0c4ef4574a3f20888b8a3024addf60ad52e7b89",
+          "bytes": 30912
+        },
+        {
+          "name": "Shaker",
+          "source": "octal",
+          "path": "samples/percs/shaker-01.wav",
+          "gitBlob": "e4b8b48e0e113ef66658848fdec575d8dd009a18",
+          "bytes": 14156
+        },
+        {
+          "name": "Tick",
+          "source": "octal",
+          "path": "samples/percs/tick-01.wav",
+          "gitBlob": "3360f55cd5d33b924fe10c30f9af88866ce3798b",
+          "bytes": 5336
+        },
+        {
+          "name": "Blip",
+          "source": "octal",
+          "path": "samples/percs/blip-01.wav",
+          "gitBlob": "c173bfaa36871939e9c1adab254c1641e7c2279e",
+          "bytes": 15920
+        },
+        {
+          "name": "Crash",
+          "source": "octal",
+          "path": "samples/cymbals/crash-01.wav",
+          "gitBlob": "4716f0e0ca652ef8dace211e5d9676982b9014c1",
+          "bytes": 176444
+        },
+        {
+          "name": "Ride",
+          "source": "octal",
+          "path": "samples/cymbals/ride-01.wav",
+          "gitBlob": "703a17dd1cf145da36cd600d03d16a08a2877e41",
+          "bytes": 81958
+        }
+      ]
+    },
+    {
+      "id": "cc0-octal-punch",
+      "name": "Octal Punch \u00b7 CC0",
+      "description": "Punchy electronic selection with sub kick and transition FX; 12 one-shots.",
+      "samples": [
+        {
+          "name": "Kick Punch",
+          "source": "octal",
+          "path": "samples/kicks/punch-03.wav",
+          "gitBlob": "493a80fc4b831d6f61574de502b5eec676d57181",
+          "bytes": 38852
+        },
+        {
+          "name": "Snare Snap",
+          "source": "octal",
+          "path": "samples/snares/snap-01.wav",
+          "gitBlob": "ac3d910b360e7622b1b13e096ca50f8ef0a53a84",
+          "bytes": 24740
+        },
+        {
+          "name": "Closed Hat Bright",
+          "source": "octal",
+          "path": "samples/hats/closed-07.wav",
+          "gitBlob": "f2a535fe29c4da2f56a7fabe620585d27eccf413",
+          "bytes": 8864
+        },
+        {
+          "name": "Open Hat Long",
+          "source": "octal",
+          "path": "samples/hats/open-03.wav",
+          "gitBlob": "af7fbe567bd1efb84f84e3a72f5b0da2449a567a",
+          "bytes": 51200
+        },
+        {
+          "name": "Clap Wide",
+          "source": "octal",
+          "path": "samples/claps/classic-02.wav",
+          "gitBlob": "fffee18e9bfa51b686084ae70de3ef7d61382efa",
+          "bytes": 30032
+        },
+        {
+          "name": "High Tom",
+          "source": "octal",
+          "path": "samples/percs/tom-03.wav",
+          "gitBlob": "3732d75cb051a09f0c14f9433d0bfc8d7b447b17",
+          "bytes": 30912
+        },
+        {
+          "name": "Shaker Tight",
+          "source": "octal",
+          "path": "samples/percs/shaker-02.wav",
+          "gitBlob": "152070e4edf5a9846530fab03b1d5b5b4630e731",
+          "bytes": 11510
+        },
+        {
+          "name": "Tick Bright",
+          "source": "octal",
+          "path": "samples/percs/tick-02.wav",
+          "gitBlob": "d821ace2715c1ef18a662dad565ed5808418d376",
+          "bytes": 7100
+        },
+        {
+          "name": "Blip High",
+          "source": "octal",
+          "path": "samples/percs/blip-02.wav",
+          "gitBlob": "93bfe79b6fb80df5a5b6356b63ec7cfd44934322",
+          "bytes": 15920
+        },
+        {
+          "name": "Sub Kick",
+          "source": "octal",
+          "path": "samples/kicks/sub-02.wav",
+          "gitBlob": "1a72d4c8b48407b08d30746d1cc928c519321d07",
+          "bytes": 52964
+        },
+        {
+          "name": "Noise",
+          "source": "octal",
+          "path": "samples/fx/noise-01.wav",
+          "gitBlob": "b0194e870fb20300e71efe605596693795fde582",
+          "bytes": 176444
+        },
+        {
+          "name": "Riser",
+          "source": "octal",
+          "path": "samples/fx/riser-01.wav",
+          "gitBlob": "39858cd482b7ee6b90a2963a69b09cb2266e9cd1",
+          "bytes": 264644
+        }
+      ]
+    },
+    {
+      "id": "cc0-virtuosity",
+      "name": "Virtuosity Acoustic \u00b7 CC0",
+      "description": "Acoustic jazz kit test selection; 8 single-layer one-shots, mono 24 kHz, tails capped at 3 seconds.",
+      "samples": [
+        {
+          "name": "Kick Acoustic",
+          "source": "virtuosity",
+          "path": "Samples/kickmic/kick/kickmic_kick_snon_vl3_rr1.flac",
+          "gitBlob": "83f5a89d0b25f0feef1e64c68a80c7b8565351ef",
+          "bytes": 107117
+        },
+        {
+          "name": "Snare Acoustic",
+          "source": "virtuosity",
+          "path": "Samples/snaremic/snare/snaremic_snare_center_vl30.flac",
+          "gitBlob": "2fab4d7c4ac9594ba8d01ea9763056533eb72974",
+          "bytes": 103494
+        },
+        {
+          "name": "Closed Hat Acoustic",
+          "source": "virtuosity",
+          "path": "Samples/oh/hh/oh_hh_closed_vl3_rr1.flac",
+          "gitBlob": "c7f1ee86c09041eeaf3e374b74877e07f30d225c",
+          "bytes": 85639
+        },
+        {
+          "name": "Open Hat Acoustic",
+          "source": "virtuosity",
+          "path": "Samples/oh/hh/oh_hh_open_vl3_rr1.flac",
+          "gitBlob": "9194935cb0a4641ddc5095ac1ae414708652a2ca",
+          "bytes": 1050271
+        },
+        {
+          "name": "High Tom Acoustic",
+          "source": "virtuosity",
+          "path": "Samples/oh/htom/oh_htom_center_vl10.flac",
+          "gitBlob": "fa2c71bb12c57b2afca2d6f7bcbaa1fc8c867e88",
+          "bytes": 214464
+        },
+        {
+          "name": "Low Tom Acoustic",
+          "source": "virtuosity",
+          "path": "Samples/oh/ltom/oh_ltom_center_vl10.flac",
+          "gitBlob": "7ee61009bf0cc55ca0c1306d064f8207ac997b1c",
+          "bytes": 392718
+        },
+        {
+          "name": "Ride Acoustic",
+          "source": "virtuosity",
+          "path": "Samples/oh/ride/oh_ride_ride_vl3_rr1.flac",
+          "gitBlob": "11b81972377915468bcf033785d313d2a7665b31",
+          "bytes": 945050
+        },
+        {
+          "name": "Crash Acoustic",
+          "source": "virtuosity",
+          "path": "Samples/oh/crash/oh_crash_crash_vl3_rr1.flac",
+          "gitBlob": "464020e19ae66f3c6b1bedcb87877590f705cdff",
+          "bytes": 1628049
+        }
+      ]
+    }
+  ]
+}

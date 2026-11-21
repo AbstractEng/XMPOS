@@ -1,0 +1,34 @@
+{
+  "format": "xmp-installer-host-inputs",
+  "version": 1,
+  "platform": "win32",
+  "arch": "x64",
+  "sevenZip": {
+    "url": "https://github.com/ip7z/7zip/releases/download/26.06/7zr.exe",
+    "bytes": 600064,
+    "sha256": "e80db2dad715a6c5adabe292d31ed54e11f4e9b99ca349827b50573b175891bc"
+  },
+  "sevenZipSource": {
+    "url": "https://github.com/ip7z/7zip/releases/download/26.06/7z2606-src.tar.xz",
+    "bytes": 1567328,
+    "sha256": "a4e374c8f864f51df48c2cfd0e1413ec3b2ea030deae852d6a655402ebb61ac4"
+  },
+  "platformTools": {
+    "url": "https://dl.google.com/android/repository/platform-tools_r37.0.1-win.zip",
+    "bytes": 8044989,
+    "sha256": "45f4d63113e895ebde0c90f194099a4676b6ac653bd28d54314a9e022bbc1a99",
+    "release": "37.0.1",
+    "terms": "https://developer.android.com/studio/terms"
+  },
+  "updater": {
+    "url": "https://cdn.inmusicbrands.com/Software/MP3108CNOVOP/MPC%20%28Gen%201%29%203.10.1%20Updater.exe",
+    "sha256": "f0344bd1f0e3caf1392637212d14fb00809908fa18814f6065f26ece18e4dd17",
+    "bytes": 169574648,
+    "payloadSha256": "1df320c8b4f8a5ce4f212a6b89d6009bed3e794278a0ecb0ed609a5f0bf55364",
+    "payloadBytes": 168021920
+  },
+  "node": {
+    "url": "https://nodejs.org/dist/v24.14.0/node-v24.14.0-win-x64.zip",
+    "sha256": "313fa40c0d7b18575821de8cb17483031fe07d95de5994f6f435f3b345f85c66"
+  }
+}

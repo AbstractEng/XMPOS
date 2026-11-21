@@ -1,0 +1,7 @@
+{
+  "version": "8.2.10",
+  "url": "https://download.qemu.org/qemu-8.2.10.tar.xz",
+  "sha256": "37b4a643da8ed6015eef35f5d7f06e7259d9c95359965a0a98e9667c621ab2bb",
+  "meson": "1.2.3",
+  "scope": "Mac source-build fallback. CI uses its recorded QEMU version with the frozen pc-i440fx-8.2 machine. No binary reproducibility claim."
+}

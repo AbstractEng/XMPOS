@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "status": "Proposed acceptance targets; not measured hardware capabilities",
+  "profiles": {
+    "host-contract": {
+      "available": true,
+      "scope": "P01/P02 orchestration, pure core contracts, strict capability preflight and native offline fixtures; no device I/O"
+    },
+    "desktop": {
+      "available": false,
+      "scope": "Browser UI adapter and Mac application backend; automated Cucumber UI bindings pending; bounded fixture adapter available, full application qualification pending",
+      "contractAdapterAvailable": true,
+      "contractCapabilities": ["offline-render", "project-persistence"]
+    },
+    "native": {
+      "available": false,
+      "scope": "Independent native C++ engine with bounded local IPC, prepared graph, paced virtual audio and compiled guarded host-backend ports; real output/capture and full native application qualification pending",
+      "contractAdapterAvailable": true,
+      "contractCapabilities": ["offline-render", "project-persistence"],
+      "engineProcessAvailable": true,
+      "virtualAudioEndpointAvailable": true,
+      "physicalAudioQualification": false
+    },
+    "os-vm": {
+      "available": true,
+      "scope": "Dedicated P10 adapter: booted Linux x86_64 console with guest core rendering, ext4 persistence and HDA WAV capture; graphical UI/native real-time parity/MPC drivers remain pending. Pure host adapters still refuse this profile.",
+      "adapterCommand": "npm run bdd:p10",
+      "profile": "p10-qemu-x86_64-v1",
+      "vcpu": 2,
+      "memoryMiB": 1024,
+      "physicalAudioQualification": false,
+      "mpcDriversQualified": false
+    },
+    "usb-lab": {
+      "available": false,
+      "scope": "Authorized Live Mk1 already running a reviewed XMP lab build; transport and agent pending",
+      "protectedModels": ["Akai Force"],
+      "requiredBootTierForOsQualification": "independent-xmp-image"
+    }
+  },
+  "proposedV1Budgets": {
+    "id": "live-mk1-v1-draft-1",
+    "sampleRateHz": 48000,
+    "bufferFrames": 256,
+    "logicalTracks": 8,
+    "scenes": 16,
+    "minimumQualifiedVoices": 32,
+    "insertSlotsPerTrack": 2,
+    "sharedSendBuses": 2,
+    "soakHours": 8,
+    "maximumXrunsDuringSoak": 0,
+    "callbackP99MaximumFractionOfBlockDeadline": 0.8,
+    "analogRoundTripLatencyP95MaximumMs": 20,
+    "midiClockIntervalJitterP95MaximumMs": 2,
+    "residentMemoryGrowthAfterWarmupMaximumMiB": 32,
+    "eventRenderAlignmentToleranceSamples": 1,
+    "pcm16RenderToleranceLsb": 2,
+    "controlEventToEngineDispatchP95MaximumMs": 10
+  },
+  "measurementRules": {
+    "latencyImpulseTrials": 1000,
+    "midiClockIntervals": 10000,
+    "warmupMinutes": 15,
+    "qualificationSeed": 73019,
+    "workload": "Four sampled drum tracks and four basic subtractive-synth tracks, up to 32 total active voices, EQ and filter inserts on each track, one shared tempo delay and one shared reverb; note/event fixture and settings must be frozen and hashed before qualification.",
+    "overloadWorkload": "Twice the qualified voice demand; the documented bounded voice/graph refusal policy must be measured separately.",
+    "capture": "The control link is not an audio measurement. Physical latency requires calibrated external loopback capture and an explicit clock-offset/drift method.",
+    "temperature": "Record ambient/device temperatures and throttling evidence; freeze board-appropriate thermal limits after hardware identification. An unset required thermal limit blocks qualification.",
+    "changes": "Budgets are proposed. Record an explicit product decision and versioned profile change before revising them; never silently relax a threshold after a failed run."
+  },
+  "developmentProfiles": {
+    "p04-mac-development-v1": {
+      "sampleRateHz": 48000,
+      "bufferFrames": 256,
+      "tracks": 8,
+      "voices": 32,
+      "controlQueue": 64,
+      "criticalQueue": 16,
+      "scheduledQueue": 64,
+      "futureCriticalQueue": 16,
+      "callbackP99MaximumFraction": 0.8,
+      "workload": "32 prepared looping sample voices, four per track, gain buses and master clipping; no synth/effect-chain V1 qualification",
+      "physicalAudio": false
+    },
+    "host-lab-development-v1": {
+      "transport": "owned Unix socket with mutual TLS 1.3",
+      "deployedAgent": false,
+      "physicalUsbAdapter": false,
+      "frameBytes": 524288,
+      "fixtureBytes": 262144,
+      "fixturesPerSession": 4,
+      "totalFixtureBytes": 1048576,
+      "pendingCommands": 8,
+      "commandsPerMinute": 64,
+      "maximumSessionSeconds": 300,
+      "qualification": "host software only; exact-unit and physical evidence pending"
+    },
+    "p12-host-sampler-soak-v1": {
+      "sampleRateHz": 48000,
+      "bufferFrames": 256,
+      "voices": 32,
+      "minimumDevelopmentSeconds": 60,
+      "optionalSamplerSoakSeconds": 28800,
+      "captureFrames": 96000,
+      "maximumXruns": 0,
+      "callbackP99MaximumFractionOfBlockDeadline": 0.8,
+      "residentMemoryGrowthAfterWarmupMaximumMiB": 32,
+      "workload": "Prepared looping samples only; final synth/effect workload and eight-hour V1 qualification pending",
+      "physicalAudio": false
+    },
+    "p12-owned-vm-update-v1": {
+      "target": "p10-qemu-x86_64-v1",
+      "signature": "Ed25519 with pinned development key",
+      "storage": "Owned workspace file snapshots and atomic active pointer; no MPC partition assumptions",
+      "physicalHardware": false,
+      "publicRedistributionApproved": false
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "format": "xmp-armhf-development-sources",
+  "version": 1,
+  "provenance": "Exact source versions named by the pinned Debian development packages. SHA-256 for payloads comes from Debian .dsc; descriptors pinned from snapshot.debian.org HTTPS. No vendor runtime included.",
+  "files": [
+    {
+      "package": "glibc",
+      "name": "glibc_2.36-8.debian.tar.xz",
+      "bytes": 831264,
+      "sha256": "c037743ceedcfc601ce66da33552c7301c77eae029eb9ed98c15c0ebed5a0984",
+      "url": "https://snapshot.debian.org/file/65089d72119c89796b9ad0d222f82478065b8773"
+    },
+    {
+      "package": "glibc",
+      "name": "glibc_2.36-8.dsc",
+      "bytes": 9729,
+      "sha256": "6004f64f66a4ba78ed5dffaca842061717de8b02f42085d093ae8439a4285754",
+      "url": "https://snapshot.debian.org/file/c881cbd530e617b7d41922241fa22d8279e9dcdc"
+    },
+    {
+      "package": "glibc",
+      "name": "glibc_2.36.orig.tar.xz",
+      "bytes": 19363988,
+      "sha256": "a543c02070d46ccaf866957efd13f10c924daa74c86a90a0254db09a92a708ee",
+      "url": "https://snapshot.debian.org/file/d034128a6116dcf9e76c92f898ec63f4f4e65786"
+    },
+    {
+      "package": "gcc-12",
+      "name": "gcc-12_12.2.0-14.debian.tar.xz",
+      "bytes": 1664492,
+      "sha256": "e6f33b48753d62be04188a30c69883061a7ad1576c22166e79be2c9e7aa258f2",
+      "url": "https://snapshot.debian.org/file/066886004444669f63e66438fe85dd779a0914b1"
+    },
+    {
+      "package": "gcc-12",
+      "name": "gcc-12_12.2.0-14.dsc",
+      "bytes": 27302,
+      "sha256": "b11f8eca97c60a8e55f0cfd4dffdd52560698909fdcde3eacb5241ce1f1f09ad",
+      "url": "https://snapshot.debian.org/file/6e2c15db22fd47f3e3ad0e19f7bb6f231d5ee20b"
+    },
+    {
+      "package": "gcc-12",
+      "name": "gcc-12_12.2.0.orig.tar.gz",
+      "bytes": 87090343,
+      "sha256": "b8298be16aeeb96a889c6afed0a8e2241b47452e89cc81fe65ea849d5c740fcb",
+      "url": "https://snapshot.debian.org/file/c67d8293ff2f0298cc233b1055f92b531fd64873"
+    },
+    {
+      "package": "cross-toolchain-base",
+      "name": "cross-toolchain-base_66.tar.xz",
+      "bytes": 42996,
+      "sha256": "b9f62c8f100c338729bc2e167666c9d74fbca97825b37b488f4254ddde43a05e",
+      "url": "https://snapshot.debian.org/file/284ce3f1c2279b279e1d41b6e87c32365a3c0a7b"
+    },
+    {
+      "package": "cross-toolchain-base",
+      "name": "cross-toolchain-base_66.dsc",
+      "bytes": 5715,
+      "sha256": "5f34fa0360f5f4c345557ba22941b2b98e45ae4986ad8250220f85c6603e1148",
+      "url": "https://snapshot.debian.org/file/9bd623826eb2d3b79c9c131507ec3a0e2a111bd7"
+    },
+    {
+      "package": "gcc-12-cross",
+      "name": "gcc-12-cross_15.dsc",
+      "bytes": 35396,
+      "sha256": "7a953ee063286c0a5d17d790e3f348f71d0809dfeafa4f86395f68868bc2dbed",
+      "url": "https://snapshot.debian.org/file/9cd6a9a8c1b524a9ba8ed510726cc5db0396f1fe"
+    },
+    {
+      "package": "gcc-12-cross",
+      "name": "gcc-12-cross_15.tar.xz",
+      "bytes": 41768,
+      "sha256": "22de3c04b554645279544869e37cbf0812d5a8bad4e7f23e864fed343f229165",
+      "url": "https://snapshot.debian.org/file/b1516d796e5995082178b1c168af3c8a4af4032a"
+    }
+  ]
+}

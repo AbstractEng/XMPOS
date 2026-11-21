@@ -1,0 +1,53 @@
+#!/bin/sh
+# PID 1 inside the ARMv7 Device VM on the official az01 kernel. Never a Mac
+# deployment script and never run on an instrument.
+[ "$$" = 1 ] && [ -r /etc/xmp-build.json ] || exit 96
+# Hardware-facing tools built from the official G1 sources come first.
+export PATH=/opt/g1/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export ALSA_CONFIG_DIR=/opt/g1/share/alsa
+mount -t proc proc /proc
+mount -t sysfs sys /sys
+mount -t devtmpfs dev /dev
+mkdir -p /run /tmp /data
+chmod 1777 /tmp
+# Canonical terminal mode truncates RPC lines; this is the emulated PL011 port.
+stty -F /dev/ttyAMA0 -echo -icanon min 1 time 0 || exit 94
+# The az01 kernel has these drivers built in; there are no modules to load.
+if ! blkid /dev/vda | grep -q 'TYPE="ext4"'; then
+  grep -q 'xmp.initialize-data=1' /proc/cmdline || { echo 'XMPBOOT {"event":"storage-recovery-required"}'; poweroff -f; exit 97; }
+  /sbin/mkfs.ext4 -q -F -L XMPDATA /dev/vda || exit 97
+fi
+mount -t ext4 -o noatime /dev/vda /data || exit 98
+printf 'XMPBOOT {"event":"storage-ready"}\n'
+# USB enumeration is asynchronous: wait for the USB Audio Class card.
+attempt=0
+until grep -q 'USB-Audio' /proc/asound/cards 2>/dev/null; do
+  attempt=$((attempt + 1))
+  [ "$attempt" -lt 100 ] || { echo 'XMPBOOT {"event":"audio-recovery-required"}'; exit 95; }
+  sleep 0.1
+done
+printf 'XMPBOOT {"event":"usb-audio-ready"}\n'
+ifconfig lo up
+mkdir -p /dev/shm
+mount -t tmpfs -o size=256m tmpfs /dev/shm
+/usr/bin/node /opt/xmp/guest.mjs
+status=$?
+[ "$status" = 0 ] || printf 'XMPBOOT {"event":"engine-failed"}\n'
+sync
+printf 'XMPBOOT {"event":"saves-flushed"}\n'
+# A crashed service can leave browser helpers holding /data; stop them first.
+kill -TERM -1 2>/dev/null
+sleep 1
+kill -KILL -1 2>/dev/null
+sync
+# Killed processes can take a moment to release /data on a loaded host.
+attempt=0
+until umount /data 2>/dev/null; do
+  attempt=$((attempt + 1))
+  [ "$attempt" -lt 20 ] || { echo 'XMPBOOT {"event":"storage-close-failed"}'; exit 99; }
+  kill -KILL -1 2>/dev/null
+  sleep 0.5
+done
+printf 'XMPBOOT {"event":"storage-closed"}\n'
+poweroff -f
+exit "$status"

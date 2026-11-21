@@ -1,0 +1,23 @@
+{
+  "controls/positions": "9f3b64eb74aec0358d45ec5e4c515003569a6f95b1b4cdf905e21c3503535aa8",
+  "controls/windows": "e0053cf483e2f1941466400afd6fd0713ae9fbe5ddb56a29eda31b5ab2e546c5",
+  "engine/the C++ engine (recorded when it matched the TypeScript rack) > keeps, re-gains or releases sounding voices when the palette changes": "9aa1aa8fe316b3c1021254ad63fe0df1e72112834c56df464371bd0f6f26d94f",
+  "engine/the C++ engine (recorded when it matched the TypeScript rack) > mixes through every effect, sync, sends, returns, tempo changes and bypass": "84e6d17d4aab0d8606be0442120555e7349d747202c2353f9b600629faedd6cb",
+  "engine/the C++ engine (recorded when it matched the TypeScript rack) > plays every synth preset with gates, releases and smoothed automation": "a803fc3f61d06c6a6380322ac69579e6f666df4ee46a01f376b77c1704db4602",
+  "engine/the C++ engine (recorded when it matched the TypeScript rack) > plays one-shot, gate, loop and chromatic pads with choke groups": "8ed3d2ee685f3c89819082ff6436eb16b5520a504fc00602ff42e424c9c5a1b7",
+  "engine/the C++ engine (recorded when it matched the TypeScript rack) > refuses notes past the voice pool the same way": "f23b8aedfd1a9a92198cbdcafb2f96c621ac1632aaf905574f8d5efb81edeab8",
+  "engine/the C++ engine (recorded when it matched the TypeScript rack) > routes MIDI tracks to the synth and emits the same MIDI": "f6b6b4f2adf117016e861afae2992f7faa7ab2a1e3776e5224176f3ecc6f3562",
+  "engine/the C++ engine (recorded when it matched the TypeScript rack) > runs the SDK's JavaScript machines alongside the engine, with and without a mixer": "5047b74c12288171d5e58446d977b37884763a4db81c8abf83ce1801efb5c1e8",
+  "engine/the C++ engine (recorded when it matched the TypeScript rack) > sends tracks to the shared performance delay": "69a9ce422215b360888de54e47465ec4a20a6fdaa27a31d5cdc4166387144057",
+  "media/files and renders through the C++ core (WebAssembly) > plan, write, read and import MIDI": "c049a9d37a629eef033dd13e8482af05f77af91eb934302199335ae7f3099da4",
+  "media/files and renders through the C++ core (WebAssembly) > read and write WAV files as the TypeScript does": "16bcc1d0db287d108ff5324d357375314f9ccb1fb79a295f2a216c511f99676c",
+  "media/files and renders through the C++ core (WebAssembly) > render scenes and songs": "095a43a6f7ce00055b194243b7b0a116826a68dfcfb3afd30d1aa0a064a3e4fc",
+  "mixer/effects": "fe52928b2c56eb3bb2cf82b076b23ba002b75eb5d7e98fdd9a20a89c526fd381",
+  "mixer/mixes": "801919ebc51f6e3eced04b904642b80eec1d4012579ea1a82bc83e0e2a8de835",
+  "playback/commands": "f38e98847524c20102012264c3ba7407e8b4534e78eedf58796a6bfd0b246d69",
+  "renders/the pad-sampler plan, sequences and instrument scenes": "dce376525e9207a9a6f22b3fb99a7ebc95ca174124a46c9948c18641e078914d",
+  "sequencer/groove": "ccf32a51994612e1a9a6c45975c9d02767069914dcfb150fbb805db82dd92963",
+  "sequencer/projects": "f22606efb2c3637facf5d46cc685aca02f52815bd466ca4b05a3ae10690050c4",
+  "transport/performances": "0434b19f694f99d756604f8991591c5636874d14a3de91a22e75e467c5d694b7",
+  "values/performances": "3bc3ee84e10d3ea8e86b2c7ffa047fc5f63e2a84dc9e5c8f67aa7b63722c2e3f"
+}

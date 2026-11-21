@@ -1,0 +1,247 @@
+name: Desktop and DSP checks
+# Manual checks can also run locally with npm run ci:local.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  developer-arm:
+    # No instrument, proprietary updater, owner file or hardware credentials.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: sudo apt-get update && sudo apt-get install --no-install-recommends -y pkg-config libglib2.0-dev libpixman-1-dev
+      - run: python3 tools/audit-public-source.py
+      - run: npm ci
+      - run: npm run bootstrap
+      - run: npm run live:setup:doctor
+      - run: npm run live:setup:build
+      - run: npm run refs:sources
+      - run: npm run live:kernel:build
+      - run: npm run live:emulator
+      - run: npm run live:g1-userspace
+      - run: npm run live:alsa-engine
+      - run: npm run os:arm:build
+      - run: npm run live:session-image
+      - run: npm run bdd:live-mk1:emulated
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: developer-arm-evidence
+          path: |
+            reports/developer-setup/**
+            reports/acceptance/live-mk1/**
+            artifacts/live-mk1/kernel-*/manifest.json
+            artifacts/live-mk1/session-image-*/manifest.json
+          if-no-files-found: warn
+  device-arm-regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: sudo apt-get update && sudo apt-get install --no-install-recommends -y qemu-system-x86
+      - run: python3 tools/audit-public-source.py
+      - run: npm ci
+      - run: npm run bdd:device-vm
+      - run: npx --no-install playwright install --with-deps chromium
+      - run: npm run bdd:songs:vm
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guest-device-arm-regression
+          path: |
+            reports/acceptance/device-vm/**/evidence.json
+            reports/acceptance/device-vm/**/run-metadata.json
+            reports/acceptance/device-vm/**/cucumber.*
+            reports/acceptance/device-vm/**/*.png
+            reports/acceptance/device-vm/**/*.log
+            reports/acceptance/device-vm/latest.json
+            artifacts/arm/latest.json
+            reports/acceptance/song-vm/**/evidence.json
+            reports/acceptance/song-vm/**/run-metadata.json
+            reports/acceptance/song-vm/**/cucumber.*
+            reports/acceptance/song-vm/**/*.xmpsong
+            reports/acceptance/song-vm/**/*.log
+            reports/acceptance/song-vm/latest.json
+          if-no-files-found: error
+  live-mk1-host:
+    # Live Mk1 contracts that need no container, VM or instrument: official G1
+    # source identification, archive pin refusal, Force refusal and the probe.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python3 tools/audit-public-source.py
+      - run: npm ci
+      - run: npm run refs:sources
+      - run: npm run bdd:live-mk1:host
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-mk1-host-contracts
+          path: reports/acceptance/live-mk1
+          if-no-files-found: error
+  production-e2e:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: python3 tools/audit-public-source.py
+      - run: npm ci
+      - run: npx --no-install playwright install --with-deps chromium
+      - run: npm run native:test
+      - run: npm run build
+      - run: npm run test:device
+      - run: npm run bdd:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: production-browser-regression
+          path: reports/acceptance/production-e2e
+          if-no-files-found: error
+  check:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python3 tools/audit-public-source.py
+      - run: npm ci
+      - run: python3 -m venv .venv
+      - run: .venv/bin/python -m pip install -r tools/requirements.txt
+      - run: npm run check
+      - run: npm run bdd:plan
+      - run: npm run bdd:docs:check
+      - run: npm run bdd:test
+      - run: npm run inventory:test
+      - run: npm run module:check
+      - run: npm run native:test
+      - run: npm run native:sanitize
+      - run: npm run baseline
+      - run: npm run bdd:implemented
+      - run: npm run bdd:qualify:implemented
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: acceptance-evidence-${{ matrix.os }}
+          path: reports/acceptance
+          if-no-files-found: warn
+  os-vm:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: sudo apt-get update && sudo apt-get install --no-install-recommends -y qemu-system-x86
+      - run: python3 tools/audit-public-source.py
+      - run: npm ci
+      - run: npm run os:build
+      - run: npm run bdd:p10
+      - run: npm run bdd:qualify:p10
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: standalone-os-evidence
+          path: |
+            reports/acceptance/P10/**
+            !reports/acceptance/P10/**/data.raw
+          if-no-files-found: warn
+
+  release-vm:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: sudo apt-get update && sudo apt-get install --no-install-recommends -y qemu-system-x86
+      - run: python3 tools/audit-public-source.py
+      - run: npm ci
+      - run: npm run release:images
+      - run: npm run bdd:p12:vm
+      - run: npm run bdd:qualify:p12:vm
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reliability-vm-evidence
+          path: |
+            reports/acceptance/P12-vm/**/evidence.json
+            reports/acceptance/P12-vm/**/run-metadata.json
+            reports/acceptance/P12-vm/**/qualification.json
+            reports/acceptance/P12-vm/**/cucumber.*
+            reports/acceptance/P12-vm/**/*.log
+            reports/acceptance/P12-vm/**/*.wav
+            reports/acceptance/P12-vm/latest.json
+          if-no-files-found: warn
+
+  sdk-native-vm:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: sudo apt-get update && sudo apt-get install --no-install-recommends -y qemu-system-x86 build-essential
+      - run: python3 tools/audit-public-source.py
+      - run: npm ci
+      - run: npm run bdd:sdk-supported:vm
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sdk-native-vm-parity
+          path: |
+            reports/acceptance/sdk-supported-vm/**
+            reports/parity-vm/**/report.json
+            reports/parity-vm/**/*.log
+            reports/parity-vm/latest.json
+          if-no-files-found: warn

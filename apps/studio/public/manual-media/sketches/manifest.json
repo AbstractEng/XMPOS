@@ -1,0 +1,56 @@
+{
+  "collection": "Abstract Engineering \u00b7 music sketch studies",
+  "identityVersion": "1.0",
+  "created": "2026-11-15",
+  "method": "Original hand-authored SVG paths, dry-pastel grain, variable strokes and translucent fields; extends the supplied vector illustration library.",
+  "styleSource": "brand/abstract-engineering/guidelines/AI-STYLE-GUIDE.md",
+  "decorative": true,
+  "palette": {
+    "forest": "#35473E",
+    "rose": "#C88E91",
+    "butter": "#E6C779",
+    "iris": "#5862BF"
+  },
+  "assets": [
+    {
+      "file": "loop-study.svg",
+      "title": "A loose rose loop, a butter field and small iris marks",
+      "sha256": "1236d2cee46caff0b72aad55fcbcdd4b1155690c6285758a45712fb612fc4d58"
+    },
+    {
+      "file": "pulse-study.svg",
+      "title": "Uneven pastel beat marks above a loose pencil thread",
+      "sha256": "230a44f42dbe9941ea13df80d2954d4af6a0d3feb4b9a933611ec909a9633409"
+    },
+    {
+      "file": "phrase-study.svg",
+      "title": "A fine travelling pencil line through rose and iris colour",
+      "sha256": "cb26f3769d441722c462382c4adebb1a352b9115b81a2e21e66b1fdc4d7d41cf"
+    },
+    {
+      "file": "arrangement-study.svg",
+      "title": "Three asymmetrical pastel forms connected by an exploratory line",
+      "sha256": "a8b13d37415c8a1d83b8e2c43a563602e2e432968ba323540e02eacbd4e8871f"
+    },
+    {
+      "file": "listening-study.svg",
+      "title": "Open concentric gestures and quiet pastel hatching",
+      "sha256": "7faa19f1c0174988e11bc70c5fdb6ba4432f28390ad42aab780c053797bf22ae"
+    },
+    {
+      "file": "sound-study.svg",
+      "title": "An iris flourish, rose scribble and soft butter shape",
+      "sha256": "ac7fcc6790e475d40024686840a83b5b6c0669a1db6863bc9bc8b782a795a111"
+    },
+    {
+      "file": "return-study.svg",
+      "title": "A wandering return loop and expressive colour strokes",
+      "sha256": "f06163ba3370d72de36128b8b12adcb01492da709a381846132fc432aa710424"
+    },
+    {
+      "file": "keepsake-study.svg",
+      "title": "A suspended rose arc and small marks over translucent colour",
+      "sha256": "9674c6899939d2fa01f891c0e5beeaf4bb26d1b5030fbbe30bd2fbc6e155c6db"
+    }
+  ]
+}

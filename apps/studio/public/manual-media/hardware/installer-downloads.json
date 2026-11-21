@@ -1,0 +1,30 @@
+{
+  "version": "installer-preview-2026-11-18",
+  "sourceHash": "2df5f230f7334b75b08b10a025deab09583cecfcbf7c29a35d54b0c49627c158",
+  "releaseUrl": "https://github.com/AbstractEng/xmp-os-downloads/releases/tag/installer-preview-2026-11-18",
+  "checksumsUrl": "https://github.com/AbstractEng/xmp-os-downloads/releases/download/installer-preview-2026-11-18/SHA256SUMS",
+  "installers": [
+    {
+      "platform": "macOS",
+      "arch": "Intel x64",
+      "name": "XMP-OS-Installer-macOS-Intel-2026-11-18.zip",
+      "bytes": 126222184,
+      "sha256": "fe63359c0e5f5067646c4791a1f4903461b2041ebd924da5d17bb33bb3157ef3",
+      "url": "https://github.com/AbstractEng/xmp-os-downloads/releases/download/installer-preview-2026-11-18/XMP-OS-Installer-macOS-Intel-2026-11-18.zip",
+      "id": "macos",
+      "label": "Download for Mac",
+      "status": "Preview"
+    },
+    {
+      "platform": "Windows",
+      "arch": "x64",
+      "name": "XMP-OS-Installer-Windows-x64-2026-11-18.zip",
+      "bytes": 275767100,
+      "sha256": "0c297f8182a1228b196a9c660815bb94280f9b0e7baaccc3233d8d02149c7d65",
+      "url": "https://github.com/AbstractEng/xmp-os-downloads/releases/download/installer-preview-2026-11-18/XMP-OS-Installer-Windows-x64-2026-11-18.zip",
+      "id": "windows",
+      "label": "Download for Windows",
+      "status": "Preview"
+    }
+  ]
+}

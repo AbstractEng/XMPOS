@@ -1,0 +1,36 @@
+{
+  "format": "xmp-private-hardware-downloads",
+  "version": "0.1.0-dev.20261121",
+  "sourceTarget": "5f5e1df61801dad9d4132837221f33700a21ed9f",
+  "privateCandidateOnly": true,
+  "publicRedistributionApproved": false,
+  "physicalCandidateChecks": "pending",
+  "hardwareContacted": false,
+  "inputAuditPassed": true,
+  "kits": {
+    "XMPOS-Live-Mk1-macOS-Intel-0.1.0-dev.20261121-private-candidate.zip": {
+      "bytes": 306414248,
+      "sha256": "f5eea5355e04d293bde190582719f7b5932116b20556f56c4bfcaeed98ac3ce8",
+      "memberCount": 855,
+      "allMemberHashesVerified": true,
+      "installerMemberBytesUnchanged": true,
+      "executableModesVerified": true,
+      "neutralZipMetadata": true,
+      "separateSourceAndNoticesIncluded": true,
+      "containsLooseOwnerImage": false,
+      "originalInstallerArchiveSha256": "1321739a726abec0bc0902c3bf876a0f47928ecf79f9e202ac63d77617c04f9c"
+    },
+    "XMPOS-Live-Mk1-Windows-x64-0.1.0-dev.20261121-private-candidate.zip": {
+      "bytes": 454646401,
+      "sha256": "6864adc63b174db655941fa5a8374c0737d23b5f33cd31d64f5e365b28a027fe",
+      "memberCount": 921,
+      "allMemberHashesVerified": true,
+      "installerMemberBytesUnchanged": true,
+      "executableModesVerified": true,
+      "neutralZipMetadata": true,
+      "separateSourceAndNoticesIncluded": true,
+      "containsLooseOwnerImage": false,
+      "originalInstallerArchiveSha256": "8b7b3d152a4068515b16ed51e4c0b12809a7f497150e09bc5c4e686990df64e9"
+    }
+  }
+}

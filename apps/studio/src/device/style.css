@@ -1,0 +1,1831 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, "Open Sans", system-ui, -apple-system, sans-serif;
+  font-synthesis: none;
+  font-variant-numeric: tabular-nums;
+  /* Emerald and gold: made to sit with a gold MPC Live. Ivory text on deep
+     emerald-black for contrast; emerald for what is active, gold for focus,
+     selection and accents. */
+  --bg: #07110d;
+  --screen: #0a1612;
+  --surface: #0f1f19;
+  --surface-2: #142a21;
+  --surface-3: #1b382c;
+  --line: #24453a;
+  --line-strong: #3a6352;
+  --emerald-deep: #0e4d38;
+  --emerald: #14a673;
+  --emerald-bright: #3ed69a;
+  --gold-deep: #8f7228;
+  --gold: #d8b450;
+  --gold-bright: #f2d685;
+  --ivory: #f4ecd6;
+  --muted: #a9bcb0;
+  --subtle: #7d9387;
+  --ruby: #d2584c;
+  --ruby-soft: #f1aa9f;
+  --accent: var(--gold);
+  color: var(--ivory);
+  background: var(--bg);
+}
+* {
+  box-sizing: border-box;
+}
+:where(#device-screen) small {
+  font-size: 17px;
+  color: var(--muted);
+}
+body {
+  margin: 0;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button,
+a,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  color: inherit;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  border-radius: 7px;
+  min-height: 44px;
+  padding: 10px 14px;
+}
+button:hover {
+  border-color: var(--gold-deep);
+  background: var(--surface-3);
+}
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+a {
+  color: var(--accent);
+}
+input,
+select {
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  padding: 8px;
+  max-width: 100%;
+  min-width: 0;
+}
+.device-hostbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 3vw;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+}
+.device-hostbar nav {
+  display: flex;
+  gap: 22px;
+}
+.device-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.device-logo img {
+  width: auto;
+  height: 25px;
+}
+.device-logo span {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--ivory);
+}
+.device-chassis {
+  position: relative;
+  max-width: 1720px;
+  margin: 28px auto;
+  padding: 26px 28px 18px;
+  border: 1px solid #444448;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 12px 12px, #080809 2px, #59595b 3px, transparent 4px),
+    radial-gradient(circle at calc(100% - 12px) 12px, #080809 2px, #59595b 3px, transparent 4px),
+    radial-gradient(circle at 12px calc(100% - 12px), #080809 2px, #59595b 3px, transparent 4px),
+    radial-gradient(
+      circle at calc(100% - 12px) calc(100% - 12px),
+      #080809 2px,
+      #59595b 3px,
+      transparent 4px
+    ),
+    linear-gradient(155deg, #29292c, #171719 46%, #202022);
+  box-shadow:
+    inset 0 1px #6b6b704d,
+    inset 0 -5px #09090b,
+    0 18px 45px #0009;
+}
+.chassis-nameplate {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: -9px 0 14px;
+  color: #a4a4ac;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+.chassis-nameplate strong {
+  color: #eeeeed;
+  font-size: 19px;
+  letter-spacing: -1px;
+}
+.chassis-nameplate strong span {
+  margin-left: 4px;
+  color: #e49e46;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.device-face {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(450px, 1.22fr) 94px;
+  gap: 22px;
+}
+.device-left,
+.device-center {
+  min-width: 0;
+}
+.device-center {
+  --device-display-width: 100%;
+}
+.bank-keys,
+.performance-keys {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.front-key {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 7px 4px;
+  min-height: 48px;
+  background: linear-gradient(#38383b, #242426 70%, #202022);
+  color: #e1e1e2;
+  border: 1px solid #55555a;
+  box-shadow:
+    inset 0 1px #ffffff12,
+    0 3px 0 #0a0a0c,
+    0 4px 5px #0006;
+  font-size: 11px;
+  letter-spacing: 0.4px;
+}
+.front-key small {
+  font-size: 8px;
+  color: #9d9da5;
+}
+.front-key[data-led]::after {
+  content: "";
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  top: 4px;
+  height: 2px;
+  border-radius: 2px;
+  background: #101012;
+}
+.front-key.led-on {
+  color: var(--key-led);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--key-led) 55%, transparent);
+}
+.front-key.led-on::after {
+  background: var(--key-led);
+  box-shadow: 0 0 7px var(--key-led);
+}
+.front-key.lit {
+  border-color: var(--accent);
+  box-shadow: inset 0 -3px var(--accent);
+  color: var(--accent);
+}
+.device-pad-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  aspect-ratio: 1;
+}
+.device-pad {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 10px 7px;
+  border: 2px solid #57575d;
+  border-bottom: 5px solid #171719;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #47474d, #303034);
+  box-shadow:
+    inset 0 1px #f2d68518,
+    0 2px 3px #0006;
+  text-align: center;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.device-pad small {
+  position: absolute;
+  left: 8px;
+  top: 7px;
+  color: #b3b3bb;
+  font-size: 9px;
+}
+.device-pad strong {
+  font-weight: 550;
+}
+.device-pad.selected {
+  transform: translateY(2px);
+}
+.device-pad.led-on {
+  border-color: rgb(var(--pad-rgb) / 0.9);
+  background: linear-gradient(135deg, rgb(var(--pad-rgb) / 0.78), rgb(var(--pad-rgb) / 0.4));
+  box-shadow:
+    inset 0 1px rgb(255 255 255 / 0.2),
+    inset 0 0 20px rgb(var(--pad-rgb) / 0.3),
+    0 0 12px rgb(var(--pad-rgb) / 0.35);
+}
+.device-pad.led-on small {
+  color: #fff;
+  text-shadow: 0 1px 2px #000;
+}
+.device-display-bezel {
+  width: var(--device-display-width);
+  margin-inline: auto;
+  padding: 12px;
+  border: 1px solid var(--bg);
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: inset 0 2px 7px #0008;
+}
+.device-screen-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--screen);
+  border-radius: 4px;
+}
+:where(#device-screen) {
+  position: absolute;
+  width: 1280px;
+  height: 800px;
+  transform-origin: 0 0;
+  display: grid;
+  grid-template-rows: 72px minmax(0, 1fr) 58px 94px;
+  font-size: 22px;
+  line-height: 1.3;
+  background: var(--screen);
+  overflow: hidden;
+}
+:where(#device-screen) button {
+  min-height: 64px;
+  font-size: 22px;
+}
+:where(#device-screen) select,
+:where(#device-screen) input {
+  min-height: 60px;
+  font-size: 22px;
+}
+:where(#device-screen) h2 {
+  font-size: 28px;
+  font-weight: 550;
+  margin: 0;
+}
+:where(#device-screen) p {
+  margin: 12px 0;
+}
+:where(#device-screen) label {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.device-time {
+  font:
+    24px ui-monospace,
+    monospace;
+  color: var(--gold);
+}
+#device-audio-state {
+  font-size: 17px;
+  color: var(--muted);
+}
+.screen-content {
+  padding: 18px 24px;
+  overflow: auto;
+  min-height: 0;
+  position: relative;
+}
+.screen-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 66px;
+  margin-bottom: 14px;
+}
+.screen-toolbar > span {
+  font-size: 20px;
+  color: var(--muted);
+}
+.clip-head {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  color: var(--ivory);
+  margin-bottom: 10px;
+}
+.clip-head span {
+  padding: 8px 12px;
+  font-size: 20px;
+}
+.clip-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.clip-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  text-align: left;
+  height: 98px;
+  min-width: 0;
+  padding: 12px;
+}
+.clip-cell span {
+  font-size: 15px;
+  color: var(--muted);
+}
+.clip-cell strong {
+  font-size: 24px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.clip-cell.empty {
+  background: var(--surface);
+  color: var(--muted);
+  border-style: dashed;
+}
+.focused {
+  outline: 3px solid var(--gold);
+  outline-offset: -3px;
+  box-shadow: 0 0 18px #d8b45040;
+}
+.clip-cell.filled {
+  background: linear-gradient(180deg, #15563f, #0e3f2e);
+  border-color: var(--emerald);
+  box-shadow: inset 0 1px 0 #3ed69a26;
+}
+.screen-status {
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  padding: 6px 24px;
+  font-size: 19px;
+  color: var(--muted);
+  background: var(--surface);
+  border-bottom: 1px solid var(--gold-deep);
+}
+.screen-qlinks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  background: var(--bg);
+}
+.screen-qlinks > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px 24px;
+  border-right: 1px solid var(--line);
+}
+.screen-qlinks small {
+  font-size: 14px;
+  color: var(--subtle);
+}
+.screen-qlinks span {
+  font-size: 18px;
+}
+.screen-qlinks strong {
+  font:
+    24px ui-monospace,
+    monospace;
+  color: var(--accent);
+}
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.mode-grid button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  min-height: 110px;
+  text-align: left;
+}
+.mode-grid strong {
+  font-size: 25px;
+}
+.sound-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.sound-matrix button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 90px;
+  min-width: 0;
+}
+.sound-matrix strong {
+  font-size: 24px;
+}
+/* The synth's preset pages, above the preset pads. */
+.preset-pages {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.preset-pages button {
+  min-width: 0;
+  min-height: 44px;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.screen-note {
+  font-size: 18px;
+  color: var(--muted);
+}
+.device-steps {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 12px;
+  margin: 25px 0;
+}
+.device-steps button {
+  height: 116px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface-3);
+}
+.device-steps button[aria-pressed="true"] {
+  background: linear-gradient(180deg, #e0be5c, #b8932f);
+  border-color: var(--gold-bright);
+  color: #1a1406;
+}
+.device-steps button[aria-pressed="true"] i {
+  color: #3d2e0a;
+  font-weight: 600;
+}
+.device-steps i {
+  font-style: normal;
+  color: var(--accent);
+}
+.track-picker {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+.track-picker button {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: left;
+  gap: 15px;
+  min-height: 130px;
+  min-width: 0;
+}
+.track-picker span {
+  font-size: 17px;
+  overflow-wrap: anywhere;
+}
+.machine-select {
+  margin-top: 24px;
+}
+.library-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+.library-tools input {
+  width: 100%;
+}
+.library-tools select {
+  flex: 1;
+}
+.library-list {
+  display: grid;
+  gap: 6px;
+}
+.library-list button {
+  display: grid;
+  grid-template-columns: 1fr 1fr 100px;
+  gap: 12px;
+  align-items: center;
+  text-align: left;
+  min-height: 57px;
+  padding: 8px 14px;
+}
+.library-list :where(button) span {
+  font-size: 18px;
+  color: var(--muted);
+}
+.library-list :where(button) small {
+  text-align: right;
+}
+.library-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+.library-actions label {
+  flex: 1;
+}
+.library-actions select {
+  width: 100%;
+}
+.song-chain {
+  padding: 0;
+  list-style: none;
+  max-height: 400px;
+  overflow: auto;
+}
+.song-chain li {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+}
+.song-chain strong {
+  flex: 1;
+}
+.project-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin: 35px 0;
+}
+.project-tools button {
+  min-height: 110px;
+}
+.device-confirm {
+  position: absolute;
+  inset: 90px 120px auto;
+  padding: 35px;
+  background: var(--surface-2);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  box-shadow: 0 10px 35px #000b;
+  z-index: 2;
+}
+.device-confirm button {
+  margin-right: 20px;
+  min-width: 150px;
+}
+.device-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 0.35fr repeat(5, minmax(0, 1fr)) 0.35fr minmax(0, 1fr);
+  grid-template-areas:
+    "shift . menu . main undo copy . plus"
+    "tap . rec overdub stop play play-start . minus";
+  gap: 14px clamp(3px, 0.8vw, 10px);
+  width: calc(var(--device-display-width) * 0.85);
+  margin: 14px auto 0;
+}
+.device-controls [data-panel="shift"] {
+  grid-area: shift;
+}
+.device-controls [data-panel="menu"] {
+  grid-area: menu;
+}
+.device-controls [data-panel="main"] {
+  grid-area: main;
+}
+.device-controls [data-panel="undo"] {
+  grid-area: undo;
+}
+.device-controls [data-panel="copy"] {
+  grid-area: copy;
+}
+.device-controls [data-panel="plus"] {
+  grid-area: plus;
+}
+.device-controls [data-panel="tap"] {
+  grid-area: tap;
+}
+.device-controls [data-panel="rec"] {
+  grid-area: rec;
+}
+.device-controls [data-panel="overdub"] {
+  grid-area: overdub;
+}
+.device-controls [data-panel="stop"] {
+  grid-area: stop;
+}
+.device-controls [data-panel="play"] {
+  grid-area: play;
+}
+.device-controls [data-panel="play-start"] {
+  grid-area: play-start;
+}
+.device-controls [data-panel="minus"] {
+  grid-area: minus;
+}
+.device-controls :is([data-panel="overdub"], [data-panel="play-start"]) strong {
+  max-width: 5ch;
+}
+.device-controls [data-panel="rec"].lit {
+  color: var(--ruby-soft);
+  border-color: var(--ruby);
+  box-shadow: inset 0 -3px var(--ruby);
+}
+.device-right {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  text-align: center;
+}
+.q-link-panel .front-key {
+  width: 100%;
+}
+.q-link-leds {
+  display: flex;
+  justify-content: center;
+  gap: clamp(3px, 0.5vw, 7px);
+  margin-top: 8px;
+}
+.q-link-leds span {
+  width: 8px;
+  height: 8px;
+  border: 1px solid #683131;
+  border-radius: 50%;
+  background: #301c1b;
+}
+.q-link-leds .lit {
+  border-color: #ff8880;
+  background: #ff574d;
+  box-shadow: 0 0 8px #ff574da6;
+}
+.q-link-knobs {
+  display: grid;
+  gap: 10px;
+}
+.virtual-knob {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.virtual-knob > span {
+  font-size: 9px;
+}
+.virtual-knob input {
+  appearance: none;
+  display: block;
+  width: 70px;
+  height: 56px;
+  padding: 0;
+  background: radial-gradient(ellipse at 35% 25%, #404044, #202023 65%);
+  border: 7px solid #4b4b50;
+  border-radius: 50%;
+  box-shadow: 0 1px 5px #0009;
+  cursor: ew-resize;
+}
+.virtual-knob input::-webkit-slider-thumb {
+  appearance: none;
+  width: 8px;
+  height: 28px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+.virtual-knob input:disabled {
+  opacity: 0.35;
+}
+.virtual-knob small {
+  font-size: 8px;
+}
+.data-dial {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+.data-dial button {
+  padding: 4px;
+  min-height: 36px;
+  background: linear-gradient(#353538, #202023);
+  border-color: #505056;
+  color: #e1e1e5;
+}
+.data-dial [data-action="enter"] {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  height: 70px;
+  border-radius: 50%;
+  border-width: 6px;
+  background: radial-gradient(ellipse at 35% 25%, #44444a, #222226 65%);
+  box-shadow:
+    inset 0 1px #ffffff20,
+    0 4px 8px #0009;
+}
+.device-right > small {
+  font-size: 9px;
+  color: var(--muted);
+}
+.device-hostnote {
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 20px;
+}
+.device-loading {
+  padding: 40px;
+  color: var(--gold);
+}
+@media (min-width: 1600px) {
+  .device-face {
+    grid-template-columns: minmax(350px, 0.83fr) minmax(600px, 1.2fr) 100px;
+  }
+}
+@media (max-width: 1100px) {
+  .device-chassis {
+    margin: 16px 10px;
+    padding: 18px;
+  }
+  .device-face {
+    grid-template-columns: minmax(0, 1fr) 94px;
+    gap: 16px;
+  }
+  .device-left {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    max-width: 560px;
+    width: 100%;
+    justify-self: center;
+  }
+  .device-center {
+    grid-column: 1;
+  }
+  .device-right {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .device-hostbar {
+    flex-wrap: wrap;
+  }
+  .device-hostbar nav {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .device-hostnote {
+    font-size: 11px;
+  }
+  .q-link-knobs {
+    gap: 4px;
+  }
+  .virtual-knob input {
+    width: 50px;
+    height: 40px;
+    border-width: 5px;
+  }
+  .virtual-knob small {
+    font-size: 8px;
+  }
+  .virtual-knob > span {
+    display: none;
+  }
+  .front-key {
+    font-size: 9px;
+  }
+  .device-right .front-key {
+    min-height: 35px;
+  }
+  .data-dial [data-action="enter"] {
+    height: 52px;
+  }
+  .data-dial button {
+    min-height: 30px;
+  }
+}
+@media (max-width: 600px) {
+  .device-hostbar {
+    padding: 14px;
+    font-size: 10px;
+    gap: 10px;
+  }
+  .device-hostbar nav {
+    gap: 12px;
+  }
+  .device-chassis {
+    padding: 12px;
+    margin: 10px 5px;
+  }
+  .device-face {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .device-center {
+    grid-column: 1;
+  }
+  .device-left {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .device-right {
+    grid-column: 1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 65px 1fr 65px;
+    align-items: center;
+    gap: 10px;
+  }
+  .q-link-knobs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .virtual-knob input {
+    width: 38px;
+    height: 38px;
+    border-width: 4px;
+  }
+  .virtual-knob small,
+  .device-right > small {
+    display: none;
+  }
+  .data-dial {
+    margin-top: 0;
+  }
+  .data-dial [data-action="enter"] {
+    font-size: 9px;
+    min-height: 40px;
+    height: 40px;
+  }
+  .device-display-bezel {
+    padding: 7px;
+  }
+  .device-controls {
+    width: var(--device-display-width);
+    row-gap: 10px;
+    margin-top: 10px;
+  }
+  .front-key {
+    min-height: 44px;
+    font-size: 8px;
+    padding: 5px 2px;
+  }
+  .front-key small {
+    font-size: 6px;
+  }
+  .device-pad {
+    min-height: 70px;
+    font-size: 11px;
+  }
+  .device-pad-grid {
+    gap: 8px;
+  }
+  .device-hostnote {
+    font-size: 10px;
+  }
+  .device-logo img {
+    height: 22px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto;
+  }
+}
+
+/* On the MPC Live Mk1 itself (?hardware=live-mk1) the physical pads, buttons
+   and knobs are the controls: only the 1280x800 instrument screen is shown,
+   unscaled, filling the Live's display. */
+body.hardware-live-mk1 {
+  margin: 0;
+  overflow: hidden;
+  background: var(--screen);
+}
+body.hardware-live-mk1 * {
+  visibility: hidden;
+}
+body.hardware-live-mk1 #device-screen,
+body.hardware-live-mk1 #device-screen *,
+body.hardware-live-mk1 .device-confirm,
+body.hardware-live-mk1 .device-confirm * {
+  visibility: visible;
+}
+body.hardware-live-mk1 #device-screen {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+  z-index: 10;
+}
+
+/* Focused display mode retains the layout of the Mk1 shortcut controls. */
+body:not(.show-hardware):not(.hardware-live-mk1) .device-chassis {
+  max-width: 1328px;
+  margin: 8px auto;
+  padding: 10px;
+  background: var(--bg);
+  box-shadow: none;
+  border: 0;
+}
+body:not(.show-hardware):not(.hardware-live-mk1) .device-face {
+  display: block;
+}
+body:not(.show-hardware) .chassis-nameplate {
+  display: none;
+}
+body:not(.show-hardware):not(.hardware-live-mk1) .device-left,
+body:not(.show-hardware):not(.hardware-live-mk1) .device-right {
+  display: none;
+}
+body:not(.show-hardware):not(.hardware-live-mk1) .device-display-bezel {
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+}
+.device-hostbar {
+  padding: 8px 18px;
+}
+.device-hostbar > span {
+  display: none;
+}
+.device-hostbar nav {
+  gap: 14px;
+  align-items: center;
+}
+.device-hostbar button {
+  min-height: 36px;
+  padding: 5px 12px;
+}
+#device-screen {
+  grid-template-columns: minmax(0, 1fr) 140px;
+  grid-template-rows: 72px minmax(0, 1fr) 58px;
+}
+.screen-header {
+  grid-column: 1 / 3;
+  display: grid;
+  /* Start the shared fields at the Live's logical pixel positions. */
+  grid-template-columns: 108px 376px 126px 136px 190px 156px 104px 36px;
+  align-items: center;
+  padding-inline: 24px;
+  background: linear-gradient(var(--surface), var(--bg));
+  border-bottom: 1px solid var(--gold-deep);
+}
+.screen-logo {
+  display: block;
+  align-self: start;
+  margin-top: 19px;
+}
+.screen-identity {
+  min-width: 0;
+  margin-right: 16px;
+  overflow: hidden;
+}
+#device-screen .screen-identity button {
+  min-height: 0;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#device-screen .screen-identity .project-name {
+  font-size: 17px;
+  display: block;
+  color: var(--muted);
+}
+.screen-identity strong {
+  display: flex;
+  gap: 14px;
+  font-size: 24px;
+  align-items: baseline;
+  white-space: nowrap;
+}
+#device-screen .screen-identity strong button {
+  font-size: 20px;
+  color: var(--gold);
+}
+#device-save-state {
+  align-self: start;
+  margin-top: 10px;
+  max-height: 60px;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--muted);
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+.screen-header > button {
+  justify-self: start;
+  min-height: 48px;
+  min-width: 44px;
+  padding: 0;
+  font-size: 22px;
+}
+.screen-header > [data-action="menu-page"] {
+  margin-left: 16px;
+}
+.screen-header > [data-value-key="tempo"] {
+  width: 150px;
+  border-color: transparent;
+  background: transparent;
+  text-align: left;
+}
+.screen-header > [data-value-key="tempo"]:hover {
+  border-color: var(--gold-deep);
+  background: var(--surface-2);
+}
+.screen-content {
+  grid-column: 1;
+  grid-row: 2;
+  padding: 16px 20px;
+}
+.screen-status {
+  grid-column: 1;
+  grid-row: 3;
+  font-size: 18px;
+}
+.screen-qlinks {
+  grid-column: 2;
+  grid-row: 2 / 4;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  padding: 0;
+  border-left: 1px solid var(--line);
+}
+#device-screen .screen-qlinks > button {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 14px;
+  border-radius: 0;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 19px;
+  text-align: left;
+}
+.screen-qlinks strong {
+  font-size: 28px;
+  color: var(--gold);
+}
+.screen-qlinks small {
+  font-size: 13px;
+  color: var(--subtle);
+}
+.context-actions,
+.sample-values,
+.sound-controls,
+.step-inspector,
+.mix-inspector,
+.effect-strip,
+.lock-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#device-screen .context-actions button,
+#device-screen .context-actions input,
+#device-screen .context-actions select {
+  min-height: 48px;
+  font-size: 18px;
+}
+.screen-toolbar {
+  min-height: 54px;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+.screen-toolbar h2 {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#device-screen .value-field {
+  min-width: 90px;
+  min-height: 62px;
+  padding: 6px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  align-items: flex-start;
+}
+.value-field > span {
+  font-size: 16px;
+  color: var(--muted);
+}
+.value-field strong {
+  color: var(--gold);
+  font-size: 23px;
+}
+.step-inspector {
+  margin-top: 14px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.step-inspector > strong {
+  max-width: 180px;
+  font-size: 19px;
+}
+.step-inspector > span,
+.context-caption {
+  font-size: 17px;
+  color: var(--muted);
+}
+#device-screen .device-steps {
+  margin: 12px 0;
+  gap: 10px;
+}
+#device-screen .device-steps button {
+  height: 90px;
+  min-height: 90px;
+}
+.velocity-lane {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  gap: 6px;
+  height: 58px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--line);
+}
+#device-screen .velocity-lane button {
+  min-height: 44px;
+  height: 100%;
+  padding: 2px 12px;
+  display: flex;
+  align-items: flex-end;
+}
+.velocity-lane i {
+  display: block;
+  background: var(--gold);
+  width: 100%;
+  min-height: 2px;
+}
+.note-entry {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.note-entry > span {
+  font-size: 16px;
+}
+.note-entry .sound-matrix {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  gap: 4px;
+  width: 100%;
+}
+#device-screen .note-entry .sound-matrix button {
+  min-height: 44px;
+  height: 44px;
+  padding: 2px;
+}
+.note-entry .sound-matrix small {
+  display: none;
+}
+.note-entry .sound-matrix strong {
+  font-size: 17px;
+}
+.clip-overview {
+  display: grid;
+  grid-template-columns: 86px repeat(var(--clip-columns), minmax(0, 1fr));
+  /* Track names, four scenes that share the free height, then the Stop row. */
+  grid-template-rows: auto repeat(4, minmax(0, 1fr)) auto;
+  gap: 8px;
+  height: 100%;
+}
+#device-screen .clip-overview .scene-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 22px;
+  color: var(--muted);
+}
+.scene-scroll small {
+  font-size: 12px;
+  white-space: nowrap;
+}
+.scene-scroll:disabled {
+  opacity: 0.35;
+}
+.preferences {
+  display: grid;
+  gap: 28px;
+  max-width: 760px;
+}
+.preferences label,
+.preference-choice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  font-size: 22px;
+}
+.preferences small {
+  flex-basis: 100%;
+  font-size: 16px;
+  color: var(--muted);
+}
+.preference-choice [aria-pressed="true"] {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+#device-screen .clip-overview .clip-cell {
+  height: auto;
+  min-height: 0;
+  padding: 10px;
+}
+#device-screen .clip-overview > button {
+  min-width: 0;
+  font-size: 18px;
+  overflow: hidden;
+}
+.clip-overview .clip-cell strong {
+  font-size: 21px;
+  white-space: normal;
+  line-height: 1.15;
+}
+.clip-overview .clip-cell small {
+  font-size: 14px;
+}
+.clip-overview .clip-cell.playing {
+  border-color: var(--emerald-bright);
+}
+.scene-launch {
+  color: var(--muted);
+}
+.screen-content[data-page="clips"] {
+  overflow: hidden;
+}
+.screen-content[data-page="library"] {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.library-list {
+  min-height: 0;
+  flex: 1;
+  overflow: auto;
+}
+.library-tools {
+  margin: 8px 0;
+}
+.library-tools input {
+  flex: 1;
+}
+.browse-target {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 18px;
+}
+#device-screen .library-actions {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.pinned-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pinned-actions > span {
+  font-size: 17px;
+  color: var(--muted);
+}
+.sample-empty {
+  padding: 36px 0;
+}
+.sample-wave {
+  width: 100%;
+  height: 260px;
+  background: var(--surface);
+  touch-action: none;
+  border: 1px solid var(--line);
+  margin: 14px 0;
+}
+.sample-wave path {
+  stroke: var(--emerald-bright);
+  stroke-width: 2;
+  fill: none;
+}
+.sample-selection {
+  fill: var(--gold);
+  opacity: 0.1;
+  pointer-events: none;
+}
+.sample-wave line {
+  stroke: var(--gold);
+  stroke-width: 22;
+  stroke-opacity: 0.65;
+  cursor: ew-resize;
+}
+.mix-channels {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 8px;
+}
+.mix-channel {
+  padding: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  min-width: 0;
+}
+#device-screen .mix-channel > button {
+  width: 100%;
+  min-height: 48px;
+  padding: 4px;
+  font-size: 17px;
+  overflow: hidden;
+}
+.mix-channel > label {
+  flex-direction: column;
+  font-size: 14px;
+}
+#device-screen .mix-channel input[type="range"] {
+  accent-color: var(--gold);
+  appearance: slider-vertical;
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 48px;
+  height: 140px;
+  min-height: 140px;
+}
+#device-screen .mix-channel .value-field {
+  min-width: 0;
+  padding: 4px;
+}
+.mix-channel .context-actions {
+  gap: 4px;
+  flex-wrap: nowrap;
+}
+#device-screen .mix-channel .context-actions button {
+  min-width: 44px;
+  padding: 4px;
+}
+.mix-inspector {
+  margin-top: 14px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.mix-inspector h2 {
+  font-size: 21px;
+}
+.effect-strip {
+  padding: 10px;
+  border: 1px solid var(--line);
+}
+#device-screen .song-chain li {
+  gap: 10px;
+  min-height: 80px;
+}
+#device-screen .song-chain select {
+  max-width: 250px;
+}
+.drag-handle {
+  cursor: grab;
+}
+.mode-grid {
+  margin: 12px 0 24px;
+}
+.machine-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.machine-note {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+.machine-grid button {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  text-align: left;
+}
+.value-dialog {
+  position: absolute;
+  z-index: 12;
+  inset: 16% 18%;
+  padding: 34px;
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+.value-dialog::before {
+  content: "";
+  position: absolute;
+  inset: -140px -230px;
+  background: #0008;
+  z-index: -1;
+  pointer-events: none;
+}
+#device-screen .value-dialog input {
+  width: 100%;
+  min-height: 80px;
+  font-size: 32px;
+}
+#device-screen .value-dialog .context-actions {
+  justify-content: flex-end;
+}
+#device-screen .screen-note {
+  display: none;
+}
+@media (max-width: 800px) {
+  .device-hostbar nav a:not(#advanced-studio) {
+    display: none;
+  }
+  .device-hostnote {
+    display: none;
+  }
+}
+#device-screen .screen-identity button {
+  width: auto;
+}
+#device-screen .clip-overview > button:not(.clip-cell) {
+  min-height: 44px;
+  padding: 6px 10px;
+}
+#device-screen .clip-overview .clip-cell {
+  height: auto;
+}
+#device-screen .screen-content[data-page="sound"] > label {
+  display: inline-flex;
+  margin: 0 12px 10px 0;
+}
+#device-screen .screen-content[data-page="sound"] > .value-field {
+  display: inline-flex;
+  vertical-align: top;
+  margin: 0 12px 10px 0;
+}
+#device-screen .screen-content[data-page="sound"] .sound-matrix button {
+  height: 74px;
+  min-height: 74px;
+}
+#device-screen .screen-content[data-page="sound"] .sound-matrix {
+  margin-top: 12px;
+}
+#device-screen .note-entry > span {
+  display: none;
+}
+#device-screen .note-entry .value-field {
+  height: 44px;
+  min-height: 44px;
+  padding: 2px 10px;
+  flex-direction: row;
+  align-items: center;
+}
+#device-screen .note-entry label,
+#device-screen .note-entry select {
+  min-height: 44px;
+  font-size: 18px;
+}
+#device-screen .note-entry .sound-matrix {
+  margin-top: 0;
+}
+#device-screen .lock-tools {
+  margin-bottom: 6px;
+}
+#device-screen .lock-tools select,
+#device-screen .lock-tools button {
+  min-height: 44px;
+  font-size: 17px;
+}
+#device-screen .screen-content[data-page="steps"] .device-steps button {
+  height: 80px;
+  min-height: 80px;
+}
+.piano-roll {
+  display: grid;
+  grid-template-columns: 56px repeat(16, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  margin: 8px 0 0;
+}
+.piano-key {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  background: var(--surface);
+  font-size: 17px;
+}
+.piano-key.selected {
+  color: var(--gold);
+}
+#device-screen .piano-roll button {
+  min-height: 44px;
+  height: 44px;
+  min-width: 0;
+  padding: 4px 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--screen);
+}
+.piano-roll .roll-cell i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--gold);
+}
+#device-screen .screen-content[data-page="steps"] .step-inspector {
+  padding: 8px 0;
+  margin-top: 8px;
+}
+#device-screen .screen-content[data-page="steps"] .step-inspector select {
+  min-height: 48px;
+}
+#device-screen .screen-content[data-page="steps"] .step-inspector button {
+  min-height: 52px;
+}
+#device-save-state[data-dirty="true"] {
+  color: var(--gold);
+}
+#device-save-state[data-error="true"] {
+  color: var(--ruby-soft);
+}
+
+#device-screen .block-bars {
+  font-size: 18px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+#device-screen .piano-roll {
+  margin-bottom: 0;
+}
+
+.effects-editor {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.effect-list {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+.effect-list .effect-strip {
+  margin-bottom: 12px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.effect-list .effect-strip h2 {
+  min-width: 120px;
+  margin: 0;
+}
+.error-log-entries {
+  flex-basis: 100%;
+  display: grid;
+  gap: 8px;
+  max-height: 220px;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  list-style: none;
+}
+.error-log-entries li {
+  display: grid;
+  gap: 2px;
+  font-size: 16px;
+}
+.chop-panel {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 12px;
+}
+.sample-wave .chop-marker {
+  stroke: var(--ivory, #f4efe2);
+  stroke-width: 2;
+}
+.sample-wave .chop-marker.selected {
+  stroke: var(--gold);
+  stroke-width: 4;
+}
+/* The data dial's item on the Sound page (ENTER acts on it). */
+#device-screen [data-dial="true"],
+#device-screen .preset-pad.dial {
+  outline: 3px solid var(--gold);
+  outline-offset: -3px;
+}
+#device-screen label[data-dial="true"] {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Reserve room for the shortcuts before fitting the logical 1280 × 800 display. */
+body:not(.show-hardware):not(.hardware-live-mk1) .device-center {
+  --device-display-width: min(100%, calc((100svh - 224px) * 1.6));
+}
+@media (min-width: 1101px) {
+  .show-hardware .device-face {
+    grid-template-columns: minmax(220px, 0.75fr) minmax(0, 2.4fr) 88px;
+    gap: 16px;
+  }
+  .show-hardware .device-center {
+    --device-display-width: min(100%, calc((100svh - 237px) * 1.6));
+  }
+}
+@media (max-height: 500px) {
+  body:not(.show-hardware):not(.hardware-live-mk1) .device-center,
+  .show-hardware .device-center {
+    --device-display-width: 100%;
+  }
+}
+#device-screen .clip-overview .queued {
+  outline: 2px dashed var(--gold);
+  outline-offset: -3px;
+}
+.scene-queued {
+  display: block;
+  color: var(--gold);
+}
+.scene-queued[hidden] {
+  display: none;
+}
+.example-machines {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+  color: var(--muted);
+}
+#device-screen .legacy-project {
+  margin-top: 14px;
+}
+#device-screen .legacy-project summary {
+  width: max-content;
+  padding: 10px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.show-hardware .device-pad strong {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#device-screen.native-touchscreen {
+  display: block;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+/* Compact desktop hardware: keep the musical pads alongside the common screen. */
+.device-hostbar .device-logo {
+  flex-shrink: 0;
+  padding: 7px;
+}
+.device-hostbar .device-logo img {
+  height: 30px;
+  max-width: none;
+}
+@media (min-width: 780px) and (max-width: 1100px) {
+  .show-hardware .device-face {
+    grid-template-columns: minmax(176px, 0.7fr) minmax(0, 2fr) 64px;
+    gap: 12px;
+  }
+  .show-hardware .device-left {
+    grid-column: 1;
+    grid-row: 1;
+    max-width: none;
+  }
+  .show-hardware .device-center {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .show-hardware .device-right {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .show-hardware .bank-keys,
+  .show-hardware .performance-keys {
+    gap: 4px;
+  }
+  .show-hardware .device-left .front-key {
+    padding: 5px 2px;
+    min-height: 44px;
+  }
+  .show-hardware .device-left .front-key strong {
+    font-size: 8px;
+  }
+  .show-hardware .device-pad-grid {
+    gap: 6px;
+  }
+  .show-hardware .device-pad {
+    min-height: 40px;
+  }
+}
+@media (max-width: 779px) {
+  .show-hardware .device-face {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .show-hardware .device-display-bezel {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  .show-hardware .device-center {
+    display: contents;
+  }
+  .show-hardware .device-display-bezel {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  .show-hardware .device-controls {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .show-hardware .device-left {
+    grid-column: 1;
+    grid-row: 4;
+  }
+  .show-hardware .device-right {
+    grid-column: 1;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: 65px minmax(0, 1fr) 65px;
+    align-items: center;
+  }
+  .show-hardware .q-link-knobs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .show-hardware .virtual-knob input {
+    width: 38px;
+    height: 38px;
+  }
+}

@@ -1,0 +1,26 @@
+.song-file-options {
+  margin-block: 12px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.song-file-options label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.song-file-options input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #f2d685;
+}
+.song-file-options p {
+  margin-block: 8px;
+  overflow-wrap: anywhere;
+}
+.song-file-options [role="alert"] {
+  color: #ffd7a4;
+}
+.song-file-options button {
+  min-height: 40px;
+}

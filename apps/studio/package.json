@@ -1,0 +1,6 @@
+{
+  "name": "@xmp/studio",
+  "version": "0.1.0-dev",
+  "private": true,
+  "type": "module"
+}

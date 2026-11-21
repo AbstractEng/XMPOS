@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "official-g1",
+      "repository": "https://github.com/inmusic-software/az0x-open-source.git",
+      "commit": "ea21ffce863f48cfa138f053bfd5788daa752a6b",
+      "path": "arm-poky-linux-gnueabi/linux-az01-6.18.44+git-r0/linux-az01-6.18.44+git-r0-patched.tar.xz",
+      "url": "https://github.com/inmusic-software/az0x-open-source/tree/ea21ffce863f48cfa138f053bfd5788daa752a6b",
+      "sha256": "be712eccd9fc33251d2c0682ee0e9ca7ba64752550a1387155f788c2ac45d7bd",
+      "bytes": 161029504,
+      "scope": "official published source archive; not firmware compatibility or boot/recovery proof",
+      "hardwareQualified": false
+    },
+    {
+      "id": "openaz0x-mpc",
+      "repository": "https://github.com/openAZ0x/meta-az0x.git",
+      "commit": "a8cb6d992402cb9bd6dd5eecf73b04dad2fb4f64",
+      "path": "conf/machine/az01-mpc.conf",
+      "url": "https://github.com/openAZ0x/meta-az0x/blob/a8cb6d992402cb9bd6dd5eecf73b04dad2fb4f64/conf/machine/az01-mpc.conf",
+      "sha256": "22c4ef5813b383e359a93204553bc2e837c8e061650cf4b082e123e4fb25b1a0",
+      "scope": "research-only; not exact-unit evidence",
+      "hardwareQualified": false
+    },
+    {
+      "id": "openaz0x-status",
+      "repository": "https://github.com/openAZ0x/meta-az0x.git",
+      "commit": "a8cb6d992402cb9bd6dd5eecf73b04dad2fb4f64",
+      "path": "README.md",
+      "url": "https://github.com/openAZ0x/meta-az0x/blob/a8cb6d992402cb9bd6dd5eecf73b04dad2fb4f64/README.md",
+      "sha256": "954f10b09539cfc8343e050bd4ee8b3cbc3a76644b488714da591f51a311b149",
+      "scope": "research-only; not exact-unit evidence",
+      "hardwareQualified": false
+    },
+    {
+      "id": "community-model-map",
+      "repository": "https://github.com/TheKikGen/MPCLiveXplore-libs.git",
+      "commit": "df1be83ec209a1e8be63759bb05fa217b4f0d0ae",
+      "path": "src/deprecated/tkgl_anysnd.c",
+      "url": "https://github.com/TheKikGen/MPCLiveXplore-libs/blob/df1be83ec209a1e8be63759bb05fa217b4f0d0ae/src/deprecated/tkgl_anysnd.c",
+      "sha256": "21732b0f76f41f6e62c85e4778d588b4312d81a75cd72e433e5582231f80f9d1",
+      "scope": "research-only; not exact-unit evidence",
+      "hardwareQualified": false
+    }
+  ],
+  "findings": [
+    {
+      "id": "model-map",
+      "source": "community-model-map",
+      "finding": "The community model table associates ACV8 with MPC Live and ACVA with MPC One. The MPC Live Mk1 unit remains unidentified.",
+      "status": "research-only"
+    },
+    {
+      "id": "mpc-bsp",
+      "source": "openaz0x-status",
+      "finding": "The MPC family is listed as not hardware verified. Its generic board recipe default does not identify an owner unit.",
+      "status": "research-only"
+    },
+    {
+      "id": "no-inferred-transport",
+      "source": "openaz0x-mpc",
+      "finding": "A board configuration or successful non-MPC boot does not establish Live Mk1 recovery or an isolated USB test transport.",
+      "status": "requires-exact-unit-evidence"
+    }
+  ],
+  "deviceFirmwareObserved": false,
+  "recoveryVerified": false,
+  "usbTopologyVerified": false,
+  "payloadsBundled": false
+}

@@ -1,0 +1,19 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.625
+With the key out and the power adapter connected, hold Full Level, Erase and Bank C while powering on.
+
+00:00:06.625 --> 00:00:13.417
+Connect the Live's USB B port to your computer. Install the connection tools once, after reviewing the terms.
+
+00:00:13.417 --> 00:00:20.583
+Choose Install XMP USB loader, then Check Live and image. This step only checks; it does not write.
+
+00:00:20.583 --> 00:00:28.083
+Review the operation, confirm saved work and power, then type X M P O S. You click Install loader.
+
+00:00:28.083 --> 00:00:36.000
+Keep power and USB connected until Finished. This replaces the root filesystem, leaving the bootloader and partition table unchanged.
+
+00:00:36.000 --> 00:00:44.500
+Power off, insert the prepared key into USB A, and start XMP. After an edit, stop and wait for Saved on stick.

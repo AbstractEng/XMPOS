@@ -1,0 +1,22 @@
+{
+  "id": "device-qemu-armv7-az01-v1",
+  "architecture": "armv7",
+  "machine": "virt",
+  "accelerator": "tcg",
+  "cpu": "cortex-a15",
+  "vcpus": 2,
+  "memoryMiB": 2048,
+  "dataMiB": 512,
+  "sampleRate": 48000,
+  "audio": "QEMU usb-audio through the official az01 snd-usb-audio driver to an owned WAV",
+  "controls": "bounded serial Device viewer; guest-only Chromium",
+  "bootReadyLimitSeconds": 900,
+  "commandLimitSeconds": 300,
+  "uiRestartBudget": 3,
+  "network": false,
+  "hostShares": false,
+  "usbPassthrough": false,
+  "labAgentEnabled": false,
+  "physicalAudioQualified": false,
+  "mpcDriversQualified": false
+}

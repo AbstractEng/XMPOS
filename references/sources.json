@@ -1,0 +1,56 @@
+{
+  "repositories": [
+    {
+      "name": "akai-mpc-g1-3.10",
+      "url": "https://github.com/inmusic-software/az0x-open-source.git",
+      "branch": "mpc-g1/3.10",
+      "sourceArchives": true,
+      "purpose": "Official MPC G1 and Force v3.10 source branch; archive contents use Git LFS"
+    },
+    {
+      "name": "akai-az0x-open-source",
+      "url": "https://github.com/inmusic-software/az0x-open-source.git",
+      "purpose": "Official inMusic open-source compliance sources; not the proprietary MPC application"
+    },
+    {
+      "name": "openaz0x-meta-az0x",
+      "url": "https://github.com/openAZ0x/meta-az0x.git",
+      "purpose": "Yocto board support, device trees, vendor dependencies and MPC build status"
+    },
+    {
+      "name": "granola-openmpc",
+      "url": "https://github.com/nzimas/granola-openmpc.git",
+      "purpose": "Independent music application and MPC One hardware integration reference"
+    },
+    {
+      "name": "mpc-livexplore",
+      "url": "https://github.com/TheKikGen/MPC-LiveXplore.git",
+      "purpose": "MPC and Force boot, hardware and firmware research; reference only"
+    },
+    {
+      "name": "hakai-mpc",
+      "url": "https://github.com/henning/Hakai-MPC.git",
+      "purpose": "Accessible historical public Hakai fork; original RedHate/Hakai-MPC is unavailable; not the current firmware release"
+    },
+    {
+      "name": "openaz0x-distro",
+      "url": "https://github.com/openAZ0x/meta-openaz0x.git",
+      "purpose": "Current openAZ0x distribution and reference image recipes, split from board support"
+    },
+    {
+      "name": "mpc-livexplore-libs",
+      "url": "https://github.com/TheKikGen/MPCLiveXplore-libs.git",
+      "purpose": "Controller protocol, preload and hardware interface research"
+    },
+    {
+      "name": "mpc-livexplore-bootstrap",
+      "url": "https://github.com/TheKikGen/MPC-LiveXplore-bootstrap.git",
+      "purpose": "Boot environment design and recovery research; never execute on Force"
+    },
+    {
+      "name": "open-mpc-plugins",
+      "url": "https://github.com/open-mpc/mpc-vst-plugins.git",
+      "purpose": "Community plugin ABI, skin and packaging examples"
+    }
+  ]
+}

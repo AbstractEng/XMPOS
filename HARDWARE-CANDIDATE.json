@@ -1,0 +1,84 @@
+{
+  "format": "xmp-private-hardware-candidate",
+  "version": 1,
+  "releaseVersion": "0.1.0-dev.20261121",
+  "target": "inmusic,acv8",
+  "mpcOsVersion": "3.10.1",
+  "sessionSourceCommit": "b8618f97c67c141113c3fefe48809a7be7f56bd7",
+  "sessionSourceHash": "07badfadec1678e9c7f32bef352c4631e88f02db19280e485b96ac6ca1d3ef2e",
+  "publicTemplateSha256": "a31c023bb9fa435986d79819338f09ce80b4a7885c08834b710e6787681a26bf",
+  "sessionBinarySha256": "1f3e823c4c58f98c685b109bb95a94e68a63d4bf8a32bfc3edb161eedc9ee671",
+  "runtimeMode": "owner-local-3.10.1",
+  "runtimeLibrariesIncluded": false,
+  "hostBuildPassed": true,
+  "armRuntimePassed": true,
+  "emulatorWorkflowStatus": "functional subset passed; full ARM diagnostic suite incomplete",
+  "physicalCandidateChecks": "pending",
+  "publicRedistributionApproved": false,
+  "hardwareDownloadAvailable": false,
+  "publication": "legacy private hardware staging; no public hardware download in this source release",
+  "windowsScope": "physically unqualified preview",
+  "installerSourceHash": "8f65af8c53107a0d5a4a01ae572c6d7bb17b510fcea75afbae74bd1882275e97",
+  "installerSourceCommit": "1b7ed094b70f4463ef4a1d880261a119638bd8ff",
+  "tests": {
+    "application": 612,
+    "native": 37,
+    "parity": 20,
+    "inventory": 52,
+    "packaging": 25,
+    "installer": 18,
+    "sharedDevice": {
+      "commonSteps": 86,
+      "screenshotComparisons": 17,
+      "autosaveReload": true
+    },
+    "relink": {
+      "session": true,
+      "sessionImage": true,
+      "runtimeProbe": true
+    }
+  },
+  "armEmulator": {
+    "scope": "Observed ARM functional subset; full diagnostic suite did not pass",
+    "functionalSubsetPassed": true,
+    "fullDiagnosticSuitePassed": false,
+    "nativeExecutableMatched": true,
+    "mainViewsPassed": 8,
+    "padInputs": "pads 1 and 16, soft/firm accepted; no physical pad qualification",
+    "playAndStop": true,
+    "savedStateReached": true,
+    "coldBootLoadedSavedProject": true,
+    "savedFileByteIdenticalAfterColdBoot": true,
+    "firstBootPoweredOffCleanly": true,
+    "firstBootProtectedFakeDiskUnchanged": true,
+    "audioCeilingObserved": true,
+    "fixture": "one original drum track, no return FX",
+    "knownDiagnosticFailures": [
+      "Six-track playback bridge audio tap returned no reply; emulated audio underruns were logged.",
+      "Cold-boot screenshot bridge transfer timed out after the saved project had successfully loaded. Second guest was ended by the bounded VM timeout."
+    ],
+    "physicalHardwareAccess": false,
+    "network": false,
+    "notQualified": [
+      "physical latency/reliability",
+      "physical install/recovery",
+      "complete ARM bridge capture/screenshot path"
+    ]
+  },
+  "installerMac": "packaged supported-0.4-profile install/USB/restore simulation passed; ad-hoc signed",
+  "installerWindows": {
+    "ciRun": 44869438405,
+    "buildAndSimulationPassed": true,
+    "physicallyQualified": false
+  },
+  "content": {
+    "cc0SelectedWavs": 32,
+    "upstreamLicencesIncluded": true,
+    "originalXmpDemoSounds": true
+  },
+  "runtimeSourceMatchesCurrentDevelopment": false,
+  "physicalHardwareContacted": false,
+  "sourceUpdatesAfterCandidate": [
+    "MENU shortcuts remain reachable after slicing; unavailable chop audition remains bounded."
+  ]
+}

@@ -1,0 +1,95 @@
+#!/bin/sh
+# /sbin/init of the XMP Device system image on the owner's USB stick (phase 3;
+# AGENTS.md authorizations 2-4). The XMP stick loader has mounted this image
+# read-only under a RAM overlay and moved the stick to /media/xmp.
+#
+# Writes go to the stick only: logs, songs and xmp/data.img (an ext4 image
+# loop-mounted at /data for Chromium's profile and the app's saved state).
+export PATH=/usr/sbin:/usr/bin:/sbin:/bin
+STICK=/media/xmp
+LOG=$STICK/xmp/logs/device.txt
+say() { echo "XMP-DEVICE $*"; [ -w "$STICK/xmp/logs" ] && echo "$(cut -d' ' -f1 /proc/uptime) $*" >>"$LOG"; }
+off() { say "$1; powering off"; sync; umount /data 2>/dev/null; umount "$STICK" 2>/dev/null; sync; poweroff -f; }
+
+mount -t proc proc /proc 2>/dev/null
+mount -t sysfs sys /sys 2>/dev/null
+mount -t devtmpfs dev /dev 2>/dev/null
+
+# The Live's own board, never the Force.
+compatible=$(tr '\0' ' ' </proc/device-tree/compatible)
+case "$compatible" in *force*|*ada2*) off "refusing: Force identity" ;; esac
+case "$compatible" in *inmusic,acv8*) ;; *) off "refusing: not the MPC Live Mk1" ;; esac
+
+# The stick must be the vfat mount the loader moved here, on USB, not internal storage.
+set -- $(grep " $STICK vfat " /proc/mounts)
+dev=${1#/dev/}
+[ -n "$dev" ] || off "the XMP stick is not mounted at $STICK"
+case "$(readlink -f /sys/class/block/$dev)" in *ff0f0000*|*ff0c0000*|"") off "refusing: $dev is internal storage" ;; esac
+mount -o remount,rw,nosuid,nodev,noexec "$STICK" || off "could not make the XMP stick writable"
+mkdir -p "$STICK/xmp/logs" "$STICK/xmp/songs"
+say "board: $compatible; stick: /dev/$dev"
+
+mkdir -p /tmp /run /data /dev/shm
+mount -t tmpfs -o size=256m tmpfs /tmp
+mount -t tmpfs -o size=16m tmpfs /run
+mount -t tmpfs -o size=256m tmpfs /dev/shm
+chmod 1777 /tmp
+ifconfig lo up 2>/dev/null || ip link set lo up
+
+# Persistent state: an ext4 image on the stick, made once (512 MiB).
+if [ ! -f "$STICK/xmp/data.img" ]; then
+  say "creating xmp/data.img (first start, about a minute)"
+  dd if=/dev/zero of="$STICK/xmp/data.img.new" bs=1M count=512 2>/dev/null &&
+    mkfs.ext4 -q -F -L XMPDATA "$STICK/xmp/data.img.new" &&
+    mv "$STICK/xmp/data.img.new" "$STICK/xmp/data.img" || off "could not create xmp/data.img"
+fi
+mount -o loop,noatime "$STICK/xmp/data.img" /data || off "could not mount xmp/data.img"
+
+# Emulator image only: the Live twin presents the controller and touchscreen.
+if [ -x /usr/lib/xmp/xmp-live-twin ]; then
+  /usr/lib/xmp/xmp-live-twin --script "$STICK/xmp/twin-script.txt" --out "$STICK/xmp/twin" &
+  for i in $(seq 1 300); do [ -f /tmp/xmp-twin-ready ] && break; sleep 0.1; done
+fi
+
+# Controls, and the decision on the audio card.
+/usr/lib/xmp/xmp-live-input --log "$STICK/xmp/logs/input.txt" &
+for i in $(seq 1 100); do [ -f /tmp/xmp-audio-card ] && break; sleep 0.1; done
+if card=$(cat /tmp/xmp-audio-card 2>/dev/null) && [ -n "$card" ]; then
+  # Everything the app plays goes through a soft volume whose maximum is -12 dB:
+  # the card never sees more than -12 dBFS (authorization 2).
+  cat >/etc/asound.conf <<EOF
+pcm.!default { type plug slave.pcm "xmpcapped" }
+pcm.xmpcapped {
+  type softvol
+  slave.pcm "xmpcard"
+  control { name "XMP Output Cap" card $card }
+  min_dB -51.0
+  max_dB -12.0
+  resolution 2
+}
+pcm.xmpcard { type plug slave.pcm "hw:$card,0" }
+ctl.!default { type hw card $card }
+EOF
+  say "audio: card $card through the -12 dB cap"
+  # Check the chain itself, before Chromium: one second of silence through it.
+  if aplay -q -D default -d 1 -f S16_LE -r 48000 -c 2 /dev/zero 2>/tmp/aplay.err; then
+    say "audio chain: ok (aplay through the cap)"
+  else
+    say "audio chain: aplay failed: $(head -c 300 /tmp/aplay.err | tr '\n' ' ')"
+  fi
+else
+  echo 'pcm.!default { type null }' >/etc/asound.conf
+  say "audio: no allowed card; the app plays silently"
+fi
+
+seatd -g video >/dev/null 2>&1 &
+sleep 0.3
+say "starting the XMP Device app"
+XMP_LIVE_LOG="$LOG" /usr/bin/node /opt/xmp/live.mjs
+status=$?
+say "app exited ($status)"
+kill -TERM -1 2>/dev/null
+sleep 1
+kill -KILL -1 2>/dev/null
+[ "$status" = 0 ] || { say "the app failed; switching off in 10 minutes"; sleep 600; }
+off "session ended"

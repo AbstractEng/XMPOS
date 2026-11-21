@@ -1,0 +1,109 @@
+{
+  "recordedAt": "2026-11-08T21:48:29.258Z",
+  "repositories": [
+    {
+      "name": "akai-mpc-g1-3.10",
+      "url": "https://github.com/inmusic-software/az0x-open-source.git",
+      "branch": "mpc-g1/3.10",
+      "sourceArchives": true,
+      "purpose": "Official MPC G1 and Force v3.10 source branch; archive contents use Git LFS",
+      "commit": "ea21ffce863f48cfa138f053bfd5788daa752a6b",
+      "licenseFiles": [],
+      "status": "cloned",
+      "checkout": "official source archive LFS pointers; use tools/fetch-akai-sources.py for verified payloads"
+    },
+    {
+      "name": "akai-az0x-open-source",
+      "url": "https://github.com/inmusic-software/az0x-open-source.git",
+      "purpose": "Official inMusic open-source compliance sources; not the proprietary MPC application",
+      "commit": "8e7aef12ffc8bbc20c5b824ccca098ea4022bff8",
+      "licenseFiles": [],
+      "status": "cloned",
+      "checkout": "source and docs; binary images and compressed archives excluded"
+    },
+    {
+      "name": "openaz0x-meta-az0x",
+      "url": "https://github.com/openAZ0x/meta-az0x.git",
+      "purpose": "Yocto board support, device trees, vendor dependencies and MPC build status",
+      "commit": "a8cb6d992402cb9bd6dd5eecf73b04dad2fb4f64",
+      "licenseFiles": [
+        "COPYING.MIT"
+      ],
+      "status": "cloned",
+      "checkout": "source and docs; binary images and compressed archives excluded"
+    },
+    {
+      "name": "granola-openmpc",
+      "url": "https://github.com/nzimas/granola-openmpc.git",
+      "purpose": "Independent music application and MPC One hardware integration reference",
+      "commit": "9709dfaddd1f44feb9d4c1405ac52575212bd639",
+      "licenseFiles": [
+        "LICENSE"
+      ],
+      "status": "cloned",
+      "checkout": "source and docs; binary images and compressed archives excluded"
+    },
+    {
+      "name": "mpc-livexplore",
+      "url": "https://github.com/TheKikGen/MPC-LiveXplore.git",
+      "purpose": "MPC and Force boot, hardware and firmware research; reference only",
+      "commit": "4955a83686227690495aaad68e3ba4e39f5afaec",
+      "licenseFiles": [
+        "armbin/static-bins/LICENSE"
+      ],
+      "status": "cloned",
+      "checkout": "source and docs; binary images and compressed archives excluded"
+    },
+    {
+      "name": "hakai-mpc",
+      "url": "https://github.com/henning/Hakai-MPC.git",
+      "purpose": "Accessible historical public Hakai fork; original RedHate/Hakai-MPC is unavailable; not the current firmware release",
+      "commit": "0c7008c7a5cd62cd2dc331e7b657bdcee19b4625",
+      "licenseFiles": [],
+      "status": "cloned",
+      "checkout": "source and docs; binary images and compressed archives excluded"
+    },
+    {
+      "name": "openaz0x-distro",
+      "url": "https://github.com/openAZ0x/meta-openaz0x.git",
+      "purpose": "Current openAZ0x distribution and reference image recipes, split from board support",
+      "status": "failed",
+      "error": "Repository unavailable or inaccessible at initial checkout; no repository contents retrieved."
+    },
+    {
+      "name": "mpc-livexplore-libs",
+      "url": "https://github.com/TheKikGen/MPCLiveXplore-libs.git",
+      "purpose": "Controller protocol, preload and hardware interface research",
+      "commit": "df1be83ec209a1e8be63759bb05fa217b4f0d0ae",
+      "licenseFiles": [
+        "LICENSE"
+      ],
+      "status": "cloned",
+      "checkout": "source and docs; binary images and compressed archives excluded"
+    },
+    {
+      "name": "mpc-livexplore-bootstrap",
+      "url": "https://github.com/TheKikGen/MPC-LiveXplore-bootstrap.git",
+      "purpose": "Boot environment design and recovery research; never execute on Force",
+      "commit": "a2d77eb7a7c91981fcccb9910c7bd2de31086357",
+      "licenseFiles": [],
+      "status": "cloned",
+      "checkout": "source and docs; binary images and compressed archives excluded"
+    },
+    {
+      "name": "open-mpc-plugins",
+      "url": "https://github.com/open-mpc/mpc-vst-plugins.git",
+      "purpose": "Community plugin ABI, skin and packaging examples",
+      "commit": "11d340572dcc93778f341a9484c5ae6c51126abe",
+      "licenseFiles": [
+        "LICENSE",
+        "tools/mpc_patch/hwremap/src/LICENSE",
+        "tools/plugin_manager_g2/LICENSE",
+        "tools/plugin_manager_g2/NOTICE.md",
+        "tools/vendor/force-shadow/LICENSE"
+      ],
+      "status": "cloned",
+      "checkout": "source and docs; binary images and compressed archives excluded"
+    }
+  ]
+}

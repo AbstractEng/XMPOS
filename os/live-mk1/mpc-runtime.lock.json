@@ -1,0 +1,763 @@
+{
+  "format": "xmp-mpc-3.10.1-runtime-lock",
+  "version": 1,
+  "target": "inmusic,acv8",
+  "mpcOsVersion": "3.10.1",
+  "updaterImageSha256": "1df320c8b4f8a5ce4f212a6b89d6009bed3e794278a0ecb0ed609a5f0bf55364",
+  "rootfsSha256": "f5f216bbea471678afa58f5502a9f9a4c07a8552c93173f59dc6af5103b03c2f",
+  "imageName": "SNAPSHOT-20261107130239",
+  "files": [
+    {
+      "source": "/usr/lib/ld-linux-armhf.so.3",
+      "destination": "lib/ld-linux-armhf.so.3",
+      "bytes": 167372,
+      "sha256": "61fec59bc5247ad483fe0981fd1c312786bc7489cb46e53aa5c9629e5bc1a28d"
+    },
+    {
+      "source": "/usr/lib/libasound.so.2",
+      "destination": "lib/libasound.so.2",
+      "bytes": 956088,
+      "sha256": "b1c3d64113f7361cf39b2fae9a2f59ab369a95d072152c25db1f1ed3d65a8a96"
+    },
+    {
+      "source": "/usr/lib/libc.so.6",
+      "destination": "lib/libc.so.6",
+      "bytes": 1564832,
+      "sha256": "8cfdae8c8132e25adfbdf68f0a6c08789deba000b56f7f1548299c58b41be498"
+    },
+    {
+      "source": "/usr/lib/libm.so.6",
+      "destination": "lib/libm.so.6",
+      "bytes": 288148,
+      "sha256": "a9ab99cb448ea3cc7c371ff0025d505be4961157887be41ccbbd79857fad17d1"
+    },
+    {
+      "source": "/usr/lib/libstdc++.so.6",
+      "destination": "lib/libstdc++.so.6",
+      "bytes": 2066140,
+      "sha256": "9753e8334441df20f3d7be0227ed8bc68088aa528abc1d62da0d3dd5911e2f69"
+    },
+    {
+      "source": "/usr/lib/libgcc_s.so.1",
+      "destination": "lib/libgcc_s.so.1",
+      "bytes": 116056,
+      "sha256": "0fa65b590bfd0087a763475259d25d8145c6d44c330ea1e76d0045d5e6780da7"
+    },
+    {
+      "source": "/usr/lib/libpthread.so.0",
+      "destination": "lib/libpthread.so.0",
+      "bytes": 5468,
+      "sha256": "b56e1e5eda7c8ddf9521cad634607a485d066630b75d94d7aee78cd8ea40ef8a"
+    },
+    {
+      "source": "/usr/lib/libdl.so.2",
+      "destination": "lib/libdl.so.2",
+      "bytes": 5464,
+      "sha256": "f529f7ce7fbefa7690fee0056c0bdf02a2a971dca7fc10778c3473a1d85d781e"
+    },
+    {
+      "source": "/usr/lib/librt.so.1",
+      "destination": "lib/librt.so.1",
+      "bytes": 5516,
+      "sha256": "d034f037a2bd3480c519007318344682cd80798c9242cfe6cfe8e4225efc6e7a"
+    },
+    {
+      "source": "/usr/share/alsa/alsa.conf",
+      "destination": "usr/share/alsa/alsa.conf",
+      "bytes": 10118,
+      "sha256": "136904b0c5481ea92050d8641dbee66e4965922ebd1a1b6e285588993915c595"
+    },
+    {
+      "source": "/usr/share/alsa/cards/PC-Speaker.conf",
+      "destination": "usr/share/alsa/cards/PC-Speaker.conf",
+      "bytes": 657,
+      "sha256": "d6c8185b9a3bcfa829632ea2238ea1804f9eb7568d2047bdaf8e519e883146ee"
+    },
+    {
+      "source": "/usr/share/alsa/cards/USB-Audio.conf",
+      "destination": "usr/share/alsa/cards/USB-Audio.conf",
+      "bytes": 9771,
+      "sha256": "961520f46a0826778aed3716a2b573bd039af6bd8605858651dc56d3d0621c6e"
+    },
+    {
+      "source": "/usr/share/alsa/cards/VXPocket440.conf",
+      "destination": "usr/share/alsa/cards/VXPocket440.conf",
+      "bytes": 1480,
+      "sha256": "600ac09279191aded92809840171fdf6184663c6bc8e0c188df255862536e8e7"
+    },
+    {
+      "source": "/usr/share/alsa/cards/VIA686A.conf",
+      "destination": "usr/share/alsa/cards/VIA686A.conf",
+      "bytes": 1199,
+      "sha256": "13d828536619f7b9aa16d00b6d8231e5e26266aa417dec1c5f293c9d6263e5ce"
+    },
+    {
+      "source": "/usr/share/alsa/cards/Audigy2.conf",
+      "destination": "usr/share/alsa/cards/Audigy2.conf",
+      "bytes": 5554,
+      "sha256": "8485eab66bcc53c6b21f18a3997607b77eabd698b437a4788d86baf67948a838"
+    },
+    {
+      "source": "/usr/share/alsa/cards/FM801.conf",
+      "destination": "usr/share/alsa/cards/FM801.conf",
+      "bytes": 1227,
+      "sha256": "022ca9b10d7cc8a32f60b0aff3960fdd9fb06a68a2cecb2a54da5426d64f1903"
+    },
+    {
+      "source": "/usr/share/alsa/cards/vc4-hdmi.conf",
+      "destination": "usr/share/alsa/cards/vc4-hdmi.conf",
+      "bytes": 1428,
+      "sha256": "5189377924d34b4442151489b76ec877d19a9676a1332d1bb7e4b20c0281b745"
+    },
+    {
+      "source": "/usr/share/alsa/cards/CMI8738-MC8.conf",
+      "destination": "usr/share/alsa/cards/CMI8738-MC8.conf",
+      "bytes": 2982,
+      "sha256": "010df70a0dbf4fcfc3b19b43a9af30d58fa7e1121da8069573857336a62a889c"
+    },
+    {
+      "source": "/usr/share/alsa/cards/SI7018.conf",
+      "destination": "usr/share/alsa/cards/SI7018.conf",
+      "bytes": 2278,
+      "sha256": "0d351ba328e6d216857cd0f73632b1e5b929fd9aafc622d7089d44ba78f3b549"
+    },
+    {
+      "source": "/usr/share/alsa/cards/SB-XFi.conf",
+      "destination": "usr/share/alsa/cards/SB-XFi.conf",
+      "bytes": 1502,
+      "sha256": "14751edd67a1b842be0c44a8104ba132acc85e619a4ffdf3cfb094656b345daa"
+    },
+    {
+      "source": "/usr/share/alsa/cards/GUS.conf",
+      "destination": "usr/share/alsa/cards/GUS.conf",
+      "bytes": 217,
+      "sha256": "97942d9546bca7fa50841e74168d7e1e8f62468ff8cb9fc3794dd7e3770d8ace"
+    },
+    {
+      "source": "/usr/share/alsa/cards/ENS1370.conf",
+      "destination": "usr/share/alsa/cards/ENS1370.conf",
+      "bytes": 1367,
+      "sha256": "7e4f5a1d3007a5938c67b7faf2269cbc6c7bf7487797e5c8111574525c75f8bb"
+    },
+    {
+      "source": "/usr/share/alsa/cards/AACI.conf",
+      "destination": "usr/share/alsa/cards/AACI.conf",
+      "bytes": 669,
+      "sha256": "c6e894381791831b01df3403c5493027bcc22b11b9c018c32df93a8f17794ffe"
+    },
+    {
+      "source": "/usr/share/alsa/cards/pistachio-card.conf",
+      "destination": "usr/share/alsa/cards/pistachio-card.conf",
+      "bytes": 1889,
+      "sha256": "39ab71393579ea7ed4ad20b58cc61579462b4ac0db559e871840b218dc712fc5"
+    },
+    {
+      "source": "/usr/share/alsa/cards/PMacToonie.conf",
+      "destination": "usr/share/alsa/cards/PMacToonie.conf",
+      "bytes": 705,
+      "sha256": "778ac126c680298a4ca4f9e004098466bf51298433b91ca8ba850647e6b3e680"
+    },
+    {
+      "source": "/usr/share/alsa/cards/FWSpeakers.conf",
+      "destination": "usr/share/alsa/cards/FWSpeakers.conf",
+      "bytes": 333,
+      "sha256": "eab3789ba81a6800f11fb01a386e32ae397b0d225f4d7144f486e3ee393ad0bb"
+    },
+    {
+      "source": "/usr/share/alsa/cards/VX222.conf",
+      "destination": "usr/share/alsa/cards/VX222.conf",
+      "bytes": 830,
+      "sha256": "39f4fedef3fdab641b954608f8f5f2c1d3ed4c1bb919929286b87a668f586529"
+    },
+    {
+      "source": "/usr/share/alsa/cards/RME9636.conf",
+      "destination": "usr/share/alsa/cards/RME9636.conf",
+      "bytes": 780,
+      "sha256": "4c372e8777d554e4cf9b10ece78d967ef06daadaa0362d46468f927d9062ef5f"
+    },
+    {
+      "source": "/usr/share/alsa/cards/ICH-MODEM.conf",
+      "destination": "usr/share/alsa/cards/ICH-MODEM.conf",
+      "bytes": 192,
+      "sha256": "3b455ac43aeaf36887eec1300c2580fe645499c8f6ef277f193635b0bd5b26c3"
+    },
+    {
+      "source": "/usr/share/alsa/cards/CMI8338-SWIEC.conf",
+      "destination": "usr/share/alsa/cards/CMI8338-SWIEC.conf",
+      "bytes": 1784,
+      "sha256": "7120140996a1a2037f0edb4a9d39c1f1074fd7d6072b6132014c0cb314c52301"
+    },
+    {
+      "source": "/usr/share/alsa/cards/Audigy.conf",
+      "destination": "usr/share/alsa/cards/Audigy.conf",
+      "bytes": 4098,
+      "sha256": "6af986179f0e753617e36d3b596fce180394b1000862540954a6262cd59c09f0"
+    },
+    {
+      "source": "/usr/share/alsa/cards/YMF744.conf",
+      "destination": "usr/share/alsa/cards/YMF744.conf",
+      "bytes": 1357,
+      "sha256": "d024c523af4e2dbcf967e88b2101ce340bc8dd1c1fa5f5ef3746fffe4ec11d7f"
+    },
+    {
+      "source": "/usr/share/alsa/cards/CMI8788.conf",
+      "destination": "usr/share/alsa/cards/CMI8788.conf",
+      "bytes": 1641,
+      "sha256": "554b97e9bd91ca8debe8517e19f01dfb1bdf0e95e8bbffa431556457a1554557"
+    },
+    {
+      "source": "/usr/share/alsa/cards/HDA-Intel.conf",
+      "destination": "usr/share/alsa/cards/HDA-Intel.conf",
+      "bytes": 8074,
+      "sha256": "3a5951177ede3e7afc7259dca02a4f62080a9f388d6489eefe98cd1b74bc0fe8"
+    },
+    {
+      "source": "/usr/share/alsa/cards/EMU10K1.conf",
+      "destination": "usr/share/alsa/cards/EMU10K1.conf",
+      "bytes": 4420,
+      "sha256": "367fe3988d35b9aa297be855a99504cbad7928fa22153e0b9d753a399eba2a80"
+    },
+    {
+      "source": "/usr/share/alsa/cards/PMac.conf",
+      "destination": "usr/share/alsa/cards/PMac.conf",
+      "bytes": 486,
+      "sha256": "c79d68b2205708c68f073c4b3e86006c0b1fcbe2d93026f69f3b0671fcf97a29"
+    },
+    {
+      "source": "/usr/share/alsa/cards/ENS1371.conf",
+      "destination": "usr/share/alsa/cards/ENS1371.conf",
+      "bytes": 1806,
+      "sha256": "72f5b63f7016d076fc59087ab28b60eba988e9bc41814759fc430b364f42997d"
+    },
+    {
+      "source": "/usr/share/alsa/cards/Loopback.conf",
+      "destination": "usr/share/alsa/cards/Loopback.conf",
+      "bytes": 1272,
+      "sha256": "48d733a429b58b0721895b5c28a9df4aba7f6804c5cfb9df484b801660aa672c"
+    },
+    {
+      "source": "/usr/share/alsa/cards/CMI8338.conf",
+      "destination": "usr/share/alsa/cards/CMI8338.conf",
+      "bytes": 1911,
+      "sha256": "db64d0d74de40d5c975dbceecf64feff164a4cc709ccbfa67958b457a2615218"
+    },
+    {
+      "source": "/usr/share/alsa/cards/ICE1712.conf",
+      "destination": "usr/share/alsa/cards/ICE1712.conf",
+      "bytes": 2409,
+      "sha256": "31761fd7920b74f976eb545f356c835d82cdd4d266812aca8c49c1575c642c85"
+    },
+    {
+      "source": "/usr/share/alsa/cards/AU8810.conf",
+      "destination": "usr/share/alsa/cards/AU8810.conf",
+      "bytes": 437,
+      "sha256": "ca5b2b36906ef6f4322df049e44148d2c5657768dcbc21c55e696eebe5eeb0fe"
+    },
+    {
+      "source": "/usr/share/alsa/cards/ATIIXP-SPDMA.conf",
+      "destination": "usr/share/alsa/cards/ATIIXP-SPDMA.conf",
+      "bytes": 2237,
+      "sha256": "753be05a4280bd8bbe50a04f5a54371886f9867798ee0968eb21156b770337f7"
+    },
+    {
+      "source": "/usr/share/alsa/cards/ICE1724.conf",
+      "destination": "usr/share/alsa/cards/ICE1724.conf",
+      "bytes": 2891,
+      "sha256": "88fcf5d6019e425f849f9d2aa67a5620203235982fe80993f0d6c6c9bb65a18e"
+    },
+    {
+      "source": "/usr/share/alsa/cards/TRID4DWAVENX.conf",
+      "destination": "usr/share/alsa/cards/TRID4DWAVENX.conf",
+      "bytes": 1792,
+      "sha256": "1e62875ffadcc69a78cee0146314121aa51317af113ff9782071875d23b22249"
+    },
+    {
+      "source": "/usr/share/alsa/cards/HdmiLpeAudio.conf",
+      "destination": "usr/share/alsa/cards/HdmiLpeAudio.conf",
+      "bytes": 1509,
+      "sha256": "58caca46430a262b1f5707275217e97418ae97839c714fecd1509a3c37dc8c10"
+    },
+    {
+      "source": "/usr/share/alsa/cards/VIA8237.conf",
+      "destination": "usr/share/alsa/cards/VIA8237.conf",
+      "bytes": 2586,
+      "sha256": "8fe2eb01c92038c0b50f98f0386c435db852fe131323a585f529d89f81fb2ba7"
+    },
+    {
+      "source": "/usr/share/alsa/cards/CA0106.conf",
+      "destination": "usr/share/alsa/cards/CA0106.conf",
+      "bytes": 3848,
+      "sha256": "0dff9acb89c5772ddd5bdf60bc11ce75d73e9097dd5214f2579ac2097834fc2a"
+    },
+    {
+      "source": "/usr/share/alsa/cards/Aureon51.conf",
+      "destination": "usr/share/alsa/cards/Aureon51.conf",
+      "bytes": 2369,
+      "sha256": "049002e88438628c145792a7059855d08c14c7f33b290a5547eb9203deffb7d2"
+    },
+    {
+      "source": "/usr/share/alsa/cards/EMU10K1X.conf",
+      "destination": "usr/share/alsa/cards/EMU10K1X.conf",
+      "bytes": 2754,
+      "sha256": "37fe34f7ddc7a7758863cfd8f32718b1434acee5b5a93548ff5605629468648d"
+    },
+    {
+      "source": "/usr/share/alsa/cards/FireWave.conf",
+      "destination": "usr/share/alsa/cards/FireWave.conf",
+      "bytes": 702,
+      "sha256": "f4123f0f106c0baf213020ef8cb5aed19e79a2d896fb9e6603d43c001a704254"
+    },
+    {
+      "source": "/usr/share/alsa/cards/ICH4.conf",
+      "destination": "usr/share/alsa/cards/ICH4.conf",
+      "bytes": 2886,
+      "sha256": "f5f2ddbc85bd703a0fea9c677e9043bb98cd95b8578064092b67ae4c2b557b3c"
+    },
+    {
+      "source": "/usr/share/alsa/cards/CS46xx.conf",
+      "destination": "usr/share/alsa/cards/CS46xx.conf",
+      "bytes": 2945,
+      "sha256": "79bd52df908894e3eca05c52db832a0996732556b038aba3b17a7738e7eda274"
+    },
+    {
+      "source": "/usr/share/alsa/cards/Echo_Echo3G.conf",
+      "destination": "usr/share/alsa/cards/Echo_Echo3G.conf",
+      "bytes": 4399,
+      "sha256": "b6df2b1986dbc8cc543130f6fe07c58e8c0f96f360891081096df1d3b4bd865f"
+    },
+    {
+      "source": "/usr/share/alsa/cards/ICH.conf",
+      "destination": "usr/share/alsa/cards/ICH.conf",
+      "bytes": 3054,
+      "sha256": "f846aba377c4930fa524fda0ef149b51f519065c9980403e1698371ae7a418fa"
+    },
+    {
+      "source": "/usr/share/alsa/cards/ES1968.conf",
+      "destination": "usr/share/alsa/cards/ES1968.conf",
+      "bytes": 152,
+      "sha256": "fa3218152521ad798b5770aad93363fd57557c84dd32d630bf273041c21fa5dc"
+    },
+    {
+      "source": "/usr/share/alsa/cards/AU8830.conf",
+      "destination": "usr/share/alsa/cards/AU8830.conf",
+      "bytes": 520,
+      "sha256": "5824b33f63d8884f927688111f38b9b8943747a2ee203646f8bc23ec5a40eae4"
+    },
+    {
+      "source": "/usr/share/alsa/cards/RME9652.conf",
+      "destination": "usr/share/alsa/cards/RME9652.conf",
+      "bytes": 780,
+      "sha256": "8a065a1bc0f7e9843e54fc098ccebb049dc85981d93f7e1a24db26f958f33339"
+    },
+    {
+      "source": "/usr/share/alsa/cards/VIA8233.conf",
+      "destination": "usr/share/alsa/cards/VIA8233.conf",
+      "bytes": 2756,
+      "sha256": "2ee6d46c2bda0be75a42bf29f9bf242ebfd3502dbee57a5bd08c0cae4b48d097"
+    },
+    {
+      "source": "/usr/share/alsa/cards/VIA8233A.conf",
+      "destination": "usr/share/alsa/cards/VIA8233A.conf",
+      "bytes": 2812,
+      "sha256": "c405ae909d53f9dcb71546c46bde37e63d76c6fed2bbd1f0e272ea26c69e832e"
+    },
+    {
+      "source": "/usr/share/alsa/cards/CMI8738-MC6.conf",
+      "destination": "usr/share/alsa/cards/CMI8738-MC6.conf",
+      "bytes": 2131,
+      "sha256": "aff8b0c75abbfe770cb2aab21612b5f404b5468a858d6bf333a535e40ee5611c"
+    },
+    {
+      "source": "/usr/share/alsa/cards/ATIIXP.conf",
+      "destination": "usr/share/alsa/cards/ATIIXP.conf",
+      "bytes": 2483,
+      "sha256": "626f6b628f29714ca8925b67a7a337ab12ec2cdd39c2fc5098ff8dd3865ad678"
+    },
+    {
+      "source": "/usr/share/alsa/cards/NFORCE.conf",
+      "destination": "usr/share/alsa/cards/NFORCE.conf",
+      "bytes": 4803,
+      "sha256": "812eda76155dfa495eb1d743356a2471fe02add40bea1d669188ee3f083b5dc4"
+    },
+    {
+      "source": "/usr/share/alsa/cards/Aureon71.conf",
+      "destination": "usr/share/alsa/cards/Aureon71.conf",
+      "bytes": 2499,
+      "sha256": "b27ede016371d8b5202ad22092618da188e9509b889882e1f619e746321fe3c6"
+    },
+    {
+      "source": "/usr/share/alsa/cards/VXPocket.conf",
+      "destination": "usr/share/alsa/cards/VXPocket.conf",
+      "bytes": 839,
+      "sha256": "c5d14491b5de612c7bbc69b4b5989fd1002d93f6fd6a3a672249951f9367a515"
+    },
+    {
+      "source": "/usr/share/alsa/cards/AU8820.conf",
+      "destination": "usr/share/alsa/cards/AU8820.conf",
+      "bytes": 159,
+      "sha256": "f396368a200d99288919481bc398996b52e278ebb65f64974bc741dccdf1723a"
+    },
+    {
+      "source": "/usr/share/alsa/cards/ATIIXP-MODEM.conf",
+      "destination": "usr/share/alsa/cards/ATIIXP-MODEM.conf",
+      "bytes": 302,
+      "sha256": "8ec8c18a874dc42f6cf925dff57b9cd8b86f0cda3e8ae9de0c6b382811ee4286"
+    },
+    {
+      "source": "/usr/share/alsa/cards/PS3.conf",
+      "destination": "usr/share/alsa/cards/PS3.conf",
+      "bytes": 1152,
+      "sha256": "cddd47a62dcb70aa209d2788f743c469a3d799a0e1093fea5d200837a5ea6f9a"
+    },
+    {
+      "source": "/usr/share/alsa/cards/aliases.conf",
+      "destination": "usr/share/alsa/cards/aliases.conf",
+      "bytes": 1487,
+      "sha256": "8bad941984949f531c03fd813941ad055afd5883e3be0c0408fd4dea7feab5d8"
+    },
+    {
+      "source": "/usr/share/alsa/cards/Maestro3.conf",
+      "destination": "usr/share/alsa/cards/Maestro3.conf",
+      "bytes": 558,
+      "sha256": "9291749b971d36f4f436127d105641031b44dde0da9ea0411937fb4e34897f24"
+    },
+    {
+      "source": "/usr/share/alsa/ctl/default.conf",
+      "destination": "usr/share/alsa/ctl/default.conf",
+      "bytes": 539,
+      "sha256": "6ab4a977ee780c466ab09ce5b3eb11a81e829a07cc277e108416be5fb57360f8"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/center_lfe.conf",
+      "destination": "usr/share/alsa/pcm/center_lfe.conf",
+      "bytes": 803,
+      "sha256": "d7c6d1582e910445db3bdacdce95d57f5833373d57944b92d3604478df992663"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/default.conf",
+      "destination": "usr/share/alsa/pcm/default.conf",
+      "bytes": 760,
+      "sha256": "751d2fdecf36464d11f5b0895f020d5875265ca53423d20eae532d4ce72ecb57"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/dmix.conf",
+      "destination": "usr/share/alsa/pcm/dmix.conf",
+      "bytes": 1708,
+      "sha256": "68b8d7f66f991d7612cdaf379504bf4ca1ee75fefb3cc3a0479177287d655242"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/dpl.conf",
+      "destination": "usr/share/alsa/pcm/dpl.conf",
+      "bytes": 645,
+      "sha256": "ccec7c194270433c2dcdf3622b2ef25e3197020da800662c6111ff8b8638f30b"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/dsnoop.conf",
+      "destination": "usr/share/alsa/pcm/dsnoop.conf",
+      "bytes": 1590,
+      "sha256": "c2ac63498263b277b6adc2f19caf5463ce49f4ef8f8612fa17ac71433e5d008c"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/front.conf",
+      "destination": "usr/share/alsa/pcm/front.conf",
+      "bytes": 802,
+      "sha256": "f9c8750ab61549d15b24adccc39587459e1fd6a448f259625d3c31fb0e46f8db"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/hdmi.conf",
+      "destination": "usr/share/alsa/pcm/hdmi.conf",
+      "bytes": 1186,
+      "sha256": "4d0708b1417921f72bece0217547b3b41ca348f93804496a5061f20c92c073f0"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/iec958.conf",
+      "destination": "usr/share/alsa/pcm/iec958.conf",
+      "bytes": 1218,
+      "sha256": "30e4411fb010b64f1c570534c805ce4ce9be98ed1bbad95a2cdb7e6ed8bb1bcd"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/modem.conf",
+      "destination": "usr/share/alsa/pcm/modem.conf",
+      "bytes": 1312,
+      "sha256": "56eaca2008cdef9a8b94f1e622f10b6c21cc1496b9b4e570ff989b19369e85b8"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/rear.conf",
+      "destination": "usr/share/alsa/pcm/rear.conf",
+      "bytes": 742,
+      "sha256": "663ebadd34cf94e8b5780fa51159c62d7cce503cf955f585a44b05eb9e390022"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/side.conf",
+      "destination": "usr/share/alsa/pcm/side.conf",
+      "bytes": 742,
+      "sha256": "de6aa38da3163709d3b81cc8a56c4afed3e76788cc0cd912c14ec6c5b2a0761a"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/surround21.conf",
+      "destination": "usr/share/alsa/pcm/surround21.conf",
+      "bytes": 923,
+      "sha256": "4849b4b523b4995d5d700370787511ab4cd73db447f8fc02dd6e0bb221025120"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/surround40.conf",
+      "destination": "usr/share/alsa/pcm/surround40.conf",
+      "bytes": 901,
+      "sha256": "f32c9810643fe2a371ff0e3c62011b4fbb544702e08424425983f74146989394"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/surround41.conf",
+      "destination": "usr/share/alsa/pcm/surround41.conf",
+      "bytes": 1004,
+      "sha256": "8ee8178f092294ff94ce2e065126888992eeb35cd5119e53487fd0b55fc8be32"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/surround50.conf",
+      "destination": "usr/share/alsa/pcm/surround50.conf",
+      "bytes": 1003,
+      "sha256": "7d028550074f0e1d14c9a09bb76a6498771c2ca8660a8cebbf61b6c19d5e70da"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/surround51.conf",
+      "destination": "usr/share/alsa/pcm/surround51.conf",
+      "bytes": 954,
+      "sha256": "6ee4124c414833fdfd24dbb584092b77564aaa3481a4b73f34c301ac79636428"
+    },
+    {
+      "source": "/usr/share/alsa/pcm/surround71.conf",
+      "destination": "usr/share/alsa/pcm/surround71.conf",
+      "bytes": 1002,
+      "sha256": "615c9e0a739902b304787ea3cb202800ac861727fb2e1501eaa409f4c6a9fc40"
+    }
+  ],
+  "libraries": {
+    "ld-linux-armhf.so.3": {
+      "needed": [],
+      "interpreter": null,
+      "requires": {},
+      "provides": ["ld-linux-armhf.so.3", "GLIBC_2.4", "GLIBC_2.34", "GLIBC_2.35", "GLIBC_PRIVATE"]
+    },
+    "libasound.so.2": {
+      "needed": ["libm.so.6", "libpthread.so.0", "librt.so.1", "libc.so.6", "ld-linux-armhf.so.3"],
+      "interpreter": null,
+      "requires": {
+        "ld-linux-armhf.so.3": ["GLIBC_2.4"],
+        "libm.so.6": ["GLIBC_2.4", "GLIBC_2.29"],
+        "libc.so.6": ["GLIBC_2.7", "GLIBC_2.38", "GLIBC_2.16", "GLIBC_2.34", "GLIBC_2.4"]
+      },
+      "provides": [
+        "libasound.so.2",
+        "ALSA_0.9",
+        "ALSA_0.9.0rc4",
+        "ALSA_0.9.0rc8",
+        "ALSA_0.9.0",
+        "ALSA_0.9.3",
+        "ALSA_0.9.5",
+        "ALSA_0.9.7",
+        "ALSA_1.1.6",
+        "ALSA_1.2.6",
+        "ALSA_1.2.9",
+        "ALSA_1.2.10"
+      ]
+    },
+    "libc.so.6": {
+      "needed": ["ld-linux-armhf.so.3"],
+      "interpreter": "/usr/lib/ld-linux-armhf.so.3",
+      "requires": {
+        "ld-linux-armhf.so.3": ["GLIBC_2.35", "GLIBC_2.4", "GLIBC_PRIVATE"]
+      },
+      "provides": [
+        "libc.so.6",
+        "GLIBC_2.4",
+        "GLIBC_2.5",
+        "GLIBC_2.6",
+        "GLIBC_2.7",
+        "GLIBC_2.8",
+        "GLIBC_2.9",
+        "GLIBC_2.10",
+        "GLIBC_2.11",
+        "GLIBC_2.12",
+        "GLIBC_2.13",
+        "GLIBC_2.14",
+        "GLIBC_2.15",
+        "GLIBC_2.16",
+        "GLIBC_2.17",
+        "GLIBC_2.18",
+        "GLIBC_2.22",
+        "GLIBC_2.23",
+        "GLIBC_2.24",
+        "GLIBC_2.25",
+        "GLIBC_2.26",
+        "GLIBC_2.27",
+        "GLIBC_2.28",
+        "GLIBC_2.29",
+        "GLIBC_2.30",
+        "GLIBC_2.31",
+        "GLIBC_2.32",
+        "GLIBC_2.33",
+        "GLIBC_2.34",
+        "GLIBC_2.35",
+        "GLIBC_2.36",
+        "GLIBC_2.37",
+        "GLIBC_2.38",
+        "GLIBC_2.39",
+        "GLIBC_ABI_DT_RELR",
+        "GLIBC_PRIVATE"
+      ]
+    },
+    "libm.so.6": {
+      "needed": ["libc.so.6", "ld-linux-armhf.so.3"],
+      "interpreter": null,
+      "requires": {
+        "ld-linux-armhf.so.3": ["GLIBC_2.4"],
+        "libc.so.6": ["GLIBC_PRIVATE", "GLIBC_2.4"]
+      },
+      "provides": [
+        "libm.so.6",
+        "GLIBC_2.4",
+        "GLIBC_2.15",
+        "GLIBC_2.18",
+        "GLIBC_2.23",
+        "GLIBC_2.24",
+        "GLIBC_2.25",
+        "GLIBC_2.27",
+        "GLIBC_2.28",
+        "GLIBC_2.29",
+        "GLIBC_2.31",
+        "GLIBC_2.32",
+        "GLIBC_2.35",
+        "GLIBC_2.38",
+        "GLIBC_2.39"
+      ]
+    },
+    "libstdc++.so.6": {
+      "needed": ["libm.so.6", "libc.so.6", "ld-linux-armhf.so.3", "libgcc_s.so.1"],
+      "interpreter": null,
+      "requires": {
+        "ld-linux-armhf.so.3": ["GLIBC_2.4"],
+        "libgcc_s.so.1": ["GCC_3.3", "GCC_3.4", "GCC_3.0", "GCC_3.5"],
+        "libm.so.6": ["GLIBC_2.38", "GLIBC_2.35", "GLIBC_2.29", "GLIBC_2.4"],
+        "libc.so.6": [
+          "GLIBC_2.38",
+          "GLIBC_2.25",
+          "GLIBC_2.18",
+          "GLIBC_2.17",
+          "GLIBC_2.32",
+          "GLIBC_2.36",
+          "GLIBC_2.34",
+          "GLIBC_2.4"
+        ]
+      },
+      "provides": [
+        "libstdc++.so.6",
+        "GLIBCXX_3.4",
+        "GLIBCXX_3.4.1",
+        "GLIBCXX_3.4.2",
+        "GLIBCXX_3.4.3",
+        "GLIBCXX_3.4.4",
+        "GLIBCXX_3.4.5",
+        "GLIBCXX_3.4.6",
+        "GLIBCXX_3.4.7",
+        "GLIBCXX_3.4.8",
+        "GLIBCXX_3.4.9",
+        "GLIBCXX_3.4.10",
+        "GLIBCXX_3.4.11",
+        "GLIBCXX_3.4.12",
+        "GLIBCXX_3.4.13",
+        "GLIBCXX_3.4.14",
+        "GLIBCXX_3.4.15",
+        "GLIBCXX_3.4.16",
+        "GLIBCXX_3.4.17",
+        "GLIBCXX_3.4.18",
+        "GLIBCXX_3.4.19",
+        "GLIBCXX_3.4.20",
+        "GLIBCXX_3.4.21",
+        "GLIBCXX_3.4.22",
+        "GLIBCXX_3.4.23",
+        "GLIBCXX_3.4.24",
+        "GLIBCXX_3.4.25",
+        "GLIBCXX_3.4.26",
+        "GLIBCXX_3.4.27",
+        "GLIBCXX_3.4.28",
+        "GLIBCXX_3.4.29",
+        "GLIBCXX_3.4.30",
+        "GLIBCXX_3.4.31",
+        "GLIBCXX_3.4.32",
+        "CXXABI_1.3",
+        "CXXABI_1.3.1",
+        "CXXABI_1.3.2",
+        "CXXABI_1.3.3",
+        "CXXABI_1.3.4",
+        "CXXABI_1.3.5",
+        "CXXABI_1.3.6",
+        "CXXABI_1.3.7",
+        "CXXABI_1.3.8",
+        "CXXABI_1.3.9",
+        "CXXABI_1.3.10",
+        "CXXABI_1.3.11",
+        "CXXABI_1.3.12",
+        "CXXABI_1.3.13",
+        "CXXABI_1.3.14",
+        "CXXABI_TM_1",
+        "CXXABI_ARM_1.3.3"
+      ]
+    },
+    "libgcc_s.so.1": {
+      "needed": ["libc.so.6"],
+      "interpreter": null,
+      "requires": {
+        "libc.so.6": ["GLIBC_2.34", "GLIBC_2.4"]
+      },
+      "provides": [
+        "libgcc_s.so.1",
+        "GLIBC_2.0",
+        "GCC_3.0",
+        "GCC_3.3",
+        "GCC_3.3.1",
+        "GCC_3.3.4",
+        "GCC_3.4",
+        "GCC_3.4.2",
+        "GCC_4.0.0",
+        "GCC_4.2.0",
+        "GCC_4.3.0",
+        "GCC_4.7.0",
+        "GCC_7.0.0",
+        "GCC_3.5"
+      ]
+    },
+    "libpthread.so.0": {
+      "needed": ["libc.so.6"],
+      "interpreter": null,
+      "requires": {
+        "libc.so.6": ["GLIBC_2.4"]
+      },
+      "provides": [
+        "libpthread.so.0",
+        "GLIBC_2.4",
+        "GLIBC_2.11",
+        "GLIBC_2.12",
+        "GLIBC_2.18",
+        "GLIBC_2.28",
+        "GLIBC_2.30",
+        "GLIBC_2.31"
+      ]
+    },
+    "libdl.so.2": {
+      "needed": ["libc.so.6"],
+      "interpreter": null,
+      "requires": {
+        "libc.so.6": ["GLIBC_2.4"]
+      },
+      "provides": ["libdl.so.2", "GLIBC_2.4"]
+    },
+    "librt.so.1": {
+      "needed": ["libc.so.6", "ld-linux-armhf.so.3"],
+      "interpreter": null,
+      "requires": {
+        "ld-linux-armhf.so.3": ["GLIBC_PRIVATE"],
+        "libc.so.6": ["GLIBC_PRIVATE", "GLIBC_2.4"]
+      },
+      "provides": ["librt.so.1", "GLIBC_2.4", "GLIBC_2.7"]
+    }
+  }
+}

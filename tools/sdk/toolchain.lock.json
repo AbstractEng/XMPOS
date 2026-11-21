@@ -1,0 +1,22 @@
+{
+  "version": "0.13.0",
+  "origin": "https://ziglang.org/download/index.json",
+  "purpose": "Compile the owned declarative DSP fixture for generic x86_64 Linux VM only",
+  "hosts": {
+    "darwin-x64": {
+      "url": "https://ziglang.org/download/0.13.0/zig-macos-x86_64-0.13.0.tar.xz",
+      "bytes": 48857012,
+      "sha256": "8b06ed1091b2269b700b3b07f8e3be3b833000841bae5aa6a09b1a8b4773effd"
+    },
+    "darwin-arm64": {
+      "url": "https://ziglang.org/download/0.13.0/zig-macos-aarch64-0.13.0.tar.xz",
+      "bytes": 44892040,
+      "sha256": "46fae219656545dfaf4dce12fb4e8685cec5b51d721beee9389ab4194d43394c"
+    },
+    "linux-x64": {
+      "url": "https://ziglang.org/download/0.13.0/zig-linux-x86_64-0.13.0.tar.xz",
+      "bytes": 47082308,
+      "sha256": "d45312e61ebcc48032b77bc4cf7fd6915c11fa16e4aad116b66c9468211230ea"
+    }
+  }
+}

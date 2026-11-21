@@ -1,0 +1,113 @@
+{
+  "format": "xmp-hardware-compatibility",
+  "version": 1,
+  "updated": "2026-11-16",
+  "publicInstallationCleared": false,
+  "runtimeLock": "os/live-mk1/mpc-runtime.lock.json",
+  "baseline": {
+    "mpcOsVersion": "3.10.1",
+    "updaterFamily": "MPC Gen 1",
+    "updaterImageSha256": "1df320c8b4f8a5ce4f212a6b89d6009bed3e794278a0ecb0ed609a5f0bf55364",
+    "rootfsSha256": "f5f216bbea471678afa58f5502a9f9a4c07a8552c93173f59dc6af5103b03c2f"
+  },
+  "models": [
+    {
+      "id": "live-mk1",
+      "name": "MPC Live Mk1",
+      "board": "inmusic,acv8",
+      "status": "Hardware-tested candidate; public installation pending",
+      "ownerRehearsalTarget": true,
+      "firmware": "3.10.1 only",
+      "platform": "Gen 1 / RK3288 / ARM hard-float",
+      "audio": "USB MPC Live Audio 09e8:203b",
+      "bootloader": "0.4",
+      "testedSoc": "rockchip,rk3288",
+      "untestedSoc": "rockchip,rk3288-c",
+      "evidence": ["docs/live-mk1-device-plan.md", "reports/r01/dynamic-verification.md"]
+    },
+    {
+      "id": "one",
+      "name": "MPC One (original)",
+      "board": "inmusic,acva",
+      "status": "Planned port; installation disabled; no XMP hardware tests",
+      "ownerRehearsalTarget": false,
+      "firmware": "Gen 1 3.10.1 proposed; not qualified",
+      "platform": "Gen 1 / RK3288 / ARM hard-float",
+      "audio": "Onboard acva-audio codec; separate adapter required",
+      "deviceTrees": ["rk3288-az01-acva.dts", "rk3288-az01-acva-c.dts"],
+      "evidence": ["os/live-mk1/kernel.lock.json"]
+    },
+    {
+      "id": "one-plus",
+      "name": "MPC One+",
+      "board": "inmusic,acva2",
+      "status": "Planned port; installation disabled; no XMP hardware tests",
+      "ownerRehearsalTarget": false,
+      "firmware": "Gen 1 3.10.1 proposed; not qualified",
+      "platform": "Gen 1 / RK3288 / ARM hard-float",
+      "audio": "Onboard acva-audio codec; separate adapter required",
+      "deviceTrees": ["rk3288-az05-acva2.dts"],
+      "evidence": ["os/live-mk1/kernel.lock.json"]
+    },
+    {
+      "id": "one-g2",
+      "name": "MPC One G2",
+      "board": null,
+      "status": "Separate Gen 2 port; installation disabled; no XMP hardware tests",
+      "ownerRehearsalTarget": false,
+      "firmware": "Separate Gen 2 firmware family; never use this Gen 1 image",
+      "platform": "New eight-core platform; board and ABI verification pending",
+      "audio": "Unverified",
+      "evidence": [
+        "https://support.akaipro.com/en/support/solutions/articles/69000879145-mpc-one-g2-frequently-asked-questions",
+        "https://www.akaipro.com/downloads-and-support/downloads/firmware/mpc/"
+      ]
+    },
+    {
+      "id": "force",
+      "name": "Akai Force",
+      "board": "inmusic,ada2",
+      "status": "Protected; excluded from all installation and device testing",
+      "ownerRehearsalTarget": false,
+      "firmware": "None",
+      "platform": "Excluded",
+      "audio": "Never opened"
+    }
+  ],
+  "host": {
+    "platform": "darwin",
+    "arch": "x64",
+    "osVersion": "13.4.1",
+    "nodeMajor": 24,
+    "observed": "Intel macOS 13.4.1, Node 24.14.0, Python 3.11, Zig 0.13.0, mke2fs 1.47.2",
+    "scope": "Dynamic host build and owner-local assembly observed. Clean complete installation rehearsal pending. Other macOS versions, Apple Silicon and Linux installers unqualified; SDK host support is separate."
+  },
+  "storage": {
+    "filesystem": "vfat",
+    "labels": ["XMP", "XMPPROBE"],
+    "observedCapacityBytes": 8019509248,
+    "minimumCapacityBytes": 8000000000,
+    "minimumFreeBytes": 268435456,
+    "minimumWorkspaceFreeBytes": 8589934592,
+    "budgetStatus": "Provisional conservative budgets: 8 GB USB, 256 MiB USB free and 8 GiB workspace free. Measure and freeze during clean install rehearsal; no maximum stick capacity qualified.",
+    "partitionTable": null,
+    "scope": "Owner USB stick only. FAT32/vfat loader path; exFAT, NTFS and internal storage unsupported. Observed 8.02 GB stick; make/model, partition-table and current free-space receipt pending."
+  },
+  "connections": {
+    "installation": "Owner-operated Live update mode over USB-B data cable; correct mains adapter; no hub/cable combinations qualified beyond owner's observed setup.",
+    "bridge": "FTDI USB-NMC-2.5M null modem, 0403:6001 at each end, Live USB-A to Mac. Live standalone USB-B gadget route is not physically available.",
+    "power": "Use the model-correct mains supply during installation; battery-only installation unqualified."
+  },
+  "openEvidence": [
+    "Candidate-specific first install and complete return-to-stock rehearsal (R03).",
+    "Independently verified hash of installed 3.10.1 loader; owner attestation exists but saved latest-loader pointer is stale.",
+    "Readable rootfs partition capacity (historical fastboot returned no size); do not bypass flash-tool capacity refusal.",
+    "Exact USB stick filesystem/partition table/free-space and power/data-cable receipt; fresh host disk-space measurement.",
+    "Clean-checkout build and local installation on the declared host, with observed space requirements for that route. Independent-host qualification follows the community baseline."
+  ],
+  "plannedPortWork": [
+    "One and One+ board-specific audio/control adapters, recovery design and authorized physical qualification.",
+    "One G2 primary board/ABI evidence and separate firmware/platform design."
+  ],
+  "stopInstruction": "Stop installation when any required fact is unknown, differs or is ambiguous. Keep the instrument on stock firmware; do not substitute a Live image, bypass a guard or probe another model with Live tools."
+}

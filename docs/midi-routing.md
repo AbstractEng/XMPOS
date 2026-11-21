@@ -1,0 +1,21 @@
+# Internal MIDI instrument routing
+
+A built-in MIDI track can now send its notes to another track using the built-in **Subtractive synth** or **Pad sampler**. The destination supplies the sound settings and audio mixer strip. No MIDI port, USB device, capture device or physical adapter is opened. Developer MIDI machines such as the transpose example still use the event preview; this milestone does not add a general MIDI patch bay.
+
+In Device view:
+
+1. Press **SHIFT → MAIN** to open Track & machine. Choose a destination track and set its Machine to **Subtractive synth** or **Pad sampler**.
+2. Choose your source track, set Machine to **MIDI track**, and select that instrument track in **MIDI destination**.
+3. Press **MAIN**, select/create the source track's clip, and enter notes. **PLAY START** plays the routed part. The destination needs no clip of its own to receive notes.
+4. For drums, load samples into the shared pad rack and enter hits on the corresponding clip pads. Routing follows the clip's pad index, not General MIDI drum-note numbers. A pad in **Chromatic** playback mode follows MIDI pitch relative to its root note; set that mode in Advanced Studio's Sounds page.
+5. Choose **None · event preview only** to disconnect the instrument. The MIDI clip and notes remain saved. Route changes and clearing are undoable.
+
+Advanced Studio exposes the same **MIDI destination** selector in **Sounds**. Edit the destination track to change its synth patch, sampler settings, pan, effects and sends. The MIDI channel is preserved in the internal event trace; routing to built-in instruments uses the explicit track identity rather than channel filtering.
+
+Both source and destination levels and mutes apply. Audio passes through the destination's inserts, pan and sends. Soloing a MIDI source includes its destination (including that instrument's own clips); soloing a destination includes its incoming MIDI sources. This expansion uses explicit solos only, so one soloed source does not automatically solo other MIDI sources sharing the same destination. Explicit mutes still win. Stopping a source's clip releases only that source's notes. Muting/removing/replacing the destination releases incoming notes; changing its own clip does not stop incoming MIDI.
+
+The built-in voice pool remains 32 voices, with newest excess demand refused. Routed notes use one voice slot each, emit paired internal MIDI events and follow the destination envelope/sample mode. One-shot samples may finish before MIDI note-off; their MIDI lifetime remains tracked until that note-off. STOP and panic cancel future notes and release active sound. Repeated mute gates do not restart release tails.
+
+Routes are an additive optional `destination` track ID in `xmp.midi` v1 state. Channel-only projects retain their old event-only behavior. The channel parameter identity, machine version and project schema remain unchanged. The ID is bounded and validated as data. UI edits accept only a different installed built-in instrument track. A missing destination, incompatible machine, self-reference or MIDI-to-MIDI cycle imported in a saved project stays visible and silent with state retained; no recursive routing or fallback instrument is used. Portable saves and IndexedDB retain routes. Deleting a destination locally clears incoming routes in the same undoable edit so a reused track ID cannot silently reconnect them. Earlier builds may reject the new optional state rather than understand routing.
+
+Verification includes direct-versus-routed PCM, sampler pitch/pad selection, destination stereo routing, independent source cleanup, mute/solo, route changes, voice overload, malformed state and exact AudioWorklet scheduling. [Gherkin browser journeys](../features/21-internal-midi-routing.feature) cover synth and sampler sound, routing controls, silent disconnected/unavailable routes, undo, autosave and portable transfer. A test analyser taps the real AudioWorklet output while Chromium physical output remains disabled. These cases join `npm run bdd:e2e`, `npm run regression`, and the existing browser regression CI job. Complete native/VM/embedded musical-engine parity and physical audio/MIDI qualification remain pending.

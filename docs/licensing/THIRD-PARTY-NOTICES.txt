@@ -1,0 +1,114 @@
+XMP OS — component notices for the owner-local dynamic recipe
+Final release clearance must bind these notices to the actual candidate.
+Review scope: native MPC Live Mk1 session, owner-local MPC OS 3.10.1 route.
+The repository's Apache-2.0 licence does not replace third-party licences.
+
+XMP
+Original project code: Apache License 2.0. Full licence: LICENSE in the source archive and repository root.
+The source snapshot and build recipes accompany the review bundle.
+
+Inter 4.1
+Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter)
+SIL Open Font License 1.1. Full text: licenses/Inter-OFL.txt.
+Release input SHA-256: 9883fdd4a49d4fb66bd8177ba6625ef9a64aa45899767dde3d36aa425756b11e
+The Live session embeds rasterized glyph coverage generated from the released
+TTFs. Treat the generated font data as OFL-covered; preserve these notices and
+OFL text in the binary/image package, alongside the XMP licence. The released
+font header declares no Reserved Font Names. XMP does not claim font authorship.
+
+JetBrains Mono 2.304
+Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)
+SIL Open Font License 1.1. Full text: licenses/JetBrainsMono-OFL.txt.
+Release input SHA-256: 6f6376c6ed2960ea8a963cd7387ec9d76e3f629125bc33d1fdcd7eb7012f7bbf
+Same generated-font treatment as Inter; released header declares no RFNs.
+
+stb_truetype, commit f58f558c120e9b32c217290b80bad1a0729fbb2c
+Copyright (c) 2017 Sean Barrett
+MIT option selected. Full text: licenses/stb-MIT.txt.
+SHA-256: ecd30b05e0dd4fea3a13c26810dd9e1992dc379049482c393d5a19e6b5090aab
+Build-time glyph rasterizer. Native/tools/font_atlas.cpp uses it on the host;
+it is not linked into the native Live session. Included in the source kit.
+
+ALSA library 1.2.11, inMusic patched source
+LGPL-2.1-or-later library; COPYING and per-file notices govern the archive.
+Authors include Jaroslav Kysela, Abramo Bagnara and Takashi Iwai. Preserve
+all per-file copyright notices in the included source, not just this summary.
+Source archive SHA-256: 549e4467f8ac6ec800285be9bd43f5033726019a7276e338be968b73898b73da
+Full LGPL text: licenses/ALSA-LGPL-2.1.txt.
+Existing development images statically link this library and copy its config.
+The selected public design will instead dynamically link the owner's local
+3.10.1 library and use configuration extracted from that updater onto USB.
+ALSA source is included for review/build interfaces. It is not a claim that
+all files of this multi-licence source archive are LGPL, or that binaries
+from unrelated source versions have matching corresponding source.
+
+glibc startup and headers — Debian glibc 2.36-8 / cross 2.36-8cross1
+Copyright (C) Free Software Foundation, Inc.; individual years/authors retained
+in the supplied sources. LGPL-2.1-or-later; the ARM start.S/crti.S/crtn.S files
+carry their compiled-linking exception. That exception is file-specific.
+The selected dynamic build embeds crt1.o, crti.o and crtn.o from the pinned
+Debian development package, not from Akai's updater. Full glibc source,
+Debian patches and cross-build wrapper sources accompany the kit, along with
+application source and unstripped objects/maps/commands for rebuilding/relinking.
+See licenses/glibc-COPYING.LIB.txt, licenses/glibc-COPYING.txt and per-file
+notices. The owner's glibc 2.39 shared files remain owner-local and excluded;
+the included glibc 2.36 sources do not describe those unshipped DSOs.
+
+GCC startup/header implementations — GCC 12.2.0-14 / cross 12.2.0-14cross1
+Copyright (C) Free Software Foundation, Inc.; individual years/authors retained
+in the supplied sources. Covered crtstuff.c and C++ headers are GPL-3.0-or-later
+WITH GCC Runtime Library Exception 3.1. Full texts: licenses/GCC-GPL-3.txt and
+licenses/GCC-exception-3.1.txt. The recorded high-level Clang/Zig + LLD build
+is the reviewed eligible compilation route; no blanket exception for other
+files/toolchains is claimed. Exact upstream sources, Debian changes and cross
+wrappers are supplied. The owner's libstdc++/libgcc_s DSOs are not distributed.
+Legacy static development binaries retain their old unresolved provenance and
+are not cleared by this notice.
+
+Clang builtin headers — LLVM 18.1.6 in pinned Zig 0.13.0
+Copyright the LLVM Project contributors; Apache-2.0 WITH LLVM-exception and
+per-file terms. The actual used header sources and full licence text accompany
+the kit. See licenses/LLVM-Apache-2.0-exception.txt. No compiler runtime archive
+is silently linked: the recipe selects the recorded startup objects and
+owner-supplied shared libraries explicitly; maps/commands are retained.
+
+Linux UAPI headers — pinned Debian 6.1.4-1cross1
+Per-file kernel notices and Linux-syscall-note apply. Used header source forms
+are included in development-used-headers.tar.gz; these are userspace API
+interfaces, not a distributed kernel/driver binary. See
+licenses/Linux-syscall-note.txt and original per-file notices.
+
+Excluded from the intended public payload
+Akai kernel/DTB/firmware, updater, stock rootfs, owner-derived loader/initramfs,
+owner-extracted shared libraries/configuration, proprietary apps, third-party
+plugins, proprietary or uncleared sample packs, emulator twin, private logs, credentials and device IDs.
+No Wi-Fi/Bluetooth firmware is currently added to this reviewed session profile.
+Future firmware additions require a separate component and exact licence review.
+
+Additional assets inside the complete XMP source snapshot (not native payload)
+The archived repository also preserves Manrope font files and their full OFL
+notice at brand/abstract-engineering/assets/fonts/OFL.txt, plus NOTICE.md.
+Optional browser sample selections retain CC0/Unlicense notices and provenance
+under apps/studio/public/kits/licenses/ and public/THIRD-PARTY-NOTICES.txt.
+Those assets are not copied into the native session image. Preserve their
+existing notices if redistributing the whole source snapshot; this native
+review does not approve a built browser/website/SDK distribution.
+
+Status
+This draft plus its appended licence texts is a review input. It must be bound
+to an actually rebuilt public candidate and completed before release. It does
+not clear the old static image, a locally assembled owner image or the loader.
+
+Optional factory content in the refreshed candidate
+The template includes the original generated XMP Velvet kit and three optional
+CC0-1.0 sample selections: Octal Deep (12 WAVs), Octal Punch (12 WAVs), and
+Virtuosity Drums (8 selected/processed source recordings). Octal contributors
+and the Virtuosity Drums authors retain their upstream attribution. These
+CC0 selections are distinct from excluded Akai/proprietary sample content.
+The complete CC0 texts, provenance/processing records, exact upstream commit
+URLs and input SHA-256 hashes are in apps/studio/public/kits/licenses/ and
+kits/catalog.json within sources/xmp.tar.gz. The image also carries the kit
+licence/provenance texts. FACTORY-CONTENT.json indexes the reviewed selections.
+Older source-snapshot wording about excluding sample packs is superseded by
+this exact-candidate content inventory; original source snapshots are retained
+verbatim for source identity/rebuild purposes.

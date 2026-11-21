@@ -1,0 +1,26 @@
+node_modules/
+dist/
+dist-hosted/
+build/
+.venv/
+__pycache__/
+.DS_Store
+reports/
+artifacts/
+references/repos/
+references/archives/
+*.local
+.env*
+!.env.example
+
+# Public-source privacy boundary
+.claude/
+.codex/
+output/
+*.jsonl
+*.bundle
+apps/studio/public/manual-media/**/*.mp4
+apps/studio/public/manual-media/**/*.webm
+apps/studio/public/manual-media/*.mp4
+apps/studio/public/manual-media/*.webm
+node_modules

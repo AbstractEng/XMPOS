@@ -1,0 +1,33 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.6.6/schema.json",
+  "files": {
+    "includes": [
+      "**",
+      "!!**/node_modules",
+      "!!**/dist",
+      "!!**/dist-hosted",
+      "!!**/build",
+      "!!**/.venv",
+      "!!**/reports",
+      "!!**/artifacts",
+      "!!references/repos",
+      "!!references/archives",
+      "!!references/lock.json",
+      "!!references/official-g1-sources.json",
+      "!!apps/studio/public/kits/licenses",
+      "!!apps/studio/public/manual-media",
+      "!!**/.cloudflare"
+    ]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended"
+    }
+  }
+}

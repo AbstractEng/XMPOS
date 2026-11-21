@@ -1,0 +1,49 @@
+--- a/hw/usb/dev-audio.c	2026-11-11 21:02:38
++++ b/hw/usb/dev-audio.c	2026-11-11 21:02:38
+@@ -637,6 +637,10 @@
+ struct USBAudioState {
+     /* qemu interfaces */
+     USBDevice dev;
++    /* XMP: per-device descriptor copy, so the USB IDs can be set */
++    USBDesc desc;
++    uint32_t vendorid, productid;
++    char *product, *manufacturer;
+     QEMUSoundCard card;
+ 
+     /* state */
+@@ -948,10 +952,23 @@
+         return;
+     }
+ 
+-    dev->usb_desc = s->multi ? &desc_audio_multi : &desc_audio;
++    s->desc = *(s->multi ? &desc_audio_multi : &desc_audio);
++    if (s->vendorid) {
++        s->desc.id.idVendor = s->vendorid;
++    }
++    if (s->productid) {
++        s->desc.id.idProduct = s->productid;
++    }
++    dev->usb_desc = &s->desc;
+ 
+     usb_desc_create_serial(dev);
+     usb_desc_init(dev);
++    if (s->manufacturer) {
++        usb_desc_set_string(dev, STRING_MANUFACTURER, s->manufacturer);
++    }
++    if (s->product) {
++        usb_desc_set_string(dev, STRING_PRODUCT, s->product);
++    }
+     s->dev.opaque = s;
+ 
+     s->out.altset        = ALTSET_OFF;
+@@ -997,6 +1014,10 @@
+     DEFINE_PROP_UINT32("debug", USBAudioState, debug, 0),
+     DEFINE_PROP_UINT32("buffer", USBAudioState, buffer_user, 0),
+     DEFINE_PROP_BOOL("multi", USBAudioState, multi, false),
++    DEFINE_PROP_UINT32("vendorid", USBAudioState, vendorid, 0),
++    DEFINE_PROP_UINT32("productid", USBAudioState, productid, 0),
++    DEFINE_PROP_STRING("product", USBAudioState, product),
++    DEFINE_PROP_STRING("manufacturer", USBAudioState, manufacturer),
+     DEFINE_PROP_END_OF_LIST(),
+ };
+ 

@@ -1,0 +1,42 @@
+{
+  "identity": "Abstract Engineering · Soft Resonance – Refined",
+  "version": "1.0",
+  "issued": "2026-11-15",
+  "assets": [
+    {
+      "file": "abstract-engineering.svg",
+      "source": "brand/abstract-engineering/assets/logos/svg/abstract-engineering-horizontal-forest.svg",
+      "sha256": "f05a5aeda197de8a24eb75a5c55938130e6e792f4ff8fdbc0e9afe3222cf6a84"
+    },
+    {
+      "file": "ae-mark.svg",
+      "source": "brand/abstract-engineering/assets/logos/svg/ae-mark-forest.svg",
+      "sha256": "aeb78b5609276229e5c0c556ca1335065c656a6db7addc46cfe308696e300505"
+    },
+    {
+      "file": "hero-gesture.svg",
+      "source": "brand/abstract-engineering/assets/artwork/hero-gesture.svg",
+      "sha256": "19e8682703a192e45acf1fefe9fb68344ac3f3914ce091af0f9ab692c6b0d5ae"
+    },
+    {
+      "file": "Manrope-Regular.woff2",
+      "source": "brand/abstract-engineering/assets/fonts/Manrope-Regular.woff2",
+      "sha256": "6cd5531224112c3fa76c8b4ef85b8e18b08eb1acf3523d18f57c5c29116af7af"
+    },
+    {
+      "file": "Manrope-Medium.woff2",
+      "source": "brand/abstract-engineering/assets/fonts/Manrope-Medium.woff2",
+      "sha256": "46c7627e6bc414b6b5ff0370346beddc699fabd8c3e60da84d7e999c68ba87b2"
+    },
+    {
+      "file": "Manrope-SemiBold.woff2",
+      "source": "brand/abstract-engineering/assets/fonts/Manrope-SemiBold.woff2",
+      "sha256": "664a29848cfe1888cbd6206a5db01973d90ab2caf99d9b59bb55b78d505d15e9"
+    },
+    {
+      "file": "OFL.txt",
+      "source": "brand/abstract-engineering/assets/fonts/OFL.txt",
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    }
+  ]
+}

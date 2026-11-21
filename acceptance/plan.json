@@ -1,0 +1,379 @@
+{
+  "version": 1,
+  "source": "Shared XMP conversation and current workspace; Roger Linn primary-source research catalog; external specification review pending",
+  "stages": [
+    {
+      "id": "P01",
+      "title": "Requirements, hardware boundaries and reproducible tools",
+      "dependsOn": [],
+      "feature": "features/01-foundation.feature",
+      "outcome": "A new developer can reproduce the desktop baseline while hardware access remains explicit and bounded.",
+      "substeps": [
+        {
+          "id": "P01.1",
+          "title": "Baseline the requirements",
+          "deliverable": "Versioned requirement IDs, external specification provenance when supplied, V1 inclusions, exclusions and open decisions."
+        },
+        {
+          "id": "P01.2",
+          "title": "Reproduce the development environment",
+          "deliverable": "Pinned Node/Python/native dependencies, toolchain doctor and clean-checkout CI."
+        },
+        {
+          "id": "P01.3",
+          "title": "Record upstream provenance and licences",
+          "deliverable": "Pinned source commits, verified archives, component licence ledger and update review process."
+        },
+        {
+          "id": "P01.4",
+          "title": "Establish target-specific access policies",
+          "deliverable": "Protected Force identity, passive inventory profile and explicit future Live Mk1 lab authorization contract."
+        }
+      ]
+    },
+    {
+      "id": "P02",
+      "title": "Executable acceptance harness and target adapters",
+      "dependsOn": ["P01"],
+      "feature": "features/02-test-harness.feature",
+      "outcome": "One acceptance specification can verify independent desktop, native, booted-OS and authorized USB targets with truthful reports.",
+      "substeps": [
+        {
+          "id": "P02.1",
+          "title": "Build scenario runners and isolated fixtures",
+          "deliverable": "Cucumber bindings, deterministic fixtures, per-scenario worlds, cleanup and process exit propagation."
+        },
+        {
+          "id": "P02.2",
+          "title": "Define target adapters and capability preflight",
+          "deliverable": "Typed adapters, required capabilities, fail-closed target selection and no implicit transport fallback."
+        },
+        {
+          "id": "P02.3",
+          "title": "Capture evidence and qualification results",
+          "deliverable": "JUnit/JSON/HTML reports with build, fixture, profile, timing, logs, screenshots and capture provenance."
+        },
+        {
+          "id": "P02.4",
+          "title": "Integrate CI and stage completion gates",
+          "deliverable": "Plan-to-test traceability, regression lane, required target matrix and failures for undefined/pending/missing evidence."
+        }
+      ]
+    },
+    {
+      "id": "P03",
+      "title": "Project model, assets and universal parameters",
+      "dependsOn": ["P02"],
+      "feature": "features/03-projects.feature",
+      "outcome": "A musician can reopen a complete project with stable track, clip, scene, asset and parameter identities.",
+      "substeps": [
+        {
+          "id": "P03.1",
+          "title": "Version and migrate the musical project model",
+          "deliverable": "Eight independent tracks, sixteen scenes, validated references, migrations and explicit resource bounds."
+        },
+        {
+          "id": "P03.2",
+          "title": "Create the parameter registry",
+          "deliverable": "Stable IDs, ranges, units, smoothing and precedence of base values, automation, locks, macros and modulation."
+        },
+        {
+          "id": "P03.3",
+          "title": "Manage portable sample assets",
+          "deliverable": "Content-addressed assets, bounded decoding, relative references, missing-file resolution and portable bundles."
+        },
+        {
+          "id": "P03.4",
+          "title": "Make editing and persistence recoverable",
+          "deliverable": "Transactional save, autosave, recovery snapshots and undo/redo across all project edits.",
+          "designPrinciples": ["LD08"]
+        }
+      ]
+    },
+    {
+      "id": "P04",
+      "title": "Native audio host and deterministic transport",
+      "dependsOn": ["P03"],
+      "feature": "features/04-audio-engine.feature",
+      "outcome": "The audio engine runs independently of the UI with bounded real-time processing and measurable output.",
+      "substeps": [
+        {
+          "id": "P04.1",
+          "title": "Implement the bounded native engine",
+          "deliverable": "Audio graph, prepared buffers, sample ownership, voice stealing and allocation/lock instrumentation.",
+          "designPrinciples": ["LD08"]
+        },
+        {
+          "id": "P04.2",
+          "title": "Implement the clock and event scheduler",
+          "deliverable": "Sample-timestamped events, tempo changes, transport start/stop and deterministic offline/live ordering.",
+          "designPrinciples": ["LD03", "LD05"]
+        },
+        {
+          "id": "P04.3",
+          "title": "Separate UI and engine processes",
+          "deliverable": "Versioned bounded IPC, command validation, backpressure, state snapshots and UI restart recovery.",
+          "designPrinciples": ["LD05"]
+        },
+        {
+          "id": "P04.4",
+          "title": "Integrate host audio backends",
+          "deliverable": "Mac/Linux audio interfaces, rate negotiation, underrun monitoring, disconnect handling and loopback measurements."
+        }
+      ]
+    },
+    {
+      "id": "P05",
+      "title": "Playable sampling, synthesis and audio capture",
+      "dependsOn": ["P04"],
+      "feature": "features/05-instruments.feature",
+      "outcome": "A musician can select audio/MIDI machines per track, sample an input, build a kit, play a synth and resample the result in the Mac preview; OS/USB qualification remains separate.",
+      "substeps": [
+        {
+          "id": "P05.1",
+          "title": "Complete the sampler and browser",
+          "deliverable": "Sixteen velocity-sensitive pads, preview, one-shot/gate/loop playback, chromatic pitch and choke groups. Playable defaults and explicitly declared velocity/pressure capabilities. Extensible audio/MIDI track-machine identities, versioned state, parameter metadata, trusted factories and unavailable-machine preservation.",
+          "designPrinciples": ["LD01", "LD04"]
+        },
+        {
+          "id": "P05.2",
+          "title": "Add non-destructive waveform editing",
+          "deliverable": "Trim, crop, reverse, normalize and manual slicing with visible waveform boundaries and undo.",
+          "designPrinciples": ["LD07", "LD08"]
+        },
+        {
+          "id": "P05.3",
+          "title": "Implement the first synthesizer",
+          "deliverable": "Bounded polyphonic subtractive synth, ADSR, filter, voice release, preset browser and recall.",
+          "designPrinciples": ["LD07"]
+        },
+        {
+          "id": "P05.4",
+          "title": "Record and resample audio",
+          "deliverable": "Explicit input arming, monitoring, bounded recording, internal resampling and interrupted-take recovery."
+        }
+      ]
+    },
+    {
+      "id": "P06",
+      "title": "Sequencing, expression and automation",
+      "dependsOn": ["P05"],
+      "feature": "features/06-sequencer.feature",
+      "outcome": "A musician can record and edit expressive patterns with predictable automation and note lifetimes.",
+      "substeps": [
+        {
+          "id": "P06.1",
+          "title": "Complete step and real-time note entry",
+          "deliverable": "Sixteen to sixty-four steps, polyphonic notes, note lengths, quantization, duplicate/copy and recording. Preserve original timestamps and velocity; reversible timing correction and pressure-aware clocked note repeat with fixed-velocity fallback.",
+          "designPrinciples": ["LD01", "LD03", "LD04"]
+        },
+        {
+          "id": "P06.2",
+          "title": "Add groove and per-step variation",
+          "deliverable": "Swing, microtiming, seeded probability and explicit conditional-trigger semantics. Musical swing ratios with exact triplets, reversible take rendering and acknowledged native boundary changes without clock restart.",
+          "designPrinciples": ["LD02", "LD03", "LD05"]
+        },
+        {
+          "id": "P06.3",
+          "title": "Add parameter locks and modulation",
+          "deliverable": "Per-step locks, defined release/reset rules, LFO/macros and parameter-source precedence."
+        },
+        {
+          "id": "P06.4",
+          "title": "Record and edit automation",
+          "deliverable": "Touch/latch/write modes, automation lanes, undo and transport-safe note/automation reset."
+        }
+      ]
+    },
+    {
+      "id": "P07",
+      "title": "Scenes, arrangement and live performance",
+      "dependsOn": ["P06"],
+      "feature": "features/07-performance.feature",
+      "outcome": "A complete eight-track, sixteen-scene song can be composed, performed, saved and replayed.",
+      "substeps": [
+        {
+          "id": "P07.1",
+          "title": "Launch independent clips and scenes",
+          "deliverable": "Eight-track scene grid, queued launch/cancel, clip-relative start and explicit empty-slot behavior."
+        },
+        {
+          "id": "P07.2",
+          "title": "Build scene chains and song mode",
+          "deliverable": "Scene order, repeat counts, pattern lengths, reliable transitions and song position recall.",
+          "designPrinciples": ["LD07"]
+        },
+        {
+          "id": "P07.3",
+          "title": "Add performance controls",
+          "deliverable": "Mute/solo, macro assignments, note cleanup and predictable tail behavior during transitions.",
+          "designPrinciples": ["LD05"]
+        },
+        {
+          "id": "P07.4",
+          "title": "Complete touch and hardware-oriented workflows",
+          "deliverable": "Seven-inch layouts, consistent pad/encoder/transport mappings, focus behavior and accessible error recovery. Contextual Help with focus recovery and no project/transport mutation.",
+          "designPrinciples": ["LD05", "LD06"]
+        }
+      ]
+    },
+    {
+      "id": "P08",
+      "title": "Mixing, effects, MIDI and exchange",
+      "dependsOn": ["P07"],
+      "feature": "features/08-mix-midi-export.feature",
+      "outcome": "A musician can mix a song, synchronize external equipment and export audio and MIDI without state loss.",
+      "substeps": [
+        {
+          "id": "P08.1",
+          "title": "Build the mixer and routing graph",
+          "deliverable": "Volume/pan, two inserts per track, two shared sends, master bus, metering and route validation."
+        },
+        {
+          "id": "P08.2",
+          "title": "Implement the V1 effect set",
+          "deliverable": "EQ/filter/delay/reverb/distortion/compressor, presets, bypass behavior and bounded processing costs. Playable rhythmic presets with clock-synchronized divisions, explicit phase and clock-loss policies.",
+          "designPrinciples": ["LD07"]
+        },
+        {
+          "id": "P08.3",
+          "title": "Integrate MIDI ports and clock",
+          "deliverable": "Explicit port routing, input/output, transport/clock sync, reconnect and stuck-note recovery on approved fixtures."
+        },
+        {
+          "id": "P08.4",
+          "title": "Export portable audio and MIDI",
+          "deliverable": "Stereo song/scene WAV and MIDI files with timing, tails, overwrite handling and round-trip checks."
+        }
+      ]
+    },
+    {
+      "id": "P09",
+      "title": "Community SDK, packages and application isolation",
+      "dependsOn": ["P04", "P08"],
+      "feature": "features/09-sdk.feature",
+      "outcome": "A developer can build, test, package and install an original instrument without rebuilding the OS.",
+      "substeps": [
+        {
+          "id": "P09.1",
+          "title": "Stabilize application and DSP contracts",
+          "deliverable": "Versioned TypeScript/native APIs, manifests, parameter metadata and compatibility negotiation. Stable note identity and negotiated optional per-note expression, without implying MIDI/MPE conformance. Extend the P05 machine envelope with reviewed native/VST/CV/input-bus host adapters and explicit isolation/compatibility contracts.",
+          "designPrinciples": ["LD04", "LD06"]
+        },
+        {
+          "id": "P09.2",
+          "title": "Ship examples and local developer tools",
+          "deliverable": "Instrument/effect templates, simulator previews, build/package commands, docs and AI coding guidance."
+        },
+        {
+          "id": "P09.3",
+          "title": "Validate and manage packages",
+          "deliverable": "Integrity, ABI/dependency/licence checks, project-aware upgrades and transactional package rollback."
+        },
+        {
+          "id": "P09.4",
+          "title": "Contain application failures",
+          "deliverable": "UI process isolation, least-privilege capabilities, resource limits and a documented trusted-native-plugin policy.",
+          "designPrinciples": ["LD08"]
+        }
+      ]
+    },
+    {
+      "id": "P10",
+      "title": "Standalone bootable XMP operating system",
+      "dependsOn": ["P09"],
+      "feature": "features/10-standalone-os.feature",
+      "outcome": "XMP boots and makes music without a development server, network connection or attached computer.",
+      "substeps": [
+        {
+          "id": "P10.1",
+          "title": "Choose the Linux distribution and reproducible image pipeline",
+          "deliverable": "Architecture-specific rootfs, pinned recipes, source/SBOM manifests and vendor-component inventory."
+        },
+        {
+          "id": "P10.2",
+          "title": "Implement boot and service lifecycle",
+          "deliverable": "Audio/application startup, persistent data layout, watchdogs, clean shutdown and boot diagnostics. A playable default kit and first-beat journey without setup wizards, measured on the booted image.",
+          "designPrinciples": ["LD01"]
+        },
+        {
+          "id": "P10.3",
+          "title": "Qualify the image in an emulator",
+          "deliverable": "Generic QEMU machine, virtual audio/control adapters, headless tests, UI tests and fault-injection snapshots."
+        },
+        {
+          "id": "P10.4",
+          "title": "Package offline operation and diagnostics",
+          "deliverable": "On-image content/SDK metadata, offline projects, optional disabled-by-default lab agent and local diagnostic export."
+        }
+      ]
+    },
+    {
+      "id": "P11",
+      "title": "Live Mk1 bring-up and USB-connected hardware tests",
+      "dependsOn": ["P01", "P02", "P10"],
+      "feature": "features/11-usb-hardware.feature",
+      "outcome": "A specifically authorized Live Mk1 running deployed XMP can be qualified from the computer over USB and keep playing when disconnected.",
+      "substeps": [
+        {
+          "id": "P11.1",
+          "title": "Prove the device, boot and recovery prerequisites",
+          "deliverable": "Exact model/firmware mapping, stock-hardware evidence, recovery plan and supported USB topology; Force remains inventory-only."
+        },
+        {
+          "id": "P11.2",
+          "title": "Integrate Live Mk1 hardware adapters",
+          "deliverable": "Verified internal audio, pad velocity, touch, encoders, transport, MIDI, battery and storage adapters. Qualify optional sensor dimensions individually rather than inferring pressure or gesture support.",
+          "designPrinciples": ["LD04"]
+        },
+        {
+          "id": "P11.3",
+          "title": "Deploy an opt-in lab agent and authenticated USB transport",
+          "deliverable": "Reviewed device-specific deployment followed by an isolated USB link, target/build attestation, typed commands and bounded fixture storage."
+        },
+        {
+          "id": "P11.4",
+          "title": "Run hardware qualification and USB failure tests",
+          "deliverable": "Shared musical contracts, actual control/audio measurements, disconnect/reconnect, target-swap prevention and standalone operation checks."
+        }
+      ]
+    },
+    {
+      "id": "P12",
+      "title": "Reliability, recovery, updates and V1 release",
+      "dependsOn": ["P10", "P11"],
+      "feature": "features/12-release.feature",
+      "outcome": "An independently reproducible V1 release has passing standalone and hardware evidence and a recoverable update path.",
+      "substeps": [
+        {
+          "id": "P12.1",
+          "title": "Qualify performance and long sessions",
+          "deliverable": "Declared workload, eight-hour soak, latency/jitter/memory budgets and measured overload behavior.",
+          "designPrinciples": ["LD08"]
+        },
+        {
+          "id": "P12.2",
+          "title": "Test project and system recovery",
+          "deliverable": "VM fault injection, corrupt-data handling, restore drills and any separately authorized hardware recovery rehearsal.",
+          "designPrinciples": ["LD08"]
+        },
+        {
+          "id": "P12.3",
+          "title": "Build reversible updates and release artifacts",
+          "deliverable": "Verified images/packages, compatibility checks and transactional update/rollback suited to the verified boot layout."
+        },
+        {
+          "id": "P12.4",
+          "title": "Complete musician and developer release journeys",
+          "deliverable": "Offline install/create/perform/save/export/module-install journeys, documentation and a signed-off evidence/redistribution checklist."
+        }
+      ]
+    }
+  ],
+  "instrumentDesign": {
+    "charter": "docs/instrument-design.md",
+    "sources": "references/design-sources.json",
+    "implementedContracts": "features/13-instrument-design.feature",
+    "status": "Design input and explicitly planned capability requirements; no hardware or MPE qualification"
+  }
+}

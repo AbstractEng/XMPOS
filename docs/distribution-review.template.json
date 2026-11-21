@@ -1,0 +1,82 @@
+{
+  "format": "xmp-live-mk1-distribution-review",
+  "version": 1,
+  "status": "pending",
+  "releaseVersion": null,
+  "target": "inmusic,acv8",
+  "sourceHash": null,
+  "sessionManifestSha256": null,
+  "installationSha256": null,
+  "updaterImageSha256": null,
+  "reviewReference": null,
+  "proprietaryAkaiAssets": "unreviewed",
+  "staticLinkingAndCorrespondingSourceReview": "pending",
+  "components": [
+    {
+      "id": "xmp",
+      "version": null,
+      "license": null,
+      "source": null,
+      "sourcePath": "sources/xmp.tar.gz",
+      "sourceSha256": null
+    },
+    {
+      "id": "libc-startup",
+      "version": null,
+      "license": null,
+      "source": null,
+      "sourcePath": "sources/glibc-startup.tar.gz",
+      "sourceSha256": null
+    },
+    {
+      "id": "gcc-runtime",
+      "version": null,
+      "license": null,
+      "source": null,
+      "sourcePath": "sources/gcc-runtime.tar.gz",
+      "sourceSha256": null
+    },
+    {
+      "id": "inter",
+      "version": null,
+      "license": null,
+      "source": null,
+      "sourcePath": "sources/inter.tar.gz",
+      "sourceSha256": null
+    },
+    {
+      "id": "jetbrains-mono",
+      "version": null,
+      "license": null,
+      "source": null,
+      "sourcePath": "sources/jetbrains-mono.tar.gz",
+      "sourceSha256": null
+    }
+  ],
+  "files": {
+    "system.img": {
+      "sha256": null,
+      "bytes": null
+    },
+    "THIRD-PARTY-NOTICES.txt": {
+      "sha256": null,
+      "bytes": null
+    },
+    "corresponding-source.tar.gz": {
+      "sha256": null,
+      "bytes": null
+    },
+    "INSTALL.md": {
+      "sha256": null,
+      "bytes": null
+    },
+    "RECOVERY.md": {
+      "sha256": null,
+      "bytes": null
+    },
+    "LICENSE": {
+      "sha256": null,
+      "bytes": null
+    }
+  }
+}

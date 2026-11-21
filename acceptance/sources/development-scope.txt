@@ -1,0 +1,8 @@
+Community development scope
+
+Use the Mac, browser and emulator for ordinary development. Real instrument
+operations require the device owner's explicit authorization and the guarded
+repository tools. Flashing remains an owner-operated, rootfs-only procedure.
+Force and unqualified MPC models are excluded. Requirements are defined by
+project-requirements.txt, versioned design documents and acceptance features.
+No external attachment is an implicit build or acceptance input.
