@@ -1,7 +1,7 @@
 {
   "format": "xmp-hardware-compatibility",
   "version": 1,
-  "updated": "2026-11-16",
+  "updated": "2026-11-21",
   "publicInstallationCleared": false,
   "runtimeLock": "os/live-mk1/mpc-runtime.lock.json",
   "baseline": {
@@ -15,7 +15,7 @@
       "id": "live-mk1",
       "name": "MPC Live Mk1",
       "board": "inmusic,acv8",
-      "status": "Hardware-tested candidate; public installation pending",
+      "status": "Developer prerelease; Intel install/recovery verified",
       "ownerRehearsalTarget": true,
       "firmware": "3.10.1 only",
       "platform": "Gen 1 / RK3288 / ARM hard-float",
@@ -80,7 +80,7 @@
     "osVersion": "13.4.1",
     "nodeMajor": 24,
     "observed": "Intel macOS 13.4.1, Node 24.14.0, Python 3.11, Zig 0.13.0, mke2fs 1.47.2",
-    "scope": "Dynamic host build and owner-local assembly observed. Clean complete installation rehearsal pending. Other macOS versions, Apple Silicon and Linux installers unqualified; SDK host support is separate."
+    "scope": "Intel Mac exact owner installation, play/save/reopen, stock handover and full restoration passed. Native Apple Silicon automated host checks passed; laptop test pending. Windows physical driver/flash pending. SDK host support is separate."
   },
   "storage": {
     "filesystem": "vfat",

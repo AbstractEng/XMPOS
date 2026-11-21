@@ -1,13 +1,16 @@
 # Gate 5: community source and release access
 
-The community source home is [AbstractEng/XMPOS](https://github.com/AbstractEng/XMPOS).
-It was initialized from the audited file tree with fresh history. The earlier
-mirror and hardware artifacts are separate from this source release.
+The audited, fresh-history community repository is public at
+[AbstractEng/XMPOS](https://github.com/AbstractEng/XMPOS).
+The [installer developer prerelease](https://github.com/AbstractEng/XMPOS/releases/tag/v0.1.0-dev.20261121.2) includes Intel Mac, native Apple Silicon
+Mac and Windows x64 kits, exact sources/notices, checksums and verification records.
+The older mirror remains private under its separate purge hold.
 
-See [release information](../../RELEASE.md), [contribution guidance](../../CONTRIBUTING.md)
-and the [media record](../assets/readme/hardware-video.json). The `showcase` media
-release contains the full hardware demonstration and its checksum, not an installer.
+Intel Mac owner installation/play/save/reopen/restoration passed. Apple Silicon
+native automated checks passed; laptop testing is pending. Windows physical
+qualification remains pending. See [release information](../../RELEASE.md).
 
-When publishing, verify signed-out access to source, README images, issues/PRs,
-manual links and the actual video download. Hardware downloads remain a separate
-Gate 1 decision with exact-file review and physical installation/recovery evidence.
+Contributors fork and submit pull requests; @sandeshm is the required code owner
+and only allowed pusher to protected main. Verify anonymous access to source,
+README assets and each installer after publication. Raw owner evidence, Akai
+firmware and owner-local runtime images stay private.

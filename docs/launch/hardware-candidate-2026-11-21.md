@@ -4,7 +4,7 @@
 0.1.0-dev.20261121.2 installer packages. Intel Mac owner installation, playback,
 save/reopen, stock handover and full restoration passed. Native Apple Silicon
 and Windows packages passed automated host flows; their physical qualification
-is separate. The new downloads remain draft.
+is separate. The downloads are published as a developer prerelease with owner approval.
 
 [HARDWARE-CANDIDATE.json](../../HARDWARE-CANDIDATE.json) is an older preparation
 snapshot. Use [release status](../../RELEASE.md) for current availability and

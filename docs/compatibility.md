@@ -1,13 +1,13 @@
 # Hardware compatibility and installation preflight
 
-This is the candidate policy, not an invitation to install a development image. The canonical record is `os/compatibility.json`. The runtime file hashes remain in `os/live-mk1/mpc-runtime.lock.json`; builders reject disagreement between these records. Regenerate these tables with `npm run compatibility:docs`; `npm run compatibility:docs:check` and the unit suite reject stale copies.
+The developer prerelease is available through the reviewed graphical installer. The canonical record is `os/compatibility.json`. The runtime file hashes remain in `os/live-mk1/mpc-runtime.lock.json`; builders reject disagreement between these records. Regenerate these tables with `npm run compatibility:docs`; `npm run compatibility:docs:check` and the unit suite reject stale copies.
 
 <!-- BEGIN GENERATED COMPATIBILITY -->
-Public hardware installation is not yet cleared. Live Mk1 is the tested candidate; One models are planned ports.
+Developer prerelease available for Live Mk1. See release status for installer host qualification. One models are planned ports.
 
 | Model              | Board         | Status                                                            | Starting firmware                                          |
 | ------------------ | ------------- | ----------------------------------------------------------------- | ---------------------------------------------------------- |
-| MPC Live Mk1       | inmusic,acv8  | Hardware-tested candidate; public installation pending            | 3.10.1 only                                                |
+| MPC Live Mk1       | inmusic,acv8  | Developer prerelease; Intel install/recovery verified             | 3.10.1 only                                                |
 | MPC One (original) | inmusic,acva  | Planned port; installation disabled; no XMP hardware tests        | Gen 1 3.10.1 proposed; not qualified                       |
 | MPC One+           | inmusic,acva2 | Planned port; installation disabled; no XMP hardware tests        | Gen 1 3.10.1 proposed; not qualified                       |
 | MPC One G2         | Unverified    | Separate Gen 2 port; installation disabled; no XMP hardware tests | Separate Gen 2 firmware family; never use this Gen 1 image |
@@ -38,7 +38,7 @@ npm run live:preflight -- reports/my-install-observations.json
 
 The checked-in example deliberately fails. Null capacity and false review flags represent missing evidence, not values to change to make the command pass. `loaderBytes` must come from the exact verified loader manifest. For first use, `firstUseOwnerConfirmationPlanned: true` records that the owner will enrol the actual unit through the flash tool's typed prompt; it does not claim an existing serial pin. Subsequent operations must match that pin. Legacy firmware-only records also need owner enrolment. Keep private receipts under ignored `reports/`, with no serials or hostnames committed.
 
-The preflight reads a bounded local JSON file and local host metadata only. It never discovers, connects to, opens, mounts, formats, flashes or queries an instrument. It checks model, firmware, board/revision, pinned identity observation, bootloader, rootfs capacity, supplied updater verification observations, USB layout/space, host profile, workspace, power/cable and recovery preparation. It reports specific stops and a compatibility-record hash. Exit 0 means supplied observations match the candidate profile; **publicInstallationAllowed remains false**. Supplied observations are not authenticated evidence. Existing updater signature/hash checks, flash-tool device identity/capacity checks and owner-only typed confirmations still apply. This does not gate stock restoration or separately authorized MPC plugins.
+The preflight reads a bounded local JSON file and local host metadata only. It never discovers, connects to, opens, mounts, formats, flashes or queries an instrument. It checks model, firmware, board/revision, pinned identity observation, bootloader, rootfs capacity, supplied updater verification observations, USB layout/space, host profile, workspace, power/cable and recovery preparation. It reports specific stops and a compatibility-record hash. Exit 0 means supplied observations match the candidate profile; **publicInstallationAllowed remains false** in this legacy offline helper: it never authorizes a release or device write. Use the published GUI route and its authenticated updater/same-unit checks. Supplied observations are not authenticated evidence. Existing updater signature/hash checks, flash-tool device identity/capacity checks and owner-only typed confirmations still apply. This does not gate stock restoration or separately authorized MPC plugins.
 
 The README, manual, release-notes draft and product-page HTML fragment share the generated matrix. `docs/launch/product-compatibility.html` is local copy for the future product page; publication/route integration remains R13. No website was deployed by R02.
 

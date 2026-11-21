@@ -1,10 +1,10 @@
 # MPC Live Mk1: local preparation and first installation
 
-**Private release staging.** Use only a candidate with matching distribution, compatibility, bridge and installation evidence. Publication remains on hold until the owner releases it. Agents do not flash. The owner's execution boundary is in `AGENTS.md`.
+**Developer prerelease available.** Download the complete matching kit from [GitHub](https://github.com/AbstractEng/XMPOS/releases/tag/v0.1.0-dev.20261121.2). Use only a candidate with matching distribution, compatibility, bridge and installation evidence. Agents do not flash. The owner's execution boundary is in `AGENTS.md`.
 
 ## What is downloaded and what stays local
 
-The complete private GUI kits are listed in [current release status](../RELEASE.md#staged-hardware-downloads). Extract the entire kit and start with `START-HERE.txt`. They include the embedded template, installer, source/notices and offline instructions. These private installer kits are separate from the fixed eight-file template pack below; neither staging nor a GUI simulation supplies current physical clearance.
+The complete GUI kits are listed in [current release status](../RELEASE.md#staged-hardware-downloads). Extract the entire kit and start with `START-HERE.txt`. They include the embedded template, installer, source/notices and offline instructions. These installer kits are separate from the fixed eight-file template pack below; neither staging nor a GUI simulation supplies current physical clearance.
 
 A public XMP package may contain only the reviewed XMP `system.img`, corresponding source, third-party notices, these instructions, the XMP licence, a release manifest and checksums. The package builder requires review records bound to those exact bytes and current owner installation/recovery observations. A `containsVendorFiles: false` flag is not a redistribution approval: the legacy development session statically links third-party software and includes licensed fonts. That static image is blocked from public packaging. The selected public template must use the owner-local dynamic runtime profile.
 
@@ -18,7 +18,7 @@ The Intel Mac installer prepares **both** the removable FAT32 USB key and the
 local loader/recovery files, then asks the owner to install the loader. No
 terminal, Docker or separate Python/Node installation is needed. Windows x64
 has the same interface but remains a preview: physical Windows USB driver and
-flash qualification has not been performed. Apple Silicon is unqualified.
+flash qualification has not been performed. Native Apple Silicon macOS 13.5+ passed automated host checks; laptop testing is pending.
 
 1. Save work and back up the Live and USB key. Start the Live in official
    **3.10.1**, with the XMP key out. Obtain the matching official updater yourself.
@@ -111,7 +111,7 @@ This creates `xmp/bridge.token` with a fresh per-stick secret, or reconnects usi
 
 ## Owner-only first install
 
-The private graphical installer prepares both the USB key and the MPC loader. On Intel macOS, double-click `artifacts/installer/XMP OS Installer.app`. The Windows x64 preview uses `XMP OS Installer.exe` beside its resources folder; physical Windows driver/flash qualification is pending. No terminal, Python, Node or Docker installation is required on the owner's computer.
+The graphical installer prepares both the USB key and the MPC loader. On Intel macOS, double-click `artifacts/installer/XMP OS Installer.app`. The Windows x64 preview uses `XMP OS Installer.exe` beside its resources folder; physical Windows driver/flash qualification is pending. No terminal, Python, Node or Docker installation is required on the owner's computer.
 
 For a fresh key, USB preparation adds **Acid Circuit**, the original 128 BPM acid-house demo. After boot, press **PLAY** to hear its complete arrangement. Existing startup projects, legacy patterns, edit journals and recovery saves are preserved; named projects and samples are never replaced.
 
@@ -120,9 +120,9 @@ For a fresh key, USB preparation adds **Acid Circuit**, the original 128 BPM aci
 3. Accept Google's linked terms and click **Install connection tools**. This installs computer communication tools, not files on the key or MPC.
 4. With the key out and the Live in documented update mode, click **Check Live and image**. Review the operation, check the owner acknowledgements and type **XMPOS**. Click **Install loader** yourself. This step writes only the MPC's rootfs; it does not write the USB key. First-use identity pinning happens under the same confirmation; there is no second typed phrase.
 
-Each stage names its destination and shows an animated activity indicator; USB copying also reports measured byte progress. Installation and stock recovery delegate to the guarded flash tool; agents never click a real write. The Mac preview is ad-hoc signed and Windows is unsigned. Public component/source clearance and platform signing remain open. Owner-generated loader, recovery and runtime-bearing images must stay private. See `tools/live-mk1/installer/REBUILD.md` and `docs/launch/gate-1-owner-checklist.md`.
+Each stage names its destination and shows an animated activity indicator; USB copying also reports measured byte progress. Installation and stock recovery delegate to the guarded flash tool; agents never click a real write. The Mac preview is ad-hoc signed and Windows is unsigned. Component/source clearance passed; formal platform signing remains follow-up. Owner-generated loader, recovery and runtime-bearing images must stay private. See `tools/live-mk1/installer/REBUILD.md` and `docs/launch/gate-1-owner-checklist.md`.
 
-Bootloader 0.4 on the observed Live returns “Variable not implemented” for `product` and `partition-size:rootfs`, sometimes with exit status zero. The flash tool treats `FAILED` as failure regardless of exit status. For these two explicitly unimplemented queries, a private hash-verified saved boot report may establish this same unit's ACV8/RK3288 identity and measured mounted-rootfs capacity. The report's serial must match the currently connected unit, and the bootloader must still be 0.4. Unknown units, missing or changed evidence, conflicting reported values and transport failures still stop. No universal capacity or guessed product is substituted. The report and receipt stay outside the app and public archives. A general first-install route for units without saved measurements remains to be qualified before public installer distribution.
+Bootloader 0.4 on the observed Live returns “Variable not implemented” for `product` and `partition-size:rootfs`, sometimes with exit status zero. The flash tool treats `FAILED` as failure regardless of exit status. For these two explicitly unimplemented queries, the GUI's fixed read-only stock verifier measures the same unit on exactly MPC OS 3.10.1 before update mode, then binds its hashed identity and measured rootfs capacity to the fastboot serial. This first-install route does not require a borrowed profile or a previous XMP installation. The matching owner rehearsal passed on the Intel Mac route. Unknown units without valid same-unit verification, changed evidence, conflicting values and transport failures still stop. No universal capacity or guessed product is substituted. Profiles, receipts and raw logs stay private.
 
 The following CLI route remains available for developers:
 

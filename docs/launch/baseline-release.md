@@ -14,7 +14,7 @@ preview; One/One+ are planned ports; One G2 is separate; Force is excluded.
 
 **Passed for the current Intel Mac route.** Exact identities and platform limits
 are recorded in [INSTALLER-CANDIDATE.json](../../INSTALLER-CANDIDATE.json).
-All installer downloads remain draft.
+Installer downloads are published as a developer prerelease with owner approval.
 
 - [x] Stage XMP-only template, both installer kits, notices, corresponding source
   and checksums privately. Verify every kit member and uploaded file digest.
@@ -77,20 +77,20 @@ packaged source/notices; this is not a new physical rehearsal.
 
 ### 5. Make it accessible — R13, R14
 
-**Community source prepared in the fresh XMPOS repository.** [Gate 5](gate-5.md)
+**Community source and installer prerelease are public in the fresh XMPOS repository.** [Gate 5](gate-5.md)
 separates source/media access from the pending hardware release.
 
 - [x] Audit the fresh-history community source and stage complete hardware kits
   with notices/source, essential docs, known issues and checksum ledgers.
-- [ ] After clearance and separate publication approval, publish the cleared
+- [x] After clearance and separate publication approval, publish the cleared
   source/artifact set and verify actual anonymous links, size/hash/content type.
 
 ## Maintainer go decision — no separate R number
 
 This is the final approval after the five gates, not a sixth engineering gate.
 
-- [ ] Review current evidence and known issues, authorize publication, name who
-  watches initial reports and retain a way to withdraw a bad download.
+- [x] Owner authorized publication after reviewing the current scope. The maintainer
+  watches initial GitHub issues and retains control of release withdrawal.
 
 Dates do not waive redistribution, installation/recovery, device guards or known
 unsafe behavior. Recheck affected paths when candidate bytes change; reuse only

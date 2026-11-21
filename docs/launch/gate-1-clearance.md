@@ -12,6 +12,6 @@ flow checks; its laptop test is pending. Windows passed packaged automated flow
 checks; physical driver/flash qualification is pending. Neither result is claimed
 as another physical installation rehearsal.
 
-**All new installer downloads remain draft.** Public source access is already
+**Installer downloads are published as a developer prerelease with owner approval.** Public source access is already
 available. See [release status](../../RELEASE.md) for platform scope and signing
 limits. Akai updater/rootfs/runtime files remain owner-supplied and local.

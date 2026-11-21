@@ -26,7 +26,7 @@ The source includes the graphical installation and USB-preparation tooling.
 The Intel Mac package passed owner installation, playback, save/reopen, stock
 handover and full restoration on 21 November. Native Apple Silicon and Windows
 packages passed their automated host flows; their physical qualification is
-separate. All new installer downloads remain draft. [Release information](../../RELEASE.md)
+separate. The installer downloads are published as a developer prerelease. [Release information](../../RELEASE.md)
 tracks hardware availability. Owners independently supply the signed official
 updater; Akai-derived files and owner images stay local.
 
@@ -56,11 +56,11 @@ with the release; older candidate observations remain scoped to their exact buil
 <summary><strong>Full hardware compatibility reference</strong></summary>
 
 <!-- BEGIN GENERATED COMPATIBILITY -->
-Public hardware installation is not yet cleared. Live Mk1 is the tested candidate; One models are planned ports.
+Developer prerelease available for Live Mk1. See release status for installer host qualification. One models are planned ports.
 
 | Model              | Board         | Status                                                            | Starting firmware                                          |
 | ------------------ | ------------- | ----------------------------------------------------------------- | ---------------------------------------------------------- |
-| MPC Live Mk1       | inmusic,acv8  | Hardware-tested candidate; public installation pending            | 3.10.1 only                                                |
+| MPC Live Mk1       | inmusic,acv8  | Developer prerelease; Intel install/recovery verified             | 3.10.1 only                                                |
 | MPC One (original) | inmusic,acva  | Planned port; installation disabled; no XMP hardware tests        | Gen 1 3.10.1 proposed; not qualified                       |
 | MPC One+           | inmusic,acva2 | Planned port; installation disabled; no XMP hardware tests        | Gen 1 3.10.1 proposed; not qualified                       |
 | MPC One G2         | Unverified    | Separate Gen 2 port; installation disabled; no XMP hardware tests | Separate Gen 2 firmware family; never use this Gen 1 image |

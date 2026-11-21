@@ -41,7 +41,7 @@ The Intel macOS installer completed its owner-operated Live Mk1 rehearsal on
 the key and full restoration to 3.10.1 passed. The unchanged distribution check
 also passed against the matching private evidence and component/source bundle.
 
-The **0.1.0-dev.20261121.2 installer kits remain draft**, as requested. They include
+The [**0.1.0-dev.20261121.2 installer kits are available on GitHub**](https://github.com/AbstractEng/XMPOS/releases/tag/v0.1.0-dev.20261121.2). They include
 the MENU fix and prepare **Acid Circuit** on a fresh USB key: boot XMP and press
 **PLAY** to hear the song. Existing startup projects, recovery files, named
 projects and samples are preserved. Fresh-key demo playback passed the shared
@@ -62,8 +62,7 @@ have different installer source hashes; the XMP session template is shared.
 Each owner supplies the signed official **3.10.1 updater** independently. Build
 and assembly tooling produces the loader, stock recovery and runtime-bearing USB
 image locally. Akai updater/rootfs/runtime files, owner images and verification
-profiles are not repository or media-release downloads. The public media release contains the demonstration video. The new installer
-downloads remain draft until a separate publication decision.
+profiles are not repository or media-release downloads. The public media release contains the demonstration video. The installer prerelease is published with owner approval.
 
 Read [installation](docs/install-live-mk1.md), [recovery](docs/recover-live-mk1.md),
 [compatibility](docs/compatibility.md), [known issues](docs/known-issues.md) and
