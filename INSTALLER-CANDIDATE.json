@@ -1,0 +1,55 @@
+{
+  "format": "xmp-installer-candidate",
+  "version": 1,
+  "releaseVersion": "0.1.0-dev.20261121.2",
+  "publication": "draft hold retained",
+  "target": "inmusic,acv8",
+  "startingMpcOs": "3.10.1",
+  "sessionSourceCommit": "0836d4ab7b66f53a021efbc907ad427949e92378",
+  "sessionSourceHash": "f8892d5e7f4ccd777d20c9f8b527e0df25bf8791c757f6c5d81bdaa126e531bb",
+  "templateSha256": "24c58f90de248b9c21394f2519003a80cc795f0c490e20c7cc40b4a34e799b5a",
+  "loaderInitSha256": "56397ac125fe067dda7f62fc8d428784b52cc26a13c6cdad893ffff85cd62225",
+  "firstBootDemo": {
+    "name": "Acid Circuit",
+    "sha256": "5b98138fcf7e4cf38cfc57edd7cf1ca72fee85de76c127e7755ec3727947de80",
+    "existingProjectsPreserved": true,
+    "sharedNativePlaybackTest": "passed; complete song and stop",
+    "freshKeyPhysicalPlayback": "not claimed; rehearsal preserved existing startup project"
+  },
+  "platforms": {
+    "macOS-Intel": {
+      "installerSourceCommit": "944d6c3d6aae728fdfa609bd8b8dcfc6371fb43d",
+      "installerSourceHash": "c25193f4f4f564a7ae77b6db3f01d9c543358d2152a6c18629e0173465682974",
+      "minimumMacos": "13.4.1",
+      "ownerPhysicalRehearsal": "passed 2026-11-21",
+      "passed": [
+        "loader rootfs installation",
+        "XMP boot from USB",
+        "playback",
+        "save and reopen",
+        "stock handover without USB",
+        "full stock 3.10.1 restoration"
+      ],
+      "installationEvidenceSha256": "9f4683700e14c3c3be2c684df015834a32033ad7cf25335c3a85e363d4b65467",
+      "distributionCheck": "eligible; distribution boundary only"
+    },
+    "Windows-x64": {
+      "installerSourceCommit": "86e50702074b71be885f545e1637ef5cce9ebe2b",
+      "installerSourceHash": "8cef603e28bd3bfdb215df58eb2f5f6fba5fd0946e2c2eb93a292b2053be4617",
+      "automatedPackagedFlow": "passed",
+      "physicalDriverFlashQualification": "pending"
+    },
+    "macOS-Apple-Silicon": {
+      "installerSourceCommit": "619eae3b1a0621b9f60a26239e9a2e658be4469f",
+      "installerSourceHash": "41642245590f721a55030f2bdecfdb05bc6cb58423bd8814c559cb947dd0ced7",
+      "minimumMacos": "13.5",
+      "nativeArm64Build": "passed",
+      "architectureAudit": "passed",
+      "loopbackUiStartup": "passed",
+      "automatedPackagedFlow": "passed",
+      "laptopPhysicalHostTest": "pending"
+    }
+  },
+  "akaisFirmwareOrOwnerRuntimeIncluded": false,
+  "rawOwnerEvidenceIncluded": false
+}

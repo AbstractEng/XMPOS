@@ -1,9 +1,12 @@
 # Current candidate: owner physical checklist
 
-**Pending for 0.1.0-dev.20261121.** This is the remaining physical rehearsal for
-the candidate in [HARDWARE-CANDIDATE.json](../../HARDWARE-CANDIDATE.json), not a
-request to power on now. The earlier six-step success applies to an older
-candidate. Keep the hardware release draft until its qualification is complete; source publication is separate. Only the owner flashes.
+**Completed for the Intel Mac 0.1.0-dev.20261121.2 route on 21 November 2026.**
+The owner confirmed installation, XMP boot, playback, save/reopen, stock handover
+and full restoration. [Current identities](../../INSTALLER-CANDIDATE.json) bind
+that evidence to the tested bytes. The checklist below remains the repeatable
+procedure for a future affected build; no further Live action is requested now.
+Apple Silicon laptop and Windows physical qualification remain separate.
+Installers stay draft. Only the owner flashes.
 Live Mk1 / ACV8 on exactly stock 3.10.1 only; Force and other models are excluded.
 
 1. **Prepare and verify on the host.** Extract the complete private Intel Mac

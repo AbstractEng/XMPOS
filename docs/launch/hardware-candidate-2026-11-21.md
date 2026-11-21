@@ -1,10 +1,11 @@
 # Hardware candidate reference — 21 November 2026
 
-The [frozen candidate record](../../HARDWARE-CANDIDATE.json) describes an earlier
-private hardware build. The current source includes a later MENU navigation fix;
-that fix is not automatically in the frozen installer kits. Source publication
-does not grant installation/recovery or redistribution clearance to those files.
+[INSTALLER-CANDIDATE.json](../../INSTALLER-CANDIDATE.json) identifies the current
+0.1.0-dev.20261121.2 installer packages. Intel Mac owner installation, playback,
+save/reopen, stock handover and full restoration passed. Native Apple Silicon
+and Windows packages passed automated host flows; their physical qualification
+is separate. The new downloads remain draft.
 
-Use [release information](../../RELEASE.md) for current source/hardware availability,
-[the owner checklist](current-owner-checklist.md) for a future hardware rehearsal,
-and [compatibility](../compatibility.md) before building for an instrument.
+[HARDWARE-CANDIDATE.json](../../HARDWARE-CANDIDATE.json) is an older preparation
+snapshot. Use [release status](../../RELEASE.md) for current availability and
+[compatibility](../compatibility.md) before building for an instrument.

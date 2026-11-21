@@ -19,7 +19,7 @@ instruments, interfaces, apps and workflows on standalone music hardware.
 
 The [developer guide](docs/developer-guide.md) describes the tested build route;
 [SDK examples](docs/sdk/examples.md) show what to customize first. The recorded
-source checks passed **614 application tests, 37 native tests and 20 parity tests**.
+source checks passed **615 application tests, 37 native tests and 20 parity tests**.
 The shared Device workflow passed **86 actions**, matched **17 native/browser
 screenshots**, loaded seven kits/32 synth presets and restored autosave after reload.
 The current source includes the MENU navigation fix after slicing a sample.
@@ -36,20 +36,34 @@ licence attribution remains intact.
 
 Initial hardware is **MPC Live Mk1 / ACV8, already on exactly MPC OS 3.10.1**.
 One/One+ are planned ports, One G2 is separate, and Force is excluded.
-The reviewed installer host is Intel macOS; Windows is a preview.
+The Intel macOS installer completed its owner-operated Live Mk1 rehearsal on
+21 November: installation, XMP boot, playback, save/reopen, stock boot without
+the key and full restoration to 3.10.1 passed. The unchanged distribution check
+also passed against the matching private evidence and component/source bundle.
 
-This source release does not publish an installer or a ready-to-boot USB image.
-The earlier hardware kits remain a separate private candidate and do not yet
-include the latest MENU fix. Their rebuild and affected physical qualification
-belong to the hardware release, not to opening this source repository.
-[The candidate record](HARDWARE-CANDIDATE.json) identifies that frozen preparation
-snapshot; its pending status is not changed by source publication.
+The **0.1.0-dev.20261121.2 installer kits remain draft**, as requested. They include
+the MENU fix and prepare **Acid Circuit** on a fresh USB key: boot XMP and press
+**PLAY** to hear the song. Existing startup projects, recovery files, named
+projects and samples are preserved. Fresh-key demo playback passed the shared
+native Device audio test; the physical rehearsal used a preserved project.
+
+| Installer host | Current validation |
+| --- | --- |
+| Intel macOS 13.4.1+ | Exact packaged app and owner install/play/save/reopen/restoration passed |
+| Apple Silicon macOS 13.5+ | Native arm64 build, architecture audit, UI startup and simulated install/restore passed; laptop test pending |
+| Windows x64 | Packaged updater/USB/demo/preservation/install/restore simulations passed; physical driver/flash qualification pending |
+
+Mac apps are ad-hoc signed, not notarized; Windows is unsigned. Each kit carries
+its own exact installer source closure, notices and checksums. Platform builds
+have different installer source hashes; the XMP session template is shared.
+[Current installer identities](INSTALLER-CANDIDATE.json) supersede the
+[older candidate record](HARDWARE-CANDIDATE.json) for these packages.
 
 Each owner supplies the signed official **3.10.1 updater** independently. Build
 and assembly tooling produces the loader, stock recovery and runtime-bearing USB
 image locally. Akai updater/rootfs/runtime files, owner images and verification
-profiles are not repository or media-release downloads. The source-only media
-release contains the demonstration video, not an installation image.
+profiles are not repository or media-release downloads. The public media release contains the demonstration video. The new installer
+downloads remain draft until a separate publication decision.
 
 Read [installation](docs/install-live-mk1.md), [recovery](docs/recover-live-mk1.md),
 [compatibility](docs/compatibility.md), [known issues](docs/known-issues.md) and

@@ -1,4 +1,4 @@
-# XMP OS 0.1.0-dev.20261121
+# XMP OS 0.1.0-dev.20261121.2
 
 **From a loop to somewhere new.**
 
@@ -13,6 +13,8 @@ and the foundation for your own instruments, interfaces, apps and workflows.
 - Shared native C++ touchscreen across the Live, emulator and browser via WebAssembly.
 - Pad-driven kit/synth playing, clip and scene workflows, sound shaping and mixing.
 - Transport, pad, track-bank and Q-Link feedback, plus the saved sampler-loop level fix.
+- Acid Circuit loaded on fresh installer-prepared keys: boot XMP and press PLAY.
+  Existing startup projects, recovery files, named projects and samples are preserved.
 - One graphical installer that prepares the USB key and local loader/recovery files.
   Every device write is owner-confirmed with **XMPOS**.
 - Offline SDK docs, original examples, component notices and full source/relink materials.
@@ -21,8 +23,10 @@ and the foundation for your own instruments, interfaces, apps and workflows.
 
 **MPC Live Mk1 / ACV8, starting from exactly MPC OS 3.10.1.**
 The source includes the graphical installation and USB-preparation tooling.
-Packaged hardware installers remain a separate release while the latest source
-is rebuilt and receives its affected physical checks. [Release information](../../RELEASE.md)
+The Intel Mac package passed owner installation, playback, save/reopen, stock
+handover and full restoration on 21 November. Native Apple Silicon and Windows
+packages passed their automated host flows; their physical qualification is
+separate. All new installer downloads remain draft. [Release information](../../RELEASE.md)
 tracks hardware availability. Owners independently supply the signed official
 updater; Akai-derived files and owner images stay local.
 
@@ -35,11 +39,12 @@ or the [source development guide](../developer-guide.md) for custom apps and UI.
 
 ## Validation record
 
-The recorded clean build passed 612 application, 37 native, 20 parity, 52 inventory,
-25 packaging and 18 installer tests, plus types/production build. SDK acceptance
+The current regression record passed 615 application, 37 native, 20 parity and
+52 inventory/boundary tests, plus types/production build. Latest-source installer
+checks passed 24 tests; the frozen Intel/Windows closures passed 23. SDK acceptance
 passed 8 scenarios/56 steps. The shared Device workflow passed 86 common actions,
 17 screenshot comparisons and autosave reload. Three ARM binaries relinked exactly
-from the supplied materials, and the owner-local runtime probe passed. Both
+from the supplied materials, and the owner-local runtime probe passed. All three
 packaged installers passed their declared host simulations.
 
 [Release status](../../RELEASE.md) retains the exact candidate/source identities,

@@ -12,14 +12,15 @@ preview; One/One+ are planned ports; One G2 is separate; Force is excluded.
 
 ### 1. Distribute, install and recover — R01, R02, R03
 
-**Pending for 0.1.0-dev.20261121.** The 18 November candidate's clearance and
-owner rehearsal are historical and do not clear the newer binaries.
+**Passed for the current Intel Mac route.** Exact identities and platform limits
+are recorded in [INSTALLER-CANDIDATE.json](../../INSTALLER-CANDIDATE.json).
+All installer downloads remain draft.
 
 - [x] Stage XMP-only template, both installer kits, notices, corresponding source
   and checksums privately. Verify every kit member and uploaded file digest.
-- [ ] Finish current exact-file component/source/installer clearance. Keep Akai
+- [x] Finish current exact-file component/source/installer clearance. Keep Akai
   updater, stock/loader rootfs and runtime-bearing owner images private.
-- [ ] Bind current owner-local 3.10.1 preparation, install, XMP boot, no-stick
+- [x] Bind current owner-local 3.10.1 preparation, install, XMP boot, no-stick
   stock handover and full restoration observations. Check applicable enabled
   image-promotion/fallback routes; pass the unchanged distribution gate.
 
@@ -29,13 +30,14 @@ remain. Unknown required facts stop installation.
 
 ### 2. Play and save — R04, R05, R06
 
-**Current software workflow verified; current physical checks pending.** Shared
+**Current software workflow and owner play/save/reopen passed.** Shared
 Device and ARM one-track save/cold-reopen evidence is recorded in
 [release status](../../RELEASE.md). [17 November owner checks](gate-2.md) are
 historical. Emulator audio does not qualify hardware latency or inputs.
 
-- [ ] On this candidate, briefly play/edit, check essential controls/touch/audio,
-  Stop, wait for **Saved on stick**, restart and reopen a small project.
+- [x] On this candidate, play, save, restart/reopen a small project and verify
+  persistence. The owner confirmed these checks; earlier controls/touch evidence
+  remains scoped to its tested build.
 - [x] Label physical input sampling experimental/unverified and exclude it from
   the verified baseline. Retain −12 dBFS playback and USB-only session writes.
 
