@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "sourceHash": "9a744722a4e83e69bc4bea2dd294b60dc533b97366e386e0de1cf54c4330d1b0",
+  "sourceHash": "f8892d5e7f4ccd777d20c9f8b527e0df25bf8791c757f6c5d81bdaa126e531bb",
   "template": {
-    "system.img": "ff28c4967d8069d1b046b3f67086eb41c43a0ee0146f683d24ee822e937f06f3",
-    "manifest.json": "cbb14aaf9e45fd823de2a137e00ef3ef65e8004ad86f22ba9405e9e1298dd5d5"
+    "system.img": "24c58f90de248b9c21394f2519003a80cc795f0c490e20c7cc40b4a34e799b5a",
+    "manifest.json": "ca53d1ef2205332666e7f7884cc17936cabba6bc77c96d66ceb054976dbbe14f"
   },
-  "sourceArchiveSha256": "72a30b968a0774f8e8374322484c1f0461d15ec3eaf495fc72dec091c9b8fc5e"
+  "sourceArchiveSha256": "79b9bed531f7eb6d0ccdfe77fa0878244b7323bddad9ba014014358169f19283"
 }
