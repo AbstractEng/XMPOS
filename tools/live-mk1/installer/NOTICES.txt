@@ -34,6 +34,9 @@ logs and binary/source receipt are in Corresponding Source/mac-python.
 PSF/CWI/BeOpen/CNRI terms, CPython third-party notices, Expat's MIT notice and
 HACL's MIT notices accompany it under python/share/xmp-licenses. Its linked
 zlib/liblzma and Apple frameworks are supplied by macOS and are not bundled.
+Source-built runtimes on newer SDKs use pinned XZ 5.8.4 public API headers
+(0BSD); their complete source archive and licence accompany that runtime.
+No Homebrew or upstream liblzma binary is bundled.
 The old python-build-standalone/pip runtime is not part of this reviewed build.
 
 Windows runtime:

@@ -28,5 +28,12 @@
     "bytes": 171603663,
     "sha256": "515eee09fa51aa2e3f2f7b2bd47ca361ae49b4879e2e52eae2777b7199426ac8",
     "use": "CI verification only; never bundled"
+  },
+  "lzmaHeaders": {
+    "release": "5.8.4",
+    "url": "https://github.com/tukaani-project/xz/releases/download/v5.8.4/xz-5.8.4.tar.xz",
+    "bytes": 1567192,
+    "sha256": "4ce24038fd4221e0d13bc1a2de7a4db56e90b92b3bf75321f6c14be73f65de4b",
+    "scope": "0BSD API headers only; macOS supplies liblzma; complete source archive included"
   }
 }

@@ -30,7 +30,8 @@ node tools/live-mk1/installer/build.mjs
 The default build creates a minimal CPython from the exact source in
 inputs.lock.json using build-macos-python.sh, builds the ARM loader with
 pinned Zig 0.13.0, and builds pinned e2fsprogs. It needs no Docker or hardware.
-The Python build uses macOS system zlib/liblzma and disables OpenSSL/hashlib,
+The Python build uses macOS system zlib/liblzma, with pinned XZ 5.8.4 0BSD
+API headers when SDK headers are missing, and disables OpenSSL/hashlib,
 SQLite, readline, curses, ctypes and other unused optional native modules.
 CPython's own hash implementations remain available. The runtime's complete
 source archive, configuration, disabled-module list and build receipt are
