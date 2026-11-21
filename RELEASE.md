@@ -47,11 +47,11 @@ the MENU fix and prepare **Acid Circuit** on a fresh USB key: boot XMP and press
 projects and samples are preserved. Fresh-key demo playback passed the shared
 native Device audio test; the physical rehearsal used a preserved project.
 
-| Installer host | Current validation |
-| --- | --- |
-| Intel macOS 13.4.1+ | Exact packaged app and owner install/play/save/reopen/restoration passed |
-| Apple Silicon macOS 13.5+ | Native arm64 build, architecture audit, UI startup and simulated install/restore passed; laptop test pending |
-| Windows x64 | Packaged updater/USB/demo/preservation/install/restore simulations passed; physical driver/flash qualification pending |
+| Installer host            | Current validation                                                                                                     |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Intel macOS 13.4.1+       | Exact packaged app and owner install/play/save/reopen/restoration passed                                               |
+| Apple Silicon macOS 13.5+ | Native arm64 build, architecture audit, UI startup and simulated install/restore passed; laptop test pending           |
+| Windows x64               | Packaged updater/USB/demo/preservation/install/restore simulations passed; physical driver/flash qualification pending |
 
 Mac apps are ad-hoc signed, not notarized; Windows is unsigned. Each kit carries
 its own exact installer source closure, notices and checksums. Platform builds

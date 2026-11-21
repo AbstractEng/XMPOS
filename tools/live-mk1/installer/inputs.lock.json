@@ -15,10 +15,7 @@
     "kind": "source-built; system zlib/liblzma only",
     "release": "3.13.18"
   },
-  "architectures": [
-    "x64",
-    "arm64"
-  ],
+  "architectures": ["x64", "arm64"],
   "minimumMacos": {
     "x64": "13.4.1",
     "arm64": "13.5"
