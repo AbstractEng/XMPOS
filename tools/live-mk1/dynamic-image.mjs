@@ -1,5 +1,5 @@
 import { constants } from "node:fs";
-import { copyFile, mkdir, readdir, rm, writeFile } from "node:fs/promises";
+import { chmod, copyFile, mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { join, relative } from "node:path";
 import { buildIdentity, root } from "../../acceptance/lib/workspace.mjs";
 import { factoryKits, kitImagePath } from "../factory-kits.mjs";
@@ -161,8 +161,10 @@ export async function buildDynamicTemplate(runtimeDirectory, { builder = "docker
       ["init-live", "sbin/init"],
       ["session-image", "usr/lib/xmp/xmp-live-session"],
       ["xmp-bridge", "usr/lib/xmp/xmp-bridge"],
-    ])
+    ]) {
       await copyFile(join(out, from), join(tree, to), constants.COPYFILE_EXCL);
+      await chmod(join(tree, to), 0o755);
+    }
     for (const name of ["Inter-LICENSE.txt", "JetBrainsMono-OFL.txt"])
       await copyFile(
         join(fonts, "image", name),
@@ -178,6 +180,10 @@ export async function buildDynamicTemplate(runtimeDirectory, { builder = "docker
       `XMP MPC Live Mk1; MPC OS 3.10.1; source ${sourceHash}\n`,
       { flag: "wx", mode: 0o644 },
     );
+    // Archive extraction and host umasks must not make public data writable.
+    for (const name of ["Inter-LICENSE.txt", "JetBrainsMono-OFL.txt"])
+      await chmod(join(tree, "usr/share/xmp/fonts", name), 0o644);
+    await chmod(join(tree, "usr/share/xmp/boot-screen.rgb"), 0o644);
     const tool = await makeExt4(tree, join(out, "system.img"));
     const audit = pythonRuntime(["audit-public", join(out, "system.img"), lockFile]);
     await rm(tree, { recursive: true, force: true });
