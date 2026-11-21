@@ -90,7 +90,7 @@ export async function bundleInstaller({
   const initial = await build(config);
   const sourcePaths = new Set([
     ...Object.keys(initial.metafile.inputs).map((path) =>
-      relative(root, resolve(path)).replaceAll("\\", "/"),
+      relative(root, resolve(root, path)).replaceAll("\\", "/"),
     ),
     ...workspaceFiles,
     "os/live-mk1/loader-init.c",
