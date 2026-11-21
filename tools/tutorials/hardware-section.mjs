@@ -21,20 +21,63 @@ const installerDownloads = JSON.parse(
   ),
 );
 const downloadPanel = () =>
-  `<section class="hardware-downloads" aria-labelledby="installer-downloads-title"><p class="eyebrow">INSTALLER PREVIEWS · ${esc(installerDownloads.version.replace("installer-preview-", ""))}</p><h3 id="installer-downloads-title">Download XMP OS Installer</h3><div class="hardware-download-grid">${installerDownloads.installers.map((i) => `<a class="hardware-download-card" data-installer="${esc(i.id)}" href="${esc(i.url)}"><strong>${esc(i.label)} <span aria-hidden="true">↓</span></strong><span>${esc(i.arch)} · ${Math.round(i.bytes / 1000000)} MB ZIP · ${esc(i.status)}</span></a>`).join("")}</div><p>Download and unzip, then open the installer. Mac: Intel x64. Windows: x64 preview.</p><p class="hardware-download-meta"><a href="${esc(installerDownloads.releaseUrl)}">Release notes &amp; included source</a> · <a href="${esc(installerDownloads.checksumsUrl)}">SHA-256 checksums</a></p></section>`;
+  `<section class="hardware-downloads" aria-labelledby="installer-downloads-title"><p class="eyebrow">DEVELOPER RELEASE · ${esc(installerDownloads.publishedDate)}</p><h3 id="installer-downloads-title">Download XMP OS Installer</h3><div class="hardware-download-grid">${installerDownloads.installers.map((i) => `<a class="hardware-download-card" data-installer="${esc(i.id)}" href="${esc(i.url)}"><strong>${esc(i.label)}</strong><span>${esc(i.arch)} · ${Math.round(i.bytes / 1000000)} MB ZIP · ${esc(i.status)}</span></a>`).join("")}</div><p>Extract the complete ZIP and open the installer for your computer. No separate Node, Python or Docker setup is needed.</p><p class="hardware-download-meta"><a href="${esc(installerDownloads.sourceUrl)}">Public source on GitHub</a> · <a href="${esc(installerDownloads.releaseUrl)}">Release notes &amp; included source</a> · <a href="${esc(installerDownloads.checksumsUrl)}">SHA-256 checksums</a></p></section>`;
+
+const compactSetup = (html) => {
+  const wrap = (start, end, summary, videoFirst = false) => {
+    const a = html.indexOf(start),
+      b = html.indexOf(end, a);
+    if (a < 0 || b < 0) throw new Error("Missing setup disclosure boundary");
+    const endOfVideo = videoFirst ? html.indexOf("</article>", b) + "</article>".length : b;
+    if (endOfVideo < b) throw new Error("Missing setup video boundary");
+    html = `${html.slice(0, a)}${html.slice(b, endOfVideo)}<details class="hardware-help hardware-written"><summary>${summary}</summary>${html.slice(a, b)}</details>\n${html.slice(endOfVideo)}`;
+  };
+  wrap(
+    '<nav class="hardware-path"',
+    '<div class="hardware-stage" id="hardware-prepare">',
+    "Before you start: compatibility and checklist",
+  );
+  wrap(
+    '<div class="hardware-stage" id="hardware-prepare">',
+    '<article class="hardware-video" id="15-hardware-usb">',
+    "Written steps: prepare the files and USB key",
+    true,
+  );
+  wrap(
+    '<figure class="hardware-connections">',
+    '<article class="hardware-video" id="16-hardware-boot">',
+    "Written steps: install the loader and start XMP",
+    true,
+  );
+  wrap(
+    '<div class="hardware-stage" id="hardware-return">',
+    '<article class="hardware-video" id="17-hardware-return">',
+    "Written steps: switch to MPC OS or restore fully",
+    true,
+  );
+  return html;
+};
+
+const acidCircuitDemo = `<!-- BEGIN ACID CIRCUIT DEMO -->
+<section id="acid-circuit-demo" class="acid-circuit-demo" data-chapter aria-labelledby="acid-circuit-title">
+<div class="chapter-label">WATCH / ACID CIRCUIT</div><h2 id="acid-circuit-title">Watch a loop take shape</h2>
+<p>Drums, acid bass and a loop finding its way into a song. This short Acid Circuit session shows the workflow in the web client, with the build accelerated and captured client playback.</p>
+<figure><video controls playsinline preload="none" width="1720" height="974" poster="https://abstracteng.com/assets/video/acid-circuit-landscape.jpg" aria-label="Acid Circuit: making an acid-house beat in XMP OS"><source src="https://abstracteng.com/assets/video/acid-circuit-landscape.mp4" type="video/mp4"><track kind="captions" src="https://abstracteng.com/assets/video/acid-circuit-landscape.vtt" srclang="en" label="English"><p><a href="https://abstracteng.com/assets/video/acid-circuit-landscape.mp4">Watch Acid Circuit</a>.</p></video><figcaption>Original XMP sounds. Browser-client demonstration; the music lessons below walk through the controls.</figcaption></figure>
+</section>
+<!-- END ACID CIRCUIT DEMO -->`;
 
 export function hardwareSetupSection(media) {
-  return `
+  return compactSetup(`
 <!-- BEGIN HARDWARE SETUP -->
 <section id="hardware-setup" data-chapter aria-labelledby="hardware-setup-title">
 <div class="chapter-label">HARDWARE SETUP / FROM COMPUTER TO MPC</div><h2 id="hardware-setup-title">Set up your MPC Live Mk1</h2>
-${downloadPanel()}
+<details class="hardware-help hardware-installer-links"><summary>Download the installer for your computer</summary>${downloadPanel()}</details>
 <p class="lead">One installer prepares your USB key and guides the one-time loader installation. After that, your prepared key starts XMP.</p>
 <nav class="hardware-path" aria-label="Hardware setup stages"><a href="#hardware-prepare"><b>1</b> Prepare on computer</a><a href="#hardware-usb"><b>2</b> Create the XMP key</a><a href="#hardware-loader"><b>3</b> Install the loader</a><a href="#hardware-first-boot"><b>4</b> Start making music</a></nav>
-<p class="note hardware-scope"><strong>Live Mk1 · Official MPC OS 3.10.1 exactly.</strong> Use the installer preview for your computer above.</p><details class="hardware-help"><summary>Check installer and platform support before starting</summary><p>Intel macOS is the current Mac preview. Windows x64 has an installer preview; physical Windows installation and platform signing are still being qualified. Both installer archives include component notices, corresponding source and rebuild instructions. The Mac preview is ad-hoc signed, not notarized; Apple Silicon is not qualified. This guide covers the Live Mk1 / ACV8 only; other MPC models, other firmware and the Force are excluded.</p></details>
+<p class="note hardware-scope"><strong>Live Mk1 · Official MPC OS 3.10.1 exactly.</strong> Watch the short setup videos below, then expand the written steps when you are ready.</p><details class="hardware-help"><summary>Check installer and platform support before starting</summary><p>The Intel Mac route passed owner installation, playback, save/reopen, stock handover and full restoration. Native Apple Silicon passed automated build/UI/install-flow checks; laptop testing is pending. Windows physical driver/flash testing is pending. All three kits include component notices, corresponding source and rebuild instructions. Mac apps are ad-hoc signed, not notarized; Windows is unsigned. This guide covers the Live Mk1 / ACV8 only; other MPC models, other firmware and the Force are excluded.</p></details>
 <div class="hardware-ready"><div><h3>Have these ready</h3><ul><li>Your Live Mk1, its power adapter, and a backup of your music.</li><li>A supported computer and the <strong>XMP OS Installer</strong> downloaded above.</li><li>Akai’s official <strong>MPC (Gen 1) 3.10.1 updater</strong>: the Mac <code>.app</code> or Windows <code>.exe</code>, matching the computer you use.</li><li>A removable <strong>FAT32 USB key</strong>, with its existing files backed up.</li><li>A data-capable cable from the computer to the Live’s <strong>USB-B computer port</strong>, plus local network access for the first stock verification.</li></ul></div><div class="hardware-reassurance"><p class="eyebrow">THE INSTALLER DOES THE FILE WORK</p><h3>No terminal commands to copy.</h3><p>It checks the official updater, prepares recovery files on your computer, builds the USB system locally, and verifies the copy. The USB step preserves projects and samples; it does not format the key.</p><p>The final, owner-confirmed step replaces the MPC’s internal <strong>root filesystem</strong>. It leaves the bootloader and partition table unchanged. Keep the power adapter and USB cable connected until that step finishes.</p></div></div>
 <p class="hardware-watch-links"><a href="#15-hardware-usb">Watch: prepare the key ↓</a><a href="#16-hardware-boot">Watch: install &amp; boot ↓</a><a href="#17-hardware-return">Watch: return to stock ↓</a></p>
-<p class="small" id="hardware-video-note">Videos use the current installer with simulated responses and an original MPC teaching drawing. Gold outlines identify the buttons to use. Device values are illustrative, waits are compressed, and no hardware was flashed to make these videos. Each video is under a minute, with the published narration, on-screen instructions and captions.</p>
+<p class="small" id="hardware-video-note">Videos use the current installer with simulated responses and an original MPC teaching drawing. Gold outlines identify the buttons to use. Device values are illustrative, waits are compressed, and no hardware was flashed to make these videos. Each video is under a minute, with the owner’s authorized voice-clone narration, on-screen instructions and captions.</p>
 <div class="hardware-stage" id="hardware-prepare"><p class="eyebrow">1 / ON YOUR COMPUTER</p><h3>Prepare the files and verify your Live</h3><ol class="hardware-steps"><li><strong>Check the starting version.</strong> On the MPC, open <strong>Preferences → Info</strong> and confirm <strong>3.10.1</strong>. If the model or version differs, stop here and use the compatibility guidance for that build. Picking a nearby updater version will not make it compatible.</li><li><strong>Open XMP OS Installer.</strong> On a Mac, open <strong>XMP OS Installer.app</strong>. On Windows, keep <strong>XMP OS Installer.exe</strong> beside its supplied resources folder. The owner installer includes its runtime; you do not need to install Node, Python or Docker.</li><li><strong>Select the official updater.</strong> Click <strong>Choose updater…</strong> and choose the official Gen 1 <strong>3.10.1</strong> updater for your computer. It is obtained separately from Akai, rather than bundled as firmware in XMP.</li><li><strong>Click Prepare installation files.</strong> Let the activity indicator finish. The installer checks the signature and exact payload, prepares the loader and stock recovery locally, and assembles the system that will go on your key. It reuses verified files on later runs.</li><li><strong>Verify the stock Live before its first installation.</strong> Leave the MPC running stock 3.10.1. Put it and the computer on the same local network. Enable Developer Mode using the steps below, then enter the MPC’s own local IPv4 address in <strong>Live’s local IPv4 address</strong>. Tick the read-only verification acknowledgement and click <strong>Verify stock Live</strong>.</li><li><strong>Use only the native password prompt.</strong> If prompted, type the Live’s SSH password into the installer’s native secure prompt. Do not send it in a chat, type it into the address box or put it in a script. The verifier reads identity and rootfs metadata; it does not change storage or settings.</li></ol>
 <details class="hardware-help"><summary>Where do I enable Developer Mode and find the address?</summary><p>In stock MPC OS, open <strong>Preferences → Info</strong>. Following Akai’s SDK procedure, tap the <strong>version value three times</strong>, the <strong>serial-number value twice</strong>, then the <strong>firmware-version value once</strong>. Developer Mode starts the SSH service used for this read-only check.</p><p>Find the MPC’s local IP in the Preferences <strong>Wi-Fi</strong> tab (hold SHIFT to reach it) or the <strong>Ethernet</strong> tab. Use the address shown on your own unit; <code>192.168.1.50</code> in the video is only an example. The installer does not scan your network.</p><p>This procedure follows <a href="https://github.com/inmusic-software/mpc-plugin-builder-sdk/blob/main/docs/install-and-test.md">Akai’s official SDK installation notes</a>. You control the device’s network and Developer Mode settings.</p></details>
 <p class="hardware-check"><strong>You are ready when:</strong> the installer reports that loader and stock recovery are verified, and the stock verification reports your Live Mk1 on 3.10.1. The private verification profile is kept on the computer and copied to the prepared key. It must match the same Live during installation.</p></div>
@@ -50,9 +93,13 @@ ${video(hardwareLessons[2], media)}
 <p class="small">Keep the official updater, recovery files, generated images and private verification profile local. Hardware input sampling remains experimental and is not part of this first-boot lesson.</p>
 </section>
 <!-- END HARDWARE SETUP -->
-`;
+`);
 }
 export function placeHardwareSetup(manual, media) {
+  manual = manual.replace(
+    /<!-- BEGIN ACID CIRCUIT DEMO -->[\s\S]*?<!-- END ACID CIRCUIT DEMO -->\s*/g,
+    "",
+  );
   const begin = "<!-- BEGIN HARDWARE SETUP -->",
     end = "<!-- END HARDWARE SETUP -->";
   const html = hardwareSetupSection(media);
@@ -70,5 +117,8 @@ export function placeHardwareSetup(manual, media) {
     '<a href="#quick-start"><span>→</span> Quick start</a>\n    <a href="#relationships">',
     '<a href="#quick-start"><span>→</span> Quick start</a>\n    <a href="#hardware-setup"><span>↗</span> Set up your MPC Live</a>\n    <a href="#relationships">',
   );
-  return manual;
+  return manual.replace(
+    "<!-- BEGIN HARDWARE SETUP -->",
+    `${acidCircuitDemo}\n\n<!-- BEGIN HARDWARE SETUP -->`,
+  );
 }

@@ -1,5 +1,35 @@
 [
   {
+    "list": "hardware-setup › Prepare your XMP USB key",
+    "title": "Choose the official updater",
+    "text": "Choose updater… → the Gen 1 MPC OS 3.10.1 updater for your computer."
+  },
+  {
+    "list": "hardware-setup › Prepare your XMP USB key",
+    "title": "Prepare files on your computer",
+    "text": "Prepare installation files checks the updater and prepares recovery locally."
+  },
+  {
+    "list": "hardware-setup › Prepare your XMP USB key",
+    "title": "Verify your stock Live",
+    "text": "In stock 3.10.1, enable Developer Mode. Enter its local IP; choose Verify stock Live."
+  },
+  {
+    "list": "hardware-setup › Prepare your XMP USB key",
+    "title": "Choose the USB key",
+    "text": "Refresh USB keys → select your removable FAT32 key → confirm your backup."
+  },
+  {
+    "list": "hardware-setup › Prepare your XMP USB key",
+    "title": "Copy and verify",
+    "text": "Prepare USB key → wait for copied and SHA-256 verified."
+  },
+  {
+    "list": "hardware-setup › Prepare your XMP USB key",
+    "title": "Eject and keep it ready",
+    "text": "Safely eject USB key. Leave it out of the Live until loader installation finishes."
+  },
+  {
     "list": "hardware-setup › Prepare the files and verify your Live",
     "title": "Step 1",
     "text": "Check the starting version. On the MPC, open Preferences → Info and confirm 3.10.1. If the model or version differs, stop here and use the compatibility guidance for that build. Picking a nearby updater version will not make it compatible."
@@ -55,34 +85,34 @@
     "text": "Click Safely eject USB key. If the platform asks you to eject in its file manager, follow that instruction. Keep the prepared key ready, but leave it out of the MPC during loader installation."
   },
   {
-    "list": "hardware-setup › Prepare your XMP USB key",
-    "title": "Choose the official updater",
-    "text": "Choose updater… → the Gen 1 MPC OS 3.10.1 updater for your computer."
+    "list": "hardware-setup › Install the loader and boot XMP",
+    "title": "Connect power and enter update mode",
+    "text": "USB key out. Hold FULL LEVEL + ERASE + PAD BANK C/G; press rear POWER."
   },
   {
-    "list": "hardware-setup › Prepare your XMP USB key",
-    "title": "Prepare files on your computer",
-    "text": "Prepare installation files checks the updater and prepares recovery locally."
+    "list": "hardware-setup › Install the loader and boot XMP",
+    "title": "Connect the computer",
+    "text": "Live USB-B → computer. In the installer, accept the terms and install connection tools."
   },
   {
-    "list": "hardware-setup › Prepare your XMP USB key",
-    "title": "Verify your stock Live",
-    "text": "In stock 3.10.1, enable Developer Mode. Enter its local IP; choose Verify stock Live."
+    "list": "hardware-setup › Install the loader and boot XMP",
+    "title": "Check before writing",
+    "text": "Install XMP USB loader → Check Live and image. This check writes nothing."
   },
   {
-    "list": "hardware-setup › Prepare your XMP USB key",
-    "title": "Choose the USB key",
-    "text": "Refresh USB keys → select your removable FAT32 key → confirm your backup."
+    "list": "hardware-setup › Install the loader and boot XMP",
+    "title": "Confirm the one-time install",
+    "text": "Review the operation, tick both acknowledgements, type XMPOS and click Install loader."
   },
   {
-    "list": "hardware-setup › Prepare your XMP USB key",
-    "title": "Copy and verify",
-    "text": "Prepare USB key → wait for copied and SHA-256 verified."
+    "list": "hardware-setup › Install the loader and boot XMP",
+    "title": "Keep power and USB connected",
+    "text": "Wait for Finished. The loader step rewrites rootfs; bootloader and partition table stay unchanged."
   },
   {
-    "list": "hardware-setup › Prepare your XMP USB key",
-    "title": "Eject and keep it ready",
-    "text": "Safely eject USB key. Leave it out of the Live until loader installation finishes."
+    "list": "hardware-setup › Install the loader and boot XMP",
+    "title": "Boot XMP from the key",
+    "text": "Power off → insert prepared key into USB-A → power on. STOP and wait for Saved on stick."
   },
   {
     "list": "hardware-setup › Check first. Confirm once.",
@@ -133,36 +163,6 @@
     "list": "hardware-setup › Insert the key and make a small loop",
     "title": "Step 4",
     "text": "Check the saved copy. Shut down normally, boot the same key again and reopen the song. Confirm the edit, tempo/mixer setting and playback. Now continue with the music lessons."
-  },
-  {
-    "list": "hardware-setup › Install the loader and boot XMP",
-    "title": "Connect power and enter update mode",
-    "text": "USB key out. Hold FULL LEVEL + ERASE + PAD BANK C/G; press rear POWER."
-  },
-  {
-    "list": "hardware-setup › Install the loader and boot XMP",
-    "title": "Connect the computer",
-    "text": "Live USB-B → computer. In the installer, accept the terms and install connection tools."
-  },
-  {
-    "list": "hardware-setup › Install the loader and boot XMP",
-    "title": "Check before writing",
-    "text": "Install XMP USB loader → Check Live and image. This check writes nothing."
-  },
-  {
-    "list": "hardware-setup › Install the loader and boot XMP",
-    "title": "Confirm the one-time install",
-    "text": "Review the operation, tick both acknowledgements, type XMPOS and click Install loader."
-  },
-  {
-    "list": "hardware-setup › Install the loader and boot XMP",
-    "title": "Keep power and USB connected",
-    "text": "Wait for Finished. The loader step rewrites rootfs; bootloader and partition table stay unchanged."
-  },
-  {
-    "list": "hardware-setup › Install the loader and boot XMP",
-    "title": "Boot XMP from the key",
-    "text": "Power off → insert prepared key into USB-A → power on. STOP and wait for Saved on stick."
   },
   {
     "list": "hardware-setup › Return to MPC OS",

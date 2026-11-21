@@ -100,12 +100,28 @@ function setActive(id) {
     else link.removeAttribute("aria-current");
   }
 }
+function revealAnchor(hash, scroll = false) {
+  let id;
+  try {
+    id = decodeURIComponent(hash.slice(1));
+  } catch {
+    return;
+  }
+  const target = document.getElementById(id);
+  if (!target) return;
+  for (let parent = target.parentElement; parent; parent = parent.parentElement)
+    if (parent instanceof HTMLDetailsElement) parent.open = true;
+  if (scroll) target.scrollIntoView({ block: "start" });
+}
+window.addEventListener("hashchange", () => revealAnchor(window.location.hash, true));
+revealAnchor(window.location.hash, true);
 for (const link of document.querySelectorAll('a[href^="#"]'))
   link.addEventListener("click", () => {
     if (link.hash !== "#manual-contents" && link.hash !== "#main" && search.value) {
       search.value = "";
       filter();
     }
+    revealAnchor(link.hash);
     setActive(link.hash.slice(1));
     const menu = link.closest(".mobile-contents");
     if (menu) menu.open = false;

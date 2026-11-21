@@ -1,30 +1,46 @@
 {
-  "version": "installer-preview-2026-11-18",
-  "sourceHash": "2df5f230f7334b75b08b10a025deab09583cecfcbf7c29a35d54b0c49627c158",
-  "releaseUrl": "https://github.com/AbstractEng/xmp-os-downloads/releases/tag/installer-preview-2026-11-18",
-  "checksumsUrl": "https://github.com/AbstractEng/xmp-os-downloads/releases/download/installer-preview-2026-11-18/SHA256SUMS",
+  "version": "0.1.0-dev.20261121.2",
+  "publishedDate": "2026-11-21",
+  "sessionSourceHash": "f8892d5e7f4ccd777d20c9f8b527e0df25bf8791c757f6c5d81bdaa126e531bb",
+  "releaseUrl": "https://github.com/AbstractEng/XMPOS/releases/tag/v0.1.0-dev.20261121.2",
+  "checksumsUrl": "https://github.com/AbstractEng/XMPOS/releases/download/v0.1.0-dev.20261121.2/SHA256SUMS.txt",
+  "sourceUrl": "https://github.com/AbstractEng/XMPOS",
   "installers": [
     {
       "platform": "macOS",
-      "arch": "Intel x64",
-      "name": "XMP-OS-Installer-macOS-Intel-2026-11-18.zip",
-      "bytes": 126222184,
-      "sha256": "fe63359c0e5f5067646c4791a1f4903461b2041ebd924da5d17bb33bb3157ef3",
-      "url": "https://github.com/AbstractEng/xmp-os-downloads/releases/download/installer-preview-2026-11-18/XMP-OS-Installer-macOS-Intel-2026-11-18.zip",
+      "arch": "Intel x64 \u00b7 macOS 13.4.1+",
+      "name": "XMPOS-Live-Mk1-macOS-Intel-0.1.0-dev.20261121.2.zip",
+      "bytes": 313491262,
+      "sha256": "5792f69965023ff5e0ac3d1710b7eb1ef1968999435547a9d697c8d14ee942c0",
+      "url": "https://github.com/AbstractEng/XMPOS/releases/download/v0.1.0-dev.20261121.2/XMPOS-Live-Mk1-macOS-Intel-0.1.0-dev.20261121.2.zip",
       "id": "macos",
-      "label": "Download for Mac",
-      "status": "Preview"
+      "label": "Intel Mac",
+      "status": "Hardware verified",
+      "sourceHash": "c25193f4f4f564a7ae77b6db3f01d9c543358d2152a6c18629e0173465682974"
+    },
+    {
+      "platform": "macOS",
+      "arch": "Native arm64 \u00b7 macOS 13.5+",
+      "name": "XMPOS-Live-Mk1-macOS-Apple-Silicon-0.1.0-dev.20261121.2.zip",
+      "bytes": 313755394,
+      "sha256": "7b58aa20c3a45e89e080cb97d96cf04210a225697a3df85ac1cd2bb4ec24e764",
+      "url": "https://github.com/AbstractEng/XMPOS/releases/download/v0.1.0-dev.20261121.2/XMPOS-Live-Mk1-macOS-Apple-Silicon-0.1.0-dev.20261121.2.zip",
+      "id": "macos-arm64",
+      "label": "Apple Silicon Mac",
+      "status": "Laptop test pending",
+      "sourceHash": "41642245590f721a55030f2bdecfdb05bc6cb58423bd8814c559cb947dd0ced7"
     },
     {
       "platform": "Windows",
       "arch": "x64",
-      "name": "XMP-OS-Installer-Windows-x64-2026-11-18.zip",
-      "bytes": 275767100,
-      "sha256": "0c297f8182a1228b196a9c660815bb94280f9b0e7baaccc3233d8d02149c7d65",
-      "url": "https://github.com/AbstractEng/xmp-os-downloads/releases/download/installer-preview-2026-11-18/XMP-OS-Installer-Windows-x64-2026-11-18.zip",
+      "name": "XMPOS-Live-Mk1-Windows-x64-0.1.0-dev.20261121.2.zip",
+      "bytes": 461718310,
+      "sha256": "5341f0259226f20acb8652a5e18ca9ada800ec7bf03c330589936789555b0f66",
+      "url": "https://github.com/AbstractEng/XMPOS/releases/download/v0.1.0-dev.20261121.2/XMPOS-Live-Mk1-Windows-x64-0.1.0-dev.20261121.2.zip",
       "id": "windows",
-      "label": "Download for Windows",
-      "status": "Preview"
+      "label": "Windows",
+      "status": "Physical test pending",
+      "sourceHash": "8cef603e28bd3bfdb215df58eb2f5f6fba5fd0946e2c2eb93a292b2053be4617"
     }
   ]
 }

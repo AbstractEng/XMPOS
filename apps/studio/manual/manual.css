@@ -1428,7 +1428,7 @@ main .hero h1 {
 }
 .hardware-download-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 .hardware-download-card {
@@ -1453,7 +1453,7 @@ main .hero h1 {
 }
 #hardware-setup .hardware-download-card > span {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 9px;
 }
 .hardware-download-card:hover {
@@ -1501,4 +1501,28 @@ main .hero h1 {
   .hardware-download-meta a {
     color: #35473e;
   }
+}
+
+/* Keep the first pass through setup focused on the videos. */
+.hardware-written > summary,
+.hardware-installer-links > summary {
+  font-size: 16px;
+}
+.hardware-written[open] > summary {
+  margin-bottom: 20px;
+}
+.acid-circuit-demo figure {
+  margin: 24px 0 0;
+}
+.acid-circuit-demo video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1720 / 974;
+  background: #35473e;
+  border-radius: 10px;
+}
+.acid-circuit-demo figcaption {
+  margin-top: 12px;
+  font-size: 14px;
 }
