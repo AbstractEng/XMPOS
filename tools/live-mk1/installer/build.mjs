@@ -17,7 +17,7 @@ import { vmCompiler } from "../../sdk/toolchain.mjs";
 import { hostImageTools } from "../host-image-tools.mjs";
 import { bundleInstaller } from "./bundle-common.mjs";
 import { compilerRuntimeSource } from "./compiler-runtime-source.mjs";
-import { auditMacBinaries, MACOS_MINIMUM, macosTarget } from "./macos-architecture.mjs";
+import { auditMacBinaries, macosMinimum, macosTarget } from "./macos-architecture.mjs";
 import { minimalPythonRuntime } from "./minimal-python.mjs";
 
 const here = import.meta.dirname,
@@ -25,6 +25,7 @@ const here = import.meta.dirname,
 if (process.platform !== "darwin" || !["x64", "arm64"].includes(process.arch))
   throw new Error("Build on Intel or Apple Silicon macOS with native Node 24");
 if (Number(process.versions.node.split(".")[0]) !== 24) throw new Error("Build with Node 24");
+const MACOS_MINIMUM = macosMinimum(process.arch);
 process.env.MACOSX_DEPLOYMENT_TARGET = MACOS_MINIMUM;
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const outputIndex = process.argv.indexOf("--output");

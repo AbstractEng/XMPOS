@@ -19,7 +19,10 @@
     "x64",
     "arm64"
   ],
-  "minimumMacos": "13.5",
+  "minimumMacos": {
+    "x64": "13.4.1",
+    "arm64": "13.5"
+  },
   "updater": {
     "url": "https://cdn.inmusicbrands.com/Software/MP3108CNOVOP/MPC%20%28Gen%201%29%203.10.1%20Updater.app.zip",
     "bytes": 171603663,

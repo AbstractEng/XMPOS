@@ -15,8 +15,10 @@ creation. Packaged tests check first-start seeding; USB tests check preservation
 ## Native macOS: Intel and Apple Silicon
 
 Build with native Node **24.14.0**, Xcode command-line tools and a POSIX shell on
-macOS **13.5 or later**. Use an Intel host for x64 and an Apple Silicon host for
-arm64. The builder audits every bundled host executable/Python extension for the
+macOS **13.4.1 or later for Intel**, **13.5 or later for Apple Silicon**. Use an Intel host for x64 and an Apple Silicon host for
+arm64. The Intel 13.4.1 route uses the exact Node binary exercised by the
+owner-host packaged tests; its higher declared build minimum is recorded in
+the architecture audit rather than hidden. The builder audits every bundled host executable/Python extension for the
 selected architecture and minimum OS; Apple Silicon needs no Rosetta:
 
 ```sh
