@@ -12,9 +12,12 @@ startup project, legacy pattern, edit journal or recovery file exists. The demo
 is size/hash verified before any USB writes and read back after exclusive
 creation. Packaged tests check first-start seeding; USB tests check preservation.
 
-## Intel macOS
+## Native macOS: Intel and Apple Silicon
 
-Build with Node **24.14.0**, Xcode command-line tools and a POSIX shell:
+Build with native Node **24.14.0**, Xcode command-line tools and a POSIX shell on
+macOS **13.5 or later**. Use an Intel host for x64 and an Apple Silicon host for
+arm64. The builder audits every bundled host executable/Python extension for the
+selected architecture and minimum OS; Apple Silicon needs no Rosetta:
 
 ```sh
 npm ci

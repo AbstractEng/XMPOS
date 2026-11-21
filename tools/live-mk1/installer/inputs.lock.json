@@ -2,7 +2,6 @@
   "format": "xmp-installer-host-inputs",
   "version": 1,
   "platform": "darwin",
-  "arch": "x64",
   "platformTools": {
     "url": "https://dl.google.com/android/repository/platform-tools_r37.0.1-darwin.zip",
     "sha256": "ee39ad5967e95c2a07f04dbcbde96b1a0c916ba376096db5d2f498b7727a5d1d",
@@ -15,5 +14,16 @@
     "sha256": "abb0102e6d4ae027509bcb82327d9dd85515b44a3ba8ad538cfc5e9847029f68",
     "kind": "source-built; system zlib/liblzma only",
     "release": "3.13.18"
+  },
+  "architectures": [
+    "x64",
+    "arm64"
+  ],
+  "minimumMacos": "13.5",
+  "updater": {
+    "url": "https://cdn.inmusicbrands.com/Software/MP3108CNOVOP/MPC%20%28Gen%201%29%203.10.1%20Updater.app.zip",
+    "bytes": 171603663,
+    "sha256": "515eee09fa51aa2e3f2f7b2bd47ca361ae49b4879e2e52eae2777b7199426ac8",
+    "use": "CI verification only; never bundled"
   }
 }

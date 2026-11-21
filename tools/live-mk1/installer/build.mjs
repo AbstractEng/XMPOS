@@ -1,19 +1,31 @@
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
-import { chmod, copyFile, cp, mkdir, readFile, realpath, rm, writeFile } from "node:fs/promises";
+import {
+  chmod,
+  copyFile,
+  cp,
+  mkdir,
+  readdir,
+  readFile,
+  realpath,
+  rm,
+  writeFile,
+} from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { vmCompiler } from "../../sdk/toolchain.mjs";
 import { hostImageTools } from "../host-image-tools.mjs";
 import { bundleInstaller } from "./bundle-common.mjs";
 import { compilerRuntimeSource } from "./compiler-runtime-source.mjs";
+import { auditMacBinaries, MACOS_MINIMUM, macosTarget } from "./macos-architecture.mjs";
 import { minimalPythonRuntime } from "./minimal-python.mjs";
 
 const here = import.meta.dirname,
   root = resolve(here, "../../..");
-if (process.platform !== "darwin" || process.arch !== "x64")
-  throw new Error("This installer build is currently qualified for Intel macOS only");
+if (process.platform !== "darwin" || !["x64", "arm64"].includes(process.arch))
+  throw new Error("Build on Intel or Apple Silicon macOS with native Node 24");
 if (Number(process.versions.node.split(".")[0]) !== 24) throw new Error("Build with Node 24");
+process.env.MACOSX_DEPLOYMENT_TARGET = MACOS_MINIMUM;
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const outputIndex = process.argv.indexOf("--output");
 const output =
@@ -36,12 +48,14 @@ await mkdir(resources, { recursive: true });
 await mkdir(join(app, "Contents/MacOS"));
 await writeFile(
   join(app, "Contents/Info.plist"),
-  `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleExecutable</key><string>XMPInstaller</string><key>CFBundleIdentifier</key><string>org.xmpos.installer</string><key>CFBundleName</key><string>XMP OS Installer</string><key>CFBundleIconFile</key><string>XMPInstaller.icns</string><key>CFBundlePackageType</key><string>APPL</string><key>CFBundleVersion</key><string>1</string><key>CFBundleShortVersionString</key><string>0.1.0</string><key>LSMinimumSystemVersion</key><string>12.0</string><key>NSHighResolutionCapable</key><true/></dict></plist>`,
+  `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleExecutable</key><string>XMPInstaller</string><key>CFBundleIdentifier</key><string>org.xmpos.installer</string><key>CFBundleName</key><string>XMP OS Installer</string><key>CFBundleIconFile</key><string>XMPInstaller.icns</string><key>CFBundlePackageType</key><string>APPL</string><key>CFBundleVersion</key><string>1</string><key>CFBundleShortVersionString</key><string>0.1.0</string><key>LSMinimumSystemVersion</key><string>${MACOS_MINIMUM}</string><key>NSHighResolutionCapable</key><true/></dict></plist>`,
 );
 execFileSync(
   "/usr/bin/swiftc",
   [
     "-O",
+    "-target",
+    macosTarget(process.arch),
     "-module-cache-path",
     swiftModules,
     join(here, "Launcher.swift"),
@@ -54,6 +68,8 @@ execFileSync(
   "/usr/bin/swiftc",
   [
     "-O",
+    "-target",
+    macosTarget(process.arch),
     "-module-cache-path",
     swiftModules,
     join(here, "StockAskPass.swift"),
@@ -64,7 +80,11 @@ execFileSync(
 );
 await copyFile(process.execPath, join(resources, "node"));
 await chmod(join(resources, "node"), 0o755);
-await copyFile(join(here, "inputs.lock.json"), join(resources, "inputs.lock.json"));
+const hostInputs = JSON.parse(await readFile(join(here, "inputs.lock.json"), "utf8"));
+await writeFile(
+  join(resources, "inputs.lock.json"),
+  JSON.stringify({ ...hostInputs, arch: process.arch }, null, 2),
+);
 await copyFile(join(here, "index.html"), join(resources, "index.html"));
 await copyFile(join(here, "icon.icns"), join(resources, "XMPInstaller.icns"));
 await copyFile(join(here, "mac-volumes.py"), join(resources, "mac-volumes.py"));
@@ -122,7 +142,7 @@ toolReceipt.binaries.mke2fs = { path: tools.mke2fs, sha256: hash(await readFile(
 for (const name of ["debugfs", "e2fsck", "dumpe2fs", "mke2fs"]) {
   await copyFile(tools[name], join(resources, "image-tools", name));
   await chmod(join(resources, "image-tools", name), 0o755);
-  // Only system macOS libraries are allowed in this portable Intel build.
+  // Only system macOS libraries are allowed in either native architecture.
   const dylibs = execFileSync("/usr/bin/otool", ["-L", tools[name]], { encoding: "utf8" })
     .split("\n")
     .slice(1)
@@ -194,6 +214,20 @@ const runtimeSources = await compilerRuntimeSource({
   compilerDirectory: rtIndex < 0 ? dirname(zig ?? (await vmCompiler())) : null,
   cache,
 });
+const nativeFiles = [
+  join(app, "Contents/MacOS/XMPInstaller"),
+  join(resources, "stock-askpass"),
+  join(resources, "node"),
+  join(resources, "python/bin/python3.13"),
+  ...["debugfs", "e2fsck", "dumpe2fs", "mke2fs"].map((name) =>
+    join(resources, "image-tools", name),
+  ),
+  ...(await readdir(join(resources, "python/lib/python3.13/lib-dynload")))
+    .filter((name) => name.endsWith(".so"))
+    .map((name) => join(resources, "python/lib/python3.13/lib-dynload", name)),
+];
+const nativeAudit = auditMacBinaries(app, nativeFiles, process.arch);
+await writeFile(join(resources, "macos-architecture.json"), JSON.stringify(nativeAudit, null, 2));
 const { sourceHash, initHash } = await bundleInstaller({
   extraSources: [
     { from: runtimeSources, to: "Zig-0.13.0-compiler-runtime.tar.gz" },
@@ -245,5 +279,5 @@ await writeFile(
   ),
 );
 console.log(
-  `Built ${app}\nSource ${sourceHash}\nPrivate Intel macOS preview; no device contacted.`,
+  `Built ${app}\nSource ${sourceHash}\nPrivate ${process.arch === "arm64" ? "Apple Silicon" : "Intel"} macOS preview; no device contacted.`,
 );

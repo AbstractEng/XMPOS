@@ -213,7 +213,7 @@ export async function bundleInstaller({
         format: "xmp-local-installer",
         version: 1,
         platform: platform,
-        arch: "x64",
+        arch: process.arch,
         sourceHash,
         initHash,
         workspaceFiles,
