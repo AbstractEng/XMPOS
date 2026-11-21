@@ -15,6 +15,7 @@ import {
 import { dirname, join, resolve } from "node:path";
 import { Worker } from "node:worker_threads";
 import { chromium } from "@playwright/test";
+import { FIRST_PROJECT } from "./first-project.mjs";
 import { startInstaller } from "./server.mjs";
 
 const root = resolve(import.meta.dirname, "../../..");
@@ -127,6 +128,9 @@ try {
     .locator("#usbStatus")
     .filter({ hasText: "Copied and SHA-256 verified" })
     .waitFor({ timeout: 120000 });
+  const firstSong = await readFile(join(workspace, "build/simulated-usb/xmp/project.xmpsong"));
+  assert.equal(createHash("sha256").update(firstSong).digest("hex"), FIRST_PROJECT.sha256);
+  assert.equal(JSON.parse(firstSong).project.name, "Acid Circuit");
   await page.screenshot({ path: join(reportDir, "prepared.png"), fullPage: true });
   await page.getByRole("button", { name: "Check Live and image", exact: true }).click();
   await page.locator("#confirmation").waitFor();
@@ -169,6 +173,7 @@ try {
     requests,
     log: state.log,
     testedAt: new Date().toISOString(),
+    firstBootDemoVerified: FIRST_PROJECT.name,
   };
   await writeFile(join(reportDir, "packaged-verification.json"), JSON.stringify(result, null, 2));
   console.log(

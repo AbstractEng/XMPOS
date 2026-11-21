@@ -6,6 +6,12 @@ Never distribute an extracted updater, loader/rootfs or runtime-bearing USB
 image. The installer source identity is separate from the frozen session's
 source identity; both are recorded in manifests.
 
+The installer also carries the original Acid Circuit demo and its source
+provenance under demo/. USB preparation creates xmp/project.xmpsong only if no
+startup project, legacy pattern, edit journal or recovery file exists. The demo
+is size/hash verified before any USB writes and read back after exclusive
+creation. Packaged tests check first-start seeding; USB tests check preservation.
+
 ## Intel macOS
 
 Build with Node **24.14.0**, Xcode command-line tools and a POSIX shell:

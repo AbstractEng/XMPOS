@@ -2,6 +2,7 @@ import { createHash, randomBytes } from "node:crypto";
 import { createReadStream } from "node:fs";
 import { lstat, mkdir, open, realpath, rename, unlink } from "node:fs/promises";
 import { join, resolve } from "node:path";
+import { readFirstProject, seedFirstProject } from "./first-project.mjs";
 export function validateUsbVolume(v) {
   if (
     !v ||
@@ -99,6 +100,7 @@ export async function writeUsbImage({
   progress = () => {},
   prepareToken = async () => {},
   profile = null,
+  firstProject = null,
 }) {
   validateUsbVolume(volume);
   const current = validateUsbVolume(await inspect(volume.mountPoint));
@@ -107,6 +109,7 @@ export async function writeUsbImage({
   const input = await regular(source);
   if (!input || (await sha(source)) !== expectedSha256)
     throw Error("Verified XMP system image required");
+  const demo = firstProject ? await readFirstProject(firstProject) : null;
   if ((await realpath(current.mountPoint)) !== resolve(current.mountPoint))
     throw Error("Regular USB mount root required");
   const xmp = join(current.mountPoint, "xmp");
@@ -121,7 +124,8 @@ export async function writeUsbImage({
   if ((await lstat(backups)).isSymbolicLink()) throw Error("Symlink backup folder refused");
   const old = await regular(active),
     older = await regular(previous);
-  const required = input.size + (old?.size ?? 0) * 2 + (older?.size ?? 0) + 4 * 1024 ** 2;
+  const required =
+    input.size + (old?.size ?? 0) * 2 + (older?.size ?? 0) + (demo?.length ?? 0) + 4 * 1024 ** 2;
   if (!Number.isSafeInteger(current.freeBytes) || current.freeBytes < required)
     throw Error("The USB key needs more free space for the image and preserved backups");
   for (const [file, label, info] of [
@@ -162,11 +166,13 @@ export async function writeUsbImage({
       await syncDir(xmp);
     }
     await rename(temp, active);
-    const directorySynced = await syncDir(xmp);
+    await syncDir(xmp);
     await unlink(join(xmp, ".fallback-tried")).catch((e) => {
       if (e.code !== "ENOENT") throw e;
     });
     if ((await sha(active)) !== expectedSha256) throw Error("Installed USB image hash mismatch");
+    const firstProjectResult = demo ? await seedFirstProject(xmp, demo) : null;
+    const directorySynced = await syncDir(xmp);
     return {
       mountPoint: current.mountPoint,
       sha256: expectedSha256,
@@ -176,6 +182,7 @@ export async function writeUsbImage({
       directorySynced,
       safelyEjectBeforeUse: true,
       deviceKey: current.deviceKey,
+      firstProject: firstProjectResult,
     };
   } finally {
     for (const path of pending)

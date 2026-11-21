@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { copyFile, cp, mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join, relative, resolve } from "node:path";
 import { build } from "esbuild";
+import { FIRST_PROJECT, readFirstProject } from "./first-project.mjs";
 
 const here = import.meta.dirname,
   root = resolve(here, "../../..");
@@ -102,6 +103,8 @@ export async function bundleInstaller({
     "node_modules/zod/package.json",
     "node_modules/zod/LICENSE",
     "LICENSE",
+    "tools/live-mk1/installer/demo/acid-circuit.xmpsong",
+    "tools/live-mk1/installer/demo/README.md",
   ]);
   for (const entry of await readdir(here, { withFileTypes: true }))
     if (entry.isFile() && !entry.name.startsWith("."))
@@ -113,6 +116,9 @@ export async function bundleInstaller({
     sourceLedger[path] = hash(await readFile(join(root, path)));
   }
   const sourceHash = hash(JSON.stringify(sourceLedger));
+  const firstProject = await readFirstProject(join(here, FIRST_PROJECT.file));
+  await mkdir(join(resources, "demo"));
+  await writeFile(join(resources, FIRST_PROJECT.file), firstProject);
   const worker = await build({
     ...config,
     define: { __XMP_SOURCE_HASH__: JSON.stringify(sourceHash) },

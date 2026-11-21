@@ -113,6 +113,8 @@ This creates `xmp/bridge.token` with a fresh per-stick secret, or reconnects usi
 
 The private graphical installer prepares both the USB key and the MPC loader. On Intel macOS, double-click `artifacts/installer/XMP OS Installer.app`. The Windows x64 preview uses `XMP OS Installer.exe` beside its resources folder; physical Windows driver/flash qualification is pending. No terminal, Python, Node or Docker installation is required on the owner's computer.
 
+For a fresh key, USB preparation adds **Acid Circuit**, the original 128 BPM acid-house demo. After boot, press **PLAY** to hear its complete arrangement. Existing startup projects, legacy patterns, edit journals and recovery saves are preserved; named projects and samples are never replaced.
+
 1. Choose the official Gen 1 **3.10.1** updater for the host platform and click **Prepare installation files**. Signature, exact payload and stock recovery checks run locally. The bundled XMP-only template is combined with runtime files extracted locally from that updater. Completed files are reverified and reused; insufficient disk space stops preparation without replacing recovery files.
 2. Connect a removable FAT32 USB key, refresh, select it and confirm the backup checkbox. Click **Prepare USB key**. The installer verifies the copied `xmp/system.img`, preserves projects, samples, token and prior images, and does not format the key. Safely eject it before moving it to the MPC.
 3. Accept Google's linked terms and click **Install connection tools**. This installs computer communication tools, not files on the key or MPC.

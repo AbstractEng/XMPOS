@@ -2,7 +2,6 @@
 
 Contribute through a fork and a pull request. **[@sandeshm](https://github.com/sandeshm)** is the sole code owner and currently reviews and merges contributions. Direct pushes from other contributors are disabled; updated PR commits need a fresh maintainer approval.
 
-
 XMP is an open-source framework and experimental community music workstation. The platform foundation is in place so contributors can concentrate on interfaces, instruments, apps and workflows. Small, reproducible improvements are welcome; you do not need an MPC to start.
 
 ## Choose your path

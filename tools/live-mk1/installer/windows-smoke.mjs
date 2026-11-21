@@ -6,6 +6,7 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { Worker } from "node:worker_threads";
 import { createController } from "./controller.mjs";
+import { FIRST_PROJECT } from "./first-project.mjs";
 
 const resources = resolve(process.argv[2]),
   updater = resolve(process.argv[3]);
@@ -62,6 +63,13 @@ try {
   await c.action({ action: "select-usb", deviceKey: "simulation-volume" });
   await assert.rejects(c.action({ action: "prepare-usb" }), /Confirm/);
   await c.action({ action: "prepare-usb", usbConfirmed: true });
+  const projectPath = join(workspace, "build/simulated-usb/xmp/project.xmpsong");
+  const demo = await readFile(projectPath);
+  assert.equal(createHash("sha256").update(demo).digest("hex"), FIRST_PROJECT.sha256);
+  const edited = Buffer.concat([demo, Buffer.from("\n")]);
+  await writeFile(projectPath, edited);
+  await c.action({ action: "prepare-usb", usbConfirmed: true });
+  assert.deepEqual(await readFile(projectPath), edited);
   await c.action({ action: "eject-usb" });
   await c.action({ action: "inspect" });
   await c.action({
@@ -92,6 +100,8 @@ try {
     eventLoopTicks: ticks,
     workspace,
     testedAt: new Date().toISOString(),
+    firstBootDemoVerified: FIRST_PROJECT.name,
+    existingProjectPreserved: true,
   };
   await writeFile(
     resolve(process.argv[4] || "windows-smoke.json"),

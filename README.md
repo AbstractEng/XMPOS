@@ -54,6 +54,8 @@ _A real hardware session on the Live Mk1, from the first clip edits through play
 
 XMP OS runs from a USB key after a one-time loader setup. The initial profile is **MPC Live Mk1 / ACV8, already running MPC OS 3.10.1**. The graphical installer source brings USB preparation and local loader/recovery setup into one workflow; each write is confirmed with **XMPOS**.
 
+On a fresh key, installer preparation loads **Acid Circuit**, the acid-house song from the demo video. Boot and press **PLAY** to hear the arrangement. Existing projects and recovery files stay intact.
+
 The source, SDK and development tools are here now. Packaged hardware installers are being finalized separately; [release information](RELEASE.md) tracks their availability. You supply the official signed 3.10.1 updater, and Akai-derived files stay local.
 
 Read [installation](docs/install-live-mk1.md), [returning to stock](docs/recover-live-mk1.md) and [the quick start](docs/community-quickstart.md). Stop and wait for **Saved on stick** before restarting or powering off. Removing the key boots stock through the loader; full restoration removes it. Detailed compatibility and measured scope are in [release information](RELEASE.md) and [known issues](docs/known-issues.md).

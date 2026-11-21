@@ -10,6 +10,7 @@ import { collectStockInstallProfile } from "../mpc-remote.mjs";
 import { prepareStickToken } from "../stick-token.mjs";
 import { stockImageFromUpdater } from "../stock-image.mjs";
 import { verifyOwnerImage } from "../verify-owner-image.mjs";
+import { FIRST_PROJECT } from "./first-project.mjs";
 import { ejectUsb, labelUsb, usbVolumes } from "./host.mjs";
 import { prepareInstallation } from "./prepare-session.mjs";
 import { exportUnitProfile, importUnitProfile } from "./profile.mjs";
@@ -178,6 +179,7 @@ async function main() {
       expectedSha256: image.sha256,
       inspect: inspectUsb,
       profile,
+      firstProject: join(resources, FIRST_PROJECT.file),
       prepareToken: (path) =>
         prepareStickToken(path, join(workspace, "artifacts/live-mk1/bridge-token.json")),
       progress: (p) =>
@@ -185,6 +187,11 @@ async function main() {
     });
     log(
       "USB system image copied, flushed and SHA-256 verified. Existing projects, samples, token and prior images preserved.",
+    );
+    log(
+      result.firstProject?.status === "installed"
+        ? "Acid Circuit demo loaded for first start. Press PLAY to hear the song."
+        : "Existing startup project or recovery files preserved; no demo replaced your work.",
     );
     return { ...result, volume };
   }

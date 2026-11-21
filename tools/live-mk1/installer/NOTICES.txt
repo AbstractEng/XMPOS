@@ -2,6 +2,9 @@ XMP OS Installer — component notices
 
 XMP code and original installer artwork: Apache-2.0, XMP.txt. Complete
 installer source, locks and build recipes are in Corresponding Source.
+Acid Circuit first-start project: original XMP composition and synthesized
+sounds, Apache-2.0. The editable project and provenance accompany the installer
+source under demo/. No video, voice or third-party recording is bundled.
 The separate XMP session template and its exact source/notices are also
 included. Owner-derived Akai loader/rootfs/runtime images are not included
 and must not be redistributed. Preparing them happens locally from the
