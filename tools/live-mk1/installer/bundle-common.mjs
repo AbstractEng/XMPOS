@@ -74,6 +74,8 @@ export async function bundleInstaller({
     },
   });
   const config = {
+    absWorkingDir: root,
+    preserveSymlinks: true,
     entryPoints: [join(here, "worker.mjs")],
     bundle: true,
     platform: "node",
@@ -105,8 +107,11 @@ export async function bundleInstaller({
     if (entry.isFile() && !entry.name.startsWith("."))
       sourcePaths.add(relative(root, join(here, entry.name)).replaceAll("\\", "/"));
   const sourceLedger = {};
-  for (const path of [...sourcePaths].sort())
+  for (const path of [...sourcePaths].sort()) {
+    if (path.startsWith("/") || path.split("/").includes("..") || path.includes("\\"))
+      throw new Error("Installer source must stay within its declared checkout");
     sourceLedger[path] = hash(await readFile(join(root, path)));
+  }
   const sourceHash = hash(JSON.stringify(sourceLedger));
   const worker = await build({
     ...config,
