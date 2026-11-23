@@ -1,7 +1,5 @@
 # Contributing to XMP OS
 
-Contribute through a fork and a pull request. **[@sandeshm](https://github.com/sandeshm)** is the sole code owner and currently reviews and merges contributions. Direct pushes from other contributors are disabled; updated PR commits need a fresh maintainer approval.
-
 XMP is an open-source framework and experimental community music workstation. The platform foundation is in place so contributors can concentrate on interfaces, instruments, apps and workflows. Small, reproducible improvements are welcome; you do not need an MPC to start.
 
 ## Choose your path
@@ -39,12 +37,12 @@ Keep project/sequencing interfaces in `packages/core`, browser APIs in `apps/stu
 
 ## Issues and pull requests
 
-Use [issues](https://github.com/AbstractEng/XMPOS/issues) for bugs, documentation and proposed changes, and [pull requests](https://github.com/AbstractEng/XMPOS/pulls) for reviewable patches. State the checkout commit/SDK compatibility, host, expected and actual behavior, smallest original reproduction, and commands/results. For audio problems, distinguish an offline render, output tap and physical listening; do not infer hardware timing from browser or VM results.
+Use [issues](https://github.com/AbstractEng/xmp-os/issues) for bugs, documentation and proposed changes, and [pull requests](https://github.com/AbstractEng/xmp-os/pulls) for reviewable patches. State the checkout commit/SDK compatibility, host, expected and actual behavior, smallest original reproduction, and commands/results. For audio problems, distinguish an offline render, output tap and physical listening; do not infer hardware timing from browser or VM results.
 
 No support SLA is promised for this community baseline. Keep device serials, network names, personal work, passwords, bridge tokens, updater/firmware bytes and owner runtime images out of commits and public reports. Use original or properly licensed fixtures; preserve licences/notices.
 
 Read [AGENTS.md](AGENTS.md) before hardware work. The Force is protected. Physical installation/recovery and every flash remain owner-operated; contributors must not bypass guards, add arbitrary device commands or assume that a connected cable authorizes writes. Host tests and emulation are the default development route.
 
-## Public-source privacy check
+## Release versions
 
-Run `npm run source:audit` before proposing source exports. Keep conversation/session logs, personal recordings, device identities, credentials, private account settings and generated owner images out of commits and release archives. Required upstream licence attribution remains intact. To check additional private terms, pass a local JSON list with `python3 tools/audit-public-source.py --private-terms-file <private-file>`; never commit that file.
+Follow [VERSIONING.md](VERSIONING.md) for app versions, compatibility and immutable releases.

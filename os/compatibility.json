@@ -1,7 +1,7 @@
 {
   "format": "xmp-hardware-compatibility",
   "version": 1,
-  "updated": "2026-11-21",
+  "updated": "2026-11-23",
   "publicInstallationCleared": false,
   "runtimeLock": "os/live-mk1/mpc-runtime.lock.json",
   "baseline": {
@@ -15,7 +15,7 @@
       "id": "live-mk1",
       "name": "MPC Live Mk1",
       "board": "inmusic,acv8",
-      "status": "Developer prerelease; Intel install/recovery verified",
+      "status": "1.0.0 community release; Intel install/recovery verified",
       "ownerRehearsalTarget": true,
       "firmware": "3.10.1 only",
       "platform": "Gen 1 / RK3288 / ARM hard-float",

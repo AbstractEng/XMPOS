@@ -1,6 +1,6 @@
 # Minimum community hardware release
 
-**Status updated 21 November 2026.** Release an experimental open-source baseline
+**Status updated 21 November 2026.** Release an open-source community baseline
 that others can extend with interfaces, instruments, apps and workflows. The
 original 20–22 November target is a planning window, not permission to waive
 required clearance. [Current status, downloads and exact evidence](../../RELEASE.md)

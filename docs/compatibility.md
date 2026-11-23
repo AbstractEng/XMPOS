@@ -3,11 +3,11 @@
 The developer prerelease is available through the reviewed graphical installer. The canonical record is `os/compatibility.json`. The runtime file hashes remain in `os/live-mk1/mpc-runtime.lock.json`; builders reject disagreement between these records. Regenerate these tables with `npm run compatibility:docs`; `npm run compatibility:docs:check` and the unit suite reject stale copies.
 
 <!-- BEGIN GENERATED COMPATIBILITY -->
-Developer prerelease available for Live Mk1. See release status for installer host qualification. One models are planned ports.
+XMP OS 1.0.0 is available for Live Mk1. See release status for installer host qualification. One models are planned ports.
 
 | Model              | Board         | Status                                                            | Starting firmware                                          |
 | ------------------ | ------------- | ----------------------------------------------------------------- | ---------------------------------------------------------- |
-| MPC Live Mk1       | inmusic,acv8  | Developer prerelease; Intel install/recovery verified             | 3.10.1 only                                                |
+| MPC Live Mk1       | inmusic,acv8  | 1.0.0 community release; Intel install/recovery verified          | 3.10.1 only                                                |
 | MPC One (original) | inmusic,acva  | Planned port; installation disabled; no XMP hardware tests        | Gen 1 3.10.1 proposed; not qualified                       |
 | MPC One+           | inmusic,acva2 | Planned port; installation disabled; no XMP hardware tests        | Gen 1 3.10.1 proposed; not qualified                       |
 | MPC One G2         | Unverified    | Separate Gen 2 port; installation disabled; no XMP hardware tests | Separate Gen 2 firmware family; never use this Gen 1 image |

@@ -1,7 +1,7 @@
 # Hardware candidate reference — 21 November 2026
 
 [INSTALLER-CANDIDATE.json](../../INSTALLER-CANDIDATE.json) identifies the current
-0.1.0-dev.20261121.2 installer packages. Intel Mac owner installation, playback,
+1.0.0 installer packages. Intel Mac owner installation, playback,
 save/reopen, stock handover and full restoration passed. Native Apple Silicon
 and Windows packages passed automated host flows; their physical qualification
 is separate. The downloads are published as a developer prerelease with owner approval.

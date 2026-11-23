@@ -1,0 +1,24 @@
+.usage-notice {
+  max-width: 72rem;
+  margin: 1rem auto;
+  padding: 0.6rem 1rem;
+  color: #a9bdb5;
+  font:
+    0.85rem / 1.5 system-ui,
+    sans-serif;
+}
+.usage-notice summary {
+  cursor: pointer;
+}
+.usage-notice p {
+  max-width: 58rem;
+}
+.usage-notice button {
+  color: #e9f6ee;
+  background: #183b31;
+  border: 1px solid #6b9f8a;
+  border-radius: 0.3rem;
+  padding: 0.6rem 1rem;
+  font: inherit;
+  cursor: pointer;
+}

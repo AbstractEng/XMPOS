@@ -188,11 +188,11 @@ Then(
     ])
       await expect(section).toContainText(text);
     await expect(this.page.locator(".hardware-path a")).toHaveCount(4);
-    await expect(this.page.locator(".hardware-download-card")).toHaveCount(2);
-    for (const id of ["macos", "windows"]) {
+    await expect(this.page.locator(".hardware-download-card")).toHaveCount(3);
+    for (const id of ["macos", "macos-arm64", "windows"]) {
       await expect(this.page.locator(`[data-installer="${id}"]`)).toHaveAttribute(
         "href",
-        /^https:\/\/github\.com\/AbstractEng\/xmp-os-downloads\/releases\/download\//,
+        /^https:\/\/github\.com\/AbstractEng\/XMPOS\/releases\/download\//,
       );
     }
   },

@@ -5,9 +5,10 @@
 // is opened.
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import type { Project } from "@xmp/core";
+import { createDemoProject, type Project } from "@xmp/core";
 import { afterAll, beforeAll, expect, vi } from "vitest";
-import { encodeMidi, loadCore } from "../../packages/core/src/edits.ts";
+import { encodeMidi, expandSong, loadCore } from "../../packages/core/src/edits.ts";
+import { saveSong } from "../../packages/core/src/project-io.ts";
 import { studioLists } from "./lists.ts";
 import { manualJourney } from "./steps.ts";
 
@@ -41,6 +42,15 @@ const mock = vi.hoisted(() => ({
 }));
 vi.mock("../../apps/studio/src/storage.ts", () => ({
   loadProjectState: async () => ({}),
+  // This manual journey works on its existing detailed-editor fixture, rather
+  // than relying on whichever starter a fresh browser currently receives.
+  loadProjectSnapshot: async () => {
+    const project = expandSong(createDemoProject());
+    return { project, text: await saveSong(project), recovered: false };
+  },
+  saveProjectText: async () => {
+    throw new Error("An existing manual fixture must not be reseeded");
+  },
   saveProject: mock.save,
 }));
 vi.mock("../../apps/studio/src/audio.ts", () => ({

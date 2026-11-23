@@ -1,18 +1,18 @@
 {
-  "version": "0.1.0-dev.20261121.2",
-  "publishedDate": "2026-11-21",
+  "version": "1.0.0",
+  "publishedDate": "2026-11-23",
   "sessionSourceHash": "f8892d5e7f4ccd777d20c9f8b527e0df25bf8791c757f6c5d81bdaa126e531bb",
-  "releaseUrl": "https://github.com/AbstractEng/XMPOS/releases/tag/v0.1.0-dev.20261121.2",
-  "checksumsUrl": "https://github.com/AbstractEng/XMPOS/releases/download/v0.1.0-dev.20261121.2/SHA256SUMS.txt",
+  "releaseUrl": "https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.0",
+  "checksumsUrl": "https://github.com/AbstractEng/XMPOS/releases/download/v1.0.0/SHA256SUMS.txt",
   "sourceUrl": "https://github.com/AbstractEng/XMPOS",
   "installers": [
     {
       "platform": "macOS",
       "arch": "Intel x64 \u00b7 macOS 13.4.1+",
-      "name": "XMPOS-Live-Mk1-macOS-Intel-0.1.0-dev.20261121.2.zip",
+      "name": "XMPOS-Live-Mk1-macOS-Intel-1.0.0.zip",
       "bytes": 313491262,
       "sha256": "5792f69965023ff5e0ac3d1710b7eb1ef1968999435547a9d697c8d14ee942c0",
-      "url": "https://github.com/AbstractEng/XMPOS/releases/download/v0.1.0-dev.20261121.2/XMPOS-Live-Mk1-macOS-Intel-0.1.0-dev.20261121.2.zip",
+      "url": "https://github.com/AbstractEng/XMPOS/releases/download/v1.0.0/XMPOS-Live-Mk1-macOS-Intel-1.0.0.zip",
       "id": "macos",
       "label": "Intel Mac",
       "status": "Hardware verified",
@@ -21,10 +21,10 @@
     {
       "platform": "macOS",
       "arch": "Native arm64 \u00b7 macOS 13.5+",
-      "name": "XMPOS-Live-Mk1-macOS-Apple-Silicon-0.1.0-dev.20261121.2.zip",
+      "name": "XMPOS-Live-Mk1-macOS-Apple-Silicon-1.0.0.zip",
       "bytes": 313755394,
       "sha256": "7b58aa20c3a45e89e080cb97d96cf04210a225697a3df85ac1cd2bb4ec24e764",
-      "url": "https://github.com/AbstractEng/XMPOS/releases/download/v0.1.0-dev.20261121.2/XMPOS-Live-Mk1-macOS-Apple-Silicon-0.1.0-dev.20261121.2.zip",
+      "url": "https://github.com/AbstractEng/XMPOS/releases/download/v1.0.0/XMPOS-Live-Mk1-macOS-Apple-Silicon-1.0.0.zip",
       "id": "macos-arm64",
       "label": "Apple Silicon Mac",
       "status": "Laptop test pending",
@@ -33,14 +33,15 @@
     {
       "platform": "Windows",
       "arch": "x64",
-      "name": "XMPOS-Live-Mk1-Windows-x64-0.1.0-dev.20261121.2.zip",
+      "name": "XMPOS-Live-Mk1-Windows-x64-1.0.0.zip",
       "bytes": 461718310,
       "sha256": "5341f0259226f20acb8652a5e18ca9ada800ec7bf03c330589936789555b0f66",
-      "url": "https://github.com/AbstractEng/XMPOS/releases/download/v0.1.0-dev.20261121.2/XMPOS-Live-Mk1-Windows-x64-0.1.0-dev.20261121.2.zip",
+      "url": "https://github.com/AbstractEng/XMPOS/releases/download/v1.0.0/XMPOS-Live-Mk1-Windows-x64-1.0.0.zip",
       "id": "windows",
       "label": "Windows",
       "status": "Physical test pending",
       "sourceHash": "8cef603e28bd3bfdb215df58eb2f5f6fba5fd0946e2c2eb93a292b2053be4617"
     }
-  ]
+  ],
+  "promotedFrom": "0.1.0-dev.20261121.2"
 }

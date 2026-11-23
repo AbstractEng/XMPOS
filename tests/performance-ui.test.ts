@@ -30,6 +30,11 @@ const mock = vi.hoisted(() => ({
 }));
 vi.mock("../apps/studio/src/storage.ts", () => ({
   loadProjectState: async () => ({}),
+  loadProjectSnapshot: async () =>
+    (await import("./studio-project-fixture.ts")).studioProjectSnapshot(),
+  saveProjectText: async () => {
+    throw new Error("An existing Studio fixture must not be reseeded");
+  },
   saveProject: mock.save,
 }));
 vi.mock("../apps/studio/src/audio.ts", () => ({

@@ -31,6 +31,7 @@ struct Runtime {
   live::Workbench::Clock::time_point saved_at{}, auto_save_attempt{};
   xmp::Str save_data;
   std::string save_name;
+  std::array<uint32_t, static_cast<size_t>(ui::Action::chop_mark) + 1> usage{};
   live::Workbench workbench;
 
   Runtime()
@@ -50,6 +51,7 @@ struct Runtime {
           },
           [](const char*) {},
           [&](const auto& name) { return save(name); },
+          [&](ui::Action::Kind kind) { if (usage[kind] < 1000000) ++usage[kind]; },
         }) {
     workbench.loop = &loop;
     canvas.memory = reinterpret_cast<unsigned char*>(pixels.data());
@@ -242,6 +244,21 @@ EXPORT(save_complete) void save_complete(int ok) {
 EXPORT(view) const char* view() {
   const auto& face = runtime().workbench.face;
   return face.menu ? "MENU" : ui::view_name(face.view);
+}
+// Browser adapter metadata only: no names, notes, values or audio are exposed.
+EXPORT(usage_count) int usage_count() { return runtime().usage.size(); }
+EXPORT(usage_counts) const uint32_t* usage_counts() { return runtime().usage.data(); }
+EXPORT(usage_recording) int usage_recording() {
+  const auto& r = runtime();
+  const auto& w = r.workbench;
+  return r.loop.state() == live::sample::LoopTake::State::capturing ||
+    w.recorder.state == live::sample::Recorder::State::recording ||
+    w.face.rec == ui::Ui::Rec::recording || w.face.rec == ui::Ui::Rec::overdub;
+}
+EXPORT(usage_machine) int usage_machine() {
+  const auto& w = runtime().workbench;
+  return w.face.track < w.board.tracks && !w.board.unchosen[w.face.track]
+    ? static_cast<int>(w.board.kind[w.face.track]) : 5;
 }
 EXPORT(menu_pending) int menu_pending() {
   const auto& face = runtime().workbench.face;

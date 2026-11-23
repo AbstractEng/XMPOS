@@ -1,6 +1,6 @@
 # Gate 1 clearance
 
-The **0.1.0-dev.20261121.2 Intel Mac route passed** its current component/source
+The **1.0.0 Intel Mac route passed** its current component/source
 review, owner installation/recovery rehearsal and unchanged distribution check.
 On 21 November the owner confirmed loader installation, XMP USB boot, playback,
 save/reopen, stock handover without the key and full restoration to MPC OS 3.10.1.

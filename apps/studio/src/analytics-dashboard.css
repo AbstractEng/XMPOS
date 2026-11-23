@@ -1,0 +1,141 @@
+:root {
+  font:
+    16px / 1.5 system-ui,
+    sans-serif;
+  color: #eaf7ee;
+  background: #071913;
+  color-scheme: dark;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+main {
+  max-width: 1440px;
+  margin: auto;
+  padding: 2rem clamp(1rem, 4vw, 3rem);
+}
+a {
+  color: #98dbbb;
+}
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0.5rem 0;
+}
+h2 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+}
+p {
+  color: #b1c9bd;
+}
+button,
+input,
+select {
+  padding: 0.7rem 1rem;
+  border: 1px solid #5b8b74;
+  border-radius: 0.4rem;
+  font: inherit;
+  background: #153e2e;
+  color: inherit;
+}
+button,
+select {
+  cursor: pointer;
+}
+input {
+  width: min(100%, 32rem);
+}
+label {
+  display: block;
+}
+.login-row,
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.7rem;
+}
+.toolbar {
+  margin: 2rem 0;
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+section section > div {
+  overflow-x: auto;
+}
+.metrics > div,
+section section {
+  padding: 1.3rem;
+  border: 1px solid #325f48;
+  border-radius: 0.6rem;
+  background: #0d271c;
+}
+.metrics span,
+.metrics strong {
+  display: block;
+}
+.metrics strong {
+  font-size: 1.9rem;
+  margin-top: 0.5rem;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+#dashboard > section {
+  margin-top: 1rem;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+th,
+td {
+  text-align: left;
+  padding: 0.6rem 0.4rem;
+  border-bottom: 1px solid #325f48;
+}
+th {
+  color: #a4d5b9;
+}
+.day {
+  display: grid;
+  grid-template-columns: 7rem 1fr minmax(10rem, auto);
+  gap: 1rem;
+  align-items: center;
+  margin: 0.7rem 0;
+}
+progress {
+  width: 100%;
+  accent-color: #8bdbad;
+}
+.explanation {
+  max-width: 75ch;
+  font-size: 0.9rem;
+}
+#status {
+  color: #ffd395;
+}
+[hidden] {
+  display: none;
+}
+@media (max-width: 750px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+  .day {
+    grid-template-columns: 6rem 1fr;
+  }
+  .day span:last-child {
+    grid-column: 1 / -1;
+  }
+}

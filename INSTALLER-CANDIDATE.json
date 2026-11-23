@@ -1,8 +1,8 @@
 {
   "format": "xmp-installer-candidate",
   "version": 1,
-  "releaseVersion": "0.1.0-dev.20261121.2",
-  "publication": "public developer prerelease; owner authorized 2026-11-21",
+  "releaseVersion": "1.0.0",
+  "publication": "XMP OS 1.0.0; promotes the verified installer bytes without rebuilding",
   "target": "inmusic,acv8",
   "startingMpcOs": "3.10.1",
   "sessionSourceCommit": "0836d4ab7b66f53a021efbc907ad427949e92378",
@@ -52,5 +52,8 @@
   },
   "akaisFirmwareOrOwnerRuntimeIncluded": false,
   "rawOwnerEvidenceIncluded": false,
-  "releaseUrl": "https://github.com/AbstractEng/XMPOS/releases/tag/v0.1.0-dev.20261121.2"
+  "releaseUrl": "https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.0",
+  "previousReleaseVersion": "0.1.0-dev.20261121.2",
+  "embeddedBuildLabels": "0.1.0-dev.20261121.2",
+  "versioning": "VERSIONING.md"
 }

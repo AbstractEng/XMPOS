@@ -14,6 +14,7 @@ export function prepareMediaSizes(prepared) {
     }
   }
   visit(resolve(prepared, "manual-media"), "/xmpos/manual-media");
+  visit(resolve(prepared, "assets"), "/xmpos/assets");
   writeFileSync(
     new URL("./media-sizes.json", import.meta.url),
     `${JSON.stringify(sizes, null, 2)}\n`,

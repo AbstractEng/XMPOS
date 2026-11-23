@@ -1,4 +1,6 @@
 // The existing homepage has its own Worker. Only the XMP subpath is served here.
+
+import { collectUsage, pruneUsage, usageReport } from "./analytics.mjs";
 import mediaSizes from "./media-sizes.json" with { type: "json" };
 
 // Error reports from the web client (apps/studio/src/error-log.ts), written to
@@ -14,7 +16,7 @@ export async function mediaRange(request, asset) {
   if (
     request.method !== "GET" ||
     asset.status !== 200 ||
-    !/^\/xmpos\/manual-media\/.*\.(mp4|webm|wav)$/.test(path) ||
+    !/^\/xmpos\/(?:manual-media|assets)\/.*\.(mp4|webm|wav)$/.test(path) ||
     (asset.headers.get("Content-Encoding") ?? "identity") !== "identity"
   )
     return asset;
@@ -107,11 +109,16 @@ export async function clientErrors(request) {
 }
 
 export default {
+  async scheduled(_event, env) {
+    await pruneUsage(env);
+  },
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname !== "/xmpos" && !url.pathname.startsWith("/xmpos/"))
       return new Response("Not found", { status: 404 });
     if (url.pathname === "/xmpos/api/client-errors") return clientErrors(request);
+    if (url.pathname === "/xmpos/api/analytics/collect") return collectUsage(request, env);
+    if (url.pathname === "/xmpos/api/analytics/report") return usageReport(request, env);
     if (!["GET", "HEAD"].includes(request.method))
       return new Response("Method not allowed", { status: 405, headers: { Allow: "GET, HEAD" } });
     if (url.pathname === "/xmpos") {
@@ -127,6 +134,11 @@ export default {
     const response = new Response(asset.body, asset);
     response.headers.set("X-Content-Type-Options", "nosniff");
     response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    if (url.pathname.startsWith("/xmpos/analytics")) {
+      response.headers.set("X-Robots-Tag", "noindex, nofollow");
+      response.headers.set("Referrer-Policy", "no-referrer");
+      response.headers.set("X-Frame-Options", "DENY");
+    }
     response.headers.set(
       "Permissions-Policy",
       "midi=(), usb=(), hid=(), serial=(), microphone=(self), camera=()",

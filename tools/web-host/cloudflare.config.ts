@@ -1,10 +1,10 @@
-// Optional hosting example. Set your own account and routes before deploying.
-import { bindings, defineConfig } from "cf/config";
+import { bindings, defineConfig, triggers } from "cf/config";
 import * as entrypoint from "./worker.mjs" with { type: "cf-worker" };
 
 export default defineConfig({
+  accountId: "33783d5d3a3b8ffb3a59e099d3c332fa",
   worker: {
-    name: "xmp-community-example",
+    name: "xmp-studio-web",
     compatibilityDate: "2026-11-09",
     entrypoint,
     workersDev: false,
@@ -14,7 +14,34 @@ export default defineConfig({
       htmlHandling: "force-trailing-slash",
       notFoundHandling: "none",
     },
-    env: { ASSETS: bindings.assets() },
+    env: {
+      ASSETS: bindings.assets(),
+      ANALYTICS_DB: bindings.d1({ name: "xmp-web-analytics" }),
+      ANALYTICS_KEY_HASH: bindings.secret(),
+      ANALYTICS_LIMIT: bindings.rateLimit({
+        namespace: "1001731",
+        simple: { limit: 120, period: 60 },
+      }),
+    },
+    triggers: [
+      triggers.scheduled({ schedule: "23 5 * * *" }),
+      triggers.fetch({
+        pattern: "abstracteng.com/xmpos",
+        zone: "3188b3de92c182ddf24b840b85bce0e5",
+      }),
+      triggers.fetch({
+        pattern: "abstracteng.com/xmpos/*",
+        zone: "3188b3de92c182ddf24b840b85bce0e5",
+      }),
+      triggers.fetch({
+        pattern: "irregularsizes.com/xmpos",
+        zone: "4ae9d57bfe30dbac7b290abd02208cfc",
+      }),
+      triggers.fetch({
+        pattern: "irregularsizes.com/xmpos/*",
+        zone: "4ae9d57bfe30dbac7b290abd02208cfc",
+      }),
+    ],
     observability: {
       enabled: true,
       redactQueryString: true,

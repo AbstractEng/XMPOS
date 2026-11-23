@@ -1,6 +1,6 @@
 {
   "name": "xmp-os",
-  "version": "0.1.0-dev",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -124,6 +124,9 @@
     "release:inspect": "node tools/release/inspect.mjs",
     "web:build": "vite build --mode hosted",
     "web:prepare": "node tools/web-host/prepare.mjs",
+    "web:first-visit:test": "npm run web:build && node acceptance/browser/first-visit.mjs",
+    "web:analytics:key": "node tools/web-host/analytics-key.mjs",
+    "web:analytics:test": "npm run web:build && node acceptance/browser/analytics.mjs",
     "live:mpc": "node tools/live-mk1/mpc-remote.mjs",
     "engine:wasm": "node tools/engine/build-wasm.mjs",
     "kits:velvet": "node tools/kits/velvet.mjs",
@@ -143,8 +146,7 @@
     "compatibility:docs:check": "node tools/live-mk1/render-compatibility.mjs --check",
     "live:installer:build": "node tools/live-mk1/installer/build.mjs",
     "live:installer:test": "node --test tools/live-mk1/installer/flow.test.mjs tools/live-mk1/installer/usb.test.mjs tools/live-mk1/installer/stock-install.test.mjs",
-    "live:installer:windows": "node tools/live-mk1/installer/build-windows.mjs",
-    "source:audit": "python3 tools/audit-public-source.py"
+    "live:installer:windows": "node tools/live-mk1/installer/build-windows.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "2.6.6",

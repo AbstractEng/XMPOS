@@ -1,6 +1,6 @@
 [![XMP OS — eXtensible Music Platform, by Abstract Engineering](docs/assets/readme/cover.svg)](https://abstracteng.com/)
 
-# XMP OS
+# XMP OS 1.0.0
 
 **From a loop to somewhere new.**
 
@@ -58,13 +58,13 @@ On a fresh key, installer preparation loads **Acid Circuit**, the acid-house son
 
 **Download the graphical installer:**
 
-| Your computer                  | Download                                                                                                                                                            |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Intel Mac, macOS 13.4.1+       | [Intel Mac installer](https://github.com/AbstractEng/XMPOS/releases/download/v0.1.0-dev.20261121.2/XMPOS-Live-Mk1-macOS-Intel-0.1.0-dev.20261121.2.zip)             |
-| Apple Silicon Mac, macOS 13.5+ | [Apple Silicon installer](https://github.com/AbstractEng/XMPOS/releases/download/v0.1.0-dev.20261121.2/XMPOS-Live-Mk1-macOS-Apple-Silicon-0.1.0-dev.20261121.2.zip) |
-| Windows x64                    | [Windows installer](https://github.com/AbstractEng/XMPOS/releases/download/v0.1.0-dev.20261121.2/XMPOS-Live-Mk1-Windows-x64-0.1.0-dev.20261121.2.zip)               |
+| Your computer                  | Download                                                                                                                              |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Intel Mac, macOS 13.4.1+       | [Intel Mac installer](https://github.com/AbstractEng/XMPOS/releases/download/v1.0.0/XMPOS-Live-Mk1-macOS-Intel-1.0.0.zip)             |
+| Apple Silicon Mac, macOS 13.5+ | [Apple Silicon installer](https://github.com/AbstractEng/XMPOS/releases/download/v1.0.0/XMPOS-Live-Mk1-macOS-Apple-Silicon-1.0.0.zip) |
+| Windows x64                    | [Windows installer](https://github.com/AbstractEng/XMPOS/releases/download/v1.0.0/XMPOS-Live-Mk1-Windows-x64-1.0.0.zip)               |
 
-[Release notes and checksums](https://github.com/AbstractEng/XMPOS/releases/tag/v0.1.0-dev.20261121.2). Extract the complete ZIP, then open the app. The Intel Mac route passed owner installation, playback, save/reopen and full stock restoration. Apple Silicon passed native automated checks; laptop testing is pending. Windows physical driver/flash qualification is pending. Mac apps are ad-hoc signed, not notarized; Windows is unsigned.
+[Release notes and checksums](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.0). Extract the complete ZIP, then open the app. The Intel Mac route passed owner installation, playback, save/reopen and full stock restoration. Apple Silicon passed native automated checks; laptop testing is pending. Windows physical driver/flash qualification is pending. Mac apps are ad-hoc signed, not notarized; Windows is unsigned.
 
 You supply the official signed **Gen 1 3.10.1 updater**; Akai-derived files stay local. [Release information](RELEASE.md) records the exact scope and sources.
 
@@ -74,11 +74,11 @@ Read [installation](docs/install-live-mk1.md), [returning to stock](docs/recover
 <summary><strong>Hardware compatibility and starting firmware</strong></summary>
 
 <!-- BEGIN GENERATED COMPATIBILITY -->
-Developer prerelease available for Live Mk1. See release status for installer host qualification. One models are planned ports.
+XMP OS 1.0.0 is available for Live Mk1. See release status for installer host qualification. One models are planned ports.
 
 | Model              | Board         | Status                                                            | Starting firmware                                          |
 | ------------------ | ------------- | ----------------------------------------------------------------- | ---------------------------------------------------------- |
-| MPC Live Mk1       | inmusic,acv8  | Developer prerelease; Intel install/recovery verified             | 3.10.1 only                                                |
+| MPC Live Mk1       | inmusic,acv8  | 1.0.0 community release; Intel install/recovery verified          | 3.10.1 only                                                |
 | MPC One (original) | inmusic,acva  | Planned port; installation disabled; no XMP hardware tests        | Gen 1 3.10.1 proposed; not qualified                       |
 | MPC One+           | inmusic,acva2 | Planned port; installation disabled; no XMP hardware tests        | Gen 1 3.10.1 proposed; not qualified                       |
 | MPC One G2         | Unverified    | Separate Gen 2 port; installation disabled; no XMP hardware tests | Separate Gen 2 firmware family; never use this Gen 1 image |

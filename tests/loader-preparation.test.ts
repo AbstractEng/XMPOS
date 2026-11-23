@@ -52,7 +52,9 @@ describe("bounded loader preparation", () => {
   it("fails before an allocation with a useful free-space message", async () => {
     await expect(
       requirePreparationSpace(root, 1024 ** 3, async () => ({ bavail: 100, bsize: 4096 })),
-    ).rejects.toThrow(/Free at least 1.0 GiB/);
+    ).rejects.toThrow(
+      /Free at least 1024 MiB here; 0 MiB is available.*recovery image are preserved/,
+    );
   });
   it("accepts adequate real available space without reserving a file", async () => {
     expect(

@@ -34,6 +34,7 @@ export default defineConfig(({ mode }) => ({
       input: {
         studio: fileURLToPath(new URL("./apps/studio/index.html", import.meta.url)),
         manual: fileURLToPath(new URL("./apps/studio/manual/index.html", import.meta.url)),
+        analytics: fileURLToPath(new URL("./apps/studio/analytics/index.html", import.meta.url)),
       },
     },
   },

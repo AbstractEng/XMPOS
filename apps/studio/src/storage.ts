@@ -106,6 +106,10 @@ export async function loadProjectText(): Promise<string | undefined> {
   await loadProjectState();
   return validatedPrevious;
 }
+export async function loadProjectSnapshot() {
+  const saved = await loadProjectState();
+  return { ...saved, text: saved.project ? validatedPrevious : undefined };
+}
 
 export async function loadProjectCopies(): Promise<{ name: string; text: string }[]> {
   const db = await open();

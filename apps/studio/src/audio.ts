@@ -88,6 +88,9 @@ export class StudioAudio {
   };
   private samplerPad = 0;
   private samplerPhase = -1;
+  get recording() {
+    return this.samplerBusy && this.samplerPhase === 2;
+  }
   private samplerFrames = -1;
   private samplerRestore?: { track: string; clip: string | null };
   async enableSamplerInput(monitor: boolean) {

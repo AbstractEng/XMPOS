@@ -1,6 +1,6 @@
 # Current candidate: owner physical checklist
 
-**Completed for the Intel Mac 0.1.0-dev.20261121.2 route on 21 November 2026.**
+**Completed for the Intel Mac 1.0.0 route on 21 November 2026.**
 The owner confirmed installation, XMP boot, playback, save/reopen, stock handover
 and full restoration. [Current identities](../../INSTALLER-CANDIDATE.json) bind
 that evidence to the tested bytes. The checklist below remains the repeatable

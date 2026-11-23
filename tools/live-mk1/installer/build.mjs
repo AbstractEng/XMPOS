@@ -26,6 +26,11 @@ if (process.platform !== "darwin" || !["x64", "arm64"].includes(process.arch))
   throw new Error("Build on Intel or Apple Silicon macOS with native Node 24");
 if (Number(process.versions.node.split(".")[0]) !== 24) throw new Error("Build with Node 24");
 const MACOS_MINIMUM = macosMinimum(process.arch);
+const APP_VERSION = JSON.parse(await readFile(join(root, "package.json"), "utf8")).version;
+const MACOS_BUNDLE_VERSION = /^(\d+\.\d+\.\d+)(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/.exec(
+  APP_VERSION,
+)?.[1];
+if (!MACOS_BUNDLE_VERSION) throw new Error("Invalid semantic app version");
 process.env.MACOSX_DEPLOYMENT_TARGET = MACOS_MINIMUM;
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const outputIndex = process.argv.indexOf("--output");
@@ -49,7 +54,7 @@ await mkdir(resources, { recursive: true });
 await mkdir(join(app, "Contents/MacOS"));
 await writeFile(
   join(app, "Contents/Info.plist"),
-  `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleExecutable</key><string>XMPInstaller</string><key>CFBundleIdentifier</key><string>org.xmpos.installer</string><key>CFBundleName</key><string>XMP OS Installer</string><key>CFBundleIconFile</key><string>XMPInstaller.icns</string><key>CFBundlePackageType</key><string>APPL</string><key>CFBundleVersion</key><string>1</string><key>CFBundleShortVersionString</key><string>0.1.0</string><key>LSMinimumSystemVersion</key><string>${MACOS_MINIMUM}</string><key>NSHighResolutionCapable</key><true/></dict></plist>`,
+  `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleExecutable</key><string>XMPInstaller</string><key>CFBundleIdentifier</key><string>org.xmpos.installer</string><key>CFBundleName</key><string>XMP OS Installer</string><key>CFBundleIconFile</key><string>XMPInstaller.icns</string><key>CFBundlePackageType</key><string>APPL</string><key>CFBundleVersion</key><string>${MACOS_BUNDLE_VERSION}</string><key>CFBundleShortVersionString</key><string>${MACOS_BUNDLE_VERSION}</string><key>XMPReleaseVersion</key><string>${APP_VERSION}</string><key>LSMinimumSystemVersion</key><string>${MACOS_MINIMUM}</string><key>NSHighResolutionCapable</key><true/></dict></plist>`,
 );
 execFileSync(
   "/usr/bin/swiftc",

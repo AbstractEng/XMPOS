@@ -98,13 +98,11 @@ it("streams a range across chunks and cancels the remainder", async () => {
   expect(cancel).toHaveBeenCalledOnce();
 });
 
-it("seeks packaged original audio when ASSETS omits Content-Length", async () => {
-  const file = readFileSync("apps/studio/public/manual-media/first-groove.wav");
+it("seeks the real media when ASSETS omits Content-Length, including HEAD metadata", async () => {
+  const file = readFileSync("apps/studio/public/manual-media/01-navigation.webm");
   const response = await mediaRange(
-    new Request("https://abstracteng.com/xmpos/manual-media/first-groove.wav", {
-      headers: { Range: "bytes=-1024" },
-    }),
-    new Response(file, { headers: { "Content-Type": "audio/wav" } }),
+    mediaRequest("bytes=-1024"),
+    new Response(file, { headers: { "Content-Type": "video/webm" } }),
   );
   expect(response.status).toBe(206);
   expect(response.headers.get("Content-Range")).toBe(
@@ -120,6 +118,12 @@ it("keeps packaged range metadata exact and complete for every published media f
       .filter((name) => /\.(mp4|webm|wav)$/.test(name))
       .map((name) => [`/xmpos/manual-media/${name}`, statSync(resolve(root, name)).size]),
   );
+  const bundled = Object.keys(mediaSizes).filter((path) => path.startsWith("/xmpos/assets/"));
+  expect(bundled).toHaveLength(1);
+  expect(bundled[0]).toMatch(/acid-circuit-landscape-.*\.mp4$/);
+  actual[bundled[0] ?? ""] = statSync(
+    resolve("brand/abstract-engineering/website/assets/video/acid-circuit-landscape.mp4"),
+  ).size;
   expect(mediaSizes).toEqual(actual);
 });
 
@@ -148,4 +152,25 @@ it("handles unsatisfiable, malformed and conditional ranges without corrupting t
   expect(await mediaRange(mediaRequest("bytes=1-2"), alreadyPartial)).toBe(alreadyPartial);
   const html = new Response("page");
   expect(await mediaRange(new Request("https://abstracteng.com/xmpos/manual/"), html)).toBe(html);
+});
+
+it("keeps bundled promo videos seekable without permitting other asset types", async () => {
+  const request = new Request("https://abstracteng.com/xmpos/assets/acid-circuit-test.mp4", {
+    headers: { Range: "bytes=2-5" },
+  });
+  const response = await mediaRange(
+    request,
+    new Response("0123456789", { headers: { "Content-Length": "10" } }),
+  );
+  expect(response.status).toBe(206);
+  expect(await response.text()).toBe("2345");
+  const script = new Response("javascript");
+  expect(
+    await mediaRange(
+      new Request("https://abstracteng.com/xmpos/assets/script.js", {
+        headers: { Range: "bytes=1-2" },
+      }),
+      script,
+    ),
+  ).toBe(script);
 });

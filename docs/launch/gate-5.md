@@ -2,7 +2,7 @@
 
 The audited, fresh-history community repository is public at
 [AbstractEng/XMPOS](https://github.com/AbstractEng/XMPOS).
-The [installer developer prerelease](https://github.com/AbstractEng/XMPOS/releases/tag/v0.1.0-dev.20261121.2) includes Intel Mac, native Apple Silicon
+The [installer developer prerelease](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.0) includes Intel Mac, native Apple Silicon
 Mac and Windows x64 kits, exact sources/notices, checksums and verification records.
 The older mirror remains private under its separate purge hold.
 

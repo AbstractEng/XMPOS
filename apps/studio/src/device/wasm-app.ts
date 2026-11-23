@@ -3,12 +3,10 @@ import xmpLogo from "../../../../brand/xmp/assets/svg/xmp-orbit.svg?url";
 import { decodeBase64 } from "../../../../packages/core/src/engine.ts";
 import { DEVICE_UI_WASM_BASE64 } from "../../../../packages/core/src/generated/xmp-device-ui-wasm.ts";
 import inputWorkletUrl from "../device-input-worklet.ts?worker&url";
-import {
-  loadProjectCopies,
-  loadProjectText,
-  saveProjectCopy,
-  saveProjectText,
-} from "../storage.ts";
+import { loadWebStartupProject } from "../startup-project.ts";
+import { loadProjectCopies, saveProjectCopy, saveProjectText } from "../storage.ts";
+import { usage } from "../usage.ts";
+import { USAGE_ACTIONS, USAGE_MACHINES } from "../usage-schema.ts";
 
 const width = 1280;
 const height = 800;
@@ -45,6 +43,10 @@ interface DeviceExports {
   message(): number;
   qlink_page(): number;
   panel_lights(): number;
+  usage_count(): number;
+  usage_counts(): number;
+  usage_recording(): number;
+  usage_machine(): number;
   catalog_clear(): void;
   catalog_entry(id: number, kind: number, bytes: number, length: number, factory: number): void;
   catalog_refresh(): void;
@@ -95,6 +97,7 @@ async function enableMicrophone() {
       node.connect(audio.destination);
       microphone = stream;
       microphoneNode = node;
+      usage.feature("microphone_enabled");
       wavInput = false;
       device.input_enable(1);
       for (const track of stream.getAudioTracks())
@@ -218,10 +221,11 @@ async function loadFactoryKits() {
   catalog();
 }
 
-let stored = await loadProjectText();
-const start = stored ? encoder.encode(stored) : undefined;
-if (start) input(start);
-if (!device.initialize(start?.length ?? 0)) throw new Error("Could not open saved device project");
+const startup = await loadWebStartupProject();
+let stored: string | undefined = startup.text;
+const start = encoder.encode(stored);
+input(start);
+if (!device.initialize(start.length)) throw new Error("Could not open saved device project");
 for (const copy of await loadProjectCopies())
   files.push({ name: copy.name, kind: 3, bytes: encoder.encode(copy.text) });
 catalog();
@@ -308,6 +312,9 @@ let hostMessage = "";
 let heldMenu = false;
 let heldShift = false;
 let saving = false;
+let usageAt = -Infinity;
+let usageMachine = -1;
+const usagePrevious = new Uint32Array(USAGE_ACTIONS.length);
 
 function wakeAudio() {
   audio ??= new AudioContext({ sampleRate: 48000 });
@@ -391,6 +398,31 @@ function draw() {
   // Native UI owns every musical light; this adapter only paints its snapshot.
   const feedbackAddress = device.panel_lights();
   const feedback = new Uint8Array(device.memory.buffer, feedbackAddress, 65);
+  if (performance.now() - usageAt >= 500) {
+    usageAt = performance.now();
+    usage.state(
+      view.toLowerCase(),
+      feedback[11] === 3 || feedback[12] === 3,
+      Boolean(device.usage_recording()),
+    );
+    if (device.usage_count() === USAGE_ACTIONS.length) {
+      const counts = new Uint32Array(
+        device.memory.buffer,
+        device.usage_counts(),
+        USAGE_ACTIONS.length,
+      );
+      for (const [i, action] of USAGE_ACTIONS.entries()) {
+        const value = counts[i] ?? 0;
+        if (value > (usagePrevious[i] ?? 0)) usage.feature(action, value - (usagePrevious[i] ?? 0));
+        usagePrevious[i] = value;
+      }
+    }
+    const machine = device.usage_machine();
+    if (machine !== usageMachine) {
+      usage.machine(USAGE_MACHINES[machine] ?? "other");
+      usageMachine = machine;
+    }
+  }
   const order = [0x23, 0x24, 0x25, 0x26, 0x0b, 0x27, 0x28, 0x35, 0x49, 0x50, 0x51, 0x52, 0x53];
   for (const [id, [code]] of Object.entries(buttons)) {
     const index = order.indexOf(code);
@@ -425,6 +457,7 @@ function draw() {
 }
 
 canvas.addEventListener("pointerdown", (event) => {
+  usageControl("touchscreen");
   canvas.setPointerCapture(event.pointerId);
   wakeAudio();
 });
@@ -449,7 +482,12 @@ function releaseMenu() {
   }
 }
 
-function clickControl(control: Control) {
+function usageControl(control: string) {
+  usage.control(control, string(device.view()).toLowerCase());
+}
+
+function clickControl(control: Control, count = true) {
+  if (count) usageControl(control);
   const [code] = buttons[control];
   if (control === "menu") {
     if (heldMenu) releaseMenu();
@@ -475,10 +513,11 @@ if (menuButton) {
   let menuWasHeld = false;
   menuButton.addEventListener("pointerdown", (event) => {
     if (!event.isPrimary || event.button !== 0) return;
+    usageControl("menu");
     menuButton.setPointerCapture(event.pointerId);
     wakeAudio();
     menuWasHeld = heldMenu;
-    if (!heldMenu) clickControl("menu");
+    if (!heldMenu) clickControl("menu", false);
   });
   menuButton.addEventListener("pointerup", (event) => {
     if (
@@ -503,6 +542,7 @@ captureInput?.addEventListener("change", async () => {
     input(bytes);
     if (!device.capture_file(bytes.length)) throw new Error("Could not open WAV input");
     wavInput = true;
+    usage.feature("wav_input");
     microphoneNode?.disconnect();
     microphoneSource?.disconnect();
     for (const track of microphone?.getTracks() ?? []) track.stop();
@@ -531,6 +571,7 @@ fileInput?.addEventListener("change", async () => {
       if (!kind || file.size < 1 || file.size > (kind === 1 ? 4 * 1024 * 1024 : maxFile)) continue;
       files.push({ name: file.name, kind, bytes: new Uint8Array(await file.arrayBuffer()) });
       ++added;
+      usage.feature("library_import");
     }
     hostMessage = added
       ? `${added} files added to Browse for this session`
@@ -554,6 +595,7 @@ app.addEventListener("click", async (event) => {
   if (!button || (button.dataset.panel === "menu" && event.detail !== 0)) return;
   wakeAudio();
   const { panel: control, pad, wheel, host } = button.dataset;
+  if (host) usageControl(`host-${host}`);
   if (control && control in buttons) {
     if (
       control === "rec" &&
@@ -572,13 +614,18 @@ app.addEventListener("click", async (event) => {
     clickControl(control as Control);
   }
   if (pad !== undefined && event.detail === 0) {
+    usageControl(`pad-${Number(pad) + 1}`);
     device.pad(Number(pad), 100);
     device.pad(Number(pad), 0);
   }
   if (wheel === "0") {
+    usageControl("wheel-press");
     device.button(0x6f, 1);
     device.button(0x6f, 0);
-  } else if (wheel) device.wheel(Number(wheel));
+  } else if (wheel) {
+    usageControl(Number(wheel) < 0 ? "wheel-left" : "wheel-right");
+    device.wheel(Number(wheel));
+  }
   if (host === "layout") layout(!document.body.classList.contains("show-hardware"));
   if (host === "files") fileInput?.click();
   if (host === "microphone") {
@@ -601,6 +648,7 @@ app.addEventListener("click", async (event) => {
       link.href = url;
       link.download = "project.xmpsong";
       link.click();
+      usage.feature("project_download");
       window.setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch (error) {
       hostMessage = String(error);
@@ -616,6 +664,7 @@ for (const button of pads) {
     button.classList.remove("selected");
   };
   button.addEventListener("pointerdown", (event) => {
+    usageControl(`pad-${pad + 1}`);
     button.setPointerCapture(event.pointerId);
     wakeAudio();
     const velocity =
@@ -632,6 +681,7 @@ for (const button of pads) {
 for (const control of app.querySelectorAll<HTMLInputElement>("input[data-q]")) {
   let previous = 0;
   control.addEventListener("input", () => {
+    usageControl(`q${Number(control.dataset.q) + 1}`);
     const value = Number(control.value);
     device.knob(Number(control.dataset.q), value - previous);
     previous = value;
@@ -694,9 +744,13 @@ window.addEventListener("keydown", (event) => {
     event.preventDefault();
     wakeAudio();
     keyboardPads.add(pad);
+    usageControl(`pad-${pad + 1}`);
     device.pad(pad, 100);
   }
-  if (event.key === "Shift") device.button(buttons.shift[0], 1);
+  if (event.key === "Shift") {
+    usageControl("shift");
+    device.button(buttons.shift[0], 1);
+  }
 });
 window.addEventListener("keyup", (event) => {
   const pad = padOrder[keyPads.indexOf(event.key.toLowerCase())];

@@ -27,6 +27,8 @@ struct WorkbenchHooks {
   std::function<void(const char*)> log;
   // Empty result means the adapter accepted the request.
   std::function<std::string(const std::string&)> save;
+  // Optional platform observer: fixed action kinds only, on the control thread.
+  std::function<void(ui::Action::Kind)> observe_action{};
 };
 
 inline project::Result blank_project() {
@@ -322,6 +324,7 @@ class Workbench {
   void run_actions(const char* source) {
     const bool had_mix = project_doc.get("mix") != nullptr;
     for (const auto& a : actions) {
+      if (hooks.observe_action) hooks.observe_action(a.kind);
       const auto track_id = a.track >= 0 && a.track < board.tracks ? xmp::Str(board.track_id[a.track].c_str()) : xmp::Str();
       const auto scene_id = a.scene >= 0 && a.scene < board.scenes ? xmp::Str(board.scene_id[a.scene].c_str()) : xmp::Str();
       xmp::Str error;

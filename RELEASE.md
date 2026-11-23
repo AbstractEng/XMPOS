@@ -1,4 +1,4 @@
-# XMP OS — community source baseline
+# XMP OS 1.0.0
 
 **A playable instrument. A foundation for your own.**
 
@@ -41,7 +41,7 @@ The Intel macOS installer completed its owner-operated Live Mk1 rehearsal on
 the key and full restoration to 3.10.1 passed. The unchanged distribution check
 also passed against the matching private evidence and component/source bundle.
 
-The [**0.1.0-dev.20261121.2 installer kits are available on GitHub**](https://github.com/AbstractEng/XMPOS/releases/tag/v0.1.0-dev.20261121.2). They include
+The [**1.0.0 installer kits are available on GitHub**](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.0). They include
 the MENU fix and prepare **Acid Circuit** on a fresh USB key: boot XMP and press
 **PLAY** to hear the song. Existing startup projects, recovery files, named
 projects and samples are preserved. Fresh-key demo playback passed the shared
@@ -62,7 +62,7 @@ have different installer source hashes; the XMP session template is shared.
 Each owner supplies the signed official **3.10.1 updater** independently. Build
 and assembly tooling produces the loader, stock recovery and runtime-bearing USB
 image locally. Akai updater/rootfs/runtime files, owner images and verification
-profiles are not repository or media-release downloads. The public media release contains the demonstration video. The installer prerelease is published with owner approval.
+profiles are not repository or media-release downloads. The public media release contains the demonstration video. The 1.0.0 release is published with owner approval.
 
 Read [installation](docs/install-live-mk1.md), [recovery](docs/recover-live-mk1.md),
 [compatibility](docs/compatibility.md), [known issues](docs/known-issues.md) and
@@ -81,3 +81,14 @@ available through the manual.
 
 Original XMP code is [Apache-2.0](LICENSE), with third-party terms and corresponding
 source requirements documented in [licensing](docs/licensing/README.md).
+
+## Release version
+
+**1.0.0** establishes the app's [Semantic Versioning policy](VERSIONING.md).
+The web client includes the already released Night Shift first-visit project and
+restores saved work on return. Fresh hardware keys continue to receive Acid Circuit.
+The verified installer archives are promoted unchanged from the 21 November build.
+Their hashes, embedded source closures and original build labels are retained;
+the GitHub 1.0.0 release and checksums identify the public app release. Existing
+platform qualification limits remain in effect. SDK compatibility, project
+schemas and Akai's required 3.10.1 firmware use their own version numbers.

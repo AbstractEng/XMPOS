@@ -1,14 +1,13 @@
-import { createDemoProject, MAX_SONG_BYTES, type Project } from "@xmp/core";
+import { MAX_SONG_BYTES, type Project } from "@xmp/core";
 import xmpLogo from "../../../brand/xmp/assets/svg/xmp-orbit.svg?url";
 import { faderToGain, gainLabel, gainToFader } from "../../../packages/core/src/fader.ts";
 import { padNote } from "../../../packages/core/src/pad-scale.ts";
 import { trackPads } from "../../../packages/core/src/pads.ts";
 import { saveBundle } from "../../../packages/core/src/project-io.ts";
 import { installInlineValues } from "./inline-values.ts";
-
 import { songFileOptions } from "./song-file-view.ts";
-
 import { SongFiles } from "./song-files.ts";
+import { APP_VERSION } from "./version.ts";
 
 import "./song-files.css";
 import {
@@ -39,8 +38,8 @@ import { installPerformancePanel } from "./performance-panel.ts";
 import { sampleThumbnail } from "./sample-thumbnail.ts";
 
 import { installSequencerPanel } from "./sequencer-panel.ts";
-
-import { loadProjectState, saveProject } from "./storage.ts";
+import { loadWebStartupProject } from "./startup-project.ts";
+import { saveProject } from "./storage.ts";
 
 import { installViews } from "./views.ts";
 
@@ -58,14 +57,16 @@ import {
   toggleStep,
 } from "../../../packages/core/src/edits.ts";
 import { logError } from "./error-log.ts";
+import { usage } from "./usage.ts";
 
 // The C++ project core (WebAssembly) does every edit; it loads before the first.
 await loadCore();
+const startup = await loadWebStartupProject();
 
 const root = document.querySelector<HTMLDivElement>("#app");
 if (!root) throw new Error("Missing app root");
 root.innerHTML = `
-  <header class="topbar"><a class="brand" href="${import.meta.env.BASE_URL}" aria-label="XMP Studio home"><img src="${xmpLogo}" width="1130" height="436" alt=""><span>STUDIO</span></a><div class="preview">DEVELOPER PREVIEW <b>0.1</b></div><div class="connection"><i></i> Desktop simulator</div><a id="device-view" href="${import.meta.env.BASE_URL}" class="manual-link">Device view</a><a href="${import.meta.env.BASE_URL}manual/" target="_blank" rel="noopener" class="manual-link">User manual ↗</a><button id="help" aria-expanded="false" aria-controls="context-help">Help · F1</button></header>
+  <header class="topbar"><a class="brand" href="${import.meta.env.BASE_URL}" aria-label="XMP Studio home"><img src="${xmpLogo}" width="1130" height="436" alt=""><span>STUDIO</span></a><div class="preview">XMP OS <b>${APP_VERSION}</b></div><div class="connection"><i></i> Desktop simulator</div><a id="device-view" href="${import.meta.env.BASE_URL}" class="manual-link">Device view</a><a href="${import.meta.env.BASE_URL}manual/" target="_blank" rel="noopener" class="manual-link">User manual ↗</a><button id="help" aria-expanded="false" aria-controls="context-help">Help · F1</button></header>
   <main>
     <section class="projectbar"><div><div class="eyebrow">YOUR INSTRUMENT STARTS HERE</div><h1 id="project-title">First light</h1><p>A small groovebox. An open foundation.</p></div><div class="project-actions" data-help="projects"><a href="#sequencer-panel" class="instrument-link">Notes & automation ↓</a><a href="#instrument-panel" class="instrument-link">Instruments & recording ↓</a><button id="undo" disabled>Undo</button><button id="redo" disabled>Redo</button><button id="open">Open project</button><div id="song-file-options"></div><button id="save">Save project</button><button id="save-legacy">Save legacy copy</button></div></section>
     <section class="transport" aria-label="Transport" data-help="transport"><div class="transport-buttons"><button class="play primary" id="play">▶ Play</button><button id="stop" aria-label="Stop playback">■ Stop</button></div><label class="tempo">TEMPO <input id="bpm" type="number" min="30" max="300" value="112" aria-label="Tempo in BPM"><span>BPM</span></label><div class="swing-controls" data-help="swing"><label class="swing">SWING <input id="swing" type="range" min="50" max="75" step="0.1" value="50" aria-label="Swing percentage"><output id="swing-value">50% · Straight</output></label><div class="swing-presets"><button id="swing-straight">Straight</button><button id="swing-triplet">Triplet</button></div></div><div class="position" id="position">01 : 01</div><button id="enable">Enable audio</button></section>
@@ -85,8 +86,8 @@ function element<T extends HTMLElement = HTMLElement>(id: string): T {
   if (!el) throw new Error(`Missing element ${id}`);
   return el as T;
 }
-let session = new ProjectSession(expandSong(createDemoProject()));
-let songFiles = new SongFiles(session);
+const session = new ProjectSession(startup.project, true);
+const songFiles = new SongFiles(session);
 let project = session.project;
 let selectedTrackId = project.tracks[0]?.id ?? "drums";
 let sceneId = project.scenes[0]?.id ?? "scene-0";
@@ -97,6 +98,7 @@ let queuedScene: string | undefined;
 let saveTimer: ReturnType<typeof setTimeout>;
 let saveChain = Promise.resolve();
 const audio = new StudioAudio();
+window.setInterval(() => usage.state("studio", audio.playing, audio.recording), 500);
 const controlFocus = installControlFocus(document, status);
 const errorRecovery = installErrorRecovery(document, controlFocus);
 const keyRows = ["1234", "qwer", "asdf", "zxcv"];
@@ -389,7 +391,7 @@ element("play").onclick = () => {
   void audio
     .enable()
     .then(() => {
-      audio.start(sceneId);
+      audio.start(sceneId, project.performance?.chain.length ? "song" : "scene");
       updateTransport();
     })
     .catch(() => status("Audio could not start"));
@@ -837,23 +839,13 @@ document.addEventListener("visibilitychange", () => {
     status("Playback stopped while the tab is hidden");
   }
 });
-try {
-  const saved = await loadProjectState();
-  if (saved.project) {
-    session = new ProjectSession(saved.project, true);
-    songFiles = new SongFiles(session);
-    project = session.project;
-    selectedTrackId = project.tracks[0]?.id ?? "drums";
-    sceneId = project.scenes[0]?.id ?? "scene-0";
-    status(
-      saved.recovered
-        ? "Recovered previous valid save; current damaged snapshot was retained"
-        : "Restored local project",
-    );
-  } else status("Ready · original demo kit loaded");
-} catch {
-  status("Local storage unavailable — use project downloads to save");
-}
+status(
+  startup.recovered
+    ? "Recovered previous valid save; current damaged snapshot was retained"
+    : startup.firstVisit
+      ? "Night Shift ready · press Play to hear the song"
+      : "Restored local project",
+);
 audio.setProject(project);
 draw();
 drawSongFiles();

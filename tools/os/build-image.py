@@ -80,7 +80,7 @@ def assemble(lock_path, app_path, output, source_hash, variant, parity_binary=No
         package = dict((line.split(':', 1) for line in block.splitlines() if ':' in line))
         if package.get('P') and package['P'] not in replaced:
             sbom.append({'id': package['P'], 'version': package['V'], 'license': package.get('L', 'UNKNOWN'), 'containerSha256': lock['base']['sha256'], 'redistribution': 'source-and-notice-bundle-review-pending', 'source': 'base image APK database'})
-    sbom.extend([{'id': 'xmp-os', 'version': '0.1.0-dev', 'license': 'Apache-2.0', 'sourceSha256': source_hash, 'redistribution': 'source-and-notice-bundle-review-pending'}, {'id': 'zod', 'version': '4.6.7', 'license': 'MIT', 'source': 'package-lock.json integrity + bundled application hash', 'redistribution': 'source-and-notice-bundle-review-pending'}])
+    sbom.extend([{'id': 'xmp-os', 'version': json.loads((ROOT / 'package.json').read_text())['version'], 'license': 'Apache-2.0', 'sourceSha256': source_hash, 'redistribution': 'source-and-notice-bundle-review-pending'}, {'id': 'zod', 'version': '4.6.7', 'license': 'MIT', 'source': 'package-lock.json integrity + bundled application hash', 'redistribution': 'source-and-notice-bundle-review-pending'}])
     app_files = application_files(app_path)
     app_hashes = {name: digest(data) for name, data in app_files.items()}
     app = app_files[pathlib.Path(app_path).name]

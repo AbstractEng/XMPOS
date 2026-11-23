@@ -81,12 +81,33 @@ const manifest = {
   screenSourceSha256: DEVICE_UI_SOURCE_SHA256,
   screenImplementation: "native/include/xmp/live_ui.hpp via WebAssembly",
   hardwareUsed: false,
-  narration: "optional separately supplied narration; readiness recorded per lesson",
+  narration: "ElevenLabs owner-authorized voice clone; readiness recorded per lesson",
   lessons: [],
 };
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const wait = (page, ms) => page.waitForTimeout(ms);
 try {
+  if (first === 1) {
+    // The course builds a song from scratch. Choose New Project explicitly,
+    // just as the quick start directs, independently of the web starter song.
+    const seed = await context.newPage();
+    await seed.goto(origin);
+    await seed.locator("#boot-screen").waitFor({ state: "detached" });
+    const key = (id) => seed.locator(`[data-panel="${id}"]`).click();
+    const pad = (n) => seed.locator(`[data-pad="${n - 1}"]`).click();
+    await key("menu");
+    await pad(5);
+    await pad(13);
+    await pad(14);
+    await expect(seed.locator("#device-screen")).toHaveAttribute("data-project", "Untitled");
+    await key("menu");
+    await pad(5);
+    await pad(15);
+    await expect(seed.locator("#device-screen")).toHaveAttribute("data-message", /Project saved/, {
+      timeout: 30000,
+    });
+    await seed.close();
+  }
   if (first > 1) {
     const previous = JSON.parse(await readFile(`${work}/manifest.json`, "utf8"));
     manifest.lessons = previous.lessons.slice(0, first - 1);

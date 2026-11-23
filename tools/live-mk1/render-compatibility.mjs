@@ -22,7 +22,7 @@ export function compatibilityMarkdown() {
   const widths = rows[0].map((_, column) => Math.max(...rows.map((row) => row[column].length)));
   const line = (row) => `| ${row.map((cell, column) => cell.padEnd(widths[column])).join(" | ")} |`;
   return [
-    "Developer prerelease available for Live Mk1. See release status for installer host qualification. One models are planned ports.",
+    "XMP OS 1.0.0 is available for Live Mk1. See release status for installer host qualification. One models are planned ports.",
     "",
     line(rows[0]),
     line(widths.map((width) => "-".repeat(width))),
@@ -32,7 +32,7 @@ export function compatibilityMarkdown() {
   ].join("\n");
 }
 export function compatibilityHtml() {
-  return `<p>Developer prerelease available for Live Mk1. See release status for installer host qualification. One models are planned ports.</p>
+  return `<p>XMP OS 1.0.0 is available for Live Mk1. See release status for installer host qualification. One models are planned ports.</p>
 <div class="table-scroll"><table><caption>XMP OS hardware compatibility</caption><thead><tr><th scope="col">Model</th><th scope="col">Board</th><th scope="col">Status</th><th scope="col">Starting firmware</th></tr></thead><tbody>
 ${record.models.map((model) => `<tr><th scope="row">${escapeHtml(model.name)}</th><td>${escapeHtml(model.board ?? "Unverified")}</td><td>${escapeHtml(model.status)}</td><td>${escapeHtml(model.firmware)}</td></tr>`).join("\n")}
 </tbody></table></div>
