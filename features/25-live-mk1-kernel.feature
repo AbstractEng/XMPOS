@@ -141,6 +141,8 @@ Feature: Official Akai kernel and MPC Live Mk1 hardware support, built and teste
     When the flash tool is asked for a dry run, a Force, extra devices or forbidden commands
     Then the dry run sends no write and every other request is refused before any write
     And a confirmed flash sends exactly the unlock, the rootfs image and a reboot
+    And an MPCLive entry without a Windows driver is diagnosed without enabling a write
+    And a confirmed Windows connection repair preserves existing interfaces and never enables an MPC write
 
   @LK06 @implemented @host_only @positive
   Scenario: LK06 - The runtime probe recognizes Live Mk1 hardware read-only

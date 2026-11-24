@@ -2,7 +2,9 @@ import { createHash } from "node:crypto";
 import { copyFile, cp, mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join, relative, resolve } from "node:path";
 import { build } from "esbuild";
+import { resourceHashes } from "./bundle-integrity.mjs";
 import { FIRST_PROJECT, readFirstProject } from "./first-project.mjs";
+import { INSTALLER_VERSION } from "./version.mjs";
 
 const here = import.meta.dirname,
   root = resolve(here, "../../..");
@@ -14,6 +16,7 @@ export async function bundleInstaller({
   nodeLicense,
   muslLicense,
   platform = process.platform,
+  arch = process.arch,
   extraSources = [],
   releaseInputs = join(root, "artifacts/gate5"),
 }) {
@@ -197,15 +200,7 @@ export async function bundleInstaller({
   html = html.replaceAll("__ICON_DATA__", `data:image/png;base64,${icon.toString("base64")}`);
   await writeFile(join(resources, "index.html"), html);
   // Hash every regular resource. Internal Python symlinks are kept in their signed bundle.
-  const files = {};
-  async function walk(dir, prefix = "") {
-    for (const e of await readdir(dir, { withFileTypes: true })) {
-      const path = prefix ? `${prefix}/${e.name}` : e.name;
-      if (e.isDirectory()) await walk(join(dir, e.name), path);
-      else if (e.isFile()) files[path] = hash(await readFile(join(dir, e.name)));
-    }
-  }
-  await walk(resources);
+  const files = await resourceHashes(resources);
   await writeFile(
     join(resources, "bundle-manifest.json"),
     JSON.stringify(
@@ -213,7 +208,8 @@ export async function bundleInstaller({
         format: "xmp-local-installer",
         version: 1,
         platform: platform,
-        arch: process.arch,
+        arch,
+        installerVersion: INSTALLER_VERSION,
         sourceHash,
         initHash,
         workspaceFiles,
@@ -223,5 +219,5 @@ export async function bundleInstaller({
       2,
     ),
   );
-  return { sourceHash, initHash };
+  return { sourceHash, initHash, installerVersion: INSTALLER_VERSION };
 }

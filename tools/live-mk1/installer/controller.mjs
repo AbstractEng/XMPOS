@@ -1,5 +1,6 @@
 import { randomBytes } from "node:crypto";
 import { isAbsolute } from "node:path";
+import { INSTALLER_VERSION } from "./version.mjs";
 
 // Host-only flow. All device access is delegated to the existing flash module.
 export function createController({
@@ -10,11 +11,14 @@ export function createController({
   initialSelection = null,
   rememberSelection = async () => {},
   requireUsbStage = true,
+  platform = process.platform,
 }) {
   const selectedPath = (p) =>
     typeof p === "string" && isAbsolute(p) && p.length <= 4096 && !p.includes("\0") ? p : null;
   const state = {
+    installerVersion: INSTALLER_VERSION,
     simulation,
+    windowsUsbRepair: platform === "win32" && !simulation,
     busy: false,
     phase: null,
     progress: null,
@@ -72,6 +76,7 @@ export function createController({
       {
         prepare: "Preparing files on the computer",
         tools: "Setting up the computer connection",
+        "repair-windows-usb": "Repairing this Live's Windows USB registration",
         inspect: "Checking the MPC and image",
         "verify-stock": "Verifying stock MPC OS identity and measuring this unit's rootfs",
         write: "Preparing to write the MPC loader",
@@ -118,7 +123,17 @@ export function createController({
         if (input.acceptTerms !== true)
           throw new Error("Accept Google's Platform-Tools terms first");
         await execute({ task: "tools" }, record);
-        state.message = "USB support is ready.";
+        state.message =
+          "Connection tools are ready. Windows device drivers are separate; Check Live and image verifies the connection.";
+      } else if (input.action === "repair-windows-usb") {
+        invalidate();
+        if (!state.windowsUsbRepair) throw Error("Windows USB repair is unavailable here");
+        if (input.ownerConfirmed !== true)
+          throw Error("Confirm the Windows USB registration repair first");
+        const result = await execute({ task: "repair-windows-usb", ownerConfirmed: true }, record);
+        state.message = result.reconnectRequired
+          ? "Windows connection repaired. Disconnect and reconnect the Live's USB-B cable, then Check Live and image."
+          : "Fastboot's Windows interface is already registered. Check Live and image.";
       } else if (input.action === "loader") {
         invalidate();
         const path = await pick("loader");

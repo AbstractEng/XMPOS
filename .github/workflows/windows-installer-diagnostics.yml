@@ -1,0 +1,37 @@
+name: Windows installer diagnostics (no hardware)
+# Current checkout, unlike the historical installer workflows' frozen archives.
+# Manual: do not consume the owner's Actions minutes on every push.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnostics:
+    runs-on: windows-2025
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run live:installer:test
+      - name: Compile native metadata reader without running it
+        shell: pwsh
+        run: |
+          $csc = Join-Path $env:WINDIR 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
+          $out = Join-Path $env:RUNNER_TEMP 'xmp-host-helper.exe'
+          & $csc /nologo /platform:x64 /target:exe "/out:$out" /r:System.Windows.Forms.dll /r:System.Management.dll /r:System.Web.Extensions.dll tools/live-mk1/installer/WindowsHost.cs
+          if ($LASTEXITCODE -ne 0) { throw 'Native helper compilation failed' }
+      - name: Compile and run Windows USB policy tests without hardware or registry access
+        shell: pwsh
+        run: |
+          $csc = Join-Path $env:WINDIR 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
+          $out = Join-Path $env:RUNNER_TEMP 'xmp-winusb-policy.exe'
+          & $csc /nologo /platform:x64 /target:exe /main:WindowsUsbCompatibilityTests "/out:$out" /r:System.Windows.Forms.dll /r:System.Management.dll /r:System.Web.Extensions.dll tools/live-mk1/installer/WindowsHost.cs tools/live-mk1/installer/WindowsUsbCompatibilityTests.cs
+          if ($LASTEXITCODE -ne 0) { throw 'USB policy compilation failed' }
+          & $out
+          if ($LASTEXITCODE -ne 0) { throw 'USB policy tests failed' }
+# This checks Windows Server compilation and fake transports, not Windows 11
+# USB drivers or a physical MPC. No driver installer or USB device is opened.

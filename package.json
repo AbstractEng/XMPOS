@@ -145,7 +145,7 @@
     "compatibility:docs": "node tools/live-mk1/render-compatibility.mjs",
     "compatibility:docs:check": "node tools/live-mk1/render-compatibility.mjs --check",
     "live:installer:build": "node tools/live-mk1/installer/build.mjs",
-    "live:installer:test": "node --test tools/live-mk1/installer/flow.test.mjs tools/live-mk1/installer/usb.test.mjs tools/live-mk1/installer/stock-install.test.mjs",
+    "live:installer:test": "node --test tools/live-mk1/installer/flow.test.mjs tools/live-mk1/installer/usb.test.mjs tools/live-mk1/installer/stock-install.test.mjs tools/live-mk1/installer/connection-diagnostics.test.mjs tools/live-mk1/installer/windows-usb.test.mjs tools/live-mk1/installer/bundle-integrity.test.mjs",
     "live:installer:windows": "node tools/live-mk1/installer/build-windows.mjs"
   },
   "devDependencies": {

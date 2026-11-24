@@ -160,3 +160,27 @@ Run live:installer:test and the packaged host tests after rebuilding. The native
 source capture and fastboot dry-run evidence are distinct from fake-transport
 or emulated tests. A successful test does not publish files or clear a different
 candidate. Force remains excluded from every route.
+
+## Installer-only patch releases
+
+The installer component version is in `version.json`, independently of the
+app/session version and required MPC firmware. Builders stamp it into the UI,
+resource manifest, macOS bundle and Windows assembly metadata.
+
+`rebuild-release.mjs` can rebuild the installer application around an unchanged
+published runtime. Run it on macOS with a platform ID, the exact previous ZIP
+and a new output folder. `previous-release.lock.json` pins each input archive;
+every prior resource is verified before reuse. Windows additionally requires
+Windows-native compiled launcher, host helper and password prompt outputs plus
+their source/output hash and assembly-version receipt. `windowsVersionSource()`
+generates their shared C# assembly attributes. Compile/run the pure C# USB policy
+tests on Windows before recording `policyTestsPassed` in that receipt.
+
+The patch builder regenerates bundled application code and corresponding
+sources/notices, verifies retained runtime bytes, reseals macOS apps, and creates
+a ZIP with neutral ownership metadata and preserved executable/internal-link
+modes. Previous component/system records are explicitly named `PREVIOUS-*`.
+The new receipt distinguishes reused native runtimes/system images from rebuilt
+application code and Windows helpers. Native ARM Mac launchers may be reused
+unchanged; this is not a new Apple Silicon host test. Re-run packaged startup
+and affected workflows on their actual supported hosts before publishing.

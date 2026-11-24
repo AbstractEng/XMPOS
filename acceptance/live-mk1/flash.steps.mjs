@@ -1,10 +1,18 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdtempSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { Given, Then, When } from "@cucumber/cucumber";
-import { fastbootArgs, runFlash, UNLOCK } from "../../tools/live-mk1/flash.mjs";
+import { fastbootArgs, readIdentity, runFlash, UNLOCK } from "../../tools/live-mk1/flash.mjs";
+import { inspectWithConnectionDiagnostics } from "../../tools/live-mk1/installer/connection-diagnostics.mjs";
+import { createController } from "../../tools/live-mk1/installer/controller.mjs";
+import { stockInstallFixture } from "../../tools/live-mk1/installer/stock-test-fixture.mjs";
+import {
+  FASTBOOT_INTERFACE,
+  repairWindowsUsb,
+} from "../../tools/live-mk1/installer/windows-usb.mjs";
+import { stockInstallReceipt } from "../../tools/live-mk1/stock-install-report.mjs";
 
 const live = {
   product: "az01",
@@ -29,6 +37,96 @@ function simulated(identity, devices = 1) {
 }
 const writes = (calls) => calls.filter((c) => c[0] !== "devices" && c[0] !== "getvar");
 const quiet = () => {};
+
+Then(
+  "a confirmed Windows connection repair preserves existing interfaces and never enables an MPC write",
+  async function () {
+    const stateDirectory = this.state();
+    const sha = (b) => createHash("sha256").update(b).digest("hex");
+    const report = stockInstallFixture({ serial: "SYNTHETIC-LIVE" }).report;
+    writeFileSync(
+      join(stateDirectory, "hardware-observation.json"),
+      JSON.stringify(stockInstallReceipt(report)),
+    );
+    writeFileSync(join(stateDirectory, "stock-install-verification.txt"), report);
+    writeFileSync(
+      join(stateDirectory, "stock-device-identity.json"),
+      JSON.stringify({ version: 1, serialHashes: [sha("SYNTHETIC-LIVE")] }),
+    );
+    const preserved = "{12345678-1234-1234-1234-123456789abc}";
+    const makePlan = (values, needsRepair) => {
+      const before = {
+        deviceKey: sha("synthetic PnP entry"),
+        plural: { kind: "MultiString", values },
+        singular: { kind: "absent", values: [] },
+      };
+      return { before, fingerprint: sha(JSON.stringify(before)), needsRepair };
+    };
+    const before = makePlan([preserved], true);
+    const calls = [];
+    const invoke = async (args) => {
+      calls.push(args[0]);
+      if (args[0] === "winusb-plan") return before;
+      assert.equal(args[0], "winusb-repair");
+      const backup = JSON.parse(
+        readFileSync(
+          join(stateDirectory, "windows-usb-backups", `${before.fingerprint}.json`),
+          "utf8",
+        ),
+      );
+      assert.deepEqual(backup.before, before.before);
+      return makePlan([preserved, FASTBOOT_INTERFACE], false);
+    };
+    const c = createController({
+      platform: "win32",
+      pick: async () => null,
+      execute: async (request) => {
+        assert.equal(request.task, "repair-windows-usb");
+        return repairWindowsUsb({
+          stateDirectory,
+          invoke,
+          platform: "win32",
+          ownerConfirmed: request.ownerConfirmed,
+        });
+      },
+    });
+    await assert.rejects(c.action({ action: "repair-windows-usb" }), /Confirm/);
+    assert.deepEqual(calls, []);
+    await c.action({ action: "repair-windows-usb", ownerConfirmed: true });
+    assert.deepEqual(calls, ["winusb-plan", "winusb-repair"]);
+    assert.equal(c.view().preview, null);
+    await assert.rejects(c.action({ action: "write" }), /Prepare the USB key/);
+    this.evidence.windowsUsbRepair = {
+      synthetic: true,
+      backedUp: true,
+      existingInterfacesPreserved: true,
+      flashPreview: false,
+      actions: calls,
+    };
+  },
+);
+
+Then(
+  "an MPCLive entry without a Windows driver is diagnosed without enabling a write",
+  async function () {
+    const sim = simulated(live, 0);
+    const controller = createController({
+      initialSelection: { loader: "/synthetic/loader" },
+      pick: async () => null,
+      execute: () =>
+        inspectWithConnectionDiagnostics(() => readIdentity(sim.fastboot), {
+          platform: "win32",
+          readMetadata: async () => [
+            { name: "MPCLive", usbId: "VID_1234&PID_5678", service: "", problemCode: 28 },
+          ],
+        }),
+    });
+    await assert.rejects(controller.action({ action: "inspect" }), /driver is missing/);
+    assert.equal(controller.view().preview, null);
+    assert.deepEqual(sim.calls, [["devices"]]);
+    this.evidence.windowsMissingDriver = { diagnosed: true, preview: false, commands: sim.calls };
+  },
+);
 
 Given("a simulated fastboot device in update mode", function () {
   this.imageDir = mkdtempSync(join(tmpdir(), "xmp-lk18-image-"));

@@ -10,12 +10,20 @@ import { collectStockInstallProfile } from "../mpc-remote.mjs";
 import { prepareStickToken } from "../stick-token.mjs";
 import { stockImageFromUpdater } from "../stock-image.mjs";
 import { verifyOwnerImage } from "../verify-owner-image.mjs";
+import { inspectWithConnectionDiagnostics } from "./connection-diagnostics.mjs";
 import { FIRST_PROJECT } from "./first-project.mjs";
-import { ejectUsb, labelUsb, usbVolumes } from "./host.mjs";
+import {
+  ejectUsb,
+  labelUsb,
+  usbVolumes,
+  windowsUpdateModeMetadata,
+  windowsUsbRepairAction,
+} from "./host.mjs";
 import { prepareInstallation } from "./prepare-session.mjs";
 import { exportUnitProfile, importUnitProfile } from "./profile.mjs";
 import { stockInstallFixture } from "./stock-test-fixture.mjs";
 import { writeUsbImage } from "./usb.mjs";
+import { repairWindowsUsb } from "./windows-usb.mjs";
 
 const { request, resources, workspace, simulation, simulationProfile } = workerData;
 const log = (line) => parentPort.postMessage({ log: String(line) });
@@ -66,6 +74,15 @@ const fake = (args) => {
   };
 };
 async function main() {
+  if (request.task === "repair-windows-usb") {
+    if (simulation) throw Error("Windows USB repair is unavailable in simulation");
+    return repairWindowsUsb({
+      stateDirectory: join(workspace, "reports/live-mk1"),
+      ownerConfirmed: request.ownerConfirmed,
+      invoke: (args) => windowsUsbRepairAction(resources, args),
+      log,
+    });
+  }
   if (request.task === "verify-stock") {
     const fixture = simulation ? stockInstallFixture() : null;
     return collectStockInstallProfile(request.address, {
@@ -119,7 +136,7 @@ async function main() {
       { mode: 0o600 },
     );
     await rm(zip);
-    log("Verified USB support installed locally.");
+    log("Verified connection tools installed locally. Windows device drivers are separate.");
     return {};
   }
   if (request.task === "prepare") {
@@ -218,7 +235,10 @@ async function main() {
     log,
   };
   if (request.task === "inspect") {
-    const status = await runFlash({ ...options, operation: "status" });
+    const status = await inspectWithConnectionDiagnostics(
+      () => runFlash({ ...options, operation: "status" }),
+      { readMetadata: () => windowsUpdateModeMetadata(resources), log },
+    );
     const result = await runFlash({
       ...options,
       dryRun: true,
