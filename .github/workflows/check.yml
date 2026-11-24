@@ -148,6 +148,7 @@ jobs:
       - run: npm run bdd:docs:check
       - run: npm run bdd:test
       - run: npm run inventory:test
+      - run: npm run live:installer:test
       - run: npm run module:check
       - run: npm run native:test
       - run: npm run native:sanitize

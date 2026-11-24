@@ -1,8 +1,8 @@
 {
   "format": "xmp-installer-candidate",
   "version": 1,
-  "releaseVersion": "1.0.0",
-  "publication": "XMP OS 1.0.0; promotes the verified installer bytes without rebuilding",
+  "releaseVersion": "1.0.1",
+  "publication": "Installer 1.0.1 patch; rebuilt installer software with the unchanged verified 1.0.0 MPC system image and host runtimes",
   "target": "inmusic,acv8",
   "startingMpcOs": "3.10.1",
   "sessionSourceCommit": "0836d4ab7b66f53a021efbc907ad427949e92378",
@@ -18,10 +18,10 @@
   },
   "platforms": {
     "macOS-Intel": {
-      "installerSourceCommit": "944d6c3d6aae728fdfa609bd8b8dcfc6371fb43d",
-      "installerSourceHash": "c25193f4f4f564a7ae77b6db3f01d9c543358d2152a6c18629e0173465682974",
+      "installerSourceCommit": "e596eb7",
+      "installerSourceHash": "09f8ad488d0ae615e170970548969c3edc8f7a91145048a2d005cfdc8826818a",
       "minimumMacos": "13.4.1",
-      "ownerPhysicalRehearsal": "passed 2026-11-21",
+      "ownerPhysicalRehearsal": "passed 2026-11-21 on previous kit; MPC system image and runtimes unchanged",
       "passed": [
         "loader rootfs installation",
         "XMP boot from USB",
@@ -31,29 +31,40 @@
         "full stock 3.10.1 restoration"
       ],
       "installationEvidenceSha256": "9f4683700e14c3c3be2c684df015834a32033ad7cf25335c3a85e363d4b65467",
-      "distributionCheck": "eligible; distribution boundary only"
+      "distributionCheck": "eligible; distribution boundary only",
+      "archive": "XMPOS-Live-Mk1-macOS-Intel-1.0.1.zip",
+      "archiveSha256": "ed70a937f997500dc01941ba494904c3742c6d69897bc504617221dae12f9183",
+      "automatedPackagedFlow": "passed on rebuilt 1.0.1 kit"
     },
     "Windows-x64": {
-      "installerSourceCommit": "86e50702074b71be885f545e1637ef5cce9ebe2b",
-      "installerSourceHash": "8cef603e28bd3bfdb215df58eb2f5f6fba5fd0946e2c2eb93a292b2053be4617",
+      "installerSourceCommit": "e596eb7",
+      "installerSourceHash": "09f8ad488d0ae615e170970548969c3edc8f7a91145048a2d005cfdc8826818a",
       "automatedPackagedFlow": "passed",
-      "physicalDriverFlashQualification": "pending"
+      "physicalDriverFlashQualification": "pending",
+      "archive": "XMPOS-Live-Mk1-Windows-x64-1.0.1.zip",
+      "archiveSha256": "c9acdd684b9b8fdd37cbd9bb3805a0016001f6393f3ccdb1049b76c7e5662df5",
+      "readOnlyDetection": "passed 2026-11-24 using physical owner Live through Windows 11 VM; no flash",
+      "nativeHelpers": "compiled and policy-tested on Windows 11; executable version 1.0.1.0"
     },
     "macOS-Apple-Silicon": {
-      "installerSourceCommit": "619eae3b1a0621b9f60a26239e9a2e658be4469f",
-      "installerSourceHash": "41642245590f721a55030f2bdecfdb05bc6cb58423bd8814c559cb947dd0ced7",
+      "installerSourceCommit": "e596eb7",
+      "installerSourceHash": "09f8ad488d0ae615e170970548969c3edc8f7a91145048a2d005cfdc8826818a",
       "minimumMacos": "13.5",
       "nativeArm64Build": "passed",
       "architectureAudit": "passed",
       "loopbackUiStartup": "passed",
-      "automatedPackagedFlow": "passed",
-      "laptopPhysicalHostTest": "pending"
+      "automatedPackagedFlow": "inherited from unchanged 1.0.0 runtimes; rebuilt 1.0.1 archive/source/resource verification passed",
+      "laptopPhysicalHostTest": "pending",
+      "archive": "XMPOS-Live-Mk1-macOS-Apple-Silicon-1.0.1.zip",
+      "archiveSha256": "c637bc69562ebb901caa916d8dd88b73790942d5d58546ff17e1a1ccea717135"
     }
   },
   "akaisFirmwareOrOwnerRuntimeIncluded": false,
   "rawOwnerEvidenceIncluded": false,
-  "releaseUrl": "https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.0",
-  "previousReleaseVersion": "0.1.0-dev.20261121.2",
-  "embeddedBuildLabels": "0.1.0-dev.20261121.2",
-  "versioning": "VERSIONING.md"
+  "releaseUrl": "https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.1",
+  "previousReleaseVersion": "1.0.0",
+  "embeddedBuildLabels": "installer 1.0.1; MPC session 1.0.0",
+  "versioning": "VERSIONING.md",
+  "appVersion": "1.0.0",
+  "systemImageChanged": false
 }

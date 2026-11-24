@@ -41,7 +41,7 @@ The Intel macOS installer completed its owner-operated Live Mk1 rehearsal on
 the key and full restoration to 3.10.1 passed. The unchanged distribution check
 also passed against the matching private evidence and component/source bundle.
 
-The [**1.0.0 installer kits are available on GitHub**](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.0). They include
+The [**1.0.1 installer kits are available on GitHub**](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.1). They include
 the MENU fix and prepare **Acid Circuit** on a fresh USB key: boot XMP and press
 **PLAY** to hear the song. Existing startup projects, recovery files, named
 projects and samples are preserved. Fresh-key demo playback passed the shared
@@ -49,13 +49,15 @@ native Device audio test; the physical rehearsal used a preserved project.
 
 | Installer host            | Current validation                                                                                                     |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Intel macOS 13.4.1+       | Exact packaged app and owner install/play/save/reopen/restoration passed                                               |
+| Intel macOS 13.4.1+       | 1.0.1 packaged flow passed; unchanged MPC image/runtimes passed owner install/play/save/reopen/restoration in the previous kit                                               |
 | Apple Silicon macOS 13.5+ | Native arm64 build, architecture audit, UI startup and simulated install/restore passed; laptop test pending           |
-| Windows x64               | Packaged updater/USB/demo/preservation/install/restore simulations passed; physical driver/flash qualification pending |
+| Windows x64               | 1.0.1 native build and packaged flow; physical Live detection through Windows 11 VM passed; physical Windows PC flash qualification pending |
 
 Mac apps are ad-hoc signed, not notarized; Windows is unsigned. Each kit carries
-its own exact installer source closure, notices and checksums. Platform builds
-have different installer source hashes; the XMP session template is shared.
+its own exact installer source closure, notices and checksums. All three 1.0.1 packages share the rebuilt installer source hash; the XMP session
+template and host runtimes are unchanged from 1.0.0. The Windows patch repairs
+the verified Live’s existing WinUSB interface registration with a backup and
+administrator approval, without replacing its driver.
 [Current installer identities](INSTALLER-CANDIDATE.json) supersede the
 [older candidate record](HARDWARE-CANDIDATE.json) for these packages.
 
@@ -87,8 +89,8 @@ source requirements documented in [licensing](docs/licensing/README.md).
 **1.0.0** establishes the app's [Semantic Versioning policy](VERSIONING.md).
 The web client includes the already released Night Shift first-visit project and
 restores saved work on return. Fresh hardware keys continue to receive Acid Circuit.
-The verified installer archives are promoted unchanged from the 21 November build.
-Their hashes, embedded source closures and original build labels are retained;
-the GitHub 1.0.0 release and checksums identify the public app release. Existing
+Installer **1.0.1** is a separate patch release, rebuilding installer software and
+Windows helpers while retaining the verified 1.0.0 system image and runtimes.
+Each kit includes its matching source, notices and checksums. Existing
 platform qualification limits remain in effect. SDK compatibility, project
 schemas and Akai's required 3.10.1 firmware use their own version numbers.
