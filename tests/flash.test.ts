@@ -108,6 +108,19 @@ describe("fastboot command allow-list", () => {
 });
 
 describe("fastboot devices parsing", () => {
+  it("classifies an empty Windows device list without claiming update mode is absent", async () => {
+    const calls: string[][] = [];
+    await expect(
+      readIdentity((args) => {
+        calls.push(args);
+        return { status: 0, output: "\r\n" };
+      }),
+    ).rejects.toMatchObject({
+      code: "XMP_NO_FASTBOOT_DEVICE",
+      message: expect.stringContaining("Windows"),
+    });
+    expect(calls).toEqual([["devices"]]);
+  });
   it("accepts the tab-space format printed by platform-tools 37", async () => {
     const identity = await readIdentity((args) =>
       args[0] === "devices"
@@ -263,7 +276,7 @@ describe("Live Mk1 flash guards", () => {
           log: quiet,
           stateDirectory: state,
         }),
-      ).rejects.toThrow(count ? /More than one/ : /No device in update mode/);
+      ).rejects.toThrow(count ? /More than one/ : /Fastboot cannot see/);
     }
     // Record the Live, then present a different device.
     await runFlash({

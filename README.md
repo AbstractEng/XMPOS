@@ -60,11 +60,11 @@ On a fresh key, installer preparation loads **Acid Circuit**, the acid-house son
 
 | Your computer                  | Download                                                                                                                              |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-| Intel Mac, macOS 13.4.1+       | [Intel Mac installer](https://github.com/AbstractEng/XMPOS/releases/download/v1.0.0/XMPOS-Live-Mk1-macOS-Intel-1.0.0.zip)             |
-| Apple Silicon Mac, macOS 13.5+ | [Apple Silicon installer](https://github.com/AbstractEng/XMPOS/releases/download/v1.0.0/XMPOS-Live-Mk1-macOS-Apple-Silicon-1.0.0.zip) |
-| Windows x64                    | [Windows installer](https://github.com/AbstractEng/XMPOS/releases/download/v1.0.0/XMPOS-Live-Mk1-Windows-x64-1.0.0.zip)               |
+| Intel Mac, macOS 13.4.1+       | [Intel Mac installer](https://github.com/AbstractEng/XMPOS/releases/download/v1.0.1/XMPOS-Live-Mk1-macOS-Intel-1.0.1.zip)             |
+| Apple Silicon Mac, macOS 13.5+ | [Apple Silicon installer](https://github.com/AbstractEng/XMPOS/releases/download/v1.0.1/XMPOS-Live-Mk1-macOS-Apple-Silicon-1.0.1.zip) |
+| Windows x64                    | [Windows installer](https://github.com/AbstractEng/XMPOS/releases/download/v1.0.1/XMPOS-Live-Mk1-Windows-x64-1.0.1.zip)               |
 
-[Release notes and checksums](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.0). Extract the complete ZIP, then open the app. The Intel Mac route passed owner installation, playback, save/reopen and full stock restoration. Apple Silicon passed native automated checks; laptop testing is pending. Windows physical driver/flash qualification is pending. Mac apps are ad-hoc signed, not notarized; Windows is unsigned.
+[Installer 1.0.1 release notes and checksums](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.1). Extract the complete ZIP, then open the app. The Intel Mac route passed owner installation, playback, save/reopen and full stock restoration. Apple Silicon passed native automated checks; laptop testing is pending. Windows read-only Live detection passed through a Windows 11 VM; physical Windows PC flash qualification is pending. Mac apps are ad-hoc signed, not notarized; Windows is unsigned.
 
 You supply the official signed **Gen 1 3.10.1 updater**; Akai-derived files stay local. [Release information](RELEASE.md) records the exact scope and sources.
 

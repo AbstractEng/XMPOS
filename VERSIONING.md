@@ -30,5 +30,7 @@ and run the affected checks. Tag the final reviewed source commit only after
 its release files and validation records are ready. Never move a published tag.
 
 The 1.0.0 installers promote the previously verified binary archives without a
-rebuild. Their original embedded build labels remain valid provenance. Future
-installer builds derive the macOS app version from the root package.json.
+rebuild. Their original embedded build labels remain valid provenance. Installer-only patch releases are versioned independently in
+`tools/live-mk1/installer/version.json`. The installer version is stamped into
+its UI, resource manifest, macOS bundle and Windows assemblies. A new installer
+release does not change the embedded MPC system image or its qualification.

@@ -56,6 +56,38 @@ export async function usbVolumes(resources, root = null) {
   const v = JSON.parse(r.stdout);
   return root ? validateUsbVolume(v) : v.map(validateUsbVolume);
 }
+export async function windowsUpdateModeMetadata(resources) {
+  if (process.platform !== "win32") throw Error("Windows metadata is available on Windows only");
+  const r = await exec(join(resources, "host-helper.exe"), ["update-mode-info"], {
+    windowsHide: true,
+    timeout: 20000,
+    maxBuffer: 65536,
+  });
+  return JSON.parse(r.stdout);
+}
+export async function windowsUsbRepairAction(resources, args) {
+  if (
+    process.platform !== "win32" ||
+    !["winusb-plan", "winusb-repair"].includes(args[0]) ||
+    args.length !== (args[0] === "winusb-plan" ? 2 : 3) ||
+    !/^[a-f0-9]{64}(?:,[a-f0-9]{64})?$/.test(args[1] ?? "") ||
+    (args[0] === "winusb-repair" && !/^[a-f0-9]{64}$/.test(args[2] ?? ""))
+  )
+    throw Error("Fixed verified-unit Windows USB action required");
+  try {
+    const r = await exec(join(resources, "host-helper.exe"), args, {
+      windowsHide: true,
+      timeout: 180000,
+      maxBuffer: 65536,
+    });
+    return JSON.parse(r.stdout);
+  } catch {
+    // Native process arguments and OS errors can contain private unit metadata.
+    throw Error(
+      "Windows USB registration repair was cancelled or failed. Check the Live connection and administrator approval; no automatic retry.",
+    );
+  }
+}
 export async function labelUsb(volume, resources) {
   validateUsbVolume(volume);
   if (["XMP", "XMPPROBE"].includes(volume.label)) return volume;

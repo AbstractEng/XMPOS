@@ -1,0 +1,23 @@
+{
+  "release": "1.0.0",
+  "kits": {
+    "macOS-Intel": {
+      "file": "XMPOS-Live-Mk1-macOS-Intel-1.0.0.zip",
+      "sha256": "5792f69965023ff5e0ac3d1710b7eb1ef1968999435547a9d697c8d14ee942c0",
+      "platform": "darwin",
+      "arch": "x64"
+    },
+    "macOS-Apple-Silicon": {
+      "file": "XMPOS-Live-Mk1-macOS-Apple-Silicon-1.0.0.zip",
+      "sha256": "7b58aa20c3a45e89e080cb97d96cf04210a225697a3df85ac1cd2bb4ec24e764",
+      "platform": "darwin",
+      "arch": "arm64"
+    },
+    "Windows-x64": {
+      "file": "XMPOS-Live-Mk1-Windows-x64-1.0.0.zip",
+      "sha256": "5341f0259226f20acb8652a5e18ca9ada800ec7bf03c330589936789555b0f66",
+      "platform": "win32",
+      "arch": "x64"
+    }
+  }
+}

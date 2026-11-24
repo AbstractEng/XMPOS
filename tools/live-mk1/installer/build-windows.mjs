@@ -4,6 +4,7 @@ import { copyFile, cp, mkdir, readdir, readFile, writeFile } from "node:fs/promi
 import { dirname, join, resolve } from "node:path";
 import { bundleInstaller } from "./bundle-common.mjs";
 import { compilerRuntimeSource } from "./compiler-runtime-source.mjs";
+import { windowsVersionSource } from "./version.mjs";
 import { verifyWindowsRuntimeSources } from "./windows-runtime-review.mjs";
 
 const here = import.meta.dirname,
@@ -49,6 +50,8 @@ await writeFile(
   ),
 );
 const csc = join(process.env.WINDIR, "Microsoft.NET/Framework64/v4.0.30319/csc.exe");
+const assemblyVersion = join(from, "InstallerVersion.cs");
+await writeFile(assemblyVersion, windowsVersionSource());
 execFileSync(csc, [
   "/nologo",
   "/platform:x64",
@@ -57,6 +60,7 @@ execFileSync(csc, [
   `/out:${join(output, "XMP OS Installer.exe")}`,
   "/r:System.Windows.Forms.dll",
   join(here, "WindowsLauncher.cs"),
+  assemblyVersion,
 ]);
 execFileSync(csc, [
   "/nologo",
@@ -67,6 +71,7 @@ execFileSync(csc, [
   "/r:System.Management.dll",
   "/r:System.Web.Extensions.dll",
   join(here, "WindowsHost.cs"),
+  assemblyVersion,
 ]);
 execFileSync(csc, [
   "/nologo",
@@ -75,6 +80,7 @@ execFileSync(csc, [
   `/out:${join(resources, "stock-askpass.exe")}`,
   "/r:System.Windows.Forms.dll",
   join(here, "StockAskPass.cs"),
+  assemblyVersion,
 ]);
 await copyFile(process.execPath, join(resources, "node.exe"));
 await copyFile(join(here, "windows.lock.json"), join(resources, "inputs.lock.json"));
@@ -113,6 +119,7 @@ const result = await bundleInstaller({
   resources,
   workspaceFiles,
   extraSources: [
+    { from: assemblyVersion, to: "InstallerVersion.cs" },
     { from: runtimeSources, to: "Zig-0.13.0-compiler-runtime.tar.gz" },
     { from: join(host, "source"), to: "windows-host-tools" },
     { from: join(from, "7zip-src.tar.xz"), to: "7zip-src.tar.xz" },

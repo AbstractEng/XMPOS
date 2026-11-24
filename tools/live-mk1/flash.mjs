@@ -118,8 +118,11 @@ export async function readIdentity(fastboot, record = () => {}, onUnimplemented 
   // "SERIAL<tab>fastboot"; platform-tools 37 prints "SERIAL<tab> fastboot".
   const lines = devices.output.split("\n").filter((l) => /^\S+\s+fastboot\s*$/.test(l));
   if (lines.length === 0)
-    throw new Error(
-      "No device in update mode. Hold FULL LEVEL + ERASE + PAD BANK C/G while powering on.",
+    throw Object.assign(
+      new Error(
+        "Fastboot cannot see an update-mode device. Check the USB-B data connection and update mode (FULL LEVEL + ERASE + PAD BANK C/G while powering on). On Windows, a missing or incompatible USB driver can also cause this even when Device Manager shows MPCLive.",
+      ),
+      { code: "XMP_NO_FASTBOOT_DEVICE" },
     );
   if (lines.length > 1)
     throw new Error("More than one fastboot device is connected; connect only the MPC Live");
