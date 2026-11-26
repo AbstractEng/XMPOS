@@ -41,7 +41,7 @@ The Intel macOS installer completed its owner-operated Live Mk1 rehearsal on
 the key and full restoration to 3.10.1 passed. The unchanged distribution check
 also passed against the matching private evidence and component/source bundle.
 
-The [**Windows 1.0.2 installer**](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.2) and [**Mac 1.0.1 installer kits**](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.1) are available on GitHub. They include
+The [**Windows 1.0.2 testing candidate**](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.2) and [**Mac 1.0.1 installer kits**](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.1) are available on GitHub. They include
 the MENU fix and prepare **Acid Circuit** on a fresh USB key: boot XMP and press
 **PLAY** to hear the song. Existing startup projects, recovery files, named
 projects and samples are preserved. Fresh-key demo playback passed the shared
@@ -89,8 +89,10 @@ source requirements documented in [licensing](docs/licensing/README.md).
 **1.0.0** establishes the app's [Semantic Versioning policy](VERSIONING.md).
 The web client includes the already released Night Shift first-visit project and
 restores saved work on return. Fresh hardware keys continue to receive Acid Circuit.
-Installer **1.0.2** is a Windows-only patch release, rebuilding installer software and
+Installer **1.0.2** is a Windows-only testing candidate, rebuilding installer software and
 Windows helpers while retaining the verified 1.0.0 system image and runtimes.
 Each kit includes its matching source, notices and checksums. Existing
 platform qualification limits remain in effect. SDK compatibility, project
 schemas and Akai's required 3.10.1 firmware use their own version numbers.
+
+The 1.0.2 Windows package passed integrity, GUI startup, native policy/startup and synthetic UAC cancellation checks on Windows 11. The reported missing-prompt failure also did not occur with the original hidden redirected launch in this VM. Affected-tester verification is pending; 1.0.1 remains the stable release and the website download.

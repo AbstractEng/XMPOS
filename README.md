@@ -62,9 +62,11 @@ On a fresh key, installer preparation loads **Acid Circuit**, the acid-house son
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
 | Intel Mac, macOS 13.4.1+       | [Intel Mac installer](https://github.com/AbstractEng/XMPOS/releases/download/v1.0.1/XMPOS-Live-Mk1-macOS-Intel-1.0.1.zip)             |
 | Apple Silicon Mac, macOS 13.5+ | [Apple Silicon installer](https://github.com/AbstractEng/XMPOS/releases/download/v1.0.1/XMPOS-Live-Mk1-macOS-Apple-Silicon-1.0.1.zip) |
-| Windows x64                    | [Windows installer](https://github.com/AbstractEng/XMPOS/releases/download/v1.0.2/XMPOS-Live-Mk1-Windows-x64-1.0.2.zip)               |
+| Windows x64                    | [Windows 1.0.2 testing candidate](https://github.com/AbstractEng/XMPOS/releases/download/v1.0.2/XMPOS-Live-Mk1-Windows-x64-1.0.2.zip) |
 
-[Windows installer 1.0.2 release notes and checksums](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.2); [Mac installer 1.0.1](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.1). Extract the complete ZIP, then open the app. The Intel Mac route passed owner installation, playback, save/reopen and full stock restoration. Apple Silicon passed native automated checks; laptop testing is pending. Windows read-only Live detection passed through a Windows 11 VM; physical Windows PC flash qualification is pending. Mac apps are ad-hoc signed, not notarized; Windows is unsigned.
+[Windows 1.0.2 candidate notes and checksums](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.2); [Mac installer 1.0.1](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.1). Extract the complete ZIP, then open the app. The Intel Mac route passed owner installation, playback, save/reopen and full stock restoration. Apple Silicon passed native automated checks; laptop testing is pending. Windows read-only Live detection passed through a Windows 11 VM; physical Windows PC flash qualification is pending. Mac apps are ad-hoc signed, not notarized; Windows is unsigned.
+
+Windows 1.0.2 is a testing candidate for repair startup and clearer errors. Its packaged startup and synthetic administrator-prompt checks passed on Windows 11; the affected tester’s exact missing-prompt failure remains unconfirmed. The [stable Windows installer remains 1.0.1](https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.1).
 
 You supply the official signed **Gen 1 3.10.1 updater**; Akai-derived files stay local. [Release information](RELEASE.md) records the exact scope and sources.
 
