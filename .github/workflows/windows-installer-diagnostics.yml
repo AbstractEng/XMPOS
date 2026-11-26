@@ -22,14 +22,17 @@ jobs:
         run: |
           $csc = Join-Path $env:WINDIR 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
           $out = Join-Path $env:RUNNER_TEMP 'xmp-host-helper.exe'
-          & $csc /nologo /platform:x64 /target:exe "/out:$out" /r:System.Windows.Forms.dll /r:System.Management.dll /r:System.Web.Extensions.dll tools/live-mk1/installer/WindowsHost.cs
+          $source = Join-Path $PWD 'tools\live-mk1\installer\WindowsHost.cs'
+          & $csc /nologo /platform:x64 /target:exe "/out:$out" /r:System.Windows.Forms.dll /r:System.Management.dll /r:System.Web.Extensions.dll $source
           if ($LASTEXITCODE -ne 0) { throw 'Native helper compilation failed' }
       - name: Compile and run Windows USB policy tests without hardware or registry access
         shell: pwsh
         run: |
           $csc = Join-Path $env:WINDIR 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
           $out = Join-Path $env:RUNNER_TEMP 'xmp-winusb-policy.exe'
-          & $csc /nologo /platform:x64 /target:exe /main:WindowsUsbCompatibilityTests "/out:$out" /r:System.Windows.Forms.dll /r:System.Management.dll /r:System.Web.Extensions.dll tools/live-mk1/installer/WindowsHost.cs tools/live-mk1/installer/WindowsUsbCompatibilityTests.cs
+          $source = Join-Path $PWD 'tools\live-mk1\installer\WindowsHost.cs'
+          $tests = Join-Path $PWD 'tools\live-mk1\installer\WindowsUsbCompatibilityTests.cs'
+          & $csc /nologo /platform:x64 /target:exe /main:WindowsUsbCompatibilityTests "/out:$out" /r:System.Windows.Forms.dll /r:System.Management.dll /r:System.Web.Extensions.dll $source $tests
           if ($LASTEXITCODE -ne 0) { throw 'USB policy compilation failed' }
           & $out (Join-Path $env:RUNNER_TEMP 'xmp-host-helper.exe')
           if ($LASTEXITCODE -ne 0) { throw 'USB policy tests failed' }
