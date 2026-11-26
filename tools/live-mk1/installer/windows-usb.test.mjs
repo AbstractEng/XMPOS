@@ -6,8 +6,10 @@ import { join } from "node:path";
 import { test } from "node:test";
 import { stockInstallReceipt } from "../stock-install-report.mjs";
 import { createController } from "./controller.mjs";
+import { windowsUsbRepairAction } from "./host.mjs";
 import { stockInstallFixture } from "./stock-test-fixture.mjs";
 import { FASTBOOT_INTERFACE, repairWindowsUsb, validateUsbRepairPlan } from "./windows-usb.mjs";
+import { windowsUsbFailure } from "./windows-usb-errors.mjs";
 
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const otherGuid = "{12345678-1234-1234-1234-123456789abc}";
@@ -23,6 +25,68 @@ const plan = (plural = [], singular = []) => {
     needsRepair: ![...plural, ...singular].some((g) => g.toLowerCase() === FASTBOOT_INTERFACE),
   };
 };
+
+test("Windows helper preserves typed elevation failures without exposing command lines or private OS messages", async () => {
+  const pins = sha("synthetic unit");
+  const snapshot = sha("synthetic registry");
+  for (const [code, nativeCode, message] of [
+    ["XMP_UAC_CANCELLED", 1223, /approval was cancelled/],
+    ["XMP_UAC_DENIED", 5, /blocked the administrator request/],
+    ["XMP_UAC_LAUNCH_FAILED", 2, /could not open the administrator/],
+    ["XMP_UAC_CHILD_FAILED", 0, /helper started but could not complete/],
+    ["XMP_USB_SNAPSHOT_CHANGED", 0, /changed since inspection/],
+    ["XMP_USB_DEVICE_CHANGED", 0, /only healthy update-mode device/],
+    ["XMP_USB_REGISTRY_DENIED", 0, /denied access/],
+    ["XMP_USB_HELPER_TIMEOUT", 0, /timed out/],
+  ]) {
+    let launches = 0;
+    await assert.rejects(
+      windowsUsbRepairAction("/synthetic/resources", ["winusb-repair", pins, snapshot], {
+        platform: "win32",
+        execute: async (file, args, options) => {
+          launches++;
+          assert.match(file, /host-helper\.exe$/);
+          assert.deepEqual(args, ["winusb-repair", pins, snapshot]);
+          assert.equal(options.windowsHide, true);
+          throw Object.assign(Error("private account and SERIAL-SECRET"), {
+            stderr: `XMP_WINDOWS_USB_ERROR ${JSON.stringify({ code, nativeCode })}\r\n`,
+          });
+        },
+      }),
+      (error) => {
+        assert.equal(error.code, code);
+        assert.match(error.message, message);
+        assert.doesNotMatch(error.message, /SERIAL-SECRET|synthetic|private account/);
+        return true;
+      },
+    );
+    assert.equal(launches, 1, "a failed repair never retries automatically");
+  }
+});
+
+test("unrecognised helper errors, malformed JSON and timeouts remain distinct from a cancelled approval", async () => {
+  for (const error of [
+    Error("SERIAL-SECRET"),
+    { stderr: "The handle is invalid: C:\\Users\\PRIVATE" },
+    { stderr: 'XMP_WINDOWS_USB_ERROR {"code":"UNKNOWN","message":"SERIAL-SECRET"}' },
+    { stderr: 'XMP_WINDOWS_USB_ERROR {"code":"XMP_UAC_DENIED"}\nSERIAL-SECRET' },
+    { stderr: "XMP_WINDOWS_USB_ERROR broken JSON" },
+  ]) {
+    const failure = windowsUsbFailure(error);
+    assert.equal(failure.code, "XMP_USB_HELPER_FAILED");
+    assert.doesNotMatch(failure.message, /SERIAL-SECRET|PRIVATE|cancelled/);
+  }
+  assert.equal(windowsUsbFailure({ killed: true }).code, "XMP_USB_HELPER_TIMEOUT");
+  let launches = 0;
+  await assert.rejects(
+    windowsUsbRepairAction("/synthetic", ["winusb-apply", sha("unit"), sha("snapshot")], {
+      platform: "win32",
+      execute: () => launches++,
+    }),
+    /Fixed verified-unit/,
+  );
+  assert.equal(launches, 0, "the JS adapter cannot invoke the elevated apply action directly");
+});
 async function fixture(t) {
   const stateDirectory = await mkdtemp(join(tmpdir(), "xmp-winusb-test-"));
   t.after(() => rm(stateDirectory, { recursive: true, force: true }));

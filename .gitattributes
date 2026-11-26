@@ -9,3 +9,4 @@ brand/abstract-engineering/assets/fonts/OFL.txt -whitespace
 *.sh text eol=lf
 *.mjs text eol=lf
 *.json text eol=lf
+*.cs text eol=lf

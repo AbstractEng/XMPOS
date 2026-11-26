@@ -1,8 +1,8 @@
 {
   "format": "xmp-installer-candidate",
   "version": 1,
-  "releaseVersion": "1.0.1",
-  "publication": "Installer 1.0.1 patch; rebuilt installer software with the unchanged verified 1.0.0 MPC system image and host runtimes",
+  "releaseVersion": "1.0.2",
+  "publication": "Windows-only 1.0.2 testing candidate: repair startup hardening and specific native failure reporting; affected tester verification pending. Mac installers remain 1.0.1.",
   "target": "inmusic,acv8",
   "startingMpcOs": "3.10.1",
   "sessionSourceCommit": "0836d4ab7b66f53a021efbc907ad427949e92378",
@@ -37,14 +37,16 @@
       "automatedPackagedFlow": "passed on rebuilt 1.0.1 kit"
     },
     "Windows-x64": {
-      "installerSourceCommit": "e596eb7",
-      "installerSourceHash": "09f8ad488d0ae615e170970548969c3edc8f7a91145048a2d005cfdc8826818a",
-      "automatedPackagedFlow": "passed",
+      "installerSourceCommit": "e050eb1",
+      "installerSourceHash": "69761e4370dc8e153483cf3cba286c5fea1860f52e4ffd896eae3feeadbd4e08",
+      "automatedPackagedFlow": "1.0.1 full simulated flow previously passed; 1.0.2 package hashes/CRC, Windows 11 EXE GUI startup and native startup/policy passed",
       "physicalDriverFlashQualification": "pending",
-      "archive": "XMPOS-Live-Mk1-Windows-x64-1.0.1.zip",
-      "archiveSha256": "c9acdd684b9b8fdd37cbd9bb3805a0016001f6393f3ccdb1049b76c7e5662df5",
+      "archive": "XMPOS-Live-Mk1-Windows-x64-1.0.2.zip",
+      "archiveSha256": "3e09fda92b6f985d22c8337f9b717fa6f74065c257affa2c821188247185d603",
       "readOnlyDetection": "passed 2026-11-24 using physical owner Live through Windows 11 VM; no flash",
-      "nativeHelpers": "compiled and policy-tested on Windows 11; executable version 1.0.1.0"
+      "nativeHelpers": "compiled and policy-tested on Windows Server 2025 and Windows 11; executable version 1.0.2.0",
+      "repairPrompt": "Windows 11 synthetic UAC prompt and cancellation passed; no device or registry writes",
+      "reportedMissingPromptFailure": "not reproduced under hidden redirected launch conditions; affected tester verification pending"
     },
     "macOS-Apple-Silicon": {
       "installerSourceCommit": "e596eb7",
@@ -61,9 +63,9 @@
   },
   "akaisFirmwareOrOwnerRuntimeIncluded": false,
   "rawOwnerEvidenceIncluded": false,
-  "releaseUrl": "https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.1",
-  "previousReleaseVersion": "1.0.0",
-  "embeddedBuildLabels": "installer 1.0.1; MPC session 1.0.0",
+  "releaseUrl": "https://github.com/AbstractEng/XMPOS/releases/tag/v1.0.2",
+  "previousReleaseVersion": "1.0.1",
+  "embeddedBuildLabels": "Windows installer 1.0.2 testing candidate; Mac installers 1.0.1; MPC session 1.0.0",
   "versioning": "VERSIONING.md",
   "appVersion": "1.0.0",
   "systemImageChanged": false

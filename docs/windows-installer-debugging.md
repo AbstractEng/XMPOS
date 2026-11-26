@@ -72,6 +72,49 @@ Android interface GUID listed above. See [Microsoft's WinUSB installation
 instructions](https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/winusb-installation)
 and [AOSP's Windows fastboot enumeration](https://android.googlesource.com/platform/system/core/+/refs/heads/main/fastboot/usb_windows.cpp).
 
+## Administrator prompt does not appear
+
+A follow-up report on 25 November describes installer 1.0.1 stopping after
+“Requesting administrator approval,” with no prompt in Chrome or Edge. The
+browser only sends the local action; the native Windows helper requests UAC.
+The previous generic error obscured the stage and Windows error code.
+
+The candidate 1.0.2 helper writes UTF-8 directly to its redirected output streams. It no
+longer sets `Console.OutputEncoding`, which calls the console code-page API
+and can throw when a process has no usable console handles. This was observed
+in a synthetic Windows 11 GUI-only fixture, not the installer’s redirected
+launch. Its UAC launch uses
+the fixed helper path, its own working directory and a normal visible window.
+Only the existing `winusb-apply` action and verified hex hashes cross elevation.
+Device identity and registry snapshot checks still run before and after approval.
+
+The installer now distinguishes cancelled approval (Windows 1223), denied
+approval (5), a request that could not launch, an elevated child that failed,
+changed device/registry state, denied registry access, and timeout. Only fixed
+error codes and bounded numeric Windows codes enter the operation log; private
+OS messages, paths and serials do not. No failed repair retries automatically.
+
+Console-free startup is covered by the compiled Windows regression test: it
+launches the actual helper with `CreateNoWindow`, redirected output and an
+unsupported action, and requires the normal argument refusal. This test opens
+no device, changes no registry and requests no elevation. The installer and
+Gherkin regressions cover a missing prompt separately from cancellation and
+verify that neither result enables a flash.
+
+Windows Server 2025 CI and the owner's Windows 11 test VM passed the new
+helper's native startup and policy tests. On Windows 11, synthetic helpers using
+the production elevation settings displayed UAC from both a GUI-only launcher
+and a hidden process with redirected streams; selecting No returned Windows
+1223 and the expected cancellation result. These tests used fake hashes, refused
+all child arguments, and performed no device access or registry changes.
+
+The original 1.0.1 helper also started correctly on both hosts. Its original UAC
+settings displayed the prompt under the installer's hidden, redirected launch
+conditions. The tester's exact missing-prompt failure is therefore still not
+reproduced. Console stream hardening is not established as its cause. Treat
+1.0.2 as a testing candidate until the affected tester checks its more specific
+error report; do not claim the physical Windows compatibility issue is resolved.
+
 ## Information to request from the tester
 
 Ask for the installer version, the **Operation log**, and Device Manager's

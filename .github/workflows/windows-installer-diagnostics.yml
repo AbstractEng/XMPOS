@@ -11,6 +11,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -22,16 +24,50 @@ jobs:
         run: |
           $csc = Join-Path $env:WINDIR 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
           $out = Join-Path $env:RUNNER_TEMP 'xmp-host-helper.exe'
-          & $csc /nologo /platform:x64 /target:exe "/out:$out" /r:System.Windows.Forms.dll /r:System.Management.dll /r:System.Web.Extensions.dll tools/live-mk1/installer/WindowsHost.cs
+          $source = Join-Path $PWD 'tools\live-mk1\installer\WindowsHost.cs'
+          & $csc /nologo /platform:x64 /target:exe "/out:$out" /r:System.Windows.Forms.dll /r:System.Management.dll /r:System.Web.Extensions.dll $source
           if ($LASTEXITCODE -ne 0) { throw 'Native helper compilation failed' }
       - name: Compile and run Windows USB policy tests without hardware or registry access
         shell: pwsh
         run: |
           $csc = Join-Path $env:WINDIR 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
           $out = Join-Path $env:RUNNER_TEMP 'xmp-winusb-policy.exe'
-          & $csc /nologo /platform:x64 /target:exe /main:WindowsUsbCompatibilityTests "/out:$out" /r:System.Windows.Forms.dll /r:System.Management.dll /r:System.Web.Extensions.dll tools/live-mk1/installer/WindowsHost.cs tools/live-mk1/installer/WindowsUsbCompatibilityTests.cs
+          $source = Join-Path $PWD 'tools\live-mk1\installer\WindowsHost.cs'
+          $tests = Join-Path $PWD 'tools\live-mk1\installer\WindowsUsbCompatibilityTests.cs'
+          & $csc /nologo /platform:x64 /target:exe /main:WindowsUsbCompatibilityTests "/out:$out" /r:System.Windows.Forms.dll /r:System.Management.dll /r:System.Web.Extensions.dll $source $tests
           if ($LASTEXITCODE -ne 0) { throw 'USB policy compilation failed' }
-          & $out
+          & $out (Join-Path $env:RUNNER_TEMP 'xmp-host-helper.exe')
           if ($LASTEXITCODE -ne 0) { throw 'USB policy tests failed' }
+      - name: Build versioned Windows helpers for a patch release
+        shell: pwsh
+        run: node tools/live-mk1/installer/build-windows-native.mjs (Join-Path $env:RUNNER_TEMP 'windows-native')
+      - name: Record startup comparison with the shipped 1.0.1 helper
+        shell: pwsh
+        run: |
+          $legacy = Join-Path $env:RUNNER_TEMP 'LegacyWindowsHost.cs'
+          git show 'dacf66311353868296926ca7bf9c81d070113ea8:tools/live-mk1/installer/WindowsHost.cs' | Set-Content -Encoding utf8 $legacy
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot read pinned 1.0.1 source' }
+          $csc = Join-Path $env:WINDIR 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
+          $out = Join-Path $env:RUNNER_TEMP 'legacy-host-helper.exe'
+          & $csc /nologo /platform:x64 /target:exe "/out:$out" /r:System.Windows.Forms.dll /r:System.Management.dll /r:System.Web.Extensions.dll $legacy
+          if ($LASTEXITCODE -ne 0) { throw 'Legacy native helper compilation failed' }
+          $policy = Join-Path $env:RUNNER_TEMP 'windows-native/policy-tests.exe'
+          & $policy $out 2>&1 | Out-File (Join-Path $env:RUNNER_TEMP 'windows-native/legacy-startup.txt')
+          $legacyPassed = $LASTEXITCODE -eq 0
+          @{ legacyStartupPassed = $legacyPassed; platform = 'windows-2025'; originalFailureReproduced = !$legacyPassed } | ConvertTo-Json | Set-Content (Join-Path $env:RUNNER_TEMP 'windows-native/legacy-comparison.json')
+          Write-Host "Legacy startup passed on this runner: $legacyPassed. This is not a hardware or interactive UAC test."
+          exit 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-native
+          path: |
+            ${{ runner.temp }}/windows-native/host-helper.exe
+            ${{ runner.temp }}/windows-native/launcher.exe
+            ${{ runner.temp }}/windows-native/stock-askpass.exe
+            ${{ runner.temp }}/windows-native/native-receipt.json
+            ${{ runner.temp }}/windows-native/policy-tests.txt
+            ${{ runner.temp }}/windows-native/legacy-startup.txt
+            ${{ runner.temp }}/windows-native/legacy-comparison.json
+          if-no-files-found: error
 # This checks Windows Server compilation and fake transports, not Windows 11
 # USB drivers or a physical MPC. No driver installer or USB device is opened.
