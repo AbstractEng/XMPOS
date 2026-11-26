@@ -79,7 +79,7 @@ A follow-up report on 25 November describes installer 1.0.1 stopping after
 browser only sends the local action; the native Windows helper requests UAC.
 The previous generic error obscured the stage and Windows error code.
 
-The 1.0.2 helper writes UTF-8 directly to its redirected output streams. It no
+The candidate 1.0.2 helper writes UTF-8 directly to its redirected output streams. It no
 longer sets `Console.OutputEncoding`, which calls the console code-page API
 and can throw when the graphical launcher has no console. Its UAC launch uses
 the fixed helper path, its own working directory and a normal visible window.
@@ -98,6 +98,13 @@ unsupported action, and requires the normal argument refusal. This test opens
 no device, changes no registry and requests no elevation. The installer and
 Gherkin regressions cover a missing prompt separately from cancellation and
 verify that neither result enables a flash.
+
+Windows Server 2025 CI passed the new helper's native startup tests, but the
+shipped 1.0.1 helper also passed the same unsupported-action startup check on
+that host. The tester's missing-prompt failure has therefore not been reproduced
+by this comparison. Console stream hardening alone is not established as its
+cause. Interactive Windows 11 approval-path verification remains required
+before calling the candidate a confirmed fix for that report.
 
 ## Information to request from the tester
 

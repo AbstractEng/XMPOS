@@ -41,7 +41,7 @@ jobs:
       - name: Build versioned Windows helpers for a patch release
         shell: pwsh
         run: node tools/live-mk1/installer/build-windows-native.mjs (Join-Path $env:RUNNER_TEMP 'windows-native')
-      - name: Confirm the shipped 1.0.1 helper fails the console-free regression
+      - name: Record startup comparison with the shipped 1.0.1 helper
         shell: pwsh
         run: |
           $legacy = Join-Path $env:RUNNER_TEMP 'LegacyWindowsHost.cs'
@@ -53,8 +53,9 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Legacy native helper compilation failed' }
           $policy = Join-Path $env:RUNNER_TEMP 'windows-native/policy-tests.exe'
           & $policy $out 2>&1 | Out-File (Join-Path $env:RUNNER_TEMP 'windows-native/legacy-startup.txt')
-          if ($LASTEXITCODE -eq 0) { throw 'Legacy helper unexpectedly passed; startup failure was not reproduced' }
-          Write-Host 'The shipped helper failed console-free startup; the repaired helper passed.'
+          $legacyPassed = $LASTEXITCODE -eq 0
+          @{ legacyStartupPassed = $legacyPassed; platform = 'windows-2025'; originalFailureReproduced = !$legacyPassed } | ConvertTo-Json | Set-Content (Join-Path $env:RUNNER_TEMP 'windows-native/legacy-comparison.json')
+          Write-Host "Legacy startup passed on this runner: $legacyPassed. This is not a hardware or interactive UAC test."
           exit 0
       - uses: actions/upload-artifact@v4
         with:
@@ -66,6 +67,7 @@ jobs:
             ${{ runner.temp }}/windows-native/native-receipt.json
             ${{ runner.temp }}/windows-native/policy-tests.txt
             ${{ runner.temp }}/windows-native/legacy-startup.txt
+            ${{ runner.temp }}/windows-native/legacy-comparison.json
           if-no-files-found: error
 # This checks Windows Server compilation and fake transports, not Windows 11
 # USB drivers or a physical MPC. No driver installer or USB device is opened.
