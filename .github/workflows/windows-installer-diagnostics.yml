@@ -31,7 +31,7 @@ jobs:
           $out = Join-Path $env:RUNNER_TEMP 'xmp-winusb-policy.exe'
           & $csc /nologo /platform:x64 /target:exe /main:WindowsUsbCompatibilityTests "/out:$out" /r:System.Windows.Forms.dll /r:System.Management.dll /r:System.Web.Extensions.dll tools/live-mk1/installer/WindowsHost.cs tools/live-mk1/installer/WindowsUsbCompatibilityTests.cs
           if ($LASTEXITCODE -ne 0) { throw 'USB policy compilation failed' }
-          & $out
+          & $out (Join-Path $env:RUNNER_TEMP 'xmp-host-helper.exe')
           if ($LASTEXITCODE -ne 0) { throw 'USB policy tests failed' }
 # This checks Windows Server compilation and fake transports, not Windows 11
 # USB drivers or a physical MPC. No driver installer or USB device is opened.

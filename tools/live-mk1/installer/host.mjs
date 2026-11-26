@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { promisify } from "node:util";
 import { pythonRun } from "./runtime.mjs";
 import { validateUsbVolume } from "./usb.mjs";
+import { windowsUsbFailure } from "./windows-usb-errors.mjs";
 
 const exec = promisify(execFile);
 export const supportDirectory = () =>
@@ -65,9 +66,13 @@ export async function windowsUpdateModeMetadata(resources) {
   });
   return JSON.parse(r.stdout);
 }
-export async function windowsUsbRepairAction(resources, args) {
+export async function windowsUsbRepairAction(
+  resources,
+  args,
+  { platform = process.platform, execute = exec } = {},
+) {
   if (
-    process.platform !== "win32" ||
+    platform !== "win32" ||
     !["winusb-plan", "winusb-repair"].includes(args[0]) ||
     args.length !== (args[0] === "winusb-plan" ? 2 : 3) ||
     !/^[a-f0-9]{64}(?:,[a-f0-9]{64})?$/.test(args[1] ?? "") ||
@@ -75,17 +80,14 @@ export async function windowsUsbRepairAction(resources, args) {
   )
     throw Error("Fixed verified-unit Windows USB action required");
   try {
-    const r = await exec(join(resources, "host-helper.exe"), args, {
+    const r = await execute(join(resources, "host-helper.exe"), args, {
       windowsHide: true,
       timeout: 180000,
       maxBuffer: 65536,
     });
     return JSON.parse(r.stdout);
-  } catch {
-    // Native process arguments and OS errors can contain private unit metadata.
-    throw Error(
-      "Windows USB registration repair was cancelled or failed. Check the Live connection and administrator approval; no automatic retry.",
-    );
+  } catch (error) {
+    throw windowsUsbFailure(error);
   }
 }
 export async function labelUsb(volume, resources) {

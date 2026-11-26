@@ -143,6 +143,7 @@ Feature: Official Akai kernel and MPC Live Mk1 hardware support, built and teste
     And a confirmed flash sends exactly the unlock, the rootfs image and a reboot
     And an MPCLive entry without a Windows driver is diagnosed without enabling a write
     And a confirmed Windows connection repair preserves existing interfaces and never enables an MPC write
+    And an administrator prompt launch failure is distinguished from cancellation without exposing private Windows details
 
   @LK06 @implemented @host_only @positive
   Scenario: LK06 - The runtime probe recognizes Live Mk1 hardware read-only

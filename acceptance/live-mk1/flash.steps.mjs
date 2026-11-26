@@ -7,6 +7,7 @@ import { Given, Then, When } from "@cucumber/cucumber";
 import { fastbootArgs, readIdentity, runFlash, UNLOCK } from "../../tools/live-mk1/flash.mjs";
 import { inspectWithConnectionDiagnostics } from "../../tools/live-mk1/installer/connection-diagnostics.mjs";
 import { createController } from "../../tools/live-mk1/installer/controller.mjs";
+import { windowsUsbRepairAction } from "../../tools/live-mk1/installer/host.mjs";
 import { stockInstallFixture } from "../../tools/live-mk1/installer/stock-test-fixture.mjs";
 import {
   FASTBOOT_INTERFACE,
@@ -37,6 +38,52 @@ function simulated(identity, devices = 1) {
 }
 const writes = (calls) => calls.filter((c) => c[0] !== "devices" && c[0] !== "getvar");
 const quiet = () => {};
+
+Then(
+  "an administrator prompt launch failure is distinguished from cancellation without exposing private Windows details",
+  async function () {
+    const codes = [];
+    for (const [code, nativeCode, explanation] of [
+      ["XMP_UAC_LAUNCH_FAILED", 2, /could not open the administrator approval/],
+      ["XMP_UAC_CANCELLED", 1223, /approval was cancelled/],
+    ]) {
+      let launches = 0;
+      const c = createController({
+        platform: "win32",
+        pick: async () => null,
+        execute: () =>
+          windowsUsbRepairAction(
+            "/synthetic/resources",
+            ["winusb-repair", "a".repeat(64), "b".repeat(64)],
+            {
+              platform: "win32",
+              execute: async () => {
+                launches++;
+                throw Object.assign(Error("C:\\Users\\PRIVATE\\SERIAL-SECRET"), {
+                  stderr: `XMP_WINDOWS_USB_ERROR ${JSON.stringify({ code, nativeCode })}`,
+                });
+              },
+            },
+          ),
+      });
+      await assert.rejects(c.action({ action: "repair-windows-usb", ownerConfirmed: true }), {
+        code,
+      });
+      assert.match(c.view().message, explanation);
+      assert.doesNotMatch(c.view().message, /PRIVATE|SERIAL-SECRET/);
+      assert.equal(c.view().preview, null);
+      assert.equal(launches, 1);
+      await assert.rejects(c.action({ action: "write" }), /Prepare the USB key/);
+      codes.push(code);
+    }
+    this.evidence.windowsElevationFailure = {
+      synthetic: true,
+      codes,
+      automaticRetry: false,
+      flashPreview: false,
+    };
+  },
+);
 
 Then(
   "a confirmed Windows connection repair preserves existing interfaces and never enables an MPC write",

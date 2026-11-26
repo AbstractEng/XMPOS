@@ -11,6 +11,17 @@ using System.Runtime.InteropServices;
 using System.Web.Script.Serialization;
 
 class WindowsHost {
+  internal sealed class UsbFailure : Exception {
+    internal readonly string Code;internal readonly int NativeCode;
+    internal UsbFailure(string code,int nativeCode=0):base(code) {Code=code;NativeCode=nativeCode;}
+  }
+  internal static void ConfigureOutput() {
+    // The desktop launcher/Node worker has no console. Console.OutputEncoding
+    // calls SetConsoleOutputCP and can fail before the UAC request is reached.
+    // Encode the redirected streams directly, without changing a console page.
+    Console.SetOut(new StreamWriter(Console.OpenStandardOutput(),new UTF8Encoding(false)){AutoFlush=true});
+    Console.SetError(new StreamWriter(Console.OpenStandardError(),new UTF8Encoding(false)){AutoFlush=true});
+  }
   [DllImport("wintrust.dll", ExactSpelling=true, SetLastError=false)] static extern uint WinVerifyTrust(IntPtr hwnd, [MarshalAs(UnmanagedType.LPStruct)] Guid action, IntPtr data);
   [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)] struct TrustFile { public uint size; [MarshalAs(UnmanagedType.LPWStr)] public string path; public IntPtr handle; public IntPtr subject; }
   [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)] struct TrustData { public uint size; public IntPtr policy, client; public uint ui, revocation, choice; public IntPtr file; public uint state; public IntPtr stateData; [MarshalAs(UnmanagedType.LPWStr)] public string url; public uint flags, context; public IntPtr signatureSettings; }
@@ -117,7 +128,7 @@ class WindowsHost {
       otherLive++;
       if(PinnedSerial(id,hashes)&&String.Equals(Text(d["Service"]),"WINUSB",StringComparison.OrdinalIgnoreCase)&&Convert.ToInt32(d["ConfigManagerErrorCode"])==0&&System.Text.RegularExpressions.Regex.IsMatch(name,@"^MPC\s*Live$",System.Text.RegularExpressions.RegexOptions.IgnoreCase))candidates.Add(id);
     }
-    if(candidates.Count!=1||otherLive!=1)throw new Exception("Connect only the verified Live Mk1 in update mode with a healthy WinUSB driver");
+    if(candidates.Count!=1||otherLive!=1)throw new UsbFailure("XMP_USB_DEVICE_CHANGED");
     return candidates[0];
   }
   static object GuidValue(Microsoft.Win32.RegistryKey key,string name) {
@@ -139,20 +150,45 @@ class WindowsHost {
     var guids=InterfaceGuids(id);if(guids==null)throw new Exception("Cannot read USB interface registration");
     return new {fingerprint=Hash(snapshot),before=new JavaScriptSerializer().DeserializeObject(snapshot),needsRepair=!guids.Any(v=>String.Equals(v,AndroidGuid,StringComparison.OrdinalIgnoreCase))};
   }
+  internal static System.Diagnostics.ProcessStartInfo RepairStartInfo(string hashes,string fingerprint) {
+    if(!System.Text.RegularExpressions.Regex.IsMatch(hashes??"",@"\A[a-f0-9]{64}(,[a-f0-9]{64})?\z")||!System.Text.RegularExpressions.Regex.IsMatch(fingerprint??"",@"\A[a-f0-9]{64}\z"))throw new Exception("Verified repair preview required");
+    var executable=System.Reflection.Assembly.GetExecutingAssembly().Location;
+    return new System.Diagnostics.ProcessStartInfo(executable,"winusb-apply "+hashes+" "+fingerprint) {
+      UseShellExecute=true,Verb="runas",WorkingDirectory=Path.GetDirectoryName(executable),
+      CreateNoWindow=false,WindowStyle=System.Diagnostics.ProcessWindowStyle.Normal
+    };
+  }
+  internal static UsbFailure ElevationFailure(int nativeCode) {
+    return new UsbFailure(nativeCode==1223?"XMP_UAC_CANCELLED":nativeCode==5?"XMP_UAC_DENIED":"XMP_UAC_LAUNCH_FAILED",nativeCode);
+  }
+  internal static UsbFailure ElevatedExitFailure(int exitCode) {
+    if(exitCode==31)return new UsbFailure("XMP_USB_DEVICE_CHANGED");
+    if(exitCode==32)return new UsbFailure("XMP_USB_SNAPSHOT_CHANGED");
+    if(exitCode==33)return new UsbFailure("XMP_USB_REGISTRY_DENIED");
+    return new UsbFailure("XMP_UAC_CHILD_FAILED");
+  }
+  static void ElevateRepair(string hashes,string fingerprint) {
+    try {
+      using(var process=System.Diagnostics.Process.Start(RepairStartInfo(hashes,fingerprint))) {
+        if(process==null)throw new UsbFailure("XMP_UAC_LAUNCH_FAILED");
+        if(!process.WaitForExit(120000))throw new UsbFailure("XMP_USB_HELPER_TIMEOUT");
+        if(process.ExitCode!=0)throw ElevatedExitFailure(process.ExitCode);
+      }
+    } catch(System.ComponentModel.Win32Exception e) {throw ElevationFailure(e.NativeErrorCode);}
+  }
   static object RepairWinUsb(string hashes,string fingerprint,bool elevated) {
     if(!System.Text.RegularExpressions.Regex.IsMatch(fingerprint,"^[a-f0-9]{64}$"))throw new Exception("Repair preview required");
     var id=RepairDevice(hashes);var snapshot=RepairSnapshot(id);
-    if(Hash(snapshot)!=fingerprint)throw new Exception("USB registration changed since preview; inspect it again");
+    if(Hash(snapshot)!=fingerprint)throw new UsbFailure("XMP_USB_SNAPSHOT_CHANGED");
     if(!elevated) {
       // Caller has already saved a private backup. Only fixed hex arguments cross UAC.
-      var start=new System.Diagnostics.ProcessStartInfo(System.Reflection.Assembly.GetExecutingAssembly().Location,"winusb-apply "+hashes+" "+fingerprint) {UseShellExecute=true,Verb="runas"};
-      using(var process=System.Diagnostics.Process.Start(start)) {process.WaitForExit();if(process.ExitCode!=0)throw new Exception("Windows USB repair was cancelled or failed; no automatic retry");}
+      ElevateRepair(hashes,fingerprint);
       return RepairPlan(hashes);
     }
     using(var identity=System.Security.Principal.WindowsIdentity.GetCurrent())if(!new System.Security.Principal.WindowsPrincipal(identity).IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator))throw new Exception("Windows administrator approval required");
     using(var key=Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Enum\"+id+@"\Device Parameters",true)) {
       if(key==null)throw new Exception("Cannot open this Live's WinUSB registration");
-      if(Hash(RepairSnapshot(id))!=fingerprint)throw new Exception("USB registration changed during approval");
+      if(Hash(RepairSnapshot(id))!=fingerprint)throw new UsbFailure("XMP_USB_SNAPSHOT_CHANGED");
       var raw=key.GetValue("DeviceInterfaceGUIDs");
       var previous=raw as string[] ?? (raw is string?new[]{(string)raw}:new string[0]);
       var next=AddFastbootGuid(previous);
@@ -161,8 +197,9 @@ class WindowsHost {
     return RepairPlan(hashes);
   }
   [STAThread] static int Main(string[] args) {
-    Console.OutputEncoding=new UTF8Encoding(false); var json=new JavaScriptSerializer();
+    var json=new JavaScriptSerializer();
     try {
+      ConfigureOutput();
       if(args.Length<1)throw new Exception("A fixed host action is required.");object result=null;
       switch(args[0]) {
         case "pick-updater": using(var d=new OpenFileDialog {Title="Choose the official MPC (Gen 1) 3.10.1 Updater.exe",Filter="Official updater (*.exe)|*.exe",CheckFileExists=true}) result=d.ShowDialog()==DialogResult.OK?d.FileName:null;break;
@@ -179,6 +216,14 @@ class WindowsHost {
         default:throw new Exception("Unsupported host action");
       }
       Console.WriteLine(json.Serialize(result));return 0;
-    } catch(Exception e) {Console.Error.WriteLine(e.Message);return 1;}
+    } catch(Exception e) {
+      if(args.Length>0&&new[]{"winusb-plan","winusb-repair","winusb-apply"}.Contains(args[0])) {
+        var failure=e as UsbFailure;
+        if(failure==null)failure=new UsbFailure(e is UnauthorizedAccessException||e is System.Security.SecurityException?"XMP_USB_REGISTRY_DENIED":"XMP_USB_REPAIR_FAILED");
+        Console.Error.WriteLine("XMP_WINDOWS_USB_ERROR "+json.Serialize(new {code=failure.Code,nativeCode=failure.NativeCode}));
+        return failure.Code=="XMP_USB_DEVICE_CHANGED"?31:failure.Code=="XMP_USB_SNAPSHOT_CHANGED"?32:failure.Code=="XMP_USB_REGISTRY_DENIED"?33:1;
+      }
+      Console.Error.WriteLine(e.Message);return 1;
+    }
   }
 }
