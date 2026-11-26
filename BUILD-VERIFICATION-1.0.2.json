@@ -1,0 +1,28 @@
+{
+  "format": "xmp-installer-patch-validation",
+  "installerVersion": "1.0.2",
+  "status": "testing candidate; affected tester verification pending",
+  "platform": "win32",
+  "arch": "x64",
+  "sourceHash": "69761e4370dc8e153483cf3cba286c5fea1860f52e4ffd896eae3feeadbd4e08",
+  "checks": {
+    "installerTests": 39,
+    "gherkinLK18": "passed",
+    "nativeCoreTests": 37,
+    "parityTests": 20,
+    "inventoryTests": 48,
+    "appTests": "629 passed across full run and media fixture rerun",
+    "webBuild": "passed",
+    "windowsNativeCompilation": "passed on Windows Server 2025",
+    "windows11ActualHelperStartupAndPolicy": "passed",
+    "windows11PackagedGuiStartup": "passed, version 1.0.2",
+    "resourceSha256Checks": 925,
+    "zipCrcCheck": "passed",
+    "windows11SyntheticUAC": "visible; safe cancellation returned 1223 from hidden redirected launch",
+    "originalHiddenRedirectedUAC": "also visible; reported exact missing-prompt failure not reproduced"
+  },
+  "hardwareContacted": false,
+  "registryChanged": false,
+  "mpcSystemImageChanged": false,
+  "physicalWindowsFlashQualification": "pending"
+}
